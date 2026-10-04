@@ -24,10 +24,23 @@ namespace PDFRepo
             DataTable dt = dm.GetAllPDFs();
       //      BuildButtonColumn();
             dataGridView1.DataSource = dt;
-            
+            FormatDataGrid();
       //      FormatDataGrid();
       //      dataGridView1.CellContentClick += new DataGridViewCellEventHandler(DataGridView1_CellContentClick);
       //      PersistConfig();
+        }
+
+        private void FormatDataGrid()
+        {
+            dataGridView1.Columns["ID"].HeaderText = "ID";
+            dataGridView1.Columns["ID"].Visible = true;
+
+        //    dataGridView1.Columns["FileName"].HeaderText = "PDF Name";
+        //    dataGridView1.Columns["FilePath"].Visible = true;
+
+        //    dataGridView1.Columns["FileName"].Width = 300;
+         //   dataGridView1.Columns["DateAdded"].HeaderText = "Date Added";
+         //   dataGridView1.Columns["DateAdded"].Width = 150;
         }
         private void exitButton_Click(object sender, EventArgs e)
         {

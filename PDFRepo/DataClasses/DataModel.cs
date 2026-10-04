@@ -43,6 +43,11 @@ namespace PDFRepo.DataClasses
         private string fname = "PDFRepo.db";
         private string bkupPath = "C:\\SQLiteBkup\\recipiesBkup.db";
         private string ConnectionString = "Data Source=C:\\PDFRepo\\PDFRepo.db;";
+
+        // Maybe use this when deploying to a new machine. The database will be created in the same directory as the executable.
+        //  private string ConnectionString = "Data Source=|DataDirectory|\\PDFRepo.db;";
+
+
         #endregion
         #region constructors
 
@@ -59,7 +64,8 @@ namespace PDFRepo.DataClasses
             using (var connection = new SqliteConnection(ConnectionString))
             {
                 var command = connection.CreateCommand();
-                command.CommandText = "select id, pdf_name, category, pdf_description from pdf_table;";
+                
+                command.CommandText = "select id, pdf_name, category, pdf_description, created, size from pdf_table;";
                 connection.Open();
 
                 using (var reader = command.ExecuteReader())
