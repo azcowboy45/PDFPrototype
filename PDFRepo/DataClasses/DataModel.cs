@@ -56,7 +56,38 @@ namespace PDFRepo.DataClasses
 
         #region sqliteMethods
 
-        public DataTable GetAllPDFs()
+        public bool UpdatePDFInfo(string id, string pdfCategory, string pdfDescription)
+        {
+            bool success = false;
+
+            string query = @"UPDATE PDF_table SET pdf_category = @pdf_category, pdf_description = @pdf_description where id = @id ";
+
+            using (var connection = new SqliteConnection(ConnectionString))
+            {
+                using (var command = new SqliteCommand(query, connection))
+                {
+                    // Add parameters to prevent SQL injection
+                    command.Parameters.AddWithValue("@id", id);
+                    command.Parameters.AddWithValue("@pdf_category", pdfCategory);
+                    command.Parameters.AddWithValue("@pdf_description", pdfDescription);
+
+                    try
+                    {
+                        connection.Open();
+                        command.ExecuteNonQuery();
+                        success = true;
+                    }
+                    catch (SqliteException SQLitex)
+                    {
+                        MessageBox.Show("Error: " + SQLitex.Message);
+                    }
+                }
+            }
+            return success;
+        }
+
+
+public DataTable GetAllPDFs()
         {
 
             DataTable dataTable = new DataTable();
@@ -64,7 +95,7 @@ namespace PDFRepo.DataClasses
             using (var connection = new SqliteConnection(ConnectionString))
             {
                 var command = connection.CreateCommand();
-                
+
                 command.CommandText = "select id, pdf_name, pdf_file, pdf_created, " +
                     "pdf_lastmod, pdf_size, pdf_category, pdf_description from pdf_table;";
 
@@ -150,6 +181,9 @@ namespace PDFRepo.DataClasses
             return success;
 
         }
+        #endregion
+
+        #region referenceMethods
         public bool UpdateUnitofMeasure(string id, string measure)
         {
             bool success = false;
@@ -307,164 +341,7 @@ namespace PDFRepo.DataClasses
             }
         }
 
-
-        public bool UpdateSelectableIngredients(string id, string ingredients, string category, string additionalInfo)
-        {
-            bool success = false;
-
-            string postQuery = "UPDATE selectable_ingredients SET ingredients = @ingredients, category = @category, additionalInfo = @additionalInfo where id = @id ";
-
-            using (var connection = new SqliteConnection(ConnectionString))
-            {
-                using (var command = new SqliteCommand(postQuery, connection))
-                {
-                    // Add parameters to prevent SQL injection
-                    command.Parameters.AddWithValue("@ingredients", ingredients);
-                    command.Parameters.AddWithValue("@category", category);
-                    command.Parameters.AddWithValue("@additionalInfo", additionalInfo);
-                    command.Parameters.AddWithValue("@id", id);
-                    try
-                    {
-                        connection.Open();
-                        command.ExecuteNonQuery();
-                        success = true;
-                    }
-                    catch (SqliteException SQLitex)
-                    {
-                        MessageBox.Show("Error: " + SQLitex.Message);
-                    }
-                }
-            }
-            return success;
-        }
-
         #endregion
     }
 }
-
-/*
-
-
-
-         * Configuration : only select all and update is required. 
-         *  New records are never added.
-         * UpdateConfig(yourNameTextBox.Text,
-                                           userIdTextBox.Text,
-                                           pwTextBox.Text,
-                                           imageDirTextBox.Text,
-                                           emailTextBox.Text,
-                                           backupDirTextBox.Text,
-                                           pwTextBox.Text
-                                           );
-
-
-        public bool UpdateConfig(string[] parameterList)
-        {
-            bool success = false;
-            int id = 0;
-            foreach (string parameter in parameterList)
-            {
-                if (DoUpdate(id.ToString(), parameter))
-                {
-                    id++;
-                    success = true;
-                }
-                else
-                {
-                    success = false;
-                    break;
-                }
-            }
-            return success;
-        }
-
-
-        public bool DoUpdate(string id, string parameter)
-        {
-
-            string query = "UPDATE config SET parameters = @parameter WHERE id= @id;";
-            try
-            {
-                using (var connection = new SqliteConnection(ConnectionString))
-                {
-                    connection.Open();
-                    using (var command = new SqliteCommand(query, connection))
-                    {
-                        // Add parameter to the command
-                        command.Parameters.AddWithValue("@parameter", parameter);
-                        command.Parameters.AddWithValue("@id", id);
-                        command.ExecuteNonQuery();
-                        return true; // Return true if update was successful
-                    }
-                }
-            }
-            catch (SqliteException ex)
-            {
-                MessageBox.Show($"Error updating configuration parameter: {ex.Message}");
-                return false;
-            }
-        }
-
-        public DataTable GetConfigRecords()
-        {
-            string query =
-                "SELECT * from config;";
-            try
-            {
-                using (var connection = new SqliteConnection(ConnectionString))
-                using (var command = new SqliteCommand(query, connection))
-                {
-                    connection.Open();
-                    using (var reader = command.ExecuteReader())
-                    {
-                        var dataTable = new DataTable();
-                        dataTable.Load(reader);
-                        return dataTable;
-                    }
-                }
-            }
-            catch (SqliteException SQLitex)
-            {
-                // Log the exception or handle it appropriately
-                MessageBox.Show($"Database Error: {SQLitex.Message}");
-                return null;
-            }
-        }
-
-        public bool SetSkipParameter(bool skip)
-        {
-            bool success = false;
-            string skipStatus = "0";
-            if (skip)
-            {
-                skipStatus = "1";
-            }
-            string query = "UPDATE config SET parameters = @skipStatus WHERE selector = 'no_login';";
-            try
-            {
-                using (var connection = new SqliteConnection(ConnectionString))
-                {
-                    connection.Open();
-                    using (var command = new SqliteCommand(query, connection))
-                    {
-                        // Add parameter to the command
-                        command.Parameters.AddWithValue("@skipStatus", skipStatus);
-                        int rowsAffected = command.ExecuteNonQuery();
-                        success = true; // Return true if update was successful
-                    }
-                }
-            }
-            catch (SqliteException ex)
-            {
-                MessageBox.Show($"Error updating skip parameter: {ex.Message}");
-                success = false;
-            }
-
-            return success;
-
-        }
-
-
- * 
- * */
 

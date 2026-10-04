@@ -44,5 +44,20 @@ namespace PDFRepo.Forms
         {
             this.Close();
         }
+
+        private void SaveButton_Click(object sender, EventArgs e)
+        {
+            DataModel dm = new DataModel();
+            bool success = dm.UpdatePDFInfo(idTextBox.Text, categoryTextBox.Text, descriptionTextBox.Text);
+            if (success)
+            {
+                MessageBox.Show("PDF information updated successfully.");
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Failed to update PDF information.");
+            }
+        }
     }
 }

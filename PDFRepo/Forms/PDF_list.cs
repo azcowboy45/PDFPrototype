@@ -175,6 +175,8 @@ namespace PDFRepo
             {
                 PDFInfoForm pdfInfoForm = new PDFInfoForm(selectedPdfId);
                 pdfInfoForm.ShowDialog();
+           //     pdfInfoForm.Close();
+                this.LoadDataGrid();
             }
         }
 
@@ -189,6 +191,7 @@ namespace PDFRepo
             {
                 ViewPdfForm viewPdfForm = new ViewPdfForm(selectedPdfId);
                 viewPdfForm.ShowDialog();
+                this.LoadDataGrid();
             }
 
 
