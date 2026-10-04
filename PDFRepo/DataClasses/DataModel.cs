@@ -65,7 +65,9 @@ namespace PDFRepo.DataClasses
             {
                 var command = connection.CreateCommand();
                 
-                command.CommandText = "select id, pdf_name, category, pdf_description, created, size from pdf_table;";
+                command.CommandText = "select id, pdf_name, pdf_file, pdf_created, " +
+                    "pdf_size, pdf_category, pdf_description from pdf_table;";
+
                 connection.Open();
 
                 using (var reader = command.ExecuteReader())
@@ -78,7 +80,7 @@ namespace PDFRepo.DataClasses
             return dataTable;
         }
 
-        public bool InsertPDF(string PDFName, string PDFData, string PDFDescription, string category)
+        public bool InsertPDF(string PDFName, string PDFData, string PDFDescription, string PDFCategory, string PDFCreated, string PDFSize)
         {
             bool success = false;
             try
@@ -89,13 +91,19 @@ namespace PDFRepo.DataClasses
                     connection.Open();
 
                     // Use parameterized queries to prevent SQL injection
-                    string insertQuery = "INSERT INTO pdf_table ( pdf_file ) VALUES (@measure)";
+
+                    string insertQuery = "INSERT INTO pdf_table ( pdf_name, pdf_file, pdf_description, pdf_category, " +
+                        "pdf_created, pdf_size ) " +
+                        "VALUES (@pdf_name, @pdf_file, @pdf_description, @pdf_category, @pdf_created, @pdf_size)";
+
                     using (var command = new SqliteCommand(insertQuery, connection))
                     {
-                        command.Parameters.AddWithValue("@PDF_name", PDFName);
-                        command.Parameters.AddWithValue("@PDF_file", PDFData);
-                        command.Parameters.AddWithValue("@PDF_description", PDFDescription);
-                        command.Parameters.AddWithValue("@categpru", category);
+                        command.Parameters.AddWithValue("@pdf_name", PDFName);
+                        command.Parameters.AddWithValue("@pdf_file", PDFData);
+                        command.Parameters.AddWithValue("@pdf_description", PDFDescription);
+                        command.Parameters.AddWithValue("@pdf_category", PDFCategory);
+                        command.Parameters.AddWithValue("@pdf_created", PDFCreated);
+                        command.Parameters.AddWithValue("@pdf_size", PDFSize);
                         command.ExecuteNonQuery();
                     }
                 }
