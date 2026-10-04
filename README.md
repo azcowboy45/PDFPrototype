@@ -3,6 +3,7 @@ It provides features such as searching, categorizing, and annotating PDFs, makin
 users to handle large collections of documents.
 
 The main features of PDFRepo include:
+
     **Importing PDFs**: Users can upload and import PDF files into the repository for centralized 
 	   management and control.
 	**Exporting PDFs**: Users can export selected PDFs or entire collections for sharing or backup purposes.
