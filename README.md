@@ -16,7 +16,8 @@ The main features of PDFRepo include:
 	    needed, ensuring data safety. It is stronly suggested that the backup is done regularly to avoid 
 		data loss and most importantly, that the backup is stored in a secure location such as OneDrive 
 		or other cloud storage.
-	***User-Friendly Interface**: PDFRepo offers an intuitive and easy-to-use interface, making it accessible 
+	***User-Friendly Interface**: PDFRepo as a Windows Forms applicationoffers an intuitive and easy-to-use
+	    interface, making data easilyaccessible 
 		to users of all technical levels.
 	**Encryption and Security**: The tool ensures that PDF files are stored securely, with options for 
 		encryption and access control to protect sensitive information.
