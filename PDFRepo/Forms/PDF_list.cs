@@ -46,28 +46,42 @@ namespace PDFRepo
 
             dataGridView1.Columns["ID"].HeaderText = "ID";
             dataGridView1.Columns["ID"].Visible = true;
-            dataGridView1.Columns["ID"].Width = 80;
+            dataGridView1.Columns["ID"].Width = 64;
 
             dataGridView1.Columns["pdf_name"].HeaderText = "PDF Name";
+            dataGridView1.Columns["pdf_name"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns["pdf_name"].Visible = true;
-            dataGridView1.Columns["pdf_name"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            dataGridView1.Columns["pdf_name"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dataGridView1.Columns["pdf_name"].Width = 256;
 
             dataGridView1.Columns["pdf_file"].Visible = false;  // This large binary crashes datagrid
 
             dataGridView1.Columns["pdf_created"].HeaderText = "Created";
+            dataGridView1.Columns["pdf_created"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns["pdf_created"].Visible = true;
-            dataGridView1.Columns["pdf_created"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            dataGridView1.Columns["pdf_created"].Width = 256;
+            dataGridView1.Columns["pdf_created"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridView1.Columns["pdf_created"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+
+            dataGridView1.Columns["pdf_lastmod"].HeaderText = "Last Modified";
+            dataGridView1.Columns["pdf_lastmod"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns["pdf_lastmod"].Visible = true;
+            dataGridView1.Columns["pdf_lastmod"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridView1.Columns["pdf_lastmod"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
 
             dataGridView1.Columns["pdf_size"].HeaderText = "Size";
+            dataGridView1.Columns["pdf_size"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns["pdf_size"].Visible = true;
             dataGridView1.Columns["pdf_size"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
             dataGridView1.Columns["pdf_size"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dataGridView1.Columns["pdf_size"].Width = 160;
+            dataGridView1.Columns["pdf_size"].Width = 128;
 
             dataGridView1.Columns["pdf_category"].HeaderText = "Category";
+            dataGridView1.Columns["pdf_category"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns["pdf_category"].Visible = true;
+            dataGridView1.Columns["pdf_category"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridView1.Columns["pdf_category"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+
+
             dataGridView1.Columns["pdf_category"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
 
             dataGridView1.Columns["pdf_description"].HeaderText = "Description";
