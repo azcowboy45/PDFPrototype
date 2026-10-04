@@ -32,15 +32,47 @@ namespace PDFRepo
 
         private void FormatDataGrid()
         {
+
+            dataGridView1.ColumnHeadersDefaultCellStyle.Font =
+                new Font(dataGridView1.Font, FontStyle.Bold);
+
+            // Define the default style for all rows (e.g., even rows)
+            this.dataGridView1.RowsDefaultCellStyle.BackColor = Color.White;
+            this.dataGridView1.RowsDefaultCellStyle.ForeColor = Color.Black;
+
+            // Define the style for alternating rows (e.g., odd rows)
+            this.dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.PaleTurquoise;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle.ForeColor = Color.Black;
+
             dataGridView1.Columns["ID"].HeaderText = "ID";
             dataGridView1.Columns["ID"].Visible = true;
 
-        //    dataGridView1.Columns["FileName"].HeaderText = "PDF Name";
-        //    dataGridView1.Columns["FilePath"].Visible = true;
+            dataGridView1.Columns["pdf_name"].HeaderText = "PDF Name";
+            dataGridView1.Columns["pdf_name"].Visible = true;
+            dataGridView1.Columns["pdf_name"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            dataGridView1.Columns["pdf_name"].Width = 256;
 
-        //    dataGridView1.Columns["FileName"].Width = 300;
-         //   dataGridView1.Columns["DateAdded"].HeaderText = "Date Added";
-         //   dataGridView1.Columns["DateAdded"].Width = 150;
+            dataGridView1.Columns["pdf_file"].Visible = false;  // This large binary crashes datagrid
+
+            dataGridView1.Columns["pdf_created"].HeaderText = "Created";
+            dataGridView1.Columns["pdf_created"].Visible = true;
+            dataGridView1.Columns["pdf_created"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            dataGridView1.Columns["pdf_created"].Width = 128;
+
+            dataGridView1.Columns["pdf_size"].HeaderText = "Size";
+            dataGridView1.Columns["pdf_size"].Visible = true;
+            dataGridView1.Columns["pdf_size"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            dataGridView1.Columns["pdf_size"].Width = 128;
+
+            dataGridView1.Columns["pdf_category"].HeaderText = "Category";
+            dataGridView1.Columns["pdf_category"].Visible = true;
+            dataGridView1.Columns["pdf_category"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+
+            dataGridView1.Columns["pdf_description"].HeaderText = "Description";
+            dataGridView1.Columns["pdf_description"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dataGridView1.Columns["pdf_description"].Visible = true;
+
+
         }
         private void exitButton_Click(object sender, EventArgs e)
         {
