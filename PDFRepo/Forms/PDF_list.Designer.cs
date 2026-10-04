@@ -40,7 +40,7 @@
             dataGridView1.Location = new Point(-2, 92);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 62;
-            dataGridView1.Size = new Size(1721, 901);
+            dataGridView1.Size = new Size(1787, 907);
             dataGridView1.TabIndex = 0;
             // 
             // exitButton
@@ -66,7 +66,7 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1355, 1092);
+            ClientSize = new Size(1785, 1075);
             Controls.Add(ViewButton);
             Controls.Add(exitButton);
             Controls.Add(dataGridView1);

@@ -46,6 +46,7 @@ namespace PDFRepo
 
             dataGridView1.Columns["ID"].HeaderText = "ID";
             dataGridView1.Columns["ID"].Visible = true;
+            dataGridView1.Columns["ID"].Width = 80;
 
             dataGridView1.Columns["pdf_name"].HeaderText = "PDF Name";
             dataGridView1.Columns["pdf_name"].Visible = true;
@@ -57,12 +58,13 @@ namespace PDFRepo
             dataGridView1.Columns["pdf_created"].HeaderText = "Created";
             dataGridView1.Columns["pdf_created"].Visible = true;
             dataGridView1.Columns["pdf_created"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            dataGridView1.Columns["pdf_created"].Width = 128;
+            dataGridView1.Columns["pdf_created"].Width = 256;
 
             dataGridView1.Columns["pdf_size"].HeaderText = "Size";
             dataGridView1.Columns["pdf_size"].Visible = true;
             dataGridView1.Columns["pdf_size"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            dataGridView1.Columns["pdf_size"].Width = 128;
+            dataGridView1.Columns["pdf_size"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dataGridView1.Columns["pdf_size"].Width = 160;
 
             dataGridView1.Columns["pdf_category"].HeaderText = "Category";
             dataGridView1.Columns["pdf_category"].Visible = true;
