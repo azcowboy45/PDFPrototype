@@ -31,7 +31,20 @@
             dataGridView1 = new DataGridView();
             exitButton = new Button();
             ViewButton = new Button();
+            menuStrip1 = new MenuStrip();
+            fileToolStripMenuItem = new ToolStripMenuItem();
+            importToolStripMenuItem = new ToolStripMenuItem();
+            exportToolStripMenuItem = new ToolStripMenuItem();
+            backupToolStripMenuItem = new ToolStripMenuItem();
+            toolStripSeparator1 = new ToolStripSeparator();
+            exitToolStripMenuItem = new ToolStripMenuItem();
+            editToolStripMenuItem = new ToolStripMenuItem();
+            modifyPDFRecordsToolStripMenuItem = new ToolStripMenuItem();
+            helpToolStripMenuItem = new ToolStripMenuItem();
+            helpToolStripMenuItem1 = new ToolStripMenuItem();
+            aboutPDFRepoToolStripMenuItem = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // dataGridView1
@@ -63,6 +76,87 @@
             ViewButton.UseVisualStyleBackColor = true;
             ViewButton.Click += ViewButton_Click;
             // 
+            // menuStrip1
+            // 
+            menuStrip1.ImageScalingSize = new Size(24, 24);
+            menuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, editToolStripMenuItem, helpToolStripMenuItem });
+            menuStrip1.Location = new Point(0, 0);
+            menuStrip1.Name = "menuStrip1";
+            menuStrip1.Size = new Size(1785, 33);
+            menuStrip1.TabIndex = 3;
+            menuStrip1.Text = "menuStrip1";
+            // 
+            // fileToolStripMenuItem
+            // 
+            fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { importToolStripMenuItem, exportToolStripMenuItem, backupToolStripMenuItem, toolStripSeparator1, exitToolStripMenuItem });
+            fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            fileToolStripMenuItem.Size = new Size(54, 29);
+            fileToolStripMenuItem.Text = "File";
+            // 
+            // importToolStripMenuItem
+            // 
+            importToolStripMenuItem.Name = "importToolStripMenuItem";
+            importToolStripMenuItem.Size = new Size(270, 34);
+            importToolStripMenuItem.Text = "Import";
+            importToolStripMenuItem.Click += importToolStripMenuItem_Click;
+            // 
+            // exportToolStripMenuItem
+            // 
+            exportToolStripMenuItem.Name = "exportToolStripMenuItem";
+            exportToolStripMenuItem.Size = new Size(270, 34);
+            exportToolStripMenuItem.Text = "Export Database";
+            exportToolStripMenuItem.Click += exportToolStripMenuItem_Click;
+            // 
+            // backupToolStripMenuItem
+            // 
+            backupToolStripMenuItem.Name = "backupToolStripMenuItem";
+            backupToolStripMenuItem.Size = new Size(270, 34);
+            backupToolStripMenuItem.Text = "Backup";
+            backupToolStripMenuItem.Click += backupToolStripMenuItem_Click;
+            // 
+            // toolStripSeparator1
+            // 
+            toolStripSeparator1.Name = "toolStripSeparator1";
+            toolStripSeparator1.Size = new Size(267, 6);
+            // 
+            // exitToolStripMenuItem
+            // 
+            exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            exitToolStripMenuItem.Size = new Size(270, 34);
+            exitToolStripMenuItem.Text = "Exit";
+            // 
+            // editToolStripMenuItem
+            // 
+            editToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { modifyPDFRecordsToolStripMenuItem });
+            editToolStripMenuItem.Name = "editToolStripMenuItem";
+            editToolStripMenuItem.Size = new Size(58, 29);
+            editToolStripMenuItem.Text = "Edit";
+            // 
+            // modifyPDFRecordsToolStripMenuItem
+            // 
+            modifyPDFRecordsToolStripMenuItem.Name = "modifyPDFRecordsToolStripMenuItem";
+            modifyPDFRecordsToolStripMenuItem.Size = new Size(276, 34);
+            modifyPDFRecordsToolStripMenuItem.Text = "Modify PDF Records";
+            // 
+            // helpToolStripMenuItem
+            // 
+            helpToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { helpToolStripMenuItem1, aboutPDFRepoToolStripMenuItem });
+            helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            helpToolStripMenuItem.Size = new Size(65, 29);
+            helpToolStripMenuItem.Text = "Help";
+            // 
+            // helpToolStripMenuItem1
+            // 
+            helpToolStripMenuItem1.Name = "helpToolStripMenuItem1";
+            helpToolStripMenuItem1.Size = new Size(242, 34);
+            helpToolStripMenuItem1.Text = "Help";
+            // 
+            // aboutPDFRepoToolStripMenuItem
+            // 
+            aboutPDFRepoToolStripMenuItem.Name = "aboutPDFRepoToolStripMenuItem";
+            aboutPDFRepoToolStripMenuItem.Size = new Size(242, 34);
+            aboutPDFRepoToolStripMenuItem.Text = "About PDFRepo";
+            // 
             // PDF_list
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -71,10 +165,15 @@
             Controls.Add(ViewButton);
             Controls.Add(exitButton);
             Controls.Add(dataGridView1);
+            Controls.Add(menuStrip1);
+            MainMenuStrip = menuStrip1;
             Name = "PDF_list";
             Text = "My PDF LIst";
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            menuStrip1.ResumeLayout(false);
+            menuStrip1.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -82,5 +181,17 @@
         private DataGridView dataGridView1;
         private Button exitButton;
         private Button ViewButton;
+        private MenuStrip menuStrip1;
+        private ToolStripMenuItem fileToolStripMenuItem;
+        private ToolStripMenuItem importToolStripMenuItem;
+        private ToolStripMenuItem exportToolStripMenuItem;
+        private ToolStripMenuItem backupToolStripMenuItem;
+        private ToolStripSeparator toolStripSeparator1;
+        private ToolStripMenuItem exitToolStripMenuItem;
+        private ToolStripMenuItem editToolStripMenuItem;
+        private ToolStripMenuItem modifyPDFRecordsToolStripMenuItem;
+        private ToolStripMenuItem helpToolStripMenuItem;
+        private ToolStripMenuItem helpToolStripMenuItem1;
+        private ToolStripMenuItem aboutPDFRepoToolStripMenuItem;
     }
 }

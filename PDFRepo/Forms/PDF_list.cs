@@ -91,30 +91,48 @@ namespace PDFRepo
 
 
         }
+
+
+        private void ViewButton_Click(object sender, EventArgs e)
+        {
+            ViewPdfForm viewPdfForm = new ViewPdfForm();
+            viewPdfForm.ShowDialog();
+            /*
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
+                int pdfId = Convert.ToInt32(selectedRow.Cells["ID"].Value);
+                viewPdfForm.LoadPdfById(pdfId);
+                viewPdfForm.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Please select a PDF to view.");
+
+            */
+            
+        }
+
+        private void importToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ImportForm importForm = new ImportForm();
+            importForm.ShowDialog();
+        }
         private void exitButton_Click(object sender, EventArgs e)
         {
             Application.Exit();
 
         }
 
-        private void ViewButton_Click(object sender, EventArgs e)
+        private void exportToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ViewPdfForm vpf = new ViewPdfForm();
-            vpf.Show();
+            MessageBox.Show("Export functionality not yet implemented.");
+        }
 
-            /*
-            if (dataGridView1.SelectedRows.Count > 0)
-            {
-                DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
-                int pdfId = Convert.ToInt32(selectedRow.Cells["ID"].Value);
-                vpf.LoadPdfById(pdfId);
-                vpf.ShowDialog();
-            }
-            else
-            {
-                MessageBox.Show("Please select a PDF to view.");
-            }
-            */
+        private void backupToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            BackupForm backupForm = new BackupForm();
+            backupForm.ShowDialog();
         }
     }
 }
