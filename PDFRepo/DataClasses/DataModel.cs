@@ -80,6 +80,38 @@ namespace PDFRepo.DataClasses
             return dataTable;
         }
 
+
+        public DataTable GetPDFInfo(string fId)
+        {
+            string query =
+                "SELECT * from pdf_table where id = @id;";
+            try
+            {
+                using (var connection = new SqliteConnection(ConnectionString))
+                //    using (var command = new SqliteCommand(query, connection))
+                {
+                    connection.Open();
+                    using (var command = new SqliteCommand(query, connection))
+                    {
+                        // Add parameters to prevent SQL injection
+                        command.Parameters.AddWithValue("@id", fId);
+                        using (var reader = command.ExecuteReader())
+                        {
+                            var dataTable = new DataTable();
+                            dataTable.Load(reader);
+                            return dataTable;
+                        }
+                    }
+                }
+            }
+            catch (SqliteException SQLitex)
+            {
+                // Log the exception or handle it appropriately
+                MessageBox.Show($"Database Error: {SQLitex.Message}");
+                return null;
+            }
+        }
+
         public bool InsertPDF(string PDFName, string PDFData, string PDFDescription, string PDFCategory, string PDFCreated, string PDFSize)
         {
             bool success = false;

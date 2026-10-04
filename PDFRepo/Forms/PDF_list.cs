@@ -92,25 +92,34 @@ namespace PDFRepo
 
         }
 
-
-        private void ViewButton_Click(object sender, EventArgs e)
+        private string GetSelectedPdfId()
         {
-            ViewPdfForm viewPdfForm = new ViewPdfForm();
-            viewPdfForm.ShowDialog();
-            /*
             if (dataGridView1.SelectedRows.Count > 0)
             {
                 DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
-                int pdfId = Convert.ToInt32(selectedRow.Cells["ID"].Value);
-                viewPdfForm.LoadPdfById(pdfId);
-                viewPdfForm.ShowDialog();
+                return selectedRow.Cells["ID"].Value.ToString();
             }
             else
             {
-                MessageBox.Show("Please select a PDF to view.");
+                MessageBox.Show("You must a PDF record to view first.");
+                return "-1"; // Indicate that no valid ID was selected
+            }
 
-            */
-            
+        }
+        private void ViewButton_Click(object sender, EventArgs e)
+        {
+            string selectedPdfId = GetSelectedPdfId();
+            if (selectedPdfId == "-1")
+            {
+                return; // Exit the method if no valid ID was selected
+            }
+            else
+            {
+                ViewPdfForm viewPdfForm = new ViewPdfForm(selectedPdfId);
+                viewPdfForm.ShowDialog();
+            }
+
+
         }
 
         private void importToolStripMenuItem_Click(object sender, EventArgs e)
@@ -133,6 +142,56 @@ namespace PDFRepo
         {
             BackupForm backupForm = new BackupForm();
             backupForm.ShowDialog();
+        }
+
+        private void modifyPDFRecordsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string selectedPdfId = GetSelectedPdfId();
+            if (selectedPdfId == "-1")
+            {
+                return; // Exit the method if no valid ID was selected
+            }
+            else
+            {
+                PDFInfoForm pdfInfoForm = new PDFInfoForm(selectedPdfId);
+                pdfInfoForm.ShowDialog();
+            }
+
+        }
+
+        private void contextMenuStrip1_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void modifyPDFInfoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string selectedPdfId = GetSelectedPdfId();
+            if (selectedPdfId == "-1")
+            {
+                return; // Exit the method if no valid ID was selected
+            }
+            else
+            {
+                PDFInfoForm pdfInfoForm = new PDFInfoForm(selectedPdfId);
+                pdfInfoForm.ShowDialog();
+            }
+        }
+
+        private void viewPDFToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            string selectedPdfId = GetSelectedPdfId();
+            if (selectedPdfId == "-1")
+            {
+                return; // Exit the method if no valid ID was selected
+            }
+            else
+            {
+                ViewPdfForm viewPdfForm = new ViewPdfForm(selectedPdfId);
+                viewPdfForm.ShowDialog();
+            }
+
+
         }
     }
 }

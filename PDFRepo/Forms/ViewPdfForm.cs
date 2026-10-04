@@ -10,9 +10,10 @@ namespace PDFRepo.Forms
 {
     public partial class ViewPdfForm : Form
     {
-        public ViewPdfForm()
+        public ViewPdfForm(string pdfId)
         {
             InitializeComponent();
         }
+
     }
 }
