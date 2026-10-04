@@ -45,7 +45,7 @@
             // 
             // exitButton
             // 
-            exitButton.Location = new Point(1573, 1042);
+            exitButton.Location = new Point(1661, 1025);
             exitButton.Name = "exitButton";
             exitButton.Size = new Size(112, 34);
             exitButton.TabIndex = 1;
@@ -55,18 +55,19 @@
             // 
             // ViewButton
             // 
-            ViewButton.Location = new Point(12, 1042);
+            ViewButton.Location = new Point(12, 1025);
             ViewButton.Name = "ViewButton";
             ViewButton.Size = new Size(112, 34);
             ViewButton.TabIndex = 2;
             ViewButton.Text = "View";
             ViewButton.UseVisualStyleBackColor = true;
+            ViewButton.Click += ViewButton_Click;
             // 
             // PDF_list
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1785, 1075);
+            ClientSize = new Size(1785, 1079);
             Controls.Add(ViewButton);
             Controls.Add(exitButton);
             Controls.Add(dataGridView1);

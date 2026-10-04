@@ -3,13 +3,14 @@ using Microsoft.Web.WebView2.Core;
 using Microsoft.Web.WebView2.WinForms;
 using PDFRepo.DataClasses;
 using System.Data;
+using PDFRepo.Forms;
 
 namespace PDFRepo
 {
     public partial class PDF_list : Form
     {
-    //    private Config cfg;
-    //    private StartForm loginForm;
+        //    private Config cfg;
+        //    private StartForm loginForm;
         public DataTable configDataTable;
         public PDF_list()
         {
@@ -22,12 +23,12 @@ namespace PDFRepo
         {
             DataModel dm = new DataModel();
             DataTable dt = dm.GetAllPDFs();
-      //      BuildButtonColumn();
+            //      BuildButtonColumn();
             dataGridView1.DataSource = dt;
             FormatDataGrid();
-      //      FormatDataGrid();
-      //      dataGridView1.CellContentClick += new DataGridViewCellEventHandler(DataGridView1_CellContentClick);
-      //      PersistConfig();
+            //      FormatDataGrid();
+            //      dataGridView1.CellContentClick += new DataGridViewCellEventHandler(DataGridView1_CellContentClick);
+            //      PersistConfig();
         }
 
         private void FormatDataGrid()
@@ -96,5 +97,24 @@ namespace PDFRepo
 
         }
 
+        private void ViewButton_Click(object sender, EventArgs e)
+        {
+            ViewPdfForm vpf = new ViewPdfForm();
+            vpf.Show();
+
+            /*
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
+                int pdfId = Convert.ToInt32(selectedRow.Cells["ID"].Value);
+                vpf.LoadPdfById(pdfId);
+                vpf.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Please select a PDF to view.");
+            }
+            */
+        }
     }
 }
