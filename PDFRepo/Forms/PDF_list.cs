@@ -126,6 +126,7 @@ namespace PDFRepo
         {
             ImportForm importForm = new ImportForm();
             importForm.ShowDialog();
+            this.LoadDataGrid();
         }
         private void exitButton_Click(object sender, EventArgs e)
         {
@@ -155,6 +156,7 @@ namespace PDFRepo
             {
                 PDFInfoForm pdfInfoForm = new PDFInfoForm(selectedPdfId);
                 pdfInfoForm.ShowDialog();
+                this.LoadDataGrid();
             }
 
         }
@@ -175,7 +177,6 @@ namespace PDFRepo
             {
                 PDFInfoForm pdfInfoForm = new PDFInfoForm(selectedPdfId);
                 pdfInfoForm.ShowDialog();
-           //     pdfInfoForm.Close();
                 this.LoadDataGrid();
             }
         }
@@ -195,6 +196,13 @@ namespace PDFRepo
             }
 
 
+        }
+
+        private void pdfImportButton_Click(object sender, EventArgs e)
+        {
+            ImportForm importForm = new ImportForm();
+            importForm.ShowDialog();
+            this.LoadDataGrid();
         }
     }
 }

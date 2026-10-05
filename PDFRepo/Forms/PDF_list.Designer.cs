@@ -30,6 +30,9 @@
         {
             components = new System.ComponentModel.Container();
             dataGridView1 = new DataGridView();
+            contextMenuStrip1 = new ContextMenuStrip(components);
+            modifyPDFInfoToolStripMenuItem = new ToolStripMenuItem();
+            viewPDFToolStripMenuItem1 = new ToolStripMenuItem();
             exitButton = new Button();
             ViewButton = new Button();
             menuStrip1 = new MenuStrip();
@@ -46,12 +49,10 @@
             helpToolStripMenuItem = new ToolStripMenuItem();
             helpToolStripMenuItem1 = new ToolStripMenuItem();
             aboutPDFRepoToolStripMenuItem = new ToolStripMenuItem();
-            contextMenuStrip1 = new ContextMenuStrip(components);
-            modifyPDFInfoToolStripMenuItem = new ToolStripMenuItem();
-            viewPDFToolStripMenuItem1 = new ToolStripMenuItem();
+            pdfImportButton = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
-            menuStrip1.SuspendLayout();
             contextMenuStrip1.SuspendLayout();
+            menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // dataGridView1
@@ -63,6 +64,28 @@
             dataGridView1.RowHeadersWidth = 62;
             dataGridView1.Size = new Size(1787, 907);
             dataGridView1.TabIndex = 0;
+            // 
+            // contextMenuStrip1
+            // 
+            contextMenuStrip1.ImageScalingSize = new Size(24, 24);
+            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { modifyPDFInfoToolStripMenuItem, viewPDFToolStripMenuItem1 });
+            contextMenuStrip1.Name = "contextMenuStrip1";
+            contextMenuStrip1.Size = new Size(216, 68);
+            contextMenuStrip1.Opening += contextMenuStrip1_Opening;
+            // 
+            // modifyPDFInfoToolStripMenuItem
+            // 
+            modifyPDFInfoToolStripMenuItem.Name = "modifyPDFInfoToolStripMenuItem";
+            modifyPDFInfoToolStripMenuItem.Size = new Size(215, 32);
+            modifyPDFInfoToolStripMenuItem.Text = "Modify PDF Info";
+            modifyPDFInfoToolStripMenuItem.Click += modifyPDFInfoToolStripMenuItem_Click;
+            // 
+            // viewPDFToolStripMenuItem1
+            // 
+            viewPDFToolStripMenuItem1.Name = "viewPDFToolStripMenuItem1";
+            viewPDFToolStripMenuItem1.Size = new Size(215, 32);
+            viewPDFToolStripMenuItem1.Text = "View PDF";
+            viewPDFToolStripMenuItem1.Click += viewPDFToolStripMenuItem1_Click;
             // 
             // exitButton
             // 
@@ -179,33 +202,23 @@
             aboutPDFRepoToolStripMenuItem.Size = new Size(242, 34);
             aboutPDFRepoToolStripMenuItem.Text = "About PDFRepo";
             // 
-            // contextMenuStrip1
+            // pdfImportButton
             // 
-            contextMenuStrip1.ImageScalingSize = new Size(24, 24);
-            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { modifyPDFInfoToolStripMenuItem, viewPDFToolStripMenuItem1 });
-            contextMenuStrip1.Name = "contextMenuStrip1";
-            contextMenuStrip1.Size = new Size(216, 68);
-            contextMenuStrip1.Opening += contextMenuStrip1_Opening;
-            // 
-            // modifyPDFInfoToolStripMenuItem
-            // 
-            modifyPDFInfoToolStripMenuItem.Name = "modifyPDFInfoToolStripMenuItem";
-            modifyPDFInfoToolStripMenuItem.Size = new Size(215, 32);
-            modifyPDFInfoToolStripMenuItem.Text = "Modify PDF Info";
-            modifyPDFInfoToolStripMenuItem.Click += modifyPDFInfoToolStripMenuItem_Click;
-            // 
-            // viewPDFToolStripMenuItem1
-            // 
-            viewPDFToolStripMenuItem1.Name = "viewPDFToolStripMenuItem1";
-            viewPDFToolStripMenuItem1.Size = new Size(215, 32);
-            viewPDFToolStripMenuItem1.Text = "View PDF";
-            viewPDFToolStripMenuItem1.Click += viewPDFToolStripMenuItem1_Click;
+            pdfImportButton.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            pdfImportButton.Location = new Point(761, 1033);
+            pdfImportButton.Name = "pdfImportButton";
+            pdfImportButton.Size = new Size(194, 34);
+            pdfImportButton.TabIndex = 4;
+            pdfImportButton.Text = "Import PDF";
+            pdfImportButton.UseVisualStyleBackColor = true;
+            pdfImportButton.Click += pdfImportButton_Click;
             // 
             // PDF_list
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1785, 1079);
+            Controls.Add(pdfImportButton);
             Controls.Add(ViewButton);
             Controls.Add(exitButton);
             Controls.Add(dataGridView1);
@@ -214,9 +227,9 @@
             Name = "PDF_list";
             Text = "My PDF LIst";
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            contextMenuStrip1.ResumeLayout(false);
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
-            contextMenuStrip1.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -243,5 +256,6 @@
         private ToolStripMenuItem viewPDFToolStripMenuItem;
         private ToolStripMenuItem modifyPDFInfoToolStripMenuItem;
         private ToolStripMenuItem viewPDFToolStripMenuItem1;
+        private Button pdfImportButton;
     }
 }

@@ -28,12 +28,236 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "ImportForm";
+            panel1 = new Panel();
+            attributeTextBox = new TextBox();
+            lastModextBox = new TextBox();
+            creationDateTextBox = new TextBox();
+            fileSizeTextBox = new TextBox();
+            descriptionTextBox = new TextBox();
+            categoryTextBox = new TextBox();
+            pdfPathTextBox = new TextBox();
+            label8 = new Label();
+            label7 = new Label();
+            label6 = new Label();
+            label5 = new Label();
+            label4 = new Label();
+            label3 = new Label();
+            label2 = new Label();
+            exitButton = new Button();
+            importButton = new Button();
+            selectPDFButton = new Button();
+            panel1.SuspendLayout();
+            SuspendLayout();
+            // 
+            // panel1
+            // 
+            panel1.Controls.Add(attributeTextBox);
+            panel1.Controls.Add(lastModextBox);
+            panel1.Controls.Add(creationDateTextBox);
+            panel1.Controls.Add(fileSizeTextBox);
+            panel1.Controls.Add(descriptionTextBox);
+            panel1.Controls.Add(categoryTextBox);
+            panel1.Controls.Add(pdfPathTextBox);
+            panel1.Controls.Add(label8);
+            panel1.Controls.Add(label7);
+            panel1.Controls.Add(label6);
+            panel1.Controls.Add(label5);
+            panel1.Controls.Add(label4);
+            panel1.Controls.Add(label3);
+            panel1.Controls.Add(label2);
+            panel1.Location = new Point(48, 76);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(1054, 562);
+            panel1.TabIndex = 0;
+            // 
+            // attributeTextBox
+            // 
+            attributeTextBox.Location = new Point(795, 360);
+            attributeTextBox.Name = "attributeTextBox";
+            attributeTextBox.ReadOnly = true;
+            attributeTextBox.Size = new Size(218, 31);
+            attributeTextBox.TabIndex = 33;
+            // 
+            // lastModextBox
+            // 
+            lastModextBox.Location = new Point(795, 456);
+            lastModextBox.Name = "lastModextBox";
+            lastModextBox.ReadOnly = true;
+            lastModextBox.Size = new Size(218, 31);
+            lastModextBox.TabIndex = 32;
+            // 
+            // creationDateTextBox
+            // 
+            creationDateTextBox.Location = new Point(174, 456);
+            creationDateTextBox.Name = "creationDateTextBox";
+            creationDateTextBox.ReadOnly = true;
+            creationDateTextBox.Size = new Size(200, 31);
+            creationDateTextBox.TabIndex = 31;
+            // 
+            // fileSizeTextBox
+            // 
+            fileSizeTextBox.Location = new Point(174, 363);
+            fileSizeTextBox.Name = "fileSizeTextBox";
+            fileSizeTextBox.ReadOnly = true;
+            fileSizeTextBox.Size = new Size(200, 31);
+            fileSizeTextBox.TabIndex = 30;
+            // 
+            // descriptionTextBox
+            // 
+            descriptionTextBox.Location = new Point(174, 145);
+            descriptionTextBox.Multiline = true;
+            descriptionTextBox.Name = "descriptionTextBox";
+            descriptionTextBox.Size = new Size(839, 75);
+            descriptionTextBox.TabIndex = 29;
+            descriptionTextBox.TextChanged += descriptionTextBox_TextChanged;
+            // 
+            // categoryTextBox
+            // 
+            categoryTextBox.Location = new Point(422, 279);
+            categoryTextBox.Name = "categoryTextBox";
+            categoryTextBox.Size = new Size(194, 31);
+            categoryTextBox.TabIndex = 28;
+            categoryTextBox.TextChanged += categoryTextBox_TextChanged;
+            // 
+            // pdfPathTextBox
+            // 
+            pdfPathTextBox.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            pdfPathTextBox.Location = new Point(172, 29);
+            pdfPathTextBox.Multiline = true;
+            pdfPathTextBox.Name = "pdfPathTextBox";
+            pdfPathTextBox.ReadOnly = true;
+            pdfPathTextBox.Size = new Size(839, 72);
+            pdfPathTextBox.TabIndex = 27;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(637, 459);
+            label8.Name = "label8";
+            label8.Size = new Size(152, 25);
+            label8.TabIndex = 25;
+            label8.Text = "Last Modification:";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(688, 363);
+            label7.Name = "label7";
+            label7.Size = new Size(88, 25);
+            label7.TabIndex = 24;
+            label7.Text = "Atributes:";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(121, 366);
+            label6.Name = "label6";
+            label6.Size = new Size(47, 25);
+            label6.TabIndex = 23;
+            label6.Text = "Size:";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(53, 459);
+            label5.Name = "label5";
+            label5.Size = new Size(124, 25);
+            label5.TabIndex = 22;
+            label5.Text = "Creation Date:";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(328, 279);
+            label4.Name = "label4";
+            label4.Size = new Size(88, 25);
+            label4.TabIndex = 21;
+            label4.Text = "Category:";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(62, 148);
+            label3.Name = "label3";
+            label3.Size = new Size(106, 25);
+            label3.TabIndex = 20;
+            label3.Text = "Description:";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(79, 32);
+            label2.Name = "label2";
+            label2.Size = new Size(87, 25);
+            label2.TabIndex = 19;
+            label2.Text = "PDF Path:";
+            // 
+            // exitButton
+            // 
+            exitButton.Location = new Point(990, 674);
+            exitButton.Name = "exitButton";
+            exitButton.Size = new Size(112, 34);
+            exitButton.TabIndex = 35;
+            exitButton.Text = "Exit";
+            exitButton.UseVisualStyleBackColor = true;
+            exitButton.Click += exitButton_Click;
+            // 
+            // importButton
+            // 
+            importButton.Enabled = false;
+            importButton.Location = new Point(48, 674);
+            importButton.Name = "importButton";
+            importButton.Size = new Size(112, 34);
+            importButton.TabIndex = 34;
+            importButton.Text = "Import";
+            importButton.UseVisualStyleBackColor = true;
+            importButton.Click += importButton_Click;
+            // 
+            // selectPDFButton
+            // 
+            selectPDFButton.Location = new Point(48, 12);
+            selectPDFButton.Name = "selectPDFButton";
+            selectPDFButton.Size = new Size(216, 34);
+            selectPDFButton.TabIndex = 36;
+            selectPDFButton.Text = "Select PDF";
+            selectPDFButton.UseVisualStyleBackColor = true;
+            selectPDFButton.Click += selectPDFButton_Click;
+            // 
+            // ImportForm
+            // 
+            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(1143, 736);
+            Controls.Add(selectPDFButton);
+            Controls.Add(exitButton);
+            Controls.Add(panel1);
+            Controls.Add(importButton);
+            Name = "ImportForm";
+            Text = "ImportForm";
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            ResumeLayout(false);
         }
 
         #endregion
+
+        private Panel panel1;
+        private TextBox attributeTextBox;
+        private TextBox lastModextBox;
+        private TextBox creationDateTextBox;
+        private TextBox fileSizeTextBox;
+        private TextBox descriptionTextBox;
+        private TextBox categoryTextBox;
+        private Label label8;
+        private Label label7;
+        private Label label6;
+        private Label label5;
+        private Label label4;
+        private Label label3;
+        private Label label2;
+        private Button exitButton;
+        private Button importButton;
+        private Button selectPDFButton;
+        private TextBox pdfPathTextBox;
     }
 }

@@ -23,6 +23,7 @@ using System.Net.NetworkInformation;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 using static System.ComponentModel.Design.ObjectSelectorEditor;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
@@ -143,7 +144,8 @@ public DataTable GetAllPDFs()
             }
         }
 
-        public bool InsertPDF(string PDFName, string PDFData, string PDFDescription, string PDFCategory, string PDFCreated, string PDFSize)
+        public bool insertPDF(string fName, byte[] pdfBytes, string fCreated, string fLastmod, string fSize,
+                              string fAttributes, string description, string category)
         {
             bool success = false;
             try
@@ -161,12 +163,12 @@ public DataTable GetAllPDFs()
 
                     using (var command = new SqliteCommand(insertQuery, connection))
                     {
-                        command.Parameters.AddWithValue("@pdf_name", PDFName);
-                        command.Parameters.AddWithValue("@pdf_file", PDFData);
-                        command.Parameters.AddWithValue("@pdf_description", PDFDescription);
-                        command.Parameters.AddWithValue("@pdf_category", PDFCategory);
-                        command.Parameters.AddWithValue("@pdf_created", PDFCreated);
-                        command.Parameters.AddWithValue("@pdf_size", PDFSize);
+                        command.Parameters.AddWithValue("@pdf_name", fName);
+                        command.Parameters.AddWithValue("@pdf_file", pdfBytes);
+                        command.Parameters.AddWithValue("@pdf_description", description);
+                        command.Parameters.AddWithValue("@pdf_category", category);
+                        command.Parameters.AddWithValue("@pdf_created", fCreated);
+                        command.Parameters.AddWithValue("@pdf_size", fSize);
                         command.ExecuteNonQuery();
                     }
                 }
