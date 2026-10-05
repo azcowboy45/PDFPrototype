@@ -58,6 +58,26 @@ namespace PDFRepo.DataClasses
         #region sqliteMethods
 
 
+        public DataTable GetAllCategories()
+        {
+            DataTable dataTable = new DataTable();
+            // Use 'using' statements to ensure connections and commands are properly disposed
+            using (var connection = new SqliteConnection(ConnectionString))
+            {
+                var command = connection.CreateCommand();
+                command.CommandText = "SELECT * FROM pdf_cat;";
+                connection.Open();
+                using (var reader = command.ExecuteReader())
+                {
+                    dataTable = new DataTable();
+                    dataTable.Load(reader); // Manually load from reader
+                                            // Use your dataTable here
+                }
+            }
+            return dataTable;
+        }
+
+
         public byte[] GetByteStream(string fId)
         {
             byte[] pdfBytes = null;

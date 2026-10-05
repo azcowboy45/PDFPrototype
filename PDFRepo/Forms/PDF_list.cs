@@ -23,12 +23,8 @@ namespace PDFRepo
         {
             DataModel dm = new DataModel();
             DataTable dt = dm.GetAllPDFs();
-            //      BuildButtonColumn();
             dataGridView1.DataSource = dt;
-            FormatDataGrid();
-            //      FormatDataGrid();
-            //      dataGridView1.CellContentClick += new DataGridViewCellEventHandler(DataGridView1_CellContentClick);
-            //      PersistConfig();
+            FormatDataGrid();;
         }
 
         private void FormatDataGrid()
@@ -105,7 +101,7 @@ namespace PDFRepo
                 return "-1"; // Indicate that no valid ID was selected
             }
         }
-     
+
         private void doDeletePDF()
         {
             string selectedPdfId = GetSelectedPdfId();
@@ -129,7 +125,7 @@ namespace PDFRepo
             }
         }
 
-        private void doViewPDF() 
+        private void doViewPDF()
         {
             string selectedPdfId = GetSelectedPdfId();
             if (selectedPdfId == "-1")
@@ -146,7 +142,7 @@ namespace PDFRepo
 
         #endregion
 
-            #region controls        
+        #region controls        
         private void ViewButton_Click(object sender, EventArgs e)
         {
             doViewPDF();
@@ -252,7 +248,13 @@ namespace PDFRepo
         {
             doDeletePDF();
         }
-        #endregion
 
+
+        private void maintainCategoriesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CategoryForm cf = new CategoryForm();
+            cf.Show();
+        }
+        #endregion
     }
 }

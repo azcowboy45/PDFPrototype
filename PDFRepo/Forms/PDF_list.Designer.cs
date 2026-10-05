@@ -46,6 +46,7 @@
             exitToolStripMenuItem = new ToolStripMenuItem();
             editToolStripMenuItem = new ToolStripMenuItem();
             modifyPDFRecordsToolStripMenuItem = new ToolStripMenuItem();
+            maintainCategoriesToolStripMenuItem = new ToolStripMenuItem();
             viewToolStripMenuItem = new ToolStripMenuItem();
             viewPDFToolStripMenuItem = new ToolStripMenuItem();
             helpToolStripMenuItem = new ToolStripMenuItem();
@@ -59,12 +60,15 @@
             // 
             // dataGridView1
             // 
+            dataGridView1.AllowUserToAddRows = false;
+            dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.ContextMenuStrip = contextMenuStrip1;
-            dataGridView1.Location = new Point(-2, 92);
+            dataGridView1.Location = new Point(-2, 36);
             dataGridView1.Name = "dataGridView1";
+            dataGridView1.ReadOnly = true;
             dataGridView1.RowHeadersWidth = 62;
-            dataGridView1.Size = new Size(1787, 907);
+            dataGridView1.Size = new Size(1787, 963);
             dataGridView1.TabIndex = 0;
             // 
             // contextMenuStrip1
@@ -136,45 +140,45 @@
             // importToolStripMenuItem
             // 
             importToolStripMenuItem.Name = "importToolStripMenuItem";
-            importToolStripMenuItem.Size = new Size(270, 34);
+            importToolStripMenuItem.Size = new Size(244, 34);
             importToolStripMenuItem.Text = "Import";
             importToolStripMenuItem.Click += importToolStripMenuItem_Click;
             // 
             // exportToolStripMenuItem
             // 
             exportToolStripMenuItem.Name = "exportToolStripMenuItem";
-            exportToolStripMenuItem.Size = new Size(270, 34);
+            exportToolStripMenuItem.Size = new Size(244, 34);
             exportToolStripMenuItem.Text = "Export Database";
             exportToolStripMenuItem.Click += exportToolStripMenuItem_Click;
             // 
             // deleteToolStripMenuItem1
             // 
             deleteToolStripMenuItem1.Name = "deleteToolStripMenuItem1";
-            deleteToolStripMenuItem1.Size = new Size(270, 34);
+            deleteToolStripMenuItem1.Size = new Size(244, 34);
             deleteToolStripMenuItem1.Text = "Delete";
             deleteToolStripMenuItem1.Click += deleteToolStripMenuItem1_Click;
             // 
             // backupToolStripMenuItem
             // 
             backupToolStripMenuItem.Name = "backupToolStripMenuItem";
-            backupToolStripMenuItem.Size = new Size(270, 34);
+            backupToolStripMenuItem.Size = new Size(244, 34);
             backupToolStripMenuItem.Text = "Backup";
             backupToolStripMenuItem.Click += backupToolStripMenuItem_Click;
             // 
             // toolStripSeparator1
             // 
             toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(267, 6);
+            toolStripSeparator1.Size = new Size(241, 6);
             // 
             // exitToolStripMenuItem
             // 
             exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            exitToolStripMenuItem.Size = new Size(270, 34);
+            exitToolStripMenuItem.Size = new Size(244, 34);
             exitToolStripMenuItem.Text = "Exit";
             // 
             // editToolStripMenuItem
             // 
-            editToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { modifyPDFRecordsToolStripMenuItem });
+            editToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { modifyPDFRecordsToolStripMenuItem, maintainCategoriesToolStripMenuItem });
             editToolStripMenuItem.Name = "editToolStripMenuItem";
             editToolStripMenuItem.Size = new Size(58, 29);
             editToolStripMenuItem.Text = "Edit";
@@ -186,6 +190,13 @@
             modifyPDFRecordsToolStripMenuItem.Text = "Modify PDF Info";
             modifyPDFRecordsToolStripMenuItem.Click += modifyPDFRecordsToolStripMenuItem_Click;
             // 
+            // maintainCategoriesToolStripMenuItem
+            // 
+            maintainCategoriesToolStripMenuItem.Name = "maintainCategoriesToolStripMenuItem";
+            maintainCategoriesToolStripMenuItem.Size = new Size(245, 34);
+            maintainCategoriesToolStripMenuItem.Text = "Categories";
+            maintainCategoriesToolStripMenuItem.Click += maintainCategoriesToolStripMenuItem_Click;
+            // 
             // viewToolStripMenuItem
             // 
             viewToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { viewPDFToolStripMenuItem });
@@ -196,7 +207,7 @@
             // viewPDFToolStripMenuItem
             // 
             viewPDFToolStripMenuItem.Name = "viewPDFToolStripMenuItem";
-            viewPDFToolStripMenuItem.Size = new Size(270, 34);
+            viewPDFToolStripMenuItem.Size = new Size(188, 34);
             viewPDFToolStripMenuItem.Text = "View PDF";
             viewPDFToolStripMenuItem.Click += viewPDFToolStripMenuItem_Click;
             // 
@@ -276,5 +287,6 @@
         private Button pdfImportButton;
         private ToolStripMenuItem deleteToolStripMenuItem;
         private ToolStripMenuItem deleteToolStripMenuItem1;
+        private ToolStripMenuItem maintainCategoriesToolStripMenuItem;
     }
 }
