@@ -18,7 +18,7 @@ namespace PDFRepo
             LoadDataGrid();
         }
 
-
+        #region processingMethods
         private void LoadDataGrid()
         {
             DataModel dm = new DataModel();
@@ -104,9 +104,32 @@ namespace PDFRepo
                 MessageBox.Show("You must a PDF record to view first.");
                 return "-1"; // Indicate that no valid ID was selected
             }
-
         }
-        private void ViewButton_Click(object sender, EventArgs e)
+     
+        private void doDeletePDF()
+        {
+            string selectedPdfId = GetSelectedPdfId();
+            if (selectedPdfId == "-1")
+            {
+                return; // Exit the method if no valid ID was selected
+            }
+            else
+            {
+                DataModel dm = new DataModel();
+                bool deleteSuccess = dm.DeletePDF(selectedPdfId);
+                if (deleteSuccess)
+                {
+                    MessageBox.Show("PDF record deleted successfully.");
+                    this.LoadDataGrid();
+                }
+                else
+                {
+                    MessageBox.Show("Failed to delete PDF record. Please try again.");
+                }
+            }
+        }
+
+        private void doViewPDF() 
         {
             string selectedPdfId = GetSelectedPdfId();
             if (selectedPdfId == "-1")
@@ -118,8 +141,20 @@ namespace PDFRepo
                 ViewPdfForm viewPdfForm = new ViewPdfForm(selectedPdfId);
                 viewPdfForm.ShowDialog();
             }
+        }
 
 
+        #endregion
+
+            #region controls        
+        private void ViewButton_Click(object sender, EventArgs e)
+        {
+            doViewPDF();
+        }
+
+        private void viewPDFToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            doViewPDF();
         }
 
         private void importToolStripMenuItem_Click(object sender, EventArgs e)
@@ -181,6 +216,9 @@ namespace PDFRepo
             }
         }
 
+
+
+
         private void viewPDFToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             string selectedPdfId = GetSelectedPdfId();
@@ -205,29 +243,6 @@ namespace PDFRepo
         }
 
 
-        private void doDeletePDF()
-        {
-            string selectedPdfId = GetSelectedPdfId();
-            if (selectedPdfId == "-1")
-            {
-                return; // Exit the method if no valid ID was selected
-            }
-            else
-            {
-                DataModel dm = new DataModel();
-                bool deleteSuccess = dm.DeletePDF(selectedPdfId);
-                if (deleteSuccess)
-                {
-                    MessageBox.Show("PDF record deleted successfully.");
-                    this.LoadDataGrid();
-                }
-                else
-                {
-                    MessageBox.Show("Failed to delete PDF record. Please try again.");
-                }
-            }
-        }
-
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             doDeletePDF();
@@ -237,5 +252,7 @@ namespace PDFRepo
         {
             doDeletePDF();
         }
+        #endregion
+
     }
 }

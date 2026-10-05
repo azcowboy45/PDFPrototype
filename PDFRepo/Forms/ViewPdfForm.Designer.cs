@@ -28,18 +28,71 @@
         /// </summary>
         private void InitializeComponent()
         {
+            pdfIdTextBox = new TextBox();
+            label1 = new Label();
+            webView21 = new Microsoft.Web.WebView2.WinForms.WebView2();
+            exitButton = new Button();
+            ((System.ComponentModel.ISupportInitialize)webView21).BeginInit();
             SuspendLayout();
+            // 
+            // pdfIdTextBox
+            // 
+            pdfIdTextBox.Location = new Point(507, 1196);
+            pdfIdTextBox.Name = "pdfIdTextBox";
+            pdfIdTextBox.ReadOnly = true;
+            pdfIdTextBox.Size = new Size(113, 31);
+            pdfIdTextBox.TabIndex = 1;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(434, 1199);
+            label1.Name = "label1";
+            label1.Size = new Size(112, 25);
+            label1.TabIndex = 2;
+            label1.Text = "PDFRepo ID:";
+            // 
+            // webView21
+            // 
+            webView21.AllowExternalDrop = true;
+            webView21.CreationProperties = null;
+            webView21.DefaultBackgroundColor = Color.White;
+            webView21.Location = new Point(-2, -2);
+            webView21.Name = "webView21";
+            webView21.Size = new Size(1145, 1175);
+            webView21.TabIndex = 3;
+            webView21.ZoomFactor = 1D;
+            // 
+            // exitButton
+            // 
+            exitButton.Location = new Point(1020, 1204);
+            exitButton.Name = "exitButton";
+            exitButton.Size = new Size(112, 34);
+            exitButton.TabIndex = 4;
+            exitButton.Text = "Exit";
+            exitButton.UseVisualStyleBackColor = true;
             // 
             // ViewPdfForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1024, 664);
+            ClientSize = new Size(1144, 1250);
+            Controls.Add(exitButton);
+            Controls.Add(webView21);
+            Controls.Add(label1);
+            Controls.Add(pdfIdTextBox);
             Name = "ViewPdfForm";
-            Text = "ViewPdfForm";
+            Text = "View PDF";
+            Load += ViewPdfForm_Load;
+            ((System.ComponentModel.ISupportInitialize)webView21).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
+        private TextBox pdfIdTextBox;
+        private Label label1;
+        private Microsoft.Web.WebView2.WinForms.WebView2 webView21;
+        private Button exitButton;
     }
 }

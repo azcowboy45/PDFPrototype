@@ -57,6 +57,37 @@ namespace PDFRepo.DataClasses
 
         #region sqliteMethods
 
+
+        public byte[] GetByteStream(string fId)
+        {
+            byte[] pdfBytes = null;
+            string query = "SELECT pdf_file FROM pdf_table WHERE id = @id;";
+            using (var connection = new SqliteConnection(ConnectionString))
+            {
+                using (var command = new SqliteCommand(query, connection))
+                {
+                    // Add parameters to prevent SQL injection
+                    command.Parameters.AddWithValue("@id", fId);
+                    try
+                    {
+                        connection.Open();
+                        using (var reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                pdfBytes = (byte[])reader["pdf_file"];
+                            }
+                        }
+                    }
+                    catch (SqliteException SQLitex)
+                    {
+                        MessageBox.Show("Error: " + SQLitex.Message);
+                    }
+                }
+            }
+            return pdfBytes;
+        }
+
         public bool UpdatePDFInfo(string id, string pdfCategory, string pdfDescription)
         {
             bool success = false;

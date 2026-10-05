@@ -40,6 +40,7 @@
             fileToolStripMenuItem = new ToolStripMenuItem();
             importToolStripMenuItem = new ToolStripMenuItem();
             exportToolStripMenuItem = new ToolStripMenuItem();
+            deleteToolStripMenuItem1 = new ToolStripMenuItem();
             backupToolStripMenuItem = new ToolStripMenuItem();
             toolStripSeparator1 = new ToolStripSeparator();
             exitToolStripMenuItem = new ToolStripMenuItem();
@@ -51,7 +52,6 @@
             helpToolStripMenuItem1 = new ToolStripMenuItem();
             aboutPDFRepoToolStripMenuItem = new ToolStripMenuItem();
             pdfImportButton = new Button();
-            deleteToolStripMenuItem1 = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             contextMenuStrip1.SuspendLayout();
             menuStrip1.SuspendLayout();
@@ -147,6 +147,13 @@
             exportToolStripMenuItem.Text = "Export Database";
             exportToolStripMenuItem.Click += exportToolStripMenuItem_Click;
             // 
+            // deleteToolStripMenuItem1
+            // 
+            deleteToolStripMenuItem1.Name = "deleteToolStripMenuItem1";
+            deleteToolStripMenuItem1.Size = new Size(270, 34);
+            deleteToolStripMenuItem1.Text = "Delete";
+            deleteToolStripMenuItem1.Click += deleteToolStripMenuItem1_Click;
+            // 
             // backupToolStripMenuItem
             // 
             backupToolStripMenuItem.Name = "backupToolStripMenuItem";
@@ -189,8 +196,9 @@
             // viewPDFToolStripMenuItem
             // 
             viewPDFToolStripMenuItem.Name = "viewPDFToolStripMenuItem";
-            viewPDFToolStripMenuItem.Size = new Size(188, 34);
+            viewPDFToolStripMenuItem.Size = new Size(270, 34);
             viewPDFToolStripMenuItem.Text = "View PDF";
+            viewPDFToolStripMenuItem.Click += viewPDFToolStripMenuItem_Click;
             // 
             // helpToolStripMenuItem
             // 
@@ -221,13 +229,6 @@
             pdfImportButton.Text = "Import PDF";
             pdfImportButton.UseVisualStyleBackColor = true;
             pdfImportButton.Click += pdfImportButton_Click;
-            // 
-            // deleteToolStripMenuItem1
-            // 
-            deleteToolStripMenuItem1.Name = "deleteToolStripMenuItem1";
-            deleteToolStripMenuItem1.Size = new Size(270, 34);
-            deleteToolStripMenuItem1.Text = "Delete";
-            deleteToolStripMenuItem1.Click += deleteToolStripMenuItem1_Click;
             // 
             // PDF_list
             // 
