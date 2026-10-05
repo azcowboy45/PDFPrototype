@@ -212,22 +212,22 @@ public DataTable GetAllPDFs()
             }
         }
 
-        #endregion
 
-        #region referenceMethods
-        public bool UpdateUnitofMeasure(string id, string measure)
+
+        // This method adds a new categorys to the categories table in the SQLite database.
+        public bool addCategory(string category)
         {
             bool success = false;
 
-            string postQuery = "UPDATE unit_of_measure SET measure = @imeasure where id = @id ";
+            string postQuery = "INSERT INTO category_table ( pdf_category, " +
+                                "VALUES (@pdf_category)";
 
             using (var connection = new SqliteConnection(ConnectionString))
             {
                 using (var command = new SqliteCommand(postQuery, connection))
                 {
                     // Add parameters to prevent SQL injection
-                    command.Parameters.AddWithValue("@measure", measure);
-                    command.Parameters.AddWithValue("@id", id);
+                    command.Parameters.AddWithValue("@category", category);
                     try
                     {
                         connection.Open();
