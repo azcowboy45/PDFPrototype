@@ -183,6 +183,35 @@ public DataTable GetAllPDFs()
             return success;
 
         }
+
+        public bool DeletePDF(string id)
+        {
+            bool success = false;
+            string query = "DELETE FROM pdf_table WHERE id = @id";
+            using (var connection = new SqliteConnection(ConnectionString))
+            {
+
+                connection.Open();
+                using (var command = new SqliteCommand(query, connection))
+                {
+                    // Add parameters to prevent SQL injection
+                    command.Parameters.AddWithValue("@id", id);
+                    try
+                    {
+                        connection.Open();
+                        command.ExecuteNonQuery();
+                        return true;
+                    }
+                    catch (SqliteException SQLitex)
+                    {
+                        // Log the exception or handle it appropriately
+                        MessageBox.Show($"Database Error: {SQLitex.Message}");
+                        return false;
+                    }
+                }
+            }
+        }
+
         #endregion
 
         #region referenceMethods
@@ -212,135 +241,6 @@ public DataTable GetAllPDFs()
                 }
             }
             return success;
-        }
-
-
-
-
-
-        public int GetIngredientIdByName(string ingredientStr)
-        {
-            int ingredientId = -1;
-            string query = "SELECT ID FROM selectable_ingredients WHERE ingredients = @ingredientName";
-
-            using (var connection = new SqliteConnection(ConnectionString))
-            {
-                connection.Open();
-                using (var command = new SqliteCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@ingredientName", ingredientStr);
-                    try
-                    {
-                        connection.Open();
-                        object value = command.ExecuteScalar();
-                        if (value != null && value != DBNull.Value)
-                        {
-                            ingredientId = Convert.ToInt32(value);
-
-                        }
-                    }
-                    catch (SqliteException SQLitex)
-                    {
-                        // Log the exception or handle it appropriately
-                        MessageBox.Show($"Database Error: {SQLitex.Message}");
-                        return -1;
-                    }
-                }
-            }
-            return ingredientId;
-        }
-
-        public String GetCategoryById(string ingredientKey)
-        {
-            string result = null;
-            string query = "SELECT category FROM selectable_ingredients WHERE ID = " + ingredientKey;
-
-            using (var connection = new SqliteConnection(ConnectionString))
-            {
-                connection.Open();
-                using (var command = new SqliteCommand(query, connection))
-                {
-                    try
-                    {
-                        connection.Open();
-                        object value = command.ExecuteScalar();
-
-                        if (value != null && value != DBNull.Value)
-                        {
-                            result = Convert.ToString(value);
-                        }
-                    }
-                    catch (SqliteException SQLitex)
-                    {
-                        // Log the exception or handle it appropriately
-                        MessageBox.Show($"Database Error: {SQLitex.Message}");
-                        return null;
-                    }
-                }
-            }
-            return result;
-        }
-
-        // dataModel.DeleteSelectedMeasurementById(id)
-        // Deletes a measuremfent type by its ID.
-        // 
-        public bool DeleteSelectedIngredientById(string id)
-        {
-            bool success = false;
-            string query = "DELETE FROM selectable_ingredients WHERE id = @id";
-            using (var connection = new SqliteConnection(ConnectionString))
-            {
-
-                connection.Open();
-                using (var command = new SqliteCommand(query, connection))
-                {
-                    // Add parameters to prevent SQL injection
-                    command.Parameters.AddWithValue("@id", id);
-                    try
-                    {
-                        connection.Open();
-                        command.ExecuteNonQuery();
-                        return true;
-                    }
-                    catch (SqliteException SQLitex)
-                    {
-                        // Log the exception or handle it appropriately
-                        MessageBox.Show($"Database Error: {SQLitex.Message}");
-                        return false;
-                    }
-                }
-            }
-        }
-
-
-
-        // Deletes a direction record by its ID. Also deletes any orphaned ingredients associated with the direction.
-        public bool DeleteSelectedMeasurementById(string id)
-        {
-            bool success = false;
-            string query = "DELETE FROM unit_of_measure WHERE id = @id";
-            using (var connection = new SqliteConnection(ConnectionString))
-            {
-
-                connection.Open();
-                using (var command = new SqliteCommand(query, connection))
-                {
-                    // Add parameters to prevent SQL injection
-                    command.Parameters.AddWithValue("@id", id);
-                    try
-                    {
-                        connection.Open();
-                        command.ExecuteNonQuery();
-                        return true;
-                    }
-                    catch (SqliteException SQLitex)
-                    {
-                        // Log the exception or handle it appropriately
-                        MessageBox.Show($"Database Error: {SQLitex.Message}");
-                        return false;
-                    }
-                }
-            }
         }
 
         #endregion

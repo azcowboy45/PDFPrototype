@@ -195,7 +195,6 @@ namespace PDFRepo
                 this.LoadDataGrid();
             }
 
-
         }
 
         private void pdfImportButton_Click(object sender, EventArgs e)
@@ -203,6 +202,40 @@ namespace PDFRepo
             ImportForm importForm = new ImportForm();
             importForm.ShowDialog();
             this.LoadDataGrid();
+        }
+
+
+        private void doDeletePDF()
+        {
+            string selectedPdfId = GetSelectedPdfId();
+            if (selectedPdfId == "-1")
+            {
+                return; // Exit the method if no valid ID was selected
+            }
+            else
+            {
+                DataModel dm = new DataModel();
+                bool deleteSuccess = dm.DeletePDF(selectedPdfId);
+                if (deleteSuccess)
+                {
+                    MessageBox.Show("PDF record deleted successfully.");
+                    this.LoadDataGrid();
+                }
+                else
+                {
+                    MessageBox.Show("Failed to delete PDF record. Please try again.");
+                }
+            }
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            doDeletePDF();
+        }
+
+        private void deleteToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            doDeletePDF();
         }
     }
 }
