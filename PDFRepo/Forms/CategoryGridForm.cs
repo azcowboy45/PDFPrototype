@@ -9,9 +9,9 @@ using System.Windows.Forms;
 
 namespace PDFRepo.Forms
 {
-    public partial class CategoryForm : Form
+    public partial class CategoryGridForm : Form
     {
-        public CategoryForm()
+        public CategoryGridForm()
         {
             InitializeComponent();
             LoadDataGrid();
@@ -59,9 +59,22 @@ namespace PDFRepo.Forms
 
         }
 
+        private void saveButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void exitButton_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void newButton_Click(object sender, EventArgs e)
+        {
+           CategoryInputForm cif = new CategoryInputForm();
+            cif.ShowDialog();
+            LoadDataGrid();
+
         }
     }
 }

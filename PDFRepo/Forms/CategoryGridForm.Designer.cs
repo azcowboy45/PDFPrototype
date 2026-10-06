@@ -1,6 +1,6 @@
 ﻿namespace PDFRepo.Forms
 {
-    partial class CategoryForm
+    partial class CategoryGridForm
     {
         /// <summary>
         /// Required designer variable.
@@ -37,6 +37,7 @@
             editToolStripMenuItem = new ToolStripMenuItem();
             saveToolStripMenuItem = new ToolStripMenuItem();
             exitButton = new Button();
+            newButton = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             contextMenuStrip1.SuspendLayout();
             SuspendLayout();
@@ -55,11 +56,12 @@
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.ContextMenuStrip = contextMenuStrip1;
-            dataGridView1.Location = new Point(3, 0);
+            dataGridView1.Dock = DockStyle.Top;
+            dataGridView1.Location = new Point(0, 0);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowHeadersWidth = 62;
-            dataGridView1.Size = new Size(678, 882);
+            dataGridView1.Size = new Size(664, 882);
             dataGridView1.TabIndex = 0;
             // 
             // contextMenuStrip1
@@ -89,7 +91,8 @@
             // 
             // exitButton
             // 
-            exitButton.Location = new Point(557, 898);
+            exitButton.Anchor = AnchorStyles.Right;
+            exitButton.Location = new Point(535, 898);
             exitButton.Name = "exitButton";
             exitButton.Size = new Size(112, 34);
             exitButton.TabIndex = 1;
@@ -97,11 +100,22 @@
             exitButton.UseVisualStyleBackColor = true;
             exitButton.Click += exitButton_Click;
             // 
+            // newButton
+            // 
+            newButton.Location = new Point(12, 897);
+            newButton.Name = "newButton";
+            newButton.Size = new Size(112, 34);
+            newButton.TabIndex = 2;
+            newButton.Text = "New";
+            newButton.UseVisualStyleBackColor = true;
+            newButton.Click += newButton_Click;
+            // 
             // CategoryForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(681, 944);
+            ClientSize = new Size(664, 943);
+            Controls.Add(newButton);
             Controls.Add(exitButton);
             Controls.Add(dataGridView1);
             Name = "CategoryForm";
@@ -121,5 +135,6 @@
         private ToolStripMenuItem newToolStripMenuItem;
         private ToolStripMenuItem editToolStripMenuItem;
         private ToolStripMenuItem saveToolStripMenuItem;
+        private Button newButton;
     }
 }

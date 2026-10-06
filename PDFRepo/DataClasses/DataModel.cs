@@ -267,12 +267,11 @@ public DataTable GetAllPDFs()
 
 
         // This method adds a new categorys to the categories table in the SQLite database.
-        public bool addCategory(string category)
+        public bool addCategory(string category, string cat_notes)
         {
             bool success = false;
 
-            string postQuery = "INSERT INTO category_table ( pdf_category, " +
-                                "VALUES (@pdf_category)";
+            string postQuery = "INSERT INTO pdf_cat ( category, notes) VALUES (@category, @notes)";
 
             using (var connection = new SqliteConnection(ConnectionString))
             {
@@ -280,6 +279,7 @@ public DataTable GetAllPDFs()
                 {
                     // Add parameters to prevent SQL injection
                     command.Parameters.AddWithValue("@category", category);
+                    command.Parameters.AddWithValue("@notes", cat_notes);
                     try
                     {
                         connection.Open();

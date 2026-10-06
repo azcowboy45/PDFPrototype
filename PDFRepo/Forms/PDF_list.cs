@@ -252,7 +252,7 @@ namespace PDFRepo
 
         private void maintainCategoriesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CategoryForm cf = new CategoryForm();
+            CategoryGridForm cf = new CategoryGridForm();
             cf.Show();
         }
         #endregion
