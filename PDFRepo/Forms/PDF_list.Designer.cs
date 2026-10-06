@@ -53,6 +53,9 @@
             helpToolStripMenuItem1 = new ToolStripMenuItem();
             aboutPDFRepoToolStripMenuItem = new ToolStripMenuItem();
             pdfImportButton = new Button();
+            sqliteConnection1 = new Microsoft.Data.Sqlite.SqliteConnection();
+            sqliteCommand1 = new Microsoft.Data.Sqlite.SqliteCommand();
+            sqliteConnection2 = new Microsoft.Data.Sqlite.SqliteConnection();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             contextMenuStrip1.SuspendLayout();
             menuStrip1.SuspendLayout();
@@ -241,6 +244,21 @@
             pdfImportButton.UseVisualStyleBackColor = true;
             pdfImportButton.Click += pdfImportButton_Click;
             // 
+            // sqliteConnection1
+            // 
+            sqliteConnection1.DefaultTimeout = 30;
+            // 
+            // sqliteCommand1
+            // 
+            sqliteCommand1.CommandTimeout = 30;
+            sqliteCommand1.Connection = null;
+            sqliteCommand1.Transaction = null;
+            sqliteCommand1.UpdatedRowSource = System.Data.UpdateRowSource.None;
+            // 
+            // sqliteConnection2
+            // 
+            sqliteConnection2.DefaultTimeout = 30;
+            // 
             // PDF_list
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -288,5 +306,8 @@
         private ToolStripMenuItem deleteToolStripMenuItem;
         private ToolStripMenuItem deleteToolStripMenuItem1;
         private ToolStripMenuItem maintainCategoriesToolStripMenuItem;
+        private Microsoft.Data.Sqlite.SqliteConnection sqliteConnection1;
+        private Microsoft.Data.Sqlite.SqliteCommand sqliteCommand1;
+        private Microsoft.Data.Sqlite.SqliteConnection sqliteConnection2;
     }
 }

@@ -209,8 +209,8 @@ public DataTable GetAllPDFs()
                     // Use parameterized queries to prevent SQL injection
 
                     string insertQuery = "INSERT INTO pdf_table ( pdf_name, pdf_file, pdf_description, pdf_category, " +
-                        "pdf_created, pdf_size ) " +
-                        "VALUES (@pdf_name, @pdf_file, @pdf_description, @pdf_category, @pdf_created, @pdf_size)";
+                        "pdf_created, pdf_size, pdf_lastmod ) " +
+                        "VALUES (@pdf_name, @pdf_file, @pdf_description, @pdf_category, @pdf_created, @pdf_size, @pdf_lastmod)";
 
                     using (var command = new SqliteCommand(insertQuery, connection))
                     {
@@ -219,6 +219,7 @@ public DataTable GetAllPDFs()
                         command.Parameters.AddWithValue("@pdf_description", description);
                         command.Parameters.AddWithValue("@pdf_category", category);
                         command.Parameters.AddWithValue("@pdf_created", fCreated);
+                        command.Parameters.AddWithValue("@pdf_lastmod", fCreated);
                         command.Parameters.AddWithValue("@pdf_size", fSize);
                         command.ExecuteNonQuery();
                     }
