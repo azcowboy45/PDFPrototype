@@ -38,7 +38,6 @@
             label8 = new Label();
             idTextBox = new TextBox();
             fnameTextBox = new TextBox();
-            categoryTextBox = new TextBox();
             descriptionTextBox = new TextBox();
             fileSizeTextBox = new TextBox();
             creationDateTextBox = new TextBox();
@@ -46,6 +45,7 @@
             attributeTextBox = new TextBox();
             SaveButton = new Button();
             exitButton = new Button();
+            categoryComboBox = new ComboBox();
             SuspendLayout();
             // 
             // label1
@@ -79,7 +79,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(329, 218);
+            label4.Location = new Point(265, 224);
             label4.Name = "label4";
             label4.Size = new Size(88, 25);
             label4.TabIndex = 3;
@@ -123,7 +123,7 @@
             // 
             // idTextBox
             // 
-            idTextBox.Location = new Point(52, 20);
+            idTextBox.Location = new Point(52, 17);
             idTextBox.Name = "idTextBox";
             idTextBox.ReadOnly = true;
             idTextBox.Size = new Size(150, 31);
@@ -136,13 +136,6 @@
             fnameTextBox.ReadOnly = true;
             fnameTextBox.Size = new Size(591, 31);
             fnameTextBox.TabIndex = 9;
-            // 
-            // categoryTextBox
-            // 
-            categoryTextBox.Location = new Point(423, 218);
-            categoryTextBox.Name = "categoryTextBox";
-            categoryTextBox.Size = new Size(194, 31);
-            categoryTextBox.TabIndex = 10;
             // 
             // descriptionTextBox
             // 
@@ -203,11 +196,20 @@
             exitButton.UseVisualStyleBackColor = true;
             exitButton.Click += exitButton_Click;
             // 
+            // categoryComboBox
+            // 
+            categoryComboBox.FormattingEnabled = true;
+            categoryComboBox.Location = new Point(359, 224);
+            categoryComboBox.Name = "categoryComboBox";
+            categoryComboBox.Size = new Size(371, 33);
+            categoryComboBox.TabIndex = 18;
+            // 
             // PDFInfoForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1026, 580);
+            Controls.Add(categoryComboBox);
             Controls.Add(exitButton);
             Controls.Add(SaveButton);
             Controls.Add(attributeTextBox);
@@ -215,7 +217,6 @@
             Controls.Add(creationDateTextBox);
             Controls.Add(fileSizeTextBox);
             Controls.Add(descriptionTextBox);
-            Controls.Add(categoryTextBox);
             Controls.Add(fnameTextBox);
             Controls.Add(idTextBox);
             Controls.Add(label8);
@@ -244,7 +245,6 @@
         private Label label8;
         private TextBox idTextBox;
         private TextBox fnameTextBox;
-        private TextBox categoryTextBox;
         private TextBox descriptionTextBox;
         private TextBox fileSizeTextBox;
         private TextBox creationDateTextBox;
@@ -252,5 +252,6 @@
         private TextBox attributeTextBox;
         private Button SaveButton;
         private Button exitButton;
+        private ComboBox categoryComboBox;
     }
 }

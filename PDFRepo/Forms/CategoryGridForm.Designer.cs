@@ -35,9 +35,7 @@
             contextMenuStrip1 = new ContextMenuStrip(components);
             newToolStripMenuItem = new ToolStripMenuItem();
             editToolStripMenuItem = new ToolStripMenuItem();
-            saveToolStripMenuItem = new ToolStripMenuItem();
             exitButton = new Button();
-            newButton = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             contextMenuStrip1.SuspendLayout();
             SuspendLayout();
@@ -67,27 +65,24 @@
             // contextMenuStrip1
             // 
             contextMenuStrip1.ImageScalingSize = new Size(24, 24);
-            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { newToolStripMenuItem, editToolStripMenuItem, saveToolStripMenuItem });
+            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { newToolStripMenuItem, editToolStripMenuItem });
             contextMenuStrip1.Name = "contextMenuStrip1";
-            contextMenuStrip1.Size = new Size(122, 100);
+            contextMenuStrip1.Size = new Size(241, 101);
+            contextMenuStrip1.Opening += contextMenuStrip1_Opening;
             // 
             // newToolStripMenuItem
             // 
             newToolStripMenuItem.Name = "newToolStripMenuItem";
-            newToolStripMenuItem.Size = new Size(121, 32);
+            newToolStripMenuItem.Size = new Size(240, 32);
             newToolStripMenuItem.Text = "New";
+            newToolStripMenuItem.Click += newToolStripMenuItem_Click;
             // 
             // editToolStripMenuItem
             // 
             editToolStripMenuItem.Name = "editToolStripMenuItem";
-            editToolStripMenuItem.Size = new Size(121, 32);
+            editToolStripMenuItem.Size = new Size(240, 32);
             editToolStripMenuItem.Text = "Edit";
-            // 
-            // saveToolStripMenuItem
-            // 
-            saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            saveToolStripMenuItem.Size = new Size(121, 32);
-            saveToolStripMenuItem.Text = "Save";
+            editToolStripMenuItem.Click += editToolStripMenuItem_Click;
             // 
             // exitButton
             // 
@@ -100,25 +95,14 @@
             exitButton.UseVisualStyleBackColor = true;
             exitButton.Click += exitButton_Click;
             // 
-            // newButton
-            // 
-            newButton.Location = new Point(12, 897);
-            newButton.Name = "newButton";
-            newButton.Size = new Size(112, 34);
-            newButton.TabIndex = 2;
-            newButton.Text = "New";
-            newButton.UseVisualStyleBackColor = true;
-            newButton.Click += newButton_Click;
-            // 
-            // CategoryForm
+            // CategoryGridForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(664, 943);
-            Controls.Add(newButton);
             Controls.Add(exitButton);
             Controls.Add(dataGridView1);
-            Name = "CategoryForm";
+            Name = "CategoryGridForm";
             Text = "CategoryForm";
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             contextMenuStrip1.ResumeLayout(false);
@@ -134,7 +118,5 @@
         private ContextMenuStrip contextMenuStrip1;
         private ToolStripMenuItem newToolStripMenuItem;
         private ToolStripMenuItem editToolStripMenuItem;
-        private ToolStripMenuItem saveToolStripMenuItem;
-        private Button newButton;
     }
 }

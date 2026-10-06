@@ -28,9 +28,6 @@ namespace PDFRepo.Forms
             {
                 MessageBox.Show("Failed to add category.");
             }
-
-
-
         }
 
         private void exitButton_Click(object sender, EventArgs e)

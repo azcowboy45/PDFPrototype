@@ -71,10 +71,33 @@ namespace PDFRepo.Forms
 
         private void newButton_Click(object sender, EventArgs e)
         {
-           CategoryInputForm cif = new CategoryInputForm();
+            CategoryInputForm cif = new CategoryInputForm();
             cif.ShowDialog();
             LoadDataGrid();
 
+        }
+
+
+        private void newToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CategoryInputForm cif = new CategoryInputForm();
+            cif.ShowDialog();
+            LoadDataGrid();
+
+        }
+
+        private void editToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
+        {
+            // 
         }
     }
 }

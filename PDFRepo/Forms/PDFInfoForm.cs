@@ -11,11 +11,20 @@ namespace PDFRepo.Forms
 {
     public partial class PDFInfoForm : Form
     {
-
+        private string selectableCategoryId;
+        private string selectableCategory;
+        private DataModel dm = null;
         public PDFInfoForm(string pdfId)
         {
+            dm = new DataModel();
             InitializeComponent();
+            categoryComboBox.SelectionChangeCommitted += categoryComboBox_SelectionChangeCommitted;
             LoadFormData(pdfId);
+        }
+
+        private void categoryComboBox_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            categoryComboBox.DataBindings["SelectedValue"]?.WriteValue();
         }
 
         private void LoadFormData(string pdfId)
@@ -26,13 +35,23 @@ namespace PDFRepo.Forms
 
             fnameTextBox.Text = dt.Rows[0]["pdf_name"].ToString();
             descriptionTextBox.Text = dt.Rows[0]["pdf_description"].ToString();
-            categoryTextBox.Text = dt.Rows[0]["pdf_category"].ToString();
+            categoryComboBox.Text = dt.Rows[0]["pdf_category"].ToString();
             creationDateTextBox.Text = dt.Rows[0]["pdf_created"].ToString();
             fileSizeTextBox.Text = dt.Rows[0]["pdf_size"].ToString();
-            categoryTextBox.Text = dt.Rows[0]["pdf_category"].ToString();
             attributeTextBox.Text = dt.Rows[0]["pdf_attributes"].ToString();
             lastModextBox.Text = dt.Rows[0]["pdf_lastmod"].ToString();
 
+        }
+
+        private void categoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            /*
+            string ingredientStr = categoryComboBox.Text.Trim();
+            this.selectableCategoryId = dm.GetCategoryIdByName(categoryStr).ToString();
+            categoryComboBox.Text = this.dm.GetCategoryById(this.selectableCategoryId);
+            categoryCombo.Text = categoryComboBox.Text.Trim();
+            categoryKeyTextBox.Text = this.selectableCategory;
+            */
         }
 
 
@@ -49,7 +68,7 @@ namespace PDFRepo.Forms
         private void SaveButton_Click(object sender, EventArgs e)
         {
             DataModel dm = new DataModel();
-            bool success = dm.UpdatePDFInfo(idTextBox.Text, categoryTextBox.Text, descriptionTextBox.Text);
+            bool success = dm.UpdatePDFInfo(idTextBox.Text, categoryComboBox.Text, descriptionTextBox.Text);
             if (success)
             {
                 MessageBox.Show("PDF information updated successfully.");
