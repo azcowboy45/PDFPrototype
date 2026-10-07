@@ -20,6 +20,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Net.NetworkInformation;
+using System.Security.Cryptography;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -148,8 +149,8 @@ namespace PDFRepo.DataClasses
             {
                 var command = connection.CreateCommand();
 
-                command.CommandText = "select id, pdf_name, pdf_file, pdf_created, " +
-                    "pdf_lastmod, pdf_size, pdf_category, pdf_description from pdf_table;";
+                command.CommandText = "select id, pdf_name, pdf_category, pdf_file, pdf_created, " +
+                                          "pdf_lastmod, pdf_size, pdf_description from pdf_table;";
 
                 connection.Open();
 
@@ -194,6 +195,40 @@ namespace PDFRepo.DataClasses
                 return null;
             }
         }
+
+        // Select * from 
+        public DataTable getRecordsCategory(string fCategory)
+        {
+            string query =
+                "SELECT * from pdf_table where pdf_category = @pdf_category;";
+            try
+            {
+                using (var connection = new SqliteConnection(ConnectionString))
+                //    using (var command = new SqliteCommand(query, connection))
+                {
+                    connection.Open();
+                    using (var command = new SqliteCommand(query, connection))
+                    {
+                        // Add parameters to prevent SQL injection
+                        command.Parameters.AddWithValue("@pdf_category", fCategory);
+                        using (var reader = command.ExecuteReader())
+                        {
+                            var dataTable = new DataTable();
+                            dataTable.Load(reader);
+                            return dataTable;
+                        }
+                    }
+                }
+            }
+            catch (SqliteException SQLitex)
+            {
+                // Log the exception or handle it appropriately
+                MessageBox.Show($"Database Error: {SQLitex.Message}");
+                return null;
+            }
+        }
+
+
 
         /*
         If you want, I can also change how the byte[] parameter is added (use DbType = Binary/Blob) to avoid provider issues.
@@ -241,7 +276,6 @@ namespace PDFRepo.DataClasses
             return success;
 
         }
-
         public bool DeletePDF(string id)
         {
             bool success = false;
@@ -270,8 +304,6 @@ namespace PDFRepo.DataClasses
             }
         }
 
-
-
         // This method adds a new categorys to the categories table in the SQLite database.
         public bool addCategory(string category, string cat_notes)
         {
@@ -299,14 +331,7 @@ namespace PDFRepo.DataClasses
                 }
             }
             return success;
-        }
-
-/*
-        string queryString = "select " + keyCol + " AS KeyCol, cast( " + theId
-                        + " AS VARCHAR(16)) AS DescrCol from " + tableName + " order by " + keyCol + ";";
-        
-  */      
-        
+        }       
         
         public DataTable getCategoryKeyedList(string tableName, String keyCol, String theId)
         {
@@ -338,7 +363,7 @@ namespace PDFRepo.DataClasses
             return dataTable;
         }
 
-
+        
 
 
         #endregion

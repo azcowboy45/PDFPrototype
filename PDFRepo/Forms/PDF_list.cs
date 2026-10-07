@@ -22,7 +22,7 @@ namespace PDFRepo
         private void BuildComboBox()
         {
             DataModel dm = new DataModel();
-            DropDown dd = new DropDown(dm, comboBox1);
+            DropDown dd = new DropDown(dm, categoryComboBox);
         }
 
         #region processingMethods
@@ -218,10 +218,6 @@ namespace PDFRepo
                 this.LoadDataGrid();
             }
         }
-
-
-
-
         private void viewPDFToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             string selectedPdfId = GetSelectedPdfId();
@@ -262,11 +258,23 @@ namespace PDFRepo
             CategoryGridForm cf = new CategoryGridForm();
             cf.Show();
         }
-        #endregion
+
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            DataModel dm = new DataModel();
+            DataTable selectedRecords = dm.getRecordsCategory(categoryComboBox.Text);
+            dataGridView1.DataSource = selectedRecords;
+            FormatDataGrid();
 
+        }
+
+        #endregion
+
+        private void showAllButton_Click(object sender, EventArgs e)
+        {
+            LoadDataGrid();
+            FormatDataGrid();
         }
     }
 }

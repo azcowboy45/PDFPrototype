@@ -23,63 +23,69 @@ namespace PDFRepo.Forms
         {
             InitializeComponent();
        //     categoryComboBox.SelectionChangeCommitted += categoryComboBox_SelectionChangeCommitted;
-            LoadComboBox();
+            BuildComboBox();
         }
 
-
-        private void ImportForm_Load(object sender, EventArgs e)
-        {
-          //  categoryComboBox.SelectionChangeCommitted += categoryComboBox_SelectionChangeCommitted
-        }
-
-        private string[] GetCategoryList()
+        private void BuildComboBox()
         {
             DataModel dm = new DataModel();
-            string[] ingredientList = new string[] { };
-            DataTable autoList = dm.getCategoryKeyedList("pdf_cat", "category", "id");
-            Int32 recCount = autoList.Rows.Count;
-
-            foreach (DataRow row in autoList.Rows)
-            {
-                string str = row[0].ToString();
-                ingredientList = ingredientList.Append<string>(str).ToArray();
-
-            }
-
-            return ingredientList;
+            DropDown dd = new DropDown(dm, categoryComboBox);
         }
 
-        private void LoadComboBox()
-        {
-            string[] items = GetCategoryList();
+        /*
+                private void ImportForm_Load(object sender, EventArgs e)
+                {
+                  //  categoryComboBox.SelectionChangeCommitted += categoryComboBox_SelectionChangeCommitted
+                }
 
-            // Create an AutoCompleteStringCollection and add the items
-            AutoCompleteStringCollection coll = new AutoCompleteStringCollection();
+                private string[] GetCategoryList()
+                {
+                    DataModel dm = new DataModel();
+                    string[] ingredientList = new string[] { };
+                    DataTable autoList = dm.getCategoryKeyedList("pdf_cat", "category", "id");
+                    Int32 recCount = autoList.Rows.Count;
 
-            coll.AddRange(items);
-            categoryComboBox.Items.Clear();
+                    foreach (DataRow row in autoList.Rows)
+                    {
+                        string str = row[0].ToString();
+                        ingredientList = ingredientList.Append<string>(str).ToArray();
 
-            foreach (string item in items)
-            {
-                categoryComboBox.Items.Add(item);
-            }
+                    }
 
-            //    ingredientComboBox.Items.AddRange(items);   // this add the items again???
+                    return ingredientList;
+                }
 
-            // Set the AutoCompleteCustomSource to the collection created above
-            categoryComboBox.AutoCompleteCustomSource = coll;
+                private void LoadComboBox()
+                {
+                    string[] items = GetCategoryList();
 
-            // Specify that the source for autocompletion is a custom source
-            categoryComboBox.AutoCompleteSource = AutoCompleteSource.CustomSource;
+                    // Create an AutoCompleteStringCollection and add the items
+                    AutoCompleteStringCollection coll = new AutoCompleteStringCollection();
 
-            // Set the mode to SuggestAppend (shows a dropdown list and appends matching text)
-            categoryComboBox.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                    coll.AddRange(items);
+                    categoryComboBox.Items.Clear();
 
-            // Set the AutoCompleteCustomSource to the collection created above
-            categoryComboBox.AutoCompleteCustomSource = coll;
-        }
+                    foreach (string item in items)
+                    {
+                        categoryComboBox.Items.Add(item);
+                    }
 
+                    //    ingredientComboBox.Items.AddRange(items);   // this add the items again???
 
+                    // Set the AutoCompleteCustomSource to the collection created above
+                    categoryComboBox.AutoCompleteCustomSource = coll;
+
+                    // Specify that the source for autocompletion is a custom source
+                    categoryComboBox.AutoCompleteSource = AutoCompleteSource.CustomSource;
+
+                    // Set the mode to SuggestAppend (shows a dropdown list and appends matching text)
+                    categoryComboBox.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+
+                    // Set the AutoCompleteCustomSource to the collection created above
+                    categoryComboBox.AutoCompleteCustomSource = coll;
+                }
+
+        */
 
         private void categoryComboBox_SelectionChangeCommitted(object sender, EventArgs e)
         {

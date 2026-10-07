@@ -1,11 +1,12 @@
-﻿using System;
+﻿using PDFRepo.DataClasses;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using PDFRepo.DataClasses;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace PDFRepo.Forms
 {
@@ -22,7 +23,7 @@ namespace PDFRepo.Forms
         }
       private void LoadFormData(string pdfId)
         {
-            LoadComboBox();
+            BuildComboBox();
             idTextBox.Text = pdfId;
             DataModel dm = new DataModel();
             DataTable dt = dm.GetPDFInfo(pdfId);
@@ -37,46 +38,13 @@ namespace PDFRepo.Forms
 
         }
 
-        private string[] GetCategoryList()
+
+
+        private void BuildComboBox()
         {
-            string[] ingredientList = new string[] { };
-            DataTable autoList = dm.getCategoryKeyedList("pdf_cat", "category", "id");
-            Int32 recCount = autoList.Rows.Count;
-
-            foreach (DataRow row in autoList.Rows)
-            {
-                string str = row[0].ToString();
-                ingredientList = ingredientList.Append<string>(str).ToArray();
-
-            }
-
-            return ingredientList;
+            DataModel dm = new DataModel();
+            DropDown dd = new DropDown(dm, categoryComboBox);
         }
-
-        private void LoadComboBox()
-        {
-            string[] items = GetCategoryList();
-
-            // Create an AutoCompleteStringCollection and add the items
-            AutoCompleteStringCollection coll = new AutoCompleteStringCollection();
-
-        //    coll.AddRange(items);
-            categoryComboBox.Items.Clear();
-
-            foreach (string item in items)
-            {
-                categoryComboBox.Items.Add(item);
-            }
-            // Set the AutoCompleteCustomSource to the collection created above
-            categoryComboBox.AutoCompleteCustomSource = coll;
-            // Specify that the source for autocompletion is a custom source
-            categoryComboBox.AutoCompleteSource = AutoCompleteSource.CustomSource;
-            // Set the mode to SuggestAppend (shows a dropdown list and appends matching text)
-            categoryComboBox.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            // Set the AutoCompleteCustomSource to the collection created above
-            categoryComboBox.AutoCompleteCustomSource = coll;
-        }
-
         private void label1_Click(object sender, EventArgs e)
         {
         }
