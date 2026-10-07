@@ -34,7 +34,6 @@
             creationDateTextBox = new TextBox();
             fileSizeTextBox = new TextBox();
             descriptionTextBox = new TextBox();
-            categoryTextBox = new TextBox();
             pdfPathTextBox = new TextBox();
             label8 = new Label();
             label7 = new Label();
@@ -46,17 +45,18 @@
             exitButton = new Button();
             importButton = new Button();
             selectPDFButton = new Button();
+            categoryComboBox = new ComboBox();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
             // 
+            panel1.Controls.Add(categoryComboBox);
             panel1.Controls.Add(attributeTextBox);
             panel1.Controls.Add(lastModextBox);
             panel1.Controls.Add(creationDateTextBox);
             panel1.Controls.Add(fileSizeTextBox);
             panel1.Controls.Add(descriptionTextBox);
-            panel1.Controls.Add(categoryTextBox);
             panel1.Controls.Add(pdfPathTextBox);
             panel1.Controls.Add(label8);
             panel1.Controls.Add(label7);
@@ -110,14 +110,6 @@
             descriptionTextBox.Size = new Size(839, 75);
             descriptionTextBox.TabIndex = 29;
             descriptionTextBox.TextChanged += descriptionTextBox_TextChanged;
-            // 
-            // categoryTextBox
-            // 
-            categoryTextBox.Location = new Point(422, 279);
-            categoryTextBox.Name = "categoryTextBox";
-            categoryTextBox.Size = new Size(194, 31);
-            categoryTextBox.TabIndex = 28;
-            categoryTextBox.TextChanged += categoryTextBox_TextChanged;
             // 
             // pdfPathTextBox
             // 
@@ -223,6 +215,14 @@
             selectPDFButton.UseVisualStyleBackColor = true;
             selectPDFButton.Click += selectPDFButton_Click;
             // 
+            // categoryComboBox
+            // 
+            categoryComboBox.FormattingEnabled = true;
+            categoryComboBox.Location = new Point(422, 276);
+            categoryComboBox.Name = "categoryComboBox";
+            categoryComboBox.Size = new Size(293, 33);
+            categoryComboBox.TabIndex = 34;
+            // 
             // ImportForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -247,7 +247,6 @@
         private TextBox creationDateTextBox;
         private TextBox fileSizeTextBox;
         private TextBox descriptionTextBox;
-        private TextBox categoryTextBox;
         private Label label8;
         private Label label7;
         private Label label6;
@@ -259,5 +258,6 @@
         private Button importButton;
         private Button selectPDFButton;
         private TextBox pdfPathTextBox;
+        private ComboBox categoryComboBox;
     }
 }

@@ -195,6 +195,10 @@ namespace PDFRepo.DataClasses
             }
         }
 
+        /*
+        If you want, I can also change how the byte[] parameter is added (use DbType = Binary/Blob) to avoid provider issues.
+        */
+
         public bool insertPDF(string fName, byte[] pdfBytes, string fCreated, string fLastmod, string fSize,
                               string fAttributes, string description, string category)
         {
@@ -208,9 +212,9 @@ namespace PDFRepo.DataClasses
 
                     // Use parameterized queries to prevent SQL injection
 
-                    string insertQuery = "INSERT INTO pdf_table ( pdf_name, pdf_file, pdf_description, pdf_category, " +
-                        "pdf_created, pdf_size, pdf_lastmod ) " +
-                        "VALUES (@pdf_name, @pdf_file, @pdf_description, @pdf_category, @pdf_created, @pdf_size, @pdf_lastmod)";
+                    string insertQuery = "INSERT INTO pdf_table (pdf_name, pdf_file, pdf_description, pdf_category, " +
+                        "pdf_created, pdf_size, pdf_lastmod, pdf_attributes) " +
+                        "VALUES (@pdf_name, @pdf_file, @pdf_description, @pdf_category, @pdf_created, @pdf_size, @pdf_lastmod, @pdf_attributes);";
 
                     using (var command = new SqliteCommand(insertQuery, connection))
                     {
@@ -219,8 +223,10 @@ namespace PDFRepo.DataClasses
                         command.Parameters.AddWithValue("@pdf_description", description);
                         command.Parameters.AddWithValue("@pdf_category", category);
                         command.Parameters.AddWithValue("@pdf_created", fCreated);
-                        command.Parameters.AddWithValue("@pdf_lastmod", fCreated);
+                        command.Parameters.AddWithValue("@pdf_lastmod", fLastmod);
                         command.Parameters.AddWithValue("@pdf_size", fSize);
+                        command.Parameters.AddWithValue("@pdf_attributes", fAttributes);
+
                         command.ExecuteNonQuery();
                     }
                 }

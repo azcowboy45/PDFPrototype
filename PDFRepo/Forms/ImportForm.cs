@@ -22,12 +22,68 @@ namespace PDFRepo.Forms
         public ImportForm()
         {
             InitializeComponent();
+            categoryComboBox.SelectionChangeCommitted += categoryComboBox_SelectionChangeCommitted;
+            LoadComboBox();
         }
 
 
         private void ImportForm_Load(object sender, EventArgs e)
         {
-            // Load any necessary data or settings when the form loads
+          //  categoryComboBox.SelectionChangeCommitted += categoryComboBox_SelectionChangeCommitted
+        }
+
+        private string[] GetCategoryList()
+        {
+            DataModel dm = new DataModel();
+            string[] ingredientList = new string[] { };
+            DataTable autoList = dm.getCategoryKeyedList("pdf_cat", "category", "id");
+            Int32 recCount = autoList.Rows.Count;
+
+            foreach (DataRow row in autoList.Rows)
+            {
+                string str = row[0].ToString();
+                ingredientList = ingredientList.Append<string>(str).ToArray();
+
+            }
+
+            return ingredientList;
+        }
+
+        private void LoadComboBox()
+        {
+            string[] items = GetCategoryList();
+
+            // Create an AutoCompleteStringCollection and add the items
+            AutoCompleteStringCollection coll = new AutoCompleteStringCollection();
+
+            coll.AddRange(items);
+            categoryComboBox.Items.Clear();
+
+            foreach (string item in items)
+            {
+                categoryComboBox.Items.Add(item);
+            }
+
+            //    ingredientComboBox.Items.AddRange(items);   // this add the items again???
+
+            // Set the AutoCompleteCustomSource to the collection created above
+            categoryComboBox.AutoCompleteCustomSource = coll;
+
+            // Specify that the source for autocompletion is a custom source
+            categoryComboBox.AutoCompleteSource = AutoCompleteSource.CustomSource;
+
+            // Set the mode to SuggestAppend (shows a dropdown list and appends matching text)
+            categoryComboBox.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+
+            // Set the AutoCompleteCustomSource to the collection created above
+            categoryComboBox.AutoCompleteCustomSource = coll;
+        }
+
+
+
+        private void categoryComboBox_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            categoryComboBox.DataBindings["SelectedValue"]?.WriteValue();
         }
 
         private string getPdfFile()
@@ -121,7 +177,7 @@ namespace PDFRepo.Forms
         {
             string pdfFilePath = pdfPathTextBox.Text;
             string description = descriptionTextBox.Text;
-            string category = categoryTextBox.Text;
+            string category = categoryComboBox.Text;
             if (doImport(pdfFilePath, description, category))
             {
                 MessageBox.Show("PDF imported successfully.");

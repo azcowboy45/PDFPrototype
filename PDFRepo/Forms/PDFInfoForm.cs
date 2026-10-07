@@ -44,7 +44,7 @@ namespace PDFRepo.Forms
 
         }
 
-        private string[] GetIngredientList()
+        private string[] GetCategoryList()
         {
             string[] ingredientList = new string[] { };
             DataTable autoList = dm.getCategoryKeyedList("pdf_cat", "category", "id");
@@ -62,7 +62,7 @@ namespace PDFRepo.Forms
 
         private void LoadComboBox()
         {
-            string[] items = GetIngredientList();
+            string[] items = GetCategoryList();
 
             // Create an AutoCompleteStringCollection and add the items
             AutoCompleteStringCollection coll = new AutoCompleteStringCollection();
