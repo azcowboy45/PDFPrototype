@@ -139,7 +139,7 @@ namespace PDFRepo.DataClasses
         }
 
 
-public DataTable GetAllPDFs()
+        public DataTable GetAllPDFs()
         {
 
             DataTable dataTable = new DataTable();
@@ -294,6 +294,46 @@ public DataTable GetAllPDFs()
             }
             return success;
         }
+
+/*
+        string queryString = "select " + keyCol + " AS KeyCol, cast( " + theId
+                        + " AS VARCHAR(16)) AS DescrCol from " + tableName + " order by " + keyCol + ";";
+        
+  */      
+        
+        
+        public DataTable getCategoryKeyedList(string tableName, String keyCol, String theId)
+        {
+        //    var dataSet = new DataSet();
+            var dataTable = new DataTable(tableName); // Naming the table helps with data binding
+
+            try
+            {
+                using var connection = new SqliteConnection(ConnectionString);
+                connection.Open();
+
+                using var command = connection.CreateCommand();
+                command.CommandText = "select " + keyCol + " AS KeyCol, cast( " + theId
+                    + " AS VARCHAR(16)) AS DescrCol from " + tableName + " order by " + keyCol + ";";
+
+                using var reader = command.ExecuteReader();
+                dataTable.Load(reader);
+
+             //   dataSet.Tables.Add(dataTable);
+            }
+            catch (SqliteException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            
+
+            //  Int32 recCount = genericDs.Tables[0].Rows.Count;
+            // MessageBox.Show("Items this dropdown list: " + recCount.ToString());
+            return dataTable;
+        }
+
+
+
 
         #endregion
     }
