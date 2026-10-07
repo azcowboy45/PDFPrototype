@@ -18,16 +18,9 @@ namespace PDFRepo.Forms
         {
             dm = new DataModel();
             InitializeComponent();
-            categoryComboBox.SelectionChangeCommitted += categoryComboBox_SelectionChangeCommitted;
             LoadFormData(pdfId);
         }
-
-        private void categoryComboBox_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-            categoryComboBox.DataBindings["SelectedValue"]?.WriteValue();
-        }
-
-        private void LoadFormData(string pdfId)
+      private void LoadFormData(string pdfId)
         {
             LoadComboBox();
             idTextBox.Text = pdfId;
@@ -67,44 +60,25 @@ namespace PDFRepo.Forms
             // Create an AutoCompleteStringCollection and add the items
             AutoCompleteStringCollection coll = new AutoCompleteStringCollection();
 
-            coll.AddRange(items);
+        //    coll.AddRange(items);
             categoryComboBox.Items.Clear();
 
             foreach (string item in items)
             {
                 categoryComboBox.Items.Add(item);
             }
-
-            //    ingredientComboBox.Items.AddRange(items);   // this add the items again???
-
             // Set the AutoCompleteCustomSource to the collection created above
             categoryComboBox.AutoCompleteCustomSource = coll;
-
             // Specify that the source for autocompletion is a custom source
             categoryComboBox.AutoCompleteSource = AutoCompleteSource.CustomSource;
-
             // Set the mode to SuggestAppend (shows a dropdown list and appends matching text)
             categoryComboBox.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-
             // Set the AutoCompleteCustomSource to the collection created above
             categoryComboBox.AutoCompleteCustomSource = coll;
         }
-
-        private void categoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            /*
-            string ingredientStr = categoryComboBox.Text.Trim();
-            this.selectableCategoryId = dm.GetCategoryIdByName(categoryStr).ToString();
-            categoryComboBox.Text = this.dm.GetCategoryById(this.selectableCategoryId);
-            categoryCombo.Text = categoryComboBox.Text.Trim();
-            categoryKeyTextBox.Text = this.selectableCategory;
-            */
-        }
-
 
         private void label1_Click(object sender, EventArgs e)
         {
-
         }
 
         private void exitButton_Click(object sender, EventArgs e)

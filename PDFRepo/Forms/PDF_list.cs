@@ -16,6 +16,13 @@ namespace PDFRepo
         {
             InitializeComponent();
             LoadDataGrid();
+            BuildComboBox();
+        }
+
+        private void BuildComboBox()
+        {
+            DataModel dm = new DataModel();
+            DropDown dd = new DropDown(dm, comboBox1);
         }
 
         #region processingMethods
@@ -24,7 +31,7 @@ namespace PDFRepo
             DataModel dm = new DataModel();
             DataTable dt = dm.GetAllPDFs();
             dataGridView1.DataSource = dt;
-            FormatDataGrid();;
+            FormatDataGrid(); ;
         }
 
         private void FormatDataGrid()
@@ -256,5 +263,10 @@ namespace PDFRepo
             cf.Show();
         }
         #endregion
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

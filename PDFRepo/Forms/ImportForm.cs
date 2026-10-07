@@ -22,7 +22,7 @@ namespace PDFRepo.Forms
         public ImportForm()
         {
             InitializeComponent();
-            categoryComboBox.SelectionChangeCommitted += categoryComboBox_SelectionChangeCommitted;
+       //     categoryComboBox.SelectionChangeCommitted += categoryComboBox_SelectionChangeCommitted;
             LoadComboBox();
         }
 

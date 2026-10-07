@@ -56,6 +56,8 @@
             sqliteConnection1 = new Microsoft.Data.Sqlite.SqliteConnection();
             sqliteCommand1 = new Microsoft.Data.Sqlite.SqliteCommand();
             sqliteConnection2 = new Microsoft.Data.Sqlite.SqliteConnection();
+            comboBox1 = new ComboBox();
+            label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             contextMenuStrip1.SuspendLayout();
             menuStrip1.SuspendLayout();
@@ -67,11 +69,11 @@
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.ContextMenuStrip = contextMenuStrip1;
-            dataGridView1.Location = new Point(-2, 36);
+            dataGridView1.Location = new Point(-2, 65);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowHeadersWidth = 62;
-            dataGridView1.Size = new Size(1787, 963);
+            dataGridView1.Size = new Size(1787, 934);
             dataGridView1.TabIndex = 0;
             // 
             // contextMenuStrip1
@@ -259,11 +261,31 @@
             // 
             sqliteConnection2.DefaultTimeout = 30;
             // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(1346, 5);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(233, 33);
+            comboBox1.TabIndex = 5;
+            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(1201, 7);
+            label1.Name = "label1";
+            label1.Size = new Size(139, 25);
+            label1.TabIndex = 6;
+            label1.Text = "Category Select:";
+            // 
             // PDF_list
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1785, 1079);
+            Controls.Add(label1);
+            Controls.Add(comboBox1);
             Controls.Add(pdfImportButton);
             Controls.Add(ViewButton);
             Controls.Add(exitButton);
@@ -309,5 +331,7 @@
         private Microsoft.Data.Sqlite.SqliteConnection sqliteConnection1;
         private Microsoft.Data.Sqlite.SqliteCommand sqliteCommand1;
         private Microsoft.Data.Sqlite.SqliteConnection sqliteConnection2;
+        private ComboBox comboBox1;
+        private Label label1;
     }
 }
