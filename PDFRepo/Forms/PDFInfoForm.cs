@@ -21,7 +21,7 @@ namespace PDFRepo.Forms
             InitializeComponent();
             LoadFormData(pdfId);
         }
-      private void LoadFormData(string pdfId)
+        private void LoadFormData(string pdfId)
         {
             BuildComboBox();
             idTextBox.Text = pdfId;
@@ -67,6 +67,13 @@ namespace PDFRepo.Forms
             {
                 MessageBox.Show("Failed to update PDF information.");
             }
+        }
+
+        private void editCatButton_Click(object sender, EventArgs e)
+        {
+            CategoryGridForm cf = new CategoryGridForm();
+            cf.Show();
+            BuildComboBox(); 
         }
     }
 }

@@ -46,6 +46,7 @@
             SaveButton = new Button();
             exitButton = new Button();
             categoryComboBox = new ComboBox();
+            editCatButton = new Button();
             SuspendLayout();
             // 
             // label1
@@ -79,7 +80,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(265, 224);
+            label4.Location = new Point(279, 250);
             label4.Name = "label4";
             label4.Size = new Size(88, 25);
             label4.TabIndex = 3;
@@ -199,16 +200,27 @@
             // categoryComboBox
             // 
             categoryComboBox.FormattingEnabled = true;
-            categoryComboBox.Location = new Point(359, 224);
+            categoryComboBox.Location = new Point(373, 247);
             categoryComboBox.Name = "categoryComboBox";
             categoryComboBox.Size = new Size(371, 33);
             categoryComboBox.TabIndex = 18;
+            // 
+            // editCatButton
+            // 
+            editCatButton.Location = new Point(423, 534);
+            editCatButton.Name = "editCatButton";
+            editCatButton.Size = new Size(153, 34);
+            editCatButton.TabIndex = 39;
+            editCatButton.Text = "Edit Categories";
+            editCatButton.UseVisualStyleBackColor = true;
+            editCatButton.Click += editCatButton_Click;
             // 
             // PDFInfoForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1026, 580);
+            Controls.Add(editCatButton);
             Controls.Add(categoryComboBox);
             Controls.Add(exitButton);
             Controls.Add(SaveButton);
@@ -253,5 +265,6 @@
         private Button SaveButton;
         private Button exitButton;
         private ComboBox categoryComboBox;
+        private Button editCatButton;
     }
 }

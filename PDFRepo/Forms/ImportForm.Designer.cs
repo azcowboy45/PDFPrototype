@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            categoryComboBox = new ComboBox();
             attributeTextBox = new TextBox();
             lastModextBox = new TextBox();
             creationDateTextBox = new TextBox();
@@ -45,7 +46,8 @@
             exitButton = new Button();
             importButton = new Button();
             selectPDFButton = new Button();
-            categoryComboBox = new ComboBox();
+            label1 = new Label();
+            editCatButton = new Button();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -69,6 +71,14 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(1054, 562);
             panel1.TabIndex = 0;
+            // 
+            // categoryComboBox
+            // 
+            categoryComboBox.FormattingEnabled = true;
+            categoryComboBox.Location = new Point(422, 276);
+            categoryComboBox.Name = "categoryComboBox";
+            categoryComboBox.Size = new Size(293, 33);
+            categoryComboBox.TabIndex = 34;
             // 
             // attributeTextBox
             // 
@@ -207,27 +217,40 @@
             // 
             // selectPDFButton
             // 
-            selectPDFButton.Location = new Point(48, 12);
+            selectPDFButton.Location = new Point(213, 12);
             selectPDFButton.Name = "selectPDFButton";
-            selectPDFButton.Size = new Size(216, 34);
+            selectPDFButton.Size = new Size(117, 34);
             selectPDFButton.TabIndex = 36;
-            selectPDFButton.Text = "Select PDF";
+            selectPDFButton.Text = "Get PDF";
             selectPDFButton.UseVisualStyleBackColor = true;
             selectPDFButton.Click += selectPDFButton_Click;
             // 
-            // categoryComboBox
+            // label1
             // 
-            categoryComboBox.FormattingEnabled = true;
-            categoryComboBox.Location = new Point(422, 276);
-            categoryComboBox.Name = "categoryComboBox";
-            categoryComboBox.Size = new Size(293, 33);
-            categoryComboBox.TabIndex = 34;
+            label1.AutoSize = true;
+            label1.Location = new Point(48, 17);
+            label1.Name = "label1";
+            label1.Size = new Size(159, 25);
+            label1.TabIndex = 37;
+            label1.Text = "Find a PDF to add:";
+            // 
+            // editCatButton
+            // 
+            editCatButton.Location = new Point(470, 674);
+            editCatButton.Name = "editCatButton";
+            editCatButton.Size = new Size(153, 34);
+            editCatButton.TabIndex = 38;
+            editCatButton.Text = "Edit Categories";
+            editCatButton.UseVisualStyleBackColor = true;
+            editCatButton.Click += editCatButton_Click;
             // 
             // ImportForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1143, 736);
+            Controls.Add(editCatButton);
+            Controls.Add(label1);
             Controls.Add(selectPDFButton);
             Controls.Add(exitButton);
             Controls.Add(panel1);
@@ -237,6 +260,7 @@
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -259,5 +283,7 @@
         private Button selectPDFButton;
         private TextBox pdfPathTextBox;
         private ComboBox categoryComboBox;
+        private Label label1;
+        private Button editCatButton;
     }
 }
