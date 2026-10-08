@@ -95,7 +95,7 @@ namespace PDFRepo
 
         }
 
-        private string GetSelectedPdfId()
+        private string GetSelectedPdfId(string opType)
         {
             if (dataGridView1.SelectedRows.Count > 0)
             {
@@ -104,14 +104,14 @@ namespace PDFRepo
             }
             else
             {
-                MessageBox.Show("You must a PDF record to view first.");
+                MessageBox.Show($"You must a select PDF record to {opType} it.");
                 return "-1"; // Indicate that no valid ID was selected
             }
         }
 
         private void doDeletePDF()
         {
-            string selectedPdfId = GetSelectedPdfId();
+            string selectedPdfId = GetSelectedPdfId("delete");
             if (selectedPdfId == "-1")
             {
                 return; // Exit the method if no valid ID was selected
@@ -134,7 +134,7 @@ namespace PDFRepo
 
         private void doViewPDF()
         {
-            string selectedPdfId = GetSelectedPdfId();
+            string selectedPdfId = GetSelectedPdfId("view");
             if (selectedPdfId == "-1")
             {
                 return; // Exit the method if no valid ID was selected
@@ -185,7 +185,7 @@ namespace PDFRepo
 
         private void modifyPDFRecordsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string selectedPdfId = GetSelectedPdfId();
+            string selectedPdfId = GetSelectedPdfId("modify");
             if (selectedPdfId == "-1")
             {
                 return; // Exit the method if no valid ID was selected
@@ -206,7 +206,7 @@ namespace PDFRepo
 
         private void modifyPDFInfoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string selectedPdfId = GetSelectedPdfId();
+            string selectedPdfId = GetSelectedPdfId("modify");
             if (selectedPdfId == "-1")
             {
                 return; // Exit the method if no valid ID was selected
@@ -220,7 +220,7 @@ namespace PDFRepo
         }
         private void viewPDFToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            string selectedPdfId = GetSelectedPdfId();
+            string selectedPdfId = GetSelectedPdfId("view");
             if (selectedPdfId == "-1")
             {
                 return; // Exit the method if no valid ID was selected
@@ -275,6 +275,13 @@ namespace PDFRepo
         {
             LoadDataGrid();
             FormatDataGrid();
+        }
+
+        private void categoriesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CategoryGridForm cf = new CategoryGridForm();
+            cf.Show();
+
         }
     }
 }

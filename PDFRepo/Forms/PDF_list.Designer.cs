@@ -31,9 +31,10 @@
             components = new System.ComponentModel.Container();
             dataGridView1 = new DataGridView();
             contextMenuStrip1 = new ContextMenuStrip(components);
-            modifyPDFInfoToolStripMenuItem = new ToolStripMenuItem();
             viewPDFToolStripMenuItem1 = new ToolStripMenuItem();
+            modifyPDFInfoToolStripMenuItem = new ToolStripMenuItem();
             deleteToolStripMenuItem = new ToolStripMenuItem();
+            categoriesToolStripMenuItem = new ToolStripMenuItem();
             exitButton = new Button();
             ViewButton = new Button();
             menuStrip1 = new MenuStrip();
@@ -80,31 +81,38 @@
             // contextMenuStrip1
             // 
             contextMenuStrip1.ImageScalingSize = new Size(24, 24);
-            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { viewPDFToolStripMenuItem1, modifyPDFInfoToolStripMenuItem, deleteToolStripMenuItem });
+            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { viewPDFToolStripMenuItem1, modifyPDFInfoToolStripMenuItem, categoriesToolStripMenuItem, deleteToolStripMenuItem });
             contextMenuStrip1.Name = "contextMenuStrip1";
-            contextMenuStrip1.Size = new Size(195, 100);
+            contextMenuStrip1.Size = new Size(204, 132);
             contextMenuStrip1.Opening += contextMenuStrip1_Opening;
-            // 
-            // modifyPDFInfoToolStripMenuItem
-            // 
-            modifyPDFInfoToolStripMenuItem.Name = "modifyPDFInfoToolStripMenuItem";
-            modifyPDFInfoToolStripMenuItem.Size = new Size(194, 32);
-            modifyPDFInfoToolStripMenuItem.Text = "Edit Metadata";
-            modifyPDFInfoToolStripMenuItem.Click += modifyPDFInfoToolStripMenuItem_Click;
             // 
             // viewPDFToolStripMenuItem1
             // 
             viewPDFToolStripMenuItem1.Name = "viewPDFToolStripMenuItem1";
-            viewPDFToolStripMenuItem1.Size = new Size(194, 32);
+            viewPDFToolStripMenuItem1.Size = new Size(203, 32);
             viewPDFToolStripMenuItem1.Text = "View PDF";
             viewPDFToolStripMenuItem1.Click += viewPDFToolStripMenuItem1_Click;
+            // 
+            // modifyPDFInfoToolStripMenuItem
+            // 
+            modifyPDFInfoToolStripMenuItem.Name = "modifyPDFInfoToolStripMenuItem";
+            modifyPDFInfoToolStripMenuItem.Size = new Size(203, 32);
+            modifyPDFInfoToolStripMenuItem.Text = "Edit Metadata";
+            modifyPDFInfoToolStripMenuItem.Click += modifyPDFInfoToolStripMenuItem_Click;
             // 
             // deleteToolStripMenuItem
             // 
             deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            deleteToolStripMenuItem.Size = new Size(194, 32);
+            deleteToolStripMenuItem.Size = new Size(203, 32);
             deleteToolStripMenuItem.Text = "Delete";
             deleteToolStripMenuItem.Click += deleteToolStripMenuItem_Click;
+            // 
+            // categoriesToolStripMenuItem
+            // 
+            categoriesToolStripMenuItem.Name = "categoriesToolStripMenuItem";
+            categoriesToolStripMenuItem.Size = new Size(203, 32);
+            categoriesToolStripMenuItem.Text = "Edit Categories";
+            categoriesToolStripMenuItem.Click += categoriesToolStripMenuItem_Click;
             // 
             // exitButton
             // 
@@ -146,40 +154,40 @@
             // importToolStripMenuItem
             // 
             importToolStripMenuItem.Name = "importToolStripMenuItem";
-            importToolStripMenuItem.Size = new Size(244, 34);
+            importToolStripMenuItem.Size = new Size(270, 34);
             importToolStripMenuItem.Text = "Import";
             importToolStripMenuItem.Click += importToolStripMenuItem_Click;
             // 
             // exportToolStripMenuItem
             // 
             exportToolStripMenuItem.Name = "exportToolStripMenuItem";
-            exportToolStripMenuItem.Size = new Size(244, 34);
+            exportToolStripMenuItem.Size = new Size(270, 34);
             exportToolStripMenuItem.Text = "Export Database";
             exportToolStripMenuItem.Click += exportToolStripMenuItem_Click;
             // 
             // deleteToolStripMenuItem1
             // 
             deleteToolStripMenuItem1.Name = "deleteToolStripMenuItem1";
-            deleteToolStripMenuItem1.Size = new Size(244, 34);
+            deleteToolStripMenuItem1.Size = new Size(270, 34);
             deleteToolStripMenuItem1.Text = "Delete";
             deleteToolStripMenuItem1.Click += deleteToolStripMenuItem1_Click;
             // 
             // backupToolStripMenuItem
             // 
             backupToolStripMenuItem.Name = "backupToolStripMenuItem";
-            backupToolStripMenuItem.Size = new Size(244, 34);
+            backupToolStripMenuItem.Size = new Size(270, 34);
             backupToolStripMenuItem.Text = "Backup";
             backupToolStripMenuItem.Click += backupToolStripMenuItem_Click;
             // 
             // toolStripSeparator1
             // 
             toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(241, 6);
+            toolStripSeparator1.Size = new Size(267, 6);
             // 
             // exitToolStripMenuItem
             // 
             exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            exitToolStripMenuItem.Size = new Size(244, 34);
+            exitToolStripMenuItem.Size = new Size(270, 34);
             exitToolStripMenuItem.Text = "Exit";
             // 
             // editToolStripMenuItem
@@ -347,5 +355,6 @@
         private ComboBox categoryComboBox;
         private Label label1;
         private Button showAllButton;
+        private ToolStripMenuItem categoriesToolStripMenuItem;
     }
 }

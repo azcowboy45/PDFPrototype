@@ -363,7 +363,35 @@ namespace PDFRepo.DataClasses
             return dataTable;
         }
 
-        
+        //   DeleteCategoryById()
+        public bool DeleteCategoryById(string id)
+        {
+            bool success = false;
+            string query = "DELETE FROM pdf_cat WHERE id = @id";
+            using (var connection = new SqliteConnection(ConnectionString))
+            {
+
+                connection.Open();
+                using (var command = new SqliteCommand(query, connection))
+                {
+                    // Add parameters to prevent SQL injection
+                    command.Parameters.AddWithValue("@id", id);
+                    try
+                    {
+                        connection.Open();
+                        command.ExecuteNonQuery();
+                        return true;
+                    }
+                    catch (SqliteException SQLitex)
+                    {
+                        // Log the exception or handle it appropriately
+                        MessageBox.Show($"Database Error: {SQLitex.Message}");
+                        return false;
+                    }
+                }
+            }
+        }
+
 
 
         #endregion

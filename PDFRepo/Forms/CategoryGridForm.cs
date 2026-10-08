@@ -59,6 +59,20 @@ namespace PDFRepo.Forms
 
         }
 
+        private string GetSelectedPdfId(string opType )
+        {
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
+                return selectedRow.Cells["ID"].Value.ToString();
+            }
+            else
+            {
+                MessageBox.Show($"You must select a PDF category rowin order to {opType} it.");
+                return "-1"; // Indicate that no valid ID was selected
+            }
+        }
+
         private void saveButton_Click(object sender, EventArgs e)
         {
 
@@ -86,10 +100,6 @@ namespace PDFRepo.Forms
 
         }
 
-        private void editToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -98,6 +108,21 @@ namespace PDFRepo.Forms
         private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
         {
             // 
+        }
+        private void editToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            DataModel dm = new DataModel();
+            if (dm.DeleteCategoryById(GetSelectedPdfId("delete"))) {
+                LoadDataGrid();
+            }
+           
+
         }
     }
 }
