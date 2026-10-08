@@ -6,6 +6,14 @@ using System.Windows.Forms;
 
 namespace PDFRepo.DataClasses
 {
+
+    /**
+     * DropDown class is responsible for populating a ComboBox with category data retrieved from a DataModel.
+     * It provides functionality to load the ComboBox with category items and set up auto-completion features.
+     *  
+     * The object from this class is best called via a handler fired from "this.Activated +=... " in the calling form.
+     * 
+     */
     internal class DropDown
     {
         private DataModel dm = null;
@@ -13,6 +21,7 @@ namespace PDFRepo.DataClasses
         {
             this.dm = dm;
             LoadComboBox(categoryComboBox);
+
         }
 
 
@@ -43,18 +52,22 @@ namespace PDFRepo.DataClasses
 
         private string[] GetCategoryList()
         {
-            string[] ingredientList = new string[] { };
+            string[] categoryList = new string[] { };
             DataTable autoList = dm.getCategoryKeyedList("pdf_cat", "category", "id");
-            Int32 recCount = autoList.Rows.Count;
+
+            autoList.DefaultView.Sort = "KeyCol ASC"; // Sort the DataTable by the "KeyCol" column in ascending order
+
+            autoList = autoList.DefaultView.ToTable();
+            int recCount = autoList.Rows.Count;
 
             foreach (DataRow row in autoList.Rows)
             {
                 string str = row[0].ToString();
-                ingredientList = ingredientList.Append<string>(str).ToArray();
+                categoryList = categoryList.Append<string>(str).ToArray();
 
             }
 
-            return ingredientList;
+            return categoryList;
         }
 
 

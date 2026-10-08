@@ -15,9 +15,22 @@ namespace PDFRepo
         public PDF_list()
         {
             InitializeComponent();
-            LoadDataGrid();
-            BuildComboBox();
+        //    LoadDataGrid();
+            // Wire up the Activated event handler programmatically
+            this.Activated += PDFList_Activated;  // Wire up the Activated event handler programmatically to the PDF_List form.
+
+            //  BuildComboBox();
+
         }
+
+        private void PDFList_Activated(object sender, EventArgs e)
+        {
+            BuildComboBox();  // Rebuild the ComboBox when the form is activated
+            // Refresh the DataGridView when the form is activated
+            LoadDataGrid();
+        }
+
+
 
         private void BuildComboBox()
         {
@@ -257,6 +270,8 @@ namespace PDFRepo
         {
             CategoryGridForm cf = new CategoryGridForm();
             cf.Show();
+            //   BuildComboBox(); -- This line is commented out because the ComboBox will be rebuilt when
+            //   the form is activated, so it is not necessary to call BuildComboBox() here.
         }
 
 
@@ -281,6 +296,8 @@ namespace PDFRepo
         {
             CategoryGridForm cf = new CategoryGridForm();
             cf.Show();
+            //   BuildComboBox(); -- This line is commented out because the ComboBox will be rebuilt when
+            //   the form is activated, so it is not necessary to call BuildComboBox() here.
 
         }
     }

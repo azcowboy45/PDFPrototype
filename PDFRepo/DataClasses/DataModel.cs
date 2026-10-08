@@ -35,7 +35,7 @@ namespace PDFRepo.DataClasses
     class DataModel
     {
         /**
-         * Placeholder comment.
+         * The object from this class is best called via a handler fired from this.Actived in the calling form.
          * 
          * @param void 
          * @return void
