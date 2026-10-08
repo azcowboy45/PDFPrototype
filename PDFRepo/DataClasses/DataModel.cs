@@ -140,6 +140,37 @@ namespace PDFRepo.DataClasses
         }
 
 
+        public bool UpdatePDFCat(string id, string category, string notes)
+        {
+            bool success = false;
+
+            string query = @"UPDATE PDF_cat SET category = @category, notes = @notes where id = @id ";
+
+            using (var connection = new SqliteConnection(ConnectionString))
+            {
+                using (var command = new SqliteCommand(query, connection))
+                {
+                    // Add parameters to prevent SQL injection
+                    command.Parameters.AddWithValue("@id", id);
+                    command.Parameters.AddWithValue("@category", category);
+                    command.Parameters.AddWithValue("@notes", notes);
+
+                    try
+                    {
+                        connection.Open();
+                        command.ExecuteNonQuery();
+                        success = true;
+                    }
+                    catch (SqliteException SQLitex)
+                    {
+                        MessageBox.Show("Error: " + SQLitex.Message);
+                    }
+                }
+            }
+            return success;
+        }
+
+
         public DataTable GetAllPDFs()
         {
 

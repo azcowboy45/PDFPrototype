@@ -101,7 +101,7 @@ namespace PDFRepo.Forms
 
         private void newButton_Click(object sender, EventArgs e)
         {
-            CategoryInputForm cif = new CategoryInputForm();
+            CategoryInputForm cif = new CategoryInputForm(false);
             cif.ShowDialog();
             LoadDataGrid();
 
@@ -110,7 +110,7 @@ namespace PDFRepo.Forms
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CategoryInputForm cif = new CategoryInputForm();
+            CategoryInputForm cif = new CategoryInputForm(false);
             cif.ShowDialog();
             LoadDataGrid();
 
@@ -129,7 +129,7 @@ namespace PDFRepo.Forms
             }
             else
             {
-                CategoryInputForm cif = new CategoryInputForm(selectedRow);
+                CategoryInputForm cif = new CategoryInputForm(selectedRow, true);
                 cif.ShowDialog();
                 this.LoadDataGrid();
             }
