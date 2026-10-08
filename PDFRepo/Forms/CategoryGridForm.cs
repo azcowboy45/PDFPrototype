@@ -1,4 +1,5 @@
 ﻿using PDFRepo.DataClasses;
+using PDFRepo.utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,11 +12,26 @@ namespace PDFRepo.Forms
 {
     public partial class CategoryGridForm : Form
     {
+        private MethodsInCommon mic;
         public CategoryGridForm()
         {
+            mic = new MethodsInCommon();  // Initialize the MethodsInCommon instance
+
             InitializeComponent();
             LoadDataGrid();
+
+            // Wire up the Activated event handler programmatically
+            this.Activated += CategoryGridForm_Activated;  // Wire up the Activated event handler programmatically to the CategoryGridForm.
+
         }
+
+        private void CategoryGridForm_Activated(object sender, EventArgs e)
+        {
+            //  BuildComboBox();  // Rebuild the ComboBox when the form is activated
+            // Refresh the DataGridView when the form is activated
+            LoadDataGrid();
+        }
+
 
 
         private void LoadDataGrid()
@@ -58,7 +74,7 @@ namespace PDFRepo.Forms
 
 
         }
-
+        /*
         private string GetSelectedPdfId(string opType )
         {
             if (dataGridView1.SelectedRows.Count > 0)
@@ -72,7 +88,7 @@ namespace PDFRepo.Forms
                 return "-1"; // Indicate that no valid ID was selected
             }
         }
-
+*/
         private void saveButton_Click(object sender, EventArgs e)
         {
 
@@ -100,17 +116,23 @@ namespace PDFRepo.Forms
 
         }
 
-
-        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
         private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
         {
             // 
         }
         private void editToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            DataGridViewRow selectedRow = mic.GetSelectedGridRow(dataGridView1, "modify");
+            if (selectedRow == null)
+            {
+                return; // Exit the method if no valid ID was selected
+            }
+            else
+            {
+                CategoryInputForm cif = new CategoryInputForm(selectedRow);
+                cif.ShowDialog();
+                this.LoadDataGrid();
+            }
 
         }
 
@@ -118,11 +140,13 @@ namespace PDFRepo.Forms
         {
 
             DataModel dm = new DataModel();
-            if (dm.DeleteCategoryById(GetSelectedPdfId("delete"))) {
+
+            string selectedPdfId = mic.GetSelectedGridRowId(dataGridView1, "delete");
+
+            if (dm.DeleteCategoryById(selectedPdfId))
+            {
                 LoadDataGrid();
             }
-           
-
         }
     }
 }

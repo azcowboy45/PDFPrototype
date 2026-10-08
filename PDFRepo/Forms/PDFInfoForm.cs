@@ -1,4 +1,5 @@
 ﻿using PDFRepo.DataClasses;
+using PDFRepo.utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -7,6 +8,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using PDFRepo.utils;
 
 namespace PDFRepo.Forms
 {
@@ -15,12 +17,27 @@ namespace PDFRepo.Forms
         private string selectableCategoryId;
         private string selectableCategory;
         private DataModel dm = null;
+        private MethodsInCommon mic;
+
         public PDFInfoForm(string pdfId)
         {
             dm = new DataModel();
+            mic = new MethodsInCommon();
             InitializeComponent();
-            LoadFormData(pdfId);
+             LoadFormData(pdfId);
+            // Wire up the Activated event handler programmatically
+            this.Activated += PDFList_Activated;  // Wire up the Activated event handler programmatically to the PDF_List form.
+
         }
+
+        private void PDFList_Activated(object sender, EventArgs e)
+        {
+            BuildComboBox();  // Rebuild the ComboBox when the form is activated
+            // Refresh the DataGridView when the form is activated
+           // LoadDataGrid();
+        }
+
+
         private void LoadFormData(string pdfId)
         {
             BuildComboBox();

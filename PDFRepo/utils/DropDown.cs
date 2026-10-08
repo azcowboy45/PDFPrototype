@@ -1,10 +1,11 @@
-﻿using System;
+﻿using PDFRepo.DataClasses;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Text;
 using System.Windows.Forms;
 
-namespace PDFRepo.DataClasses
+namespace PDFRepo.utils
 {
 
     /**
@@ -16,7 +17,7 @@ namespace PDFRepo.DataClasses
      */
     internal class DropDown
     {
-        private DataModel dm = null;
+        private DataModel dm;
         public DropDown(DataModel dm, ComboBox categoryComboBox)
         {
             this.dm = dm;

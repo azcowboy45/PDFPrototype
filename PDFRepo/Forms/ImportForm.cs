@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using PDFRepo.DataClasses;
+using PDFRepo.utils;
 
 namespace PDFRepo.Forms
 {

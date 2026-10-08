@@ -4,6 +4,7 @@ using Microsoft.Web.WebView2.WinForms;
 using PDFRepo.DataClasses;
 using System.Data;
 using PDFRepo.Forms;
+using PDFRepo.utils;
 
 namespace PDFRepo
 {
@@ -11,9 +12,11 @@ namespace PDFRepo
     {
         //    private Config cfg;
         //    private StartForm loginForm;
-        public DataTable configDataTable;
+        private DataTable configDataTable;
+        private MethodsInCommon mic;
         public PDF_list()
         {
+            mic = new MethodsInCommon();
             InitializeComponent();
         //    LoadDataGrid();
             // Wire up the Activated event handler programmatically
@@ -108,6 +111,7 @@ namespace PDFRepo
 
         }
 
+        /*
         private string GetSelectedPdfId(string opType)
         {
             if (dataGridView1.SelectedRows.Count > 0)
@@ -121,10 +125,11 @@ namespace PDFRepo
                 return "-1"; // Indicate that no valid ID was selected
             }
         }
+        */
 
         private void doDeletePDF()
         {
-            string selectedPdfId = GetSelectedPdfId("delete");
+            string selectedPdfId = mic.GetSelectedGridRowId(dataGridView1, "delete");
             if (selectedPdfId == "-1")
             {
                 return; // Exit the method if no valid ID was selected
@@ -147,7 +152,7 @@ namespace PDFRepo
 
         private void doViewPDF()
         {
-            string selectedPdfId = GetSelectedPdfId("view");
+            string selectedPdfId = mic.GetSelectedGridRowId(dataGridView1, "view");
             if (selectedPdfId == "-1")
             {
                 return; // Exit the method if no valid ID was selected
@@ -198,7 +203,7 @@ namespace PDFRepo
 
         private void modifyPDFRecordsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string selectedPdfId = GetSelectedPdfId("modify");
+            string selectedPdfId = mic.GetSelectedGridRowId(dataGridView1, "modify"); ;
             if (selectedPdfId == "-1")
             {
                 return; // Exit the method if no valid ID was selected
@@ -219,7 +224,7 @@ namespace PDFRepo
 
         private void modifyPDFInfoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string selectedPdfId = GetSelectedPdfId("modify");
+            string selectedPdfId = mic.GetSelectedGridRowId(dataGridView1, "modify");
             if (selectedPdfId == "-1")
             {
                 return; // Exit the method if no valid ID was selected
@@ -233,7 +238,7 @@ namespace PDFRepo
         }
         private void viewPDFToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            string selectedPdfId = GetSelectedPdfId("view");
+            string selectedPdfId = mic.GetSelectedGridRowId(dataGridView1, "view");
             if (selectedPdfId == "-1")
             {
                 return; // Exit the method if no valid ID was selected
