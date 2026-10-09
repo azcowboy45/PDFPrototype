@@ -71,6 +71,7 @@
             exitButton.TabIndex = 4;
             exitButton.Text = "Exit";
             exitButton.UseVisualStyleBackColor = true;
+            exitButton.Click += exitButton_Click;
             // 
             // ViewPdfForm
             // 

@@ -20,7 +20,7 @@ namespace PDFRepo
         {
             mic = new MethodsInCommon();
             InitializeComponent();
-        //    LoadDataGrid();
+            //    LoadDataGrid();
             // Wire up the Activated event handler programmatically
             this.Activated += PDFList_Activated;  // Wire up the Activated event handler programmatically to the PDF_List form.
 
@@ -33,6 +33,10 @@ namespace PDFRepo
             DataGridView grid = (DataGridView)sender;
 
             // Ensure the click is on a valid data row and targets the button column
+
+            if (onOne)
+                onOne = false;
+
             if (e.RowIndex >= 0 && e.ColumnIndex == grid.Columns["ViewPDF"].Index)
             {
                 onOne = false;
@@ -46,8 +50,8 @@ namespace PDFRepo
                     // 5. Access data from this specific row
                     string selectedPdfId = clickedRow.Cells["ID"].Value?.ToString();
                     doViewPDF(selectedPdfId);
-
                 }
+
             }
         }
 
@@ -97,7 +101,7 @@ namespace PDFRepo
             {
                 AddButtonColumn();  // Add the button column after setting the DataSource
             }
-            
+
             FormatDataGrid(); ;
         }
 
@@ -116,7 +120,7 @@ namespace PDFRepo
             this.dataGridView1.AlternatingRowsDefaultCellStyle.ForeColor = Color.Black;
 
             dataGridView1.Columns["ID"].HeaderText = "ID";
-            dataGridView1.Columns["ID"].Visible = true;
+            dataGridView1.Columns["ID"].Visible = false;
             dataGridView1.Columns["ID"].Width = 64;
 
             dataGridView1.Columns["pdf_name"].HeaderText = "PDF Name";
@@ -188,9 +192,9 @@ namespace PDFRepo
             }
         }
 
-        private void doViewPDF(string selectedPdfId )
+        private void doViewPDF(string selectedPdfId)
         {
-;
+            ;
             if (selectedPdfId == "-1")
             {
                 return; // Exit the method if no valid ID was selected
