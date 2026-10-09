@@ -14,6 +14,8 @@ namespace PDFRepo
         //    private StartForm loginForm;
         private DataTable configDataTable;
         private MethodsInCommon mic;
+
+        bool onOne = true;
         public PDF_list()
         {
             mic = new MethodsInCommon();
@@ -22,8 +24,31 @@ namespace PDFRepo
             // Wire up the Activated event handler programmatically
             this.Activated += PDFList_Activated;  // Wire up the Activated event handler programmatically to the PDF_List form.
 
-            //  BuildComboBox();
+            dataGridView1.CellClick += dataGridView1_CellClick;
 
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridView grid = (DataGridView)sender;
+
+            // Ensure the click is on a valid data row and targets the button column
+            if (e.RowIndex >= 0 && e.ColumnIndex == grid.Columns["ViewPDF"].Index)
+            {
+                onOne = false;
+                // Retrieve data from another column in the same row
+                // 3. Ensure the click happened specifically on your button column
+                if (e.ColumnIndex == grid.Columns["ViewPDF"].Index)
+                {
+                    // 4. Get the full row object using e.RowIndex
+                    DataGridViewRow clickedRow = grid.Rows[e.RowIndex];
+
+                    // 5. Access data from this specific row
+                    string selectedPdfId = clickedRow.Cells["ID"].Value?.ToString();
+                    doViewPDF(selectedPdfId);
+
+                }
+            }
         }
 
         private void PDFList_Activated(object sender, EventArgs e)
@@ -31,6 +56,27 @@ namespace PDFRepo
             BuildComboBox();  // Rebuild the ComboBox when the form is activated
             // Refresh the DataGridView when the form is activated
             LoadDataGrid();
+        }
+
+
+
+        private void AddButtonColumn()
+        {
+            DataGridViewButtonColumn buttonColumn = new DataGridViewButtonColumn();
+            buttonColumn.Name = "ViewPDF";
+            buttonColumn.HeaderText = "View PDF";
+            buttonColumn.Text = "View";
+            // 2. CRITICAL: Tell the grid to actually draw this text on the buttons
+            buttonColumn.UseColumnTextForButtonValue = true;
+
+            // 3. Add the button column to the dynamically created grid
+            dataGridView1.Columns.Add(buttonColumn);
+
+            // 4. Wire up the click event handler
+            //    dataGridView1.CellClick += dataGridView1_CellClick;
+
+            // 5. Add the grid to your Form's controls so it appears on screen
+            this.Controls.Add(dataGridView1);
         }
 
 
@@ -47,6 +93,11 @@ namespace PDFRepo
             DataModel dm = new DataModel();
             DataTable dt = dm.GetAllPDFs();
             dataGridView1.DataSource = dt;
+            if (onOne)
+            {
+                AddButtonColumn();  // Add the button column after setting the DataSource
+            }
+            
             FormatDataGrid(); ;
         }
 
@@ -111,21 +162,8 @@ namespace PDFRepo
 
         }
 
-        /*
-        private string GetSelectedPdfId(string opType)
-        {
-            if (dataGridView1.SelectedRows.Count > 0)
-            {
-                DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
-                return selectedRow.Cells["ID"].Value.ToString();
-            }
-            else
-            {
-                MessageBox.Show($"You must a select PDF record to {opType} it.");
-                return "-1"; // Indicate that no valid ID was selected
-            }
-        }
-        */
+
+
 
         private void doDeletePDF()
         {
@@ -150,9 +188,9 @@ namespace PDFRepo
             }
         }
 
-        private void doViewPDF()
+        private void doViewPDF(string selectedPdfId )
         {
-            string selectedPdfId = mic.GetSelectedGridRowId(dataGridView1, "view");
+;
             if (selectedPdfId == "-1")
             {
                 return; // Exit the method if no valid ID was selected
@@ -170,12 +208,14 @@ namespace PDFRepo
         #region controls        
         private void ViewButton_Click(object sender, EventArgs e)
         {
-            doViewPDF();
+            string selectedPdfId = mic.GetSelectedGridRowId(dataGridView1, "view");
+            doViewPDF(selectedPdfId);
         }
 
         private void viewPDFToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            doViewPDF();
+            string selectedPdfId = mic.GetSelectedGridRowId(dataGridView1, "view");
+            doViewPDF(selectedPdfId);
         }
 
         private void importToolStripMenuItem_Click(object sender, EventArgs e)
