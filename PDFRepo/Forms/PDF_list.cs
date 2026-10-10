@@ -20,26 +20,24 @@ namespace PDFRepo
         {
             mic = new MethodsInCommon();
             InitializeComponent();
-            //    LoadDataGrid();
-            // Wire up the Activated event handler programmatically
-            this.Activated += PDFList_Activated;  // Wire up the Activated event handler programmatically to the PDF_List form.
+            
+            // Wire up the Activated event handler programmatically to the PDF_List form.
+            this.Activated += PDFList_Activated;  
 
+            // Wire up the CellClick event handler programmatically to the DataGridView.
             dataGridView1.CellClick += dataGridView1_CellClick;
 
         }
 
+        #region handlers
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             DataGridView grid = (DataGridView)sender;
 
             // Ensure the click is on a valid data row and targets the button column
-
-            if (onOne)
-                onOne = false;
-
             if (e.RowIndex >= 0 && e.ColumnIndex == grid.Columns["ViewPDF"].Index)
             {
-                onOne = false;
+            //    onOne = false;
                 // Retrieve data from another column in the same row
                 // 3. Ensure the click happened specifically on your button column
                 if (e.ColumnIndex == grid.Columns["ViewPDF"].Index)
@@ -60,7 +58,10 @@ namespace PDFRepo
             BuildComboBox();  // Rebuild the ComboBox when the form is activated
             // Refresh the DataGridView when the form is activated
             LoadDataGrid();
+            onOne = false;
         }
+
+        #endregion
 
 
 
@@ -139,7 +140,7 @@ namespace PDFRepo
 
             dataGridView1.Columns["pdf_lastmod"].HeaderText = "Last Modified";
             dataGridView1.Columns["pdf_lastmod"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridView1.Columns["pdf_lastmod"].Visible = true;
+            dataGridView1.Columns["pdf_lastmod"].Visible = false;
             dataGridView1.Columns["pdf_lastmod"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dataGridView1.Columns["pdf_lastmod"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
 
@@ -163,6 +164,8 @@ namespace PDFRepo
             dataGridView1.Columns["pdf_description"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dataGridView1.Columns["pdf_description"].Visible = true;
 
+            // Force the DataGridView button to always be in the last column position
+            dataGridView1.Columns["ViewPDF"].DisplayIndex = dataGridView1.Columns.Count - 1;    
 
         }
 
