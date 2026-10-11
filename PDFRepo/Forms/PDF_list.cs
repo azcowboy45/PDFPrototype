@@ -138,6 +138,12 @@ namespace PDFRepo
             dataGridView1.Columns["pdf_created"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dataGridView1.Columns["pdf_created"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
 
+            dataGridView1.Columns["pdf_subcat"].HeaderText = "Sub Category";
+            dataGridView1.Columns["pdf_subcat"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns["pdf_subcat"].Visible = true;
+            dataGridView1.Columns["pdf_subcat"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridView1.Columns["pdf_subcat"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+
             dataGridView1.Columns["pdf_lastmod"].HeaderText = "Last Modified";
             dataGridView1.Columns["pdf_lastmod"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns["pdf_lastmod"].Visible = false;
@@ -155,7 +161,7 @@ namespace PDFRepo
             dataGridView1.Columns["pdf_category"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns["pdf_category"].Visible = true;
             dataGridView1.Columns["pdf_category"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridView1.Columns["pdf_category"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dataGridView1.Columns["pdf_category"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
 
 
             dataGridView1.Columns["pdf_category"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
@@ -165,7 +171,7 @@ namespace PDFRepo
             dataGridView1.Columns["pdf_description"].Visible = true;
 
             // Force the DataGridView button to always be in the last column position
-            dataGridView1.Columns["ViewPDF"].DisplayIndex = dataGridView1.Columns.Count - 1;    
+            dataGridView1.Columns["ViewPDF"].DisplayIndex = dataGridView1.Columns.Count - 1;
 
         }
 

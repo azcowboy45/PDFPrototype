@@ -171,6 +171,23 @@ namespace PDFRepo.DataClasses
         }
 
 
+        /* 
+         
+                     command.CommandText = "SELECT " +
+                                            "d.id, " +
+                                            "d.pdf_name, " +
+                                            "d.pdf_category, " +
+                                            "IFNULL(e.sub_cat, '') AS subcat, " +
+                                            "d.pdf_created, " +
+                                            "d.pdf_lastmod, " +
+                                            "d.pdf_size, " +
+                                            "d.pdf_description " +
+                                        "FROM pdf_table d " +
+                                        "LEFT JOIN sub_category e ON d.id = e.parent_id;";         
+         */
+
+
+
         public DataTable GetAllPDFs()
         {
 
@@ -180,8 +197,8 @@ namespace PDFRepo.DataClasses
             {
                 var command = connection.CreateCommand();
 
-                command.CommandText = "select id, pdf_name, pdf_category, pdf_file, pdf_created, " +
-                                          "pdf_lastmod, pdf_size, pdf_description from pdf_table;";
+                command.CommandText = "select id, pdf_name, pdf_category, pdf_file, pdf_subcat, " +
+                                          "pdf_created, pdf_lastmod, pdf_size, pdf_description from pdf_table;";
 
                 connection.Open();
 
@@ -194,6 +211,7 @@ namespace PDFRepo.DataClasses
             }
             return dataTable;
         }
+
 
 
         public DataTable GetPDFInfo(string fId)
