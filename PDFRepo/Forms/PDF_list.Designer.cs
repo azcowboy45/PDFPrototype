@@ -29,12 +29,13 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PDF_list));
             dataGridView1 = new DataGridView();
             contextMenuStrip1 = new ContextMenuStrip(components);
             viewPDFToolStripMenuItem1 = new ToolStripMenuItem();
             modifyPDFInfoToolStripMenuItem = new ToolStripMenuItem();
-            deleteToolStripMenuItem = new ToolStripMenuItem();
             categoriesToolStripMenuItem = new ToolStripMenuItem();
+            deleteToolStripMenuItem = new ToolStripMenuItem();
             exitButton = new Button();
             ViewButton = new Button();
             menuStrip1 = new MenuStrip();
@@ -100,19 +101,19 @@
             modifyPDFInfoToolStripMenuItem.Text = "Edit Metadata";
             modifyPDFInfoToolStripMenuItem.Click += modifyPDFInfoToolStripMenuItem_Click;
             // 
-            // deleteToolStripMenuItem
-            // 
-            deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            deleteToolStripMenuItem.Size = new Size(203, 32);
-            deleteToolStripMenuItem.Text = "Delete";
-            deleteToolStripMenuItem.Click += deleteToolStripMenuItem_Click;
-            // 
             // categoriesToolStripMenuItem
             // 
             categoriesToolStripMenuItem.Name = "categoriesToolStripMenuItem";
             categoriesToolStripMenuItem.Size = new Size(203, 32);
             categoriesToolStripMenuItem.Text = "Edit Categories";
             categoriesToolStripMenuItem.Click += categoriesToolStripMenuItem_Click;
+            // 
+            // deleteToolStripMenuItem
+            // 
+            deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            deleteToolStripMenuItem.Size = new Size(203, 32);
+            deleteToolStripMenuItem.Text = "Delete";
+            deleteToolStripMenuItem.Click += deleteToolStripMenuItem_Click;
             // 
             // exitButton
             // 
@@ -154,40 +155,40 @@
             // importToolStripMenuItem
             // 
             importToolStripMenuItem.Name = "importToolStripMenuItem";
-            importToolStripMenuItem.Size = new Size(270, 34);
+            importToolStripMenuItem.Size = new Size(244, 34);
             importToolStripMenuItem.Text = "Import";
             importToolStripMenuItem.Click += importToolStripMenuItem_Click;
             // 
             // exportToolStripMenuItem
             // 
             exportToolStripMenuItem.Name = "exportToolStripMenuItem";
-            exportToolStripMenuItem.Size = new Size(270, 34);
+            exportToolStripMenuItem.Size = new Size(244, 34);
             exportToolStripMenuItem.Text = "Export Database";
             exportToolStripMenuItem.Click += exportToolStripMenuItem_Click;
             // 
             // deleteToolStripMenuItem1
             // 
             deleteToolStripMenuItem1.Name = "deleteToolStripMenuItem1";
-            deleteToolStripMenuItem1.Size = new Size(270, 34);
+            deleteToolStripMenuItem1.Size = new Size(244, 34);
             deleteToolStripMenuItem1.Text = "Delete";
             deleteToolStripMenuItem1.Click += deleteToolStripMenuItem1_Click;
             // 
             // backupToolStripMenuItem
             // 
             backupToolStripMenuItem.Name = "backupToolStripMenuItem";
-            backupToolStripMenuItem.Size = new Size(270, 34);
+            backupToolStripMenuItem.Size = new Size(244, 34);
             backupToolStripMenuItem.Text = "Backup";
             backupToolStripMenuItem.Click += backupToolStripMenuItem_Click;
             // 
             // toolStripSeparator1
             // 
             toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(267, 6);
+            toolStripSeparator1.Size = new Size(241, 6);
             // 
             // exitToolStripMenuItem
             // 
             exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            exitToolStripMenuItem.Size = new Size(270, 34);
+            exitToolStripMenuItem.Size = new Size(244, 34);
             exitToolStripMenuItem.Text = "Exit";
             // 
             // editToolStripMenuItem
@@ -200,14 +201,14 @@
             // modifyPDFRecordsToolStripMenuItem
             // 
             modifyPDFRecordsToolStripMenuItem.Name = "modifyPDFRecordsToolStripMenuItem";
-            modifyPDFRecordsToolStripMenuItem.Size = new Size(270, 34);
+            modifyPDFRecordsToolStripMenuItem.Size = new Size(198, 34);
             modifyPDFRecordsToolStripMenuItem.Text = "Metadata";
             modifyPDFRecordsToolStripMenuItem.Click += modifyPDFRecordsToolStripMenuItem_Click;
             // 
             // maintainCategoriesToolStripMenuItem
             // 
             maintainCategoriesToolStripMenuItem.Name = "maintainCategoriesToolStripMenuItem";
-            maintainCategoriesToolStripMenuItem.Size = new Size(270, 34);
+            maintainCategoriesToolStripMenuItem.Size = new Size(198, 34);
             maintainCategoriesToolStripMenuItem.Text = "Categories";
             maintainCategoriesToolStripMenuItem.Click += maintainCategoriesToolStripMenuItem_Click;
             // 
@@ -312,6 +313,7 @@
             Controls.Add(exitButton);
             Controls.Add(dataGridView1);
             Controls.Add(menuStrip1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MainMenuStrip = menuStrip1;
             Name = "PDF_list";
             Text = "My PDF LIst";
