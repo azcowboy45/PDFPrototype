@@ -279,6 +279,42 @@ namespace PDFRepo.DataClasses
 
 
 
+
+        //SELECT * from pdf_table where pdf_category = "receipt" AND pdf_subcat = "vehicle"
+        public DataTable getRecordsSubCategory(string fCategory, string fSubCategory)
+        {
+            string query =
+                "SELECT * from pdf_table where pdf_category = @pdf_category AND pdf_subcat = @pdf_subcat;";
+            try
+            {
+                using (var connection = new SqliteConnection(ConnectionString))
+                //    using (var command = new SqliteCommand(query, connection))
+                {
+                    connection.Open();
+                    using (var command = new SqliteCommand(query, connection))
+                    {
+                        // Add parameters to prevent SQL injection
+                        command.Parameters.AddWithValue("@pdf_category", fCategory);
+                        command.Parameters.AddWithValue("@pdf_subcat", fSubCategory);
+                        using (var reader = command.ExecuteReader())
+                        {
+                            var dataTable = new DataTable();
+                            dataTable.Load(reader);
+                            return dataTable;
+                        }
+                    }
+                }
+            }
+            catch (SqliteException SQLitex)
+            {
+                // Log the exception or handle it appropriately
+                MessageBox.Show($"Database Error: {SQLitex.Message}");
+                return null;
+            }
+        }
+
+
+
         /*
         If you want, I can also change how the byte[] parameter is added (use DbType = Binary/Blob) to avoid provider issues.
         */
@@ -380,11 +416,11 @@ namespace PDFRepo.DataClasses
                 }
             }
             return success;
-        }       
-        
+        }
+
         public DataTable getCategoryKeyedList(string tableName, String keyCol, String theId)
         {
-        //    var dataSet = new DataSet();
+            //    var dataSet = new DataSet();
             var dataTable = new DataTable(tableName); // Naming the table helps with data binding
 
             try
@@ -399,13 +435,13 @@ namespace PDFRepo.DataClasses
                 using var reader = command.ExecuteReader();
                 dataTable.Load(reader);
 
-             //   dataSet.Tables.Add(dataTable);
+                //   dataSet.Tables.Add(dataTable);
             }
             catch (SqliteException ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            
+            {
+                MessageBox.Show(ex.Message);
+            }
+
 
             //  Int32 recCount = genericDs.Tables[0].Rows.Count;
             // MessageBox.Show("Items this dropdown list: " + recCount.ToString());

@@ -60,7 +60,7 @@ namespace PDFRepo.Forms
         private void BuildComboBox()
         {
             DataModel dm = new DataModel();
-            DropDown dd = new DropDown(dm, categoryComboBox);
+            DropDown dd = new DropDown(dm);
         }
         private void label1_Click(object sender, EventArgs e)
         {

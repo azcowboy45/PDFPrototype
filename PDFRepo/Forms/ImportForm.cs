@@ -30,7 +30,7 @@ namespace PDFRepo.Forms
         private void BuildComboBox()
         {
             DataModel dm = new DataModel();
-            DropDown dd = new DropDown(dm, categoryComboBox);
+            DropDown dd = new DropDown(dm);
         }
 
         private void categoryComboBox_SelectionChangeCommitted(object sender, EventArgs e)

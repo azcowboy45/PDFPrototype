@@ -20,9 +20,9 @@ namespace PDFRepo
         {
             mic = new MethodsInCommon();
             InitializeComponent();
-            
+
             // Wire up the Activated event handler programmatically to the PDF_List form.
-            this.Activated += PDFList_Activated;  
+            this.Activated += PDFList_Activated;
 
             // Wire up the CellClick event handler programmatically to the DataGridView.
             dataGridView1.CellClick += dataGridView1_CellClick;
@@ -37,7 +37,7 @@ namespace PDFRepo
             // Ensure the click is on a valid data row and targets the button column
             if (e.RowIndex >= 0 && e.ColumnIndex == grid.Columns["ViewPDF"].Index)
             {
-            //    onOne = false;
+                //    onOne = false;
                 // Retrieve data from another column in the same row
                 // 3. Ensure the click happened specifically on your button column
                 if (e.ColumnIndex == grid.Columns["ViewPDF"].Index)
@@ -85,11 +85,13 @@ namespace PDFRepo
         }
 
 
-
+        // This method builds the ComboBox for categories and subcategories
         private void BuildComboBox()
         {
             DataModel dm = new DataModel();
-            DropDown dd = new DropDown(dm, categoryComboBox);
+            DropDown dd = new DropDown(dm);
+            dd.LoadComboBox(categoryComboBox, true);
+            dd.LoadComboBox(subCatComboBox, false);
         }
 
         #region processingMethods
@@ -332,7 +334,7 @@ namespace PDFRepo
             //   the form is activated, so it is not necessary to call BuildComboBox() here.
         }
 
-
+        
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             DataModel dm = new DataModel();
@@ -342,10 +344,22 @@ namespace PDFRepo
 
         }
 
-        #endregion
+
+
+
+
+        private void subCatComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DataModel dm = new DataModel();
+            DataTable selectedRecords = dm.getRecordsSubCategory(categoryComboBox.Text, subCatComboBox.Text);
+            dataGridView1.DataSource = selectedRecords;
+            FormatDataGrid();
+        }
 
         private void showAllButton_Click(object sender, EventArgs e)
         {
+            categoryComboBox.Text = "";
+            subCatComboBox.Text = "";
             LoadDataGrid();
             FormatDataGrid();
         }
@@ -358,5 +372,7 @@ namespace PDFRepo
             //   the form is activated, so it is not necessary to call BuildComboBox() here.
 
         }
+
+        #endregion
     }
 }
