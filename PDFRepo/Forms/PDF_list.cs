@@ -334,7 +334,7 @@ namespace PDFRepo
             //   the form is activated, so it is not necessary to call BuildComboBox() here.
         }
 
-        
+
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             DataModel dm = new DataModel();
@@ -374,5 +374,17 @@ namespace PDFRepo
         }
 
         #endregion
+
+        private void editSubCatsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SubCatGridForm scf = new SubCatGridForm();
+            scf.Show();
+        }
+
+        private void subCategoriesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SubCatGridForm scf = new SubCatGridForm();
+            scf.Show();
+        }
     }
 }

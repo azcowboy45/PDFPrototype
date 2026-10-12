@@ -71,12 +71,6 @@ namespace PDFRepo.Forms
             dataGridView1.Columns["category"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dataGridView1.Columns["category"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
 
-            dataGridView1.Columns["category"].HeaderText = "Category";
-            dataGridView1.Columns["category"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridView1.Columns["category"].Visible = true;
-            dataGridView1.Columns["category"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridView1.Columns["category"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-
             dataGridView1.Columns["notes"].HeaderText = "Description";
             dataGridView1.Columns["notes"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dataGridView1.Columns["notes"].Visible = true;

@@ -35,6 +35,7 @@
             viewPDFToolStripMenuItem1 = new ToolStripMenuItem();
             modifyPDFInfoToolStripMenuItem = new ToolStripMenuItem();
             categoriesToolStripMenuItem = new ToolStripMenuItem();
+            editSubCatsToolStripMenuItem = new ToolStripMenuItem();
             deleteToolStripMenuItem = new ToolStripMenuItem();
             exitButton = new Button();
             ViewButton = new Button();
@@ -49,6 +50,7 @@
             editToolStripMenuItem = new ToolStripMenuItem();
             modifyPDFRecordsToolStripMenuItem = new ToolStripMenuItem();
             maintainCategoriesToolStripMenuItem = new ToolStripMenuItem();
+            subCategoriesToolStripMenuItem = new ToolStripMenuItem();
             viewToolStripMenuItem = new ToolStripMenuItem();
             viewPDFToolStripMenuItem = new ToolStripMenuItem();
             helpToolStripMenuItem = new ToolStripMenuItem();
@@ -61,8 +63,6 @@
             categoryComboBox = new ComboBox();
             label1 = new Label();
             showAllButton = new Button();
-            subCategoriesToolStripMenuItem = new ToolStripMenuItem();
-            editSubCatsToolStripMenuItem = new ToolStripMenuItem();
             label2 = new Label();
             subCatComboBox = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
@@ -87,7 +87,7 @@
             // contextMenuStrip1
             // 
             contextMenuStrip1.ImageScalingSize = new Size(24, 24);
-            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { viewPDFToolStripMenuItem1, modifyPDFInfoToolStripMenuItem, categoriesToolStripMenuItem, deleteToolStripMenuItem, editSubCatsToolStripMenuItem });
+            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { viewPDFToolStripMenuItem1, modifyPDFInfoToolStripMenuItem, categoriesToolStripMenuItem, editSubCatsToolStripMenuItem, deleteToolStripMenuItem });
             contextMenuStrip1.Name = "contextMenuStrip1";
             contextMenuStrip1.Size = new Size(204, 164);
             contextMenuStrip1.Opening += contextMenuStrip1_Opening;
@@ -112,6 +112,13 @@
             categoriesToolStripMenuItem.Size = new Size(203, 32);
             categoriesToolStripMenuItem.Text = "Edit Categories";
             categoriesToolStripMenuItem.Click += categoriesToolStripMenuItem_Click;
+            // 
+            // editSubCatsToolStripMenuItem
+            // 
+            editSubCatsToolStripMenuItem.Name = "editSubCatsToolStripMenuItem";
+            editSubCatsToolStripMenuItem.Size = new Size(203, 32);
+            editSubCatsToolStripMenuItem.Text = "Edit Sub cats";
+            editSubCatsToolStripMenuItem.Click += editSubCatsToolStripMenuItem_Click;
             // 
             // deleteToolStripMenuItem
             // 
@@ -218,6 +225,13 @@
             maintainCategoriesToolStripMenuItem.Text = "Categories";
             maintainCategoriesToolStripMenuItem.Click += maintainCategoriesToolStripMenuItem_Click;
             // 
+            // subCategoriesToolStripMenuItem
+            // 
+            subCategoriesToolStripMenuItem.Name = "subCategoriesToolStripMenuItem";
+            subCategoriesToolStripMenuItem.Size = new Size(270, 34);
+            subCategoriesToolStripMenuItem.Text = "Sub Categories";
+            subCategoriesToolStripMenuItem.Click += subCategoriesToolStripMenuItem_Click;
+            // 
             // viewToolStripMenuItem
             // 
             viewToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { viewPDFToolStripMenuItem });
@@ -306,18 +320,6 @@
             showAllButton.Text = "Show All";
             showAllButton.UseVisualStyleBackColor = true;
             showAllButton.Click += showAllButton_Click;
-            // 
-            // subCategoriesToolStripMenuItem
-            // 
-            subCategoriesToolStripMenuItem.Name = "subCategoriesToolStripMenuItem";
-            subCategoriesToolStripMenuItem.Size = new Size(270, 34);
-            subCategoriesToolStripMenuItem.Text = "Sub Categories";
-            // 
-            // editSubCatsToolStripMenuItem
-            // 
-            editSubCatsToolStripMenuItem.Name = "editSubCatsToolStripMenuItem";
-            editSubCatsToolStripMenuItem.Size = new Size(203, 32);
-            editSubCatsToolStripMenuItem.Text = "Edit Sub cats";
             // 
             // label2
             // 

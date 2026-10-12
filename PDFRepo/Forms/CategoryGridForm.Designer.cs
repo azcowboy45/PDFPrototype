@@ -57,11 +57,11 @@
             dataGridView1.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.ContextMenuStrip = contextMenuStrip1;
-            dataGridView1.Location = new Point(-1, 52);
+            dataGridView1.Location = new Point(-1, 60);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowHeadersWidth = 62;
-            dataGridView1.Size = new Size(1063, 841);
+            dataGridView1.Size = new Size(1063, 833);
             dataGridView1.TabIndex = 0;
             // 
             // contextMenuStrip1
@@ -107,10 +107,10 @@
             // catButton
             // 
             catButton.FlatStyle = FlatStyle.Flat;
-            catButton.Font = new Font("Segoe Fluent Icons", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            catButton.Location = new Point(12, 12);
+            catButton.Font = new Font("Segoe Fluent Icons", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            catButton.Location = new Point(-1, -4);
             catButton.Name = "catButton";
-            catButton.Size = new Size(112, 34);
+            catButton.Size = new Size(52, 30);
             catButton.TabIndex = 2;
             catButton.Text = "File";
             catButton.TextAlign = ContentAlignment.TopCenter;

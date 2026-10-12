@@ -58,6 +58,25 @@ namespace PDFRepo.DataClasses
 
         #region sqliteMethods
 
+        //GetAllSubCategories();
+        public DataTable GetAllSubCategories()
+        {
+            DataTable dataTable = new DataTable();
+            // Use 'using' statements to ensure connections and commands are properly disposed
+            using (var connection = new SqliteConnection(ConnectionString))
+            {
+                var command = connection.CreateCommand();
+                command.CommandText = "SELECT * FROM sub_category;";
+                connection.Open();
+                using (var reader = command.ExecuteReader())
+                {
+                    dataTable = new DataTable();
+                    dataTable.Load(reader); // Manually load from reader
+                                            // Use your dataTable here
+                }
+            }
+            return dataTable;
+        }
 
         public DataTable GetAllCategories()
         {
@@ -453,6 +472,34 @@ namespace PDFRepo.DataClasses
         {
             bool success = false;
             string query = "DELETE FROM pdf_cat WHERE id = @id";
+            using (var connection = new SqliteConnection(ConnectionString))
+            {
+
+                connection.Open();
+                using (var command = new SqliteCommand(query, connection))
+                {
+                    // Add parameters to prevent SQL injection
+                    command.Parameters.AddWithValue("@id", id);
+                    try
+                    {
+                        connection.Open();
+                        command.ExecuteNonQuery();
+                        return true;
+                    }
+                    catch (SqliteException SQLitex)
+                    {
+                        // Log the exception or handle it appropriately
+                        MessageBox.Show($"Database Error: {SQLitex.Message}");
+                        return false;
+                    }
+                }
+            }
+        }
+
+        public bool DeleteSubCatById(string id)
+        {
+            bool success = false;
+            string query = "DELETE FROM sub_category WHERE id = @id";
             using (var connection = new SqliteConnection(ConnectionString))
             {
 
