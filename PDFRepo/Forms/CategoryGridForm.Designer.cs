@@ -37,6 +37,7 @@
             editToolStripMenuItem = new ToolStripMenuItem();
             deleteToolStripMenuItem = new ToolStripMenuItem();
             exitButton = new Button();
+            catButton = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             contextMenuStrip1.SuspendLayout();
             SuspendLayout();
@@ -53,14 +54,14 @@
             // 
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;
+            dataGridView1.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.ContextMenuStrip = contextMenuStrip1;
-            dataGridView1.Dock = DockStyle.Top;
-            dataGridView1.Location = new Point(0, 0);
+            dataGridView1.Location = new Point(-1, 52);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowHeadersWidth = 62;
-            dataGridView1.Size = new Size(1056, 882);
+            dataGridView1.Size = new Size(1063, 841);
             dataGridView1.TabIndex = 0;
             // 
             // contextMenuStrip1
@@ -95,7 +96,7 @@
             // exitButton
             // 
             exitButton.Anchor = AnchorStyles.Right;
-            exitButton.Location = new Point(927, 898);
+            exitButton.Location = new Point(932, 912);
             exitButton.Name = "exitButton";
             exitButton.Size = new Size(112, 34);
             exitButton.TabIndex = 1;
@@ -103,15 +104,30 @@
             exitButton.UseVisualStyleBackColor = true;
             exitButton.Click += exitButton_Click;
             // 
+            // catButton
+            // 
+            catButton.FlatStyle = FlatStyle.Flat;
+            catButton.Font = new Font("Segoe Fluent Icons", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            catButton.Location = new Point(12, 12);
+            catButton.Name = "catButton";
+            catButton.Size = new Size(112, 34);
+            catButton.TabIndex = 2;
+            catButton.Text = "File";
+            catButton.TextAlign = ContentAlignment.TopCenter;
+            catButton.UseVisualStyleBackColor = true;
+            catButton.Click += catButton_Click;
+            // 
             // CategoryGridForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1056, 943);
+            ClientSize = new Size(1061, 971);
+            Controls.Add(catButton);
             Controls.Add(exitButton);
             Controls.Add(dataGridView1);
             Name = "CategoryGridForm";
             Text = "CategoryForm";
+            Load += CategoryGridForm_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             contextMenuStrip1.ResumeLayout(false);
             ResumeLayout(false);
@@ -127,5 +143,6 @@
         private ToolStripMenuItem newToolStripMenuItem;
         private ToolStripMenuItem editToolStripMenuItem;
         private ToolStripMenuItem deleteToolStripMenuItem;
+        private Button catButton;
     }
 }

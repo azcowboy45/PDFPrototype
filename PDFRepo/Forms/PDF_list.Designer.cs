@@ -70,6 +70,7 @@
             // 
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;
+            dataGridView1.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.ContextMenuStrip = contextMenuStrip1;
             dataGridView1.Location = new Point(12, 49);
@@ -117,6 +118,7 @@
             // 
             // exitButton
             // 
+            exitButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             exitButton.Location = new Point(1661, 1025);
             exitButton.Name = "exitButton";
             exitButton.Size = new Size(112, 34);
@@ -291,6 +293,7 @@
             // 
             // showAllButton
             // 
+            showAllButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             showAllButton.FlatStyle = FlatStyle.Popup;
             showAllButton.Location = new Point(1646, 5);
             showAllButton.Name = "showAllButton";

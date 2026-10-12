@@ -18,6 +18,9 @@ namespace PDFRepo.Forms
             mic = new MethodsInCommon();  // Initialize the MethodsInCommon instance
 
             InitializeComponent();
+            catButton.Text = char.ConvertFromUtf32('\u2630');
+            catButton.FlatAppearance.BorderSize = 0;
+
             LoadDataGrid();
 
             // Wire up the Activated event handler programmatically
@@ -153,6 +156,21 @@ namespace PDFRepo.Forms
             {
                 LoadDataGrid();
             }
+        }
+
+        private void CategoryGridForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void catButton_Click(object sender, EventArgs e)
+        {
+            // Cast the sender back to a Button
+            Button btn = (Button)sender;
+
+            // Show the context menu directly below the bottom-left corner of the button
+            contextMenuStrip1.Show(btn, new Point(0, btn.Height));
+
         }
     }
 }
