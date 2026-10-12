@@ -50,7 +50,7 @@ namespace PDFRepo.utils
             // Specify that the source for autocompletion is a custom source
             genericCombobox.AutoCompleteSource = AutoCompleteSource.CustomSource;
             // Set the mode to SuggestAppend (shows a dropdown list and appends matching text)
-            genericCombobox.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+     //       genericCombobox.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             // Set the AutoCompleteCustomSource to the collection created above
             genericCombobox.AutoCompleteCustomSource = coll;
         }

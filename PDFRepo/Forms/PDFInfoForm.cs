@@ -32,7 +32,7 @@ namespace PDFRepo.Forms
 
         private void PDFList_Activated(object sender, EventArgs e)
         {
-            BuildComboBox();  // Rebuild the ComboBox when the form is activated
+            BuildComboBoxes();  // Rebuild the ComboBox when the form is activated
             // Refresh the DataGridView when the form is activated
            // LoadDataGrid();
         }
@@ -40,7 +40,7 @@ namespace PDFRepo.Forms
 
         private void LoadFormData(string pdfId)
         {
-            BuildComboBox();
+            BuildComboBoxes();
             idTextBox.Text = pdfId;
             DataModel dm = new DataModel();
             DataTable dt = dm.GetPDFInfo(pdfId);
@@ -57,10 +57,12 @@ namespace PDFRepo.Forms
 
 
 
-        private void BuildComboBox()
+        private void BuildComboBoxes()
         {
             DataModel dm = new DataModel();
             DropDown dd = new DropDown(dm);
+            dd.LoadComboBox(categoryComboBox, true);
+            dd.LoadComboBox(subCatComboBox, false);
         }
         private void label1_Click(object sender, EventArgs e)
         {
@@ -74,7 +76,7 @@ namespace PDFRepo.Forms
         private void SaveButton_Click(object sender, EventArgs e)
         {
             DataModel dm = new DataModel();
-            bool success = dm.UpdatePDFInfo(idTextBox.Text, categoryComboBox.Text, descriptionTextBox.Text);
+            bool success = dm.UpdatePDFInfo(idTextBox.Text, categoryComboBox.Text, subCatComboBox.Text, descriptionTextBox.Text);
             if (success)
             {
                 MessageBox.Show("PDF information updated successfully.");
@@ -90,7 +92,7 @@ namespace PDFRepo.Forms
         {
             CategoryGridForm cf = new CategoryGridForm();
             cf.Show();
-            BuildComboBox(); 
+            BuildComboBoxes(); 
         }
     }
 }

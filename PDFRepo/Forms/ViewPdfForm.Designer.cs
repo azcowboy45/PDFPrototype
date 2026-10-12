@@ -37,16 +37,17 @@
             // 
             // pdfIdTextBox
             // 
-            pdfIdTextBox.Location = new Point(507, 1196);
+            pdfIdTextBox.Enabled = false;
+            pdfIdTextBox.Location = new Point(554, 1206);
             pdfIdTextBox.Name = "pdfIdTextBox";
             pdfIdTextBox.ReadOnly = true;
-            pdfIdTextBox.Size = new Size(113, 31);
+            pdfIdTextBox.Size = new Size(98, 31);
             pdfIdTextBox.TabIndex = 1;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(434, 1199);
+            label1.Location = new Point(436, 1209);
             label1.Name = "label1";
             label1.Size = new Size(112, 25);
             label1.TabIndex = 2;

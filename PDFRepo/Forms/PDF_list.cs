@@ -30,6 +30,30 @@ namespace PDFRepo
         }
 
         #region handlers
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // 1. Boundary Check: Prevent index out of range errors
+            if (e.RowIndex >= 0 && e.RowIndex < dataGridView1.Rows.Count &&
+                e.ColumnIndex >= 0 && e.ColumnIndex < dataGridView1.Columns.Count)
+            {
+                // 1. Ensure the user clicked a valid data row, not the column header (Index -1)
+                if (e.RowIndex >= 0)
+                {
+                    string clickedColumnName = dataGridView1.Columns[e.ColumnIndex].Name;
+                    // Optional: Check if they clicked a specific column (e.g., Column index 2)
+                    if (clickedColumnName == "pdf_name")
+                    {
+                        // 2. Fetch data from the clicked row to pass to your new form
+                        string selectedItemId = dataGridView1.Rows[e.RowIndex].Cells["ID"].Value.ToString();
+                        string selectedItemName = dataGridView1.Rows[e.RowIndex].Cells["pdf_name"].Value.ToString();
+                        doViewPDF(selectedItemId);
+                    }
+                }
+            }
+        }
+
+        /*
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             DataGridView grid = (DataGridView)sender;
@@ -52,7 +76,7 @@ namespace PDFRepo
 
             }
         }
-
+*/
         private void PDFList_Activated(object sender, EventArgs e)
         {
             BuildComboBox();  // Rebuild the ComboBox when the form is activated
@@ -126,7 +150,7 @@ namespace PDFRepo
             dataGridView1.Columns["ID"].Visible = false;
             dataGridView1.Columns["ID"].Width = 64;
 
-            dataGridView1.Columns["pdf_name"].HeaderText = "PDF Name";
+            dataGridView1.Columns["pdf_name"].HeaderText = "Click Name to View";
             dataGridView1.Columns["pdf_name"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns["pdf_name"].Visible = true;
             dataGridView1.Columns["pdf_name"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
@@ -174,6 +198,7 @@ namespace PDFRepo
 
             // Force the DataGridView button to always be in the last column position
             dataGridView1.Columns["ViewPDF"].DisplayIndex = dataGridView1.Columns.Count - 1;
+            dataGridView1.Columns["ViewPDF"].Visible = false;
 
         }
 
@@ -356,12 +381,18 @@ namespace PDFRepo
             FormatDataGrid();
         }
 
+        private void clearSelections()
+        {
+            categoryComboBox.SelectedIndex = -1;
+            subCatComboBox.SelectedIndex = -1;
+        }
+
+
         private void showAllButton_Click(object sender, EventArgs e)
         {
-            categoryComboBox.Text = "";
-            subCatComboBox.Text = "";
             LoadDataGrid();
             FormatDataGrid();
+            clearSelections();
         }
 
         private void categoriesToolStripMenuItem_Click(object sender, EventArgs e)

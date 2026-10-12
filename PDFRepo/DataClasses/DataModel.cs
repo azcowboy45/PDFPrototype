@@ -128,11 +128,11 @@ namespace PDFRepo.DataClasses
             return pdfBytes;
         }
 
-        public bool UpdatePDFInfo(string id, string pdfCategory, string pdfDescription)
+        public bool UpdatePDFInfo(string id, string pdfCategory, string pdfSubCategory, string pdfDescription)
         {
             bool success = false;
 
-            string query = @"UPDATE PDF_table SET pdf_category = @pdf_category, pdf_description = @pdf_description where id = @id ";
+            string query = @"UPDATE PDF_table SET pdf_category = @pdf_category, pdf_subcat = @pdf_subcat, pdf_description = @pdf_description where id = @id ";
 
             using (var connection = new SqliteConnection(ConnectionString))
             {
@@ -141,6 +141,7 @@ namespace PDFRepo.DataClasses
                     // Add parameters to prevent SQL injection
                     command.Parameters.AddWithValue("@id", id);
                     command.Parameters.AddWithValue("@pdf_category", pdfCategory);
+                    command.Parameters.AddWithValue("@pdf_subcat", pdfSubCategory);
                     command.Parameters.AddWithValue("@pdf_description", pdfDescription);
 
                     try

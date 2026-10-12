@@ -33,12 +33,12 @@
             dataGridView1 = new DataGridView();
             contextMenuStrip1 = new ContextMenuStrip(components);
             viewPDFToolStripMenuItem1 = new ToolStripMenuItem();
-            modifyPDFInfoToolStripMenuItem = new ToolStripMenuItem();
             categoriesToolStripMenuItem = new ToolStripMenuItem();
+            modifyPDFInfoToolStripMenuItem = new ToolStripMenuItem();
+            toolStripSeparator2 = new ToolStripSeparator();
             editSubCatsToolStripMenuItem = new ToolStripMenuItem();
             deleteToolStripMenuItem = new ToolStripMenuItem();
             exitButton = new Button();
-            ViewButton = new Button();
             menuStrip1 = new MenuStrip();
             fileToolStripMenuItem = new ToolStripMenuItem();
             importToolStripMenuItem = new ToolStripMenuItem();
@@ -77,76 +77,71 @@
             dataGridView1.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.ContextMenuStrip = contextMenuStrip1;
-            dataGridView1.Location = new Point(12, 49);
+            dataGridView1.Location = new Point(12, 81);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowHeadersWidth = 62;
-            dataGridView1.Size = new Size(1773, 940);
+            dataGridView1.Size = new Size(1773, 991);
             dataGridView1.TabIndex = 0;
             // 
             // contextMenuStrip1
             // 
             contextMenuStrip1.ImageScalingSize = new Size(24, 24);
-            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { viewPDFToolStripMenuItem1, modifyPDFInfoToolStripMenuItem, categoriesToolStripMenuItem, editSubCatsToolStripMenuItem, deleteToolStripMenuItem });
+            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { viewPDFToolStripMenuItem1, modifyPDFInfoToolStripMenuItem, toolStripSeparator2, categoriesToolStripMenuItem, editSubCatsToolStripMenuItem, deleteToolStripMenuItem });
             contextMenuStrip1.Name = "contextMenuStrip1";
-            contextMenuStrip1.Size = new Size(204, 164);
+            contextMenuStrip1.Size = new Size(232, 170);
             contextMenuStrip1.Opening += contextMenuStrip1_Opening;
             // 
             // viewPDFToolStripMenuItem1
             // 
             viewPDFToolStripMenuItem1.Name = "viewPDFToolStripMenuItem1";
-            viewPDFToolStripMenuItem1.Size = new Size(203, 32);
+            viewPDFToolStripMenuItem1.Size = new Size(231, 32);
             viewPDFToolStripMenuItem1.Text = "View PDF";
             viewPDFToolStripMenuItem1.Click += viewPDFToolStripMenuItem1_Click;
-            // 
-            // modifyPDFInfoToolStripMenuItem
-            // 
-            modifyPDFInfoToolStripMenuItem.Name = "modifyPDFInfoToolStripMenuItem";
-            modifyPDFInfoToolStripMenuItem.Size = new Size(203, 32);
-            modifyPDFInfoToolStripMenuItem.Text = "Edit Metadata";
-            modifyPDFInfoToolStripMenuItem.Click += modifyPDFInfoToolStripMenuItem_Click;
             // 
             // categoriesToolStripMenuItem
             // 
             categoriesToolStripMenuItem.Name = "categoriesToolStripMenuItem";
-            categoriesToolStripMenuItem.Size = new Size(203, 32);
+            categoriesToolStripMenuItem.Size = new Size(231, 32);
             categoriesToolStripMenuItem.Text = "Edit Categories";
             categoriesToolStripMenuItem.Click += categoriesToolStripMenuItem_Click;
+            // 
+            // modifyPDFInfoToolStripMenuItem
+            // 
+            modifyPDFInfoToolStripMenuItem.Name = "modifyPDFInfoToolStripMenuItem";
+            modifyPDFInfoToolStripMenuItem.Size = new Size(231, 32);
+            modifyPDFInfoToolStripMenuItem.Text = "Edit PDF Info";
+            modifyPDFInfoToolStripMenuItem.Click += modifyPDFInfoToolStripMenuItem_Click;
+            // 
+            // toolStripSeparator2
+            // 
+            toolStripSeparator2.Name = "toolStripSeparator2";
+            toolStripSeparator2.Size = new Size(228, 6);
             // 
             // editSubCatsToolStripMenuItem
             // 
             editSubCatsToolStripMenuItem.Name = "editSubCatsToolStripMenuItem";
-            editSubCatsToolStripMenuItem.Size = new Size(203, 32);
-            editSubCatsToolStripMenuItem.Text = "Edit Sub cats";
+            editSubCatsToolStripMenuItem.Size = new Size(231, 32);
+            editSubCatsToolStripMenuItem.Text = "Edit Subcategories";
             editSubCatsToolStripMenuItem.Click += editSubCatsToolStripMenuItem_Click;
             // 
             // deleteToolStripMenuItem
             // 
             deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            deleteToolStripMenuItem.Size = new Size(203, 32);
+            deleteToolStripMenuItem.Size = new Size(231, 32);
             deleteToolStripMenuItem.Text = "Delete";
             deleteToolStripMenuItem.Click += deleteToolStripMenuItem_Click;
             // 
             // exitButton
             // 
             exitButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            exitButton.Location = new Point(1661, 1025);
+            exitButton.Location = new Point(1661, 1107);
             exitButton.Name = "exitButton";
             exitButton.Size = new Size(112, 34);
             exitButton.TabIndex = 1;
             exitButton.Text = "Exit";
             exitButton.UseVisualStyleBackColor = true;
             exitButton.Click += exitButton_Click;
-            // 
-            // ViewButton
-            // 
-            ViewButton.Location = new Point(12, 1025);
-            ViewButton.Name = "ViewButton";
-            ViewButton.Size = new Size(112, 34);
-            ViewButton.TabIndex = 2;
-            ViewButton.Text = "View";
-            ViewButton.UseVisualStyleBackColor = true;
-            ViewButton.Click += ViewButton_Click;
             // 
             // menuStrip1
             // 
@@ -168,40 +163,40 @@
             // importToolStripMenuItem
             // 
             importToolStripMenuItem.Name = "importToolStripMenuItem";
-            importToolStripMenuItem.Size = new Size(270, 34);
+            importToolStripMenuItem.Size = new Size(244, 34);
             importToolStripMenuItem.Text = "Import";
             importToolStripMenuItem.Click += importToolStripMenuItem_Click;
             // 
             // exportToolStripMenuItem
             // 
             exportToolStripMenuItem.Name = "exportToolStripMenuItem";
-            exportToolStripMenuItem.Size = new Size(270, 34);
+            exportToolStripMenuItem.Size = new Size(244, 34);
             exportToolStripMenuItem.Text = "Export Database";
             exportToolStripMenuItem.Click += exportToolStripMenuItem_Click;
             // 
             // deleteToolStripMenuItem1
             // 
             deleteToolStripMenuItem1.Name = "deleteToolStripMenuItem1";
-            deleteToolStripMenuItem1.Size = new Size(270, 34);
+            deleteToolStripMenuItem1.Size = new Size(244, 34);
             deleteToolStripMenuItem1.Text = "Delete";
             deleteToolStripMenuItem1.Click += deleteToolStripMenuItem1_Click;
             // 
             // backupToolStripMenuItem
             // 
             backupToolStripMenuItem.Name = "backupToolStripMenuItem";
-            backupToolStripMenuItem.Size = new Size(270, 34);
+            backupToolStripMenuItem.Size = new Size(244, 34);
             backupToolStripMenuItem.Text = "Backup";
             backupToolStripMenuItem.Click += backupToolStripMenuItem_Click;
             // 
             // toolStripSeparator1
             // 
             toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(267, 6);
+            toolStripSeparator1.Size = new Size(241, 6);
             // 
             // exitToolStripMenuItem
             // 
             exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            exitToolStripMenuItem.Size = new Size(270, 34);
+            exitToolStripMenuItem.Size = new Size(244, 34);
             exitToolStripMenuItem.Text = "Exit";
             // 
             // editToolStripMenuItem
@@ -214,22 +209,22 @@
             // modifyPDFRecordsToolStripMenuItem
             // 
             modifyPDFRecordsToolStripMenuItem.Name = "modifyPDFRecordsToolStripMenuItem";
-            modifyPDFRecordsToolStripMenuItem.Size = new Size(270, 34);
+            modifyPDFRecordsToolStripMenuItem.Size = new Size(226, 34);
             modifyPDFRecordsToolStripMenuItem.Text = "Metadata";
             modifyPDFRecordsToolStripMenuItem.Click += modifyPDFRecordsToolStripMenuItem_Click;
             // 
             // maintainCategoriesToolStripMenuItem
             // 
             maintainCategoriesToolStripMenuItem.Name = "maintainCategoriesToolStripMenuItem";
-            maintainCategoriesToolStripMenuItem.Size = new Size(270, 34);
+            maintainCategoriesToolStripMenuItem.Size = new Size(226, 34);
             maintainCategoriesToolStripMenuItem.Text = "Categories";
             maintainCategoriesToolStripMenuItem.Click += maintainCategoriesToolStripMenuItem_Click;
             // 
             // subCategoriesToolStripMenuItem
             // 
             subCategoriesToolStripMenuItem.Name = "subCategoriesToolStripMenuItem";
-            subCategoriesToolStripMenuItem.Size = new Size(270, 34);
-            subCategoriesToolStripMenuItem.Text = "Sub Categories";
+            subCategoriesToolStripMenuItem.Size = new Size(226, 34);
+            subCategoriesToolStripMenuItem.Text = "Subcategories";
             subCategoriesToolStripMenuItem.Click += subCategoriesToolStripMenuItem_Click;
             // 
             // viewToolStripMenuItem
@@ -268,7 +263,7 @@
             // pdfImportButton
             // 
             pdfImportButton.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            pdfImportButton.Location = new Point(761, 1033);
+            pdfImportButton.Location = new Point(12, 1107);
             pdfImportButton.Name = "pdfImportButton";
             pdfImportButton.Size = new Size(194, 34);
             pdfImportButton.TabIndex = 4;
@@ -294,7 +289,7 @@
             // categoryComboBox
             // 
             categoryComboBox.FormattingEnabled = true;
-            categoryComboBox.Location = new Point(700, 10);
+            categoryComboBox.Location = new Point(700, 30);
             categoryComboBox.Name = "categoryComboBox";
             categoryComboBox.Size = new Size(233, 33);
             categoryComboBox.TabIndex = 5;
@@ -303,7 +298,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(537, 12);
+            label1.Location = new Point(532, 33);
             label1.Name = "label1";
             label1.Size = new Size(162, 25);
             label1.TabIndex = 6;
@@ -324,7 +319,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(977, 12);
+            label2.Location = new Point(974, 33);
             label2.Name = "label2";
             label2.Size = new Size(70, 25);
             label2.TabIndex = 8;
@@ -333,7 +328,7 @@
             // subCatComboBox
             // 
             subCatComboBox.FormattingEnabled = true;
-            subCatComboBox.Location = new Point(1050, 9);
+            subCatComboBox.Location = new Point(1050, 30);
             subCatComboBox.Name = "subCatComboBox";
             subCatComboBox.Size = new Size(233, 33);
             subCatComboBox.TabIndex = 9;
@@ -343,14 +338,13 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1785, 1079);
+            ClientSize = new Size(1785, 1153);
             Controls.Add(subCatComboBox);
             Controls.Add(label2);
             Controls.Add(showAllButton);
             Controls.Add(label1);
             Controls.Add(categoryComboBox);
             Controls.Add(pdfImportButton);
-            Controls.Add(ViewButton);
             Controls.Add(exitButton);
             Controls.Add(dataGridView1);
             Controls.Add(menuStrip1);
@@ -370,7 +364,6 @@
 
         private DataGridView dataGridView1;
         private Button exitButton;
-        private Button ViewButton;
         private MenuStrip menuStrip1;
         private ToolStripMenuItem fileToolStripMenuItem;
         private ToolStripMenuItem importToolStripMenuItem;
@@ -403,5 +396,6 @@
         private ToolStripMenuItem subCategoriesToolStripMenuItem;
         private Label label2;
         private ComboBox subCatComboBox;
+        private ToolStripSeparator toolStripSeparator2;
     }
 }

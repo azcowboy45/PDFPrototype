@@ -24,13 +24,15 @@ namespace PDFRepo.Forms
         {
             InitializeComponent();
             //     categoryComboBox.SelectionChangeCommitted += categoryComboBox_SelectionChangeCommitted;
-            BuildComboBox();
+            BuildComboBoxes();
         }
 
-        private void BuildComboBox()
+        private void BuildComboBoxes()
         {
             DataModel dm = new DataModel();
             DropDown dd = new DropDown(dm);
+            dd.LoadComboBox(categoryComboBox, true);
+            dd.LoadComboBox(subCatComboBox, false);
         }
 
         private void categoryComboBox_SelectionChangeCommitted(object sender, EventArgs e)
@@ -162,7 +164,7 @@ namespace PDFRepo.Forms
         {
             CategoryGridForm cf = new CategoryGridForm();
             cf.Show();
-            BuildComboBox();
+            BuildComboBoxes();
 
         }
     }

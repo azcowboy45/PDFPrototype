@@ -33,6 +33,7 @@ namespace PDFRepo.Forms
             DataModel dm = new DataModel();
             this.pdfBytes = dm.GetByteStream(pdfId);
             //     MessageBox.Show("PDF loaded successfully.");
+            pdfIdTextBox.Text = pdfId;
 
         }
 
