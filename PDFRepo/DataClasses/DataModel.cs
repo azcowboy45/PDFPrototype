@@ -190,6 +190,37 @@ namespace PDFRepo.DataClasses
         }
 
 
+        public bool UpdateSubCat(string id, string sub_cat, string notes)
+        {
+            bool success = false;
+
+            string query = @"UPDATE sub_category SET sub_cat = @sub_cat, notes = @notes where id = @id ";
+
+            using (var connection = new SqliteConnection(ConnectionString))
+            {
+                using (var command = new SqliteCommand(query, connection))
+                {
+                    // Add parameters to prevent SQL injection
+                    command.Parameters.AddWithValue("@id", id);
+                    command.Parameters.AddWithValue("@sub_cat", sub_cat);
+                    command.Parameters.AddWithValue("@notes", notes);
+
+                    try
+                    {
+                        connection.Open();
+                        command.ExecuteNonQuery();
+                        success = true;
+                    }
+                    catch (SqliteException SQLitex)
+                    {
+                        MessageBox.Show("Error: " + SQLitex.Message);
+                    }
+                }
+            }
+            return success;
+        }
+
+
         /* 
          
                      command.CommandText = "SELECT " +
@@ -421,6 +452,35 @@ namespace PDFRepo.DataClasses
                 {
                     // Add parameters to prevent SQL injection
                     command.Parameters.AddWithValue("@category", category);
+                    command.Parameters.AddWithValue("@notes", cat_notes);
+                    try
+                    {
+                        connection.Open();
+                        command.ExecuteNonQuery();
+                        success = true;
+                    }
+                    catch (SqliteException SQLitex)
+                    {
+                        MessageBox.Show("Error: " + SQLitex.Message);
+                    }
+                }
+            }
+            return success;
+        }
+
+
+        public bool AddSubCat(string category, string cat_notes)
+        {
+            bool success = false;
+
+            string postQuery = "INSERT INTO sub_category ( sub_cat, notes) VALUES (@sub_cat, @notes)";
+
+            using (var connection = new SqliteConnection(ConnectionString))
+            {
+                using (var command = new SqliteCommand(postQuery, connection))
+                {
+                    // Add parameters to prevent SQL injection
+                    command.Parameters.AddWithValue("@sub_cat", category);
                     command.Parameters.AddWithValue("@notes", cat_notes);
                     try
                     {

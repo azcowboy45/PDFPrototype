@@ -78,6 +78,8 @@ namespace PDFRepo.Forms
 
         }
 
+
+
         #region controls
         private void exitButton_Click(object sender, EventArgs e)
         {
@@ -97,11 +99,25 @@ namespace PDFRepo.Forms
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            SubCatForm scf = new SubCatForm(false);
+            scf.ShowDialog();
+            LoadDataGrid();
 
         }
 
         private void editToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            DataGridViewRow selectedRow = mic.GetSelectedGridRow(dataGridView1, "modify");
+            if (selectedRow == null)
+            {
+                return; // Exit the method if no valid ID was selected
+            }
+            else
+            {
+                SubCatForm scf = new SubCatForm(selectedRow, true);
+                scf.ShowDialog();
+                this.LoadDataGrid();
+            }
 
         }
 
