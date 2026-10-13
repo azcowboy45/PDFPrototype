@@ -15,7 +15,8 @@ namespace PDFRepo
         private DataTable configDataTable;
         private MethodsInCommon mic;
 
-        bool onOne = true;
+        private bool firstTime = true;
+
         public PDF_list()
         {
             mic = new MethodsInCommon();
@@ -53,61 +54,14 @@ namespace PDFRepo
             }
         }
 
-        /*
-        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            DataGridView grid = (DataGridView)sender;
-
-            // Ensure the click is on a valid data row and targets the button column
-            if (e.RowIndex >= 0 && e.ColumnIndex == grid.Columns["ViewPDF"].Index)
-            {
-                //    onOne = false;
-                // Retrieve data from another column in the same row
-                // 3. Ensure the click happened specifically on your button column
-                if (e.ColumnIndex == grid.Columns["ViewPDF"].Index)
-                {
-                    // 4. Get the full row object using e.RowIndex
-                    DataGridViewRow clickedRow = grid.Rows[e.RowIndex];
-
-                    // 5. Access data from this specific row
-                    string selectedPdfId = clickedRow.Cells["ID"].Value?.ToString();
-                    doViewPDF(selectedPdfId);
-                }
-
-            }
-        }
-*/
         private void PDFList_Activated(object sender, EventArgs e)
         {
             BuildComboBox();  // Rebuild the ComboBox when the form is activated
             // Refresh the DataGridView when the form is activated
             LoadDataGrid();
-            onOne = false;
         }
 
         #endregion
-
-
-
-        private void AddButtonColumn()
-        {
-            DataGridViewButtonColumn buttonColumn = new DataGridViewButtonColumn();
-            buttonColumn.Name = "ViewPDF";
-            buttonColumn.HeaderText = "View PDF";
-            buttonColumn.Text = "View";
-            // 2. CRITICAL: Tell the grid to actually draw this text on the buttons
-            buttonColumn.UseColumnTextForButtonValue = true;
-
-            // 3. Add the button column to the dynamically created grid
-            dataGridView1.Columns.Add(buttonColumn);
-
-            // 4. Wire up the click event handler
-            //    dataGridView1.CellClick += dataGridView1_CellClick;
-
-            // 5. Add the grid to your Form's controls so it appears on screen
-            this.Controls.Add(dataGridView1);
-        }
-
 
         // This method builds the ComboBox for categories and subcategories
         private void BuildComboBox()
@@ -124,12 +78,11 @@ namespace PDFRepo
             DataModel dm = new DataModel();
             DataTable dt = dm.GetAllPDFs();
             dataGridView1.DataSource = dt;
-            if (onOne)
-            {
-                AddButtonColumn();  // Add the button column after setting the DataSource
+            if (firstTime) 
+            { 
+                FormatDataGrid(); 
+                firstTime = false;
             }
-
-            FormatDataGrid(); ;
         }
 
         private void FormatDataGrid()
@@ -150,7 +103,7 @@ namespace PDFRepo
             dataGridView1.Columns["ID"].Visible = false;
             dataGridView1.Columns["ID"].Width = 64;
 
-            dataGridView1.Columns["pdf_name"].HeaderText = "Click Name to View";
+            dataGridView1.Columns["pdf_name"].HeaderText = "Click on PDF Name to View";
             dataGridView1.Columns["pdf_name"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns["pdf_name"].Visible = true;
             dataGridView1.Columns["pdf_name"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
@@ -196,10 +149,6 @@ namespace PDFRepo
             dataGridView1.Columns["pdf_description"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dataGridView1.Columns["pdf_description"].Visible = true;
 
-            // Force the DataGridView button to always be in the last column position
-            dataGridView1.Columns["ViewPDF"].DisplayIndex = dataGridView1.Columns.Count - 1;
-            dataGridView1.Columns["ViewPDF"].Visible = false;
-
         }
 
 
@@ -239,6 +188,7 @@ namespace PDFRepo
             {
                 ViewPdfForm viewPdfForm = new ViewPdfForm(selectedPdfId);
                 viewPdfForm.ShowDialog();
+                clearSelections();
             }
         }
 
@@ -281,28 +231,16 @@ namespace PDFRepo
             backupForm.ShowDialog();
         }
 
-        private void modifyPDFRecordsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            string selectedPdfId = mic.GetSelectedGridRowId(dataGridView1, "modify"); ;
-            if (selectedPdfId == "-1")
-            {
-                return; // Exit the method if no valid ID was selected
-            }
-            else
-            {
-                PDFInfoForm pdfInfoForm = new PDFInfoForm(selectedPdfId);
-                pdfInfoForm.ShowDialog();
-                this.LoadDataGrid();
-            }
 
-        }
+
+
 
         private void contextMenuStrip1_Opening(object sender, System.ComponentModel.CancelEventArgs e)
         {
 
         }
 
-        private void modifyPDFInfoToolStripMenuItem_Click(object sender, EventArgs e)
+        private void doEdits()
         {
             string selectedPdfId = mic.GetSelectedGridRowId(dataGridView1, "modify");
             if (selectedPdfId == "-1")
@@ -315,6 +253,15 @@ namespace PDFRepo
                 pdfInfoForm.ShowDialog();
                 this.LoadDataGrid();
             }
+        }
+
+        private void modifyPDFInfoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            doEdits();
+        }
+        private void modifyPDFRecordsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            doEdits();
         }
         private void viewPDFToolStripMenuItem1_Click(object sender, EventArgs e)
         {
@@ -383,8 +330,10 @@ namespace PDFRepo
 
         private void clearSelections()
         {
-            categoryComboBox.SelectedIndex = -1;
-            subCatComboBox.SelectedIndex = -1;
+          //  categoryComboBox.SelectedIndex = -1;
+          //  subCatComboBox.SelectedIndex = -1;
+            categoryComboBox.Text = "";
+            subCatComboBox.Text = "";
         }
 
 
