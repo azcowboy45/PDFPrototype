@@ -33,9 +33,9 @@
             dataGridView1 = new DataGridView();
             contextMenuStrip1 = new ContextMenuStrip(components);
             viewPDFToolStripMenuItem1 = new ToolStripMenuItem();
-            categoriesToolStripMenuItem = new ToolStripMenuItem();
             modifyPDFInfoToolStripMenuItem = new ToolStripMenuItem();
             toolStripSeparator2 = new ToolStripSeparator();
+            categoriesToolStripMenuItem = new ToolStripMenuItem();
             editSubCatsToolStripMenuItem = new ToolStripMenuItem();
             deleteToolStripMenuItem = new ToolStripMenuItem();
             exitButton = new Button();
@@ -74,14 +74,14 @@
             // 
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;
-            dataGridView1.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.ContextMenuStrip = contextMenuStrip1;
-            dataGridView1.Location = new Point(12, 81);
+            dataGridView1.Location = new Point(12, 105);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowHeadersWidth = 62;
-            dataGridView1.Size = new Size(1773, 991);
+            dataGridView1.Size = new Size(1773, 974);
             dataGridView1.TabIndex = 0;
             // 
             // contextMenuStrip1
@@ -99,13 +99,6 @@
             viewPDFToolStripMenuItem1.Text = "View PDF";
             viewPDFToolStripMenuItem1.Click += viewPDFToolStripMenuItem1_Click;
             // 
-            // categoriesToolStripMenuItem
-            // 
-            categoriesToolStripMenuItem.Name = "categoriesToolStripMenuItem";
-            categoriesToolStripMenuItem.Size = new Size(231, 32);
-            categoriesToolStripMenuItem.Text = "Edit Categories";
-            categoriesToolStripMenuItem.Click += categoriesToolStripMenuItem_Click;
-            // 
             // modifyPDFInfoToolStripMenuItem
             // 
             modifyPDFInfoToolStripMenuItem.Name = "modifyPDFInfoToolStripMenuItem";
@@ -117,6 +110,13 @@
             // 
             toolStripSeparator2.Name = "toolStripSeparator2";
             toolStripSeparator2.Size = new Size(228, 6);
+            // 
+            // categoriesToolStripMenuItem
+            // 
+            categoriesToolStripMenuItem.Name = "categoriesToolStripMenuItem";
+            categoriesToolStripMenuItem.Size = new Size(231, 32);
+            categoriesToolStripMenuItem.Text = "Edit Categories";
+            categoriesToolStripMenuItem.Click += categoriesToolStripMenuItem_Click;
             // 
             // editSubCatsToolStripMenuItem
             // 
@@ -262,8 +262,9 @@
             // 
             // pdfImportButton
             // 
+            pdfImportButton.Anchor = AnchorStyles.None;
             pdfImportButton.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            pdfImportButton.Location = new Point(12, 1107);
+            pdfImportButton.Location = new Point(264, 6);
             pdfImportButton.Name = "pdfImportButton";
             pdfImportButton.Size = new Size(194, 34);
             pdfImportButton.TabIndex = 4;
@@ -289,7 +290,7 @@
             // categoryComboBox
             // 
             categoryComboBox.FormattingEnabled = true;
-            categoryComboBox.Location = new Point(700, 30);
+            categoryComboBox.Location = new Point(770, 51);
             categoryComboBox.Name = "categoryComboBox";
             categoryComboBox.Size = new Size(233, 33);
             categoryComboBox.TabIndex = 5;
@@ -298,7 +299,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(532, 33);
+            label1.Location = new Point(602, 54);
             label1.Name = "label1";
             label1.Size = new Size(162, 25);
             label1.TabIndex = 6;
@@ -319,16 +320,16 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(974, 33);
+            label2.Location = new Point(1044, 54);
             label2.Name = "label2";
-            label2.Size = new Size(70, 25);
+            label2.Size = new Size(116, 25);
             label2.TabIndex = 8;
-            label2.Text = "Subcat:";
+            label2.Text = "Subcategory:";
             // 
             // subCatComboBox
             // 
             subCatComboBox.FormattingEnabled = true;
-            subCatComboBox.Location = new Point(1050, 30);
+            subCatComboBox.Location = new Point(1166, 51);
             subCatComboBox.Name = "subCatComboBox";
             subCatComboBox.Size = new Size(233, 33);
             subCatComboBox.TabIndex = 9;

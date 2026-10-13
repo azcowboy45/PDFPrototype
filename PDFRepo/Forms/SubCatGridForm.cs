@@ -36,7 +36,7 @@ namespace PDFRepo.Forms
         }
 
 
-
+        #region processes
         private void LoadDataGrid()
         {
             DataModel dm = new DataModel();
@@ -78,7 +78,36 @@ namespace PDFRepo.Forms
 
         }
 
+        private void doDelete()
+        {
+            DataModel dm = new DataModel();
 
+            string selectedPdfId = mic.GetSelectedGridRowId(dataGridView1, "delete");
+
+            if (dm.DeleteSubCatById(selectedPdfId))
+            {
+                LoadDataGrid();
+            }
+
+        }
+
+        private void doEdit()
+        {
+            DataGridViewRow selectedRow = mic.GetSelectedGridRow(dataGridView1, "modify");
+            if (selectedRow == null)
+            {
+                return; // Exit the method if no valid ID was selected
+            }
+            else
+            {
+                SubCatForm scf = new SubCatForm(selectedRow, true);
+                scf.ShowDialog();
+                this.LoadDataGrid();
+            }
+
+        }
+
+        #endregion
 
         #region controls
         private void exitButton_Click(object sender, EventArgs e)
@@ -97,6 +126,13 @@ namespace PDFRepo.Forms
         }
         #endregion
 
+        private void newToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            SubCatForm scf = new SubCatForm(false);
+            scf.ShowDialog();
+            LoadDataGrid();
+                            
+        }
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SubCatForm scf = new SubCatForm(false);
@@ -107,31 +143,23 @@ namespace PDFRepo.Forms
 
         private void editToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DataGridViewRow selectedRow = mic.GetSelectedGridRow(dataGridView1, "modify");
-            if (selectedRow == null)
-            {
-                return; // Exit the method if no valid ID was selected
-            }
-            else
-            {
-                SubCatForm scf = new SubCatForm(selectedRow, true);
-                scf.ShowDialog();
-                this.LoadDataGrid();
-            }
+            doEdit();
 
+        }
+
+        private void editToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            doEdit();
         }
 
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DataModel dm = new DataModel();
+            doDelete();
 
-            string selectedPdfId = mic.GetSelectedGridRowId(dataGridView1, "delete");
-
-            if (dm.DeleteSubCatById(selectedPdfId))
-            {
-                LoadDataGrid();
-            }
-
+        }
+        private void delteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            doDelete();
         }
     }
 }
