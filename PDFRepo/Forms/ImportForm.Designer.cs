@@ -31,7 +31,6 @@
             exitButton = new Button();
             importButton = new Button();
             selectPDFButton = new Button();
-            label1 = new Label();
             editCatButton = new Button();
             label2 = new Label();
             label3 = new Label();
@@ -74,22 +73,14 @@
             // 
             // selectPDFButton
             // 
-            selectPDFButton.Location = new Point(213, 12);
+            selectPDFButton.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            selectPDFButton.Location = new Point(12, 12);
             selectPDFButton.Name = "selectPDFButton";
-            selectPDFButton.Size = new Size(161, 34);
+            selectPDFButton.Size = new Size(256, 44);
             selectPDFButton.TabIndex = 36;
-            selectPDFButton.Text = "Find a PDF";
+            selectPDFButton.Text = "Find a PDF For Import";
             selectPDFButton.UseVisualStyleBackColor = true;
             selectPDFButton.Click += selectPDFButton_Click;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(48, 17);
-            label1.Name = "label1";
-            label1.Size = new Size(159, 25);
-            label1.TabIndex = 37;
-            label1.Text = "Find a PDF to add:";
             // 
             // editCatButton
             // 
@@ -241,6 +232,7 @@
             subCatComboBox.Name = "subCatComboBox";
             subCatComboBox.Size = new Size(293, 33);
             subCatComboBox.TabIndex = 40;
+            subCatComboBox.SelectedIndexChanged += subCatComboBox_SelectedIndexChanged;
             // 
             // ImportForm
             // 
@@ -252,7 +244,6 @@
             Controls.Add(categoryComboBox);
             Controls.Add(editCatButton);
             Controls.Add(attributeTextBox);
-            Controls.Add(label1);
             Controls.Add(lastModextBox);
             Controls.Add(selectPDFButton);
             Controls.Add(creationDateTextBox);
@@ -278,7 +269,6 @@
         private Button exitButton;
         private Button importButton;
         private Button selectPDFButton;
-        private Label label1;
         private Button editCatButton;
         private Label label2;
         private Label label3;

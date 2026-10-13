@@ -371,7 +371,7 @@ namespace PDFRepo.DataClasses
         */
 
         public bool insertPDF(string fName, byte[] pdfBytes, string fCreated, string fLastmod, string fSize,
-                              string fAttributes, string description, string category)
+                              string fAttributes, string description, string category, string subCategory)
         {
             bool success = false;
             try
@@ -383,9 +383,9 @@ namespace PDFRepo.DataClasses
 
                     // Use parameterized queries to prevent SQL injection
 
-                    string insertQuery = "INSERT INTO pdf_table (pdf_name, pdf_file, pdf_description, pdf_category, " +
+                    string insertQuery = "INSERT INTO pdf_table (pdf_name, pdf_file, pdf_description, pdf_category, pdf_subcat, " +
                         "pdf_created, pdf_size, pdf_lastmod, pdf_attributes) " +
-                        "VALUES (@pdf_name, @pdf_file, @pdf_description, @pdf_category, @pdf_created, @pdf_size, @pdf_lastmod, @pdf_attributes);";
+                        "VALUES (@pdf_name, @pdf_file, @pdf_description, @pdf_category, @pdf_subcat, @pdf_created, @pdf_size, @pdf_lastmod, @pdf_attributes);";
 
                     using (var command = new SqliteCommand(insertQuery, connection))
                     {
@@ -393,6 +393,7 @@ namespace PDFRepo.DataClasses
                         command.Parameters.AddWithValue("@pdf_file", pdfBytes);
                         command.Parameters.AddWithValue("@pdf_description", description);
                         command.Parameters.AddWithValue("@pdf_category", category);
+                        command.Parameters.AddWithValue("@pdf_subcat", subCategory);
                         command.Parameters.AddWithValue("@pdf_created", fCreated);
                         command.Parameters.AddWithValue("@pdf_lastmod", fLastmod);
                         command.Parameters.AddWithValue("@pdf_size", fSize);

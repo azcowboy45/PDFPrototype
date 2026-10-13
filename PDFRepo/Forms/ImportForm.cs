@@ -90,7 +90,7 @@ namespace PDFRepo.Forms
             }
         }
 
-        private bool doImport(string pdfFilePath, string description, string category)
+        private bool doImport(string pdfFilePath, string description, string category, string subCategory)
         {
             bool importSuccess = false;
 
@@ -99,7 +99,7 @@ namespace PDFRepo.Forms
             if (pdfBytes != null && pdfBytes.Length > 0)
             {
                 DataModel dm = new DataModel();
-                importSuccess = dm.insertPDF(fName, pdfBytes, fCreated, fLastmod, fSize, fAttributes, description, category);
+                importSuccess = dm.insertPDF(fName, pdfBytes, fCreated, fLastmod, fSize, fAttributes, description, category, subCategory);
             }
             else
             {
@@ -132,7 +132,8 @@ namespace PDFRepo.Forms
             string pdfFilePath = pdfPathTextBox.Text;
             string description = descriptionTextBox.Text;
             string category = categoryComboBox.Text;
-            if (doImport(pdfFilePath, description, category))
+            string subCategory = subCatComboBox.Text;
+            if (doImport(pdfFilePath, description, category, subCategory))
             {
                 MessageBox.Show("PDF imported successfully.");
                 this.Close();
@@ -165,6 +166,11 @@ namespace PDFRepo.Forms
             CategoryGridForm cf = new CategoryGridForm();
             cf.Show();
             BuildComboBoxes();
+
+        }
+
+        private void subCatComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
         }
     }
