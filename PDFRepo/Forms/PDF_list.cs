@@ -78,9 +78,9 @@ namespace PDFRepo
             DataModel dm = new DataModel();
             DataTable dt = dm.GetAllPDFs();
             dataGridView1.DataSource = dt;
-            if (firstTime) 
-            { 
-                FormatDataGrid(); 
+            if (firstTime)
+            {
+                FormatDataGrid();
                 firstTime = false;
             }
         }
@@ -330,8 +330,8 @@ namespace PDFRepo
 
         private void clearSelections()
         {
-          //  categoryComboBox.SelectedIndex = -1;
-          //  subCatComboBox.SelectedIndex = -1;
+            //  categoryComboBox.SelectedIndex = -1;
+            //  subCatComboBox.SelectedIndex = -1;
             categoryComboBox.Text = "";
             subCatComboBox.Text = "";
         }
@@ -365,6 +365,12 @@ namespace PDFRepo
         {
             SubCatGridForm scf = new SubCatGridForm();
             scf.Show();
+        }
+
+        private void setupToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SetupForm sf = new SetupForm();
+            sf.ShowDialog();
         }
     }
 }

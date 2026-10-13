@@ -65,6 +65,8 @@
             showAllButton = new Button();
             label2 = new Label();
             subCatComboBox = new ComboBox();
+            toolStripSeparator3 = new ToolStripSeparator();
+            setupToolStripMenuItem = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             contextMenuStrip1.SuspendLayout();
             menuStrip1.SuspendLayout();
@@ -201,7 +203,7 @@
             // 
             // editToolStripMenuItem
             // 
-            editToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { modifyPDFRecordsToolStripMenuItem, maintainCategoriesToolStripMenuItem, subCategoriesToolStripMenuItem });
+            editToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { modifyPDFRecordsToolStripMenuItem, maintainCategoriesToolStripMenuItem, subCategoriesToolStripMenuItem, toolStripSeparator3, setupToolStripMenuItem });
             editToolStripMenuItem.Name = "editToolStripMenuItem";
             editToolStripMenuItem.Size = new Size(58, 29);
             editToolStripMenuItem.Text = "Edit";
@@ -209,21 +211,21 @@
             // modifyPDFRecordsToolStripMenuItem
             // 
             modifyPDFRecordsToolStripMenuItem.Name = "modifyPDFRecordsToolStripMenuItem";
-            modifyPDFRecordsToolStripMenuItem.Size = new Size(226, 34);
+            modifyPDFRecordsToolStripMenuItem.Size = new Size(270, 34);
             modifyPDFRecordsToolStripMenuItem.Text = "Metadata";
             modifyPDFRecordsToolStripMenuItem.Click += modifyPDFRecordsToolStripMenuItem_Click;
             // 
             // maintainCategoriesToolStripMenuItem
             // 
             maintainCategoriesToolStripMenuItem.Name = "maintainCategoriesToolStripMenuItem";
-            maintainCategoriesToolStripMenuItem.Size = new Size(226, 34);
+            maintainCategoriesToolStripMenuItem.Size = new Size(270, 34);
             maintainCategoriesToolStripMenuItem.Text = "Categories";
             maintainCategoriesToolStripMenuItem.Click += maintainCategoriesToolStripMenuItem_Click;
             // 
             // subCategoriesToolStripMenuItem
             // 
             subCategoriesToolStripMenuItem.Name = "subCategoriesToolStripMenuItem";
-            subCategoriesToolStripMenuItem.Size = new Size(226, 34);
+            subCategoriesToolStripMenuItem.Size = new Size(270, 34);
             subCategoriesToolStripMenuItem.Text = "Subcategories";
             subCategoriesToolStripMenuItem.Click += subCategoriesToolStripMenuItem_Click;
             // 
@@ -237,7 +239,7 @@
             // viewPDFToolStripMenuItem
             // 
             viewPDFToolStripMenuItem.Name = "viewPDFToolStripMenuItem";
-            viewPDFToolStripMenuItem.Size = new Size(188, 34);
+            viewPDFToolStripMenuItem.Size = new Size(270, 34);
             viewPDFToolStripMenuItem.Text = "View PDF";
             viewPDFToolStripMenuItem.Click += viewPDFToolStripMenuItem_Click;
             // 
@@ -335,6 +337,18 @@
             subCatComboBox.TabIndex = 9;
             subCatComboBox.SelectedIndexChanged += subCatComboBox_SelectedIndexChanged;
             // 
+            // toolStripSeparator3
+            // 
+            toolStripSeparator3.Name = "toolStripSeparator3";
+            toolStripSeparator3.Size = new Size(267, 6);
+            // 
+            // setupToolStripMenuItem
+            // 
+            setupToolStripMenuItem.Name = "setupToolStripMenuItem";
+            setupToolStripMenuItem.Size = new Size(270, 34);
+            setupToolStripMenuItem.Text = "Setup";
+            setupToolStripMenuItem.Click += setupToolStripMenuItem_Click;
+            // 
             // PDF_list
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -398,5 +412,7 @@
         private Label label2;
         private ComboBox subCatComboBox;
         private ToolStripSeparator toolStripSeparator2;
+        private ToolStripSeparator toolStripSeparator3;
+        private ToolStripMenuItem setupToolStripMenuItem;
     }
 }
