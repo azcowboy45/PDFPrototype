@@ -15,13 +15,15 @@ namespace PDFRepo.Forms
         private string pdfAppPath = String.Empty;
         private string localAppData= String.Empty;
         private string logEntry = String.Empty;
+    //    string timestamp = String.Empty;
         private LogClass logger;
 
         //  C#  forms: How do I represent the path to the users AppData\Local directory
         public SetupForm()
         {
             logger = new LogClass();
-            LogPost("Begining logging from SetupForm constructor");
+
+            LogPost("Logging from SetupForm ");
             InitializeComponent();
             //    pdfAppPath = "C:\\Users\\bud\\AppData\\Local\\PDFRepo\\config";
 
@@ -29,8 +31,8 @@ namespace PDFRepo.Forms
             // Returns: C:\Users\<Username>\AppData\Local
             localAppData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
 
-            // To combine it with a custom application file or folder safely:
-            pdfAppPath = Path.Combine(localAppData, "MyCustomApp", "settings.json");
+            // To combine it with a custom application file or folder safely: We will do settings.json later
+            pdfAppPath = Path.Combine(localAppData, "PDFRepo", "pdfrepo.cfg");
 
             configPathTextBox.Text = pdfAppPath;
 
@@ -41,7 +43,8 @@ namespace PDFRepo.Forms
 
         private void LogPost(string logEntry)
         {
-            logger.AppendLogLine(logEntry);
+            string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            logger.AppendLogLine($"[{timestamp}] {logEntry}");
         }
         private void exitButton_Click(object sender, EventArgs e)
         {

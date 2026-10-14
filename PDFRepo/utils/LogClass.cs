@@ -11,7 +11,7 @@ namespace PDFRepo.utils
         public LogClass()
         {
             string localAppData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-            this.logFilePath = Path.Combine(localAppData, "PDFRepo\\log", "log.txt");
+            this.logFilePath = Path.Combine(localAppData, "PDFRepo", "log.txt");
         }
         public void AppendLogLine(string message)
         {
@@ -20,7 +20,7 @@ namespace PDFRepo.utils
 
             // 2. Set up your path (using AppData\Local like before)
             string localAppData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-            string filePath = Path.Combine(localAppData, "PDFRepo\\log", "log.txt");
+            string filePath = Path.Combine(localAppData, "PDFRepo", "log.txt");
 
             try
             {
