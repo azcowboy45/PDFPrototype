@@ -32,15 +32,15 @@
             saveButton = new Button();
             dbPathTextBox = new TextBox();
             label1 = new Label();
-            configPathTextBox = new TextBox();
+            bkupPathTextBox = new TextBox();
             label2 = new Label();
-            textBox1 = new TextBox();
+            lastNameTextBox = new TextBox();
             label3 = new Label();
             label4 = new Label();
-            textBox2 = new TextBox();
+            firstNameTextBox = new TextBox();
             panel1 = new Panel();
-            bypassCheckBox = new CheckBox();
-            loggingCheckBox = new CheckBox();
+            enableLoggingCheckBox = new CheckBox();
+            bypassOnStartupCheckBox = new CheckBox();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -62,6 +62,7 @@
             saveButton.TabIndex = 1;
             saveButton.Text = "Save";
             saveButton.UseVisualStyleBackColor = true;
+            saveButton.Click += saveButton_Click;
             // 
             // dbPathTextBox
             // 
@@ -79,12 +80,12 @@
             label1.TabIndex = 3;
             label1.Text = "Path to Database:";
             // 
-            // configPathTextBox
+            // bkupPathTextBox
             // 
-            configPathTextBox.Location = new Point(205, 162);
-            configPathTextBox.Name = "configPathTextBox";
-            configPathTextBox.Size = new Size(779, 31);
-            configPathTextBox.TabIndex = 4;
+            bkupPathTextBox.Location = new Point(205, 162);
+            bkupPathTextBox.Name = "bkupPathTextBox";
+            bkupPathTextBox.Size = new Size(779, 31);
+            bkupPathTextBox.TabIndex = 4;
             // 
             // label2
             // 
@@ -95,12 +96,12 @@
             label2.TabIndex = 5;
             label2.Text = "Backup Path:";
             // 
-            // textBox1
+            // lastNameTextBox
             // 
-            textBox1.Location = new Point(648, 80);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(336, 31);
-            textBox1.TabIndex = 6;
+            lastNameTextBox.Location = new Point(648, 80);
+            lastNameTextBox.Name = "lastNameTextBox";
+            lastNameTextBox.Size = new Size(336, 31);
+            lastNameTextBox.TabIndex = 6;
             // 
             // label3
             // 
@@ -120,53 +121,57 @@
             label4.TabIndex = 8;
             label4.Text = "Last Name:";
             // 
-            // textBox2
+            // firstNameTextBox
             // 
-            textBox2.Location = new Point(169, 80);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(336, 31);
-            textBox2.TabIndex = 9;
+            firstNameTextBox.Location = new Point(169, 80);
+            firstNameTextBox.Name = "firstNameTextBox";
+            firstNameTextBox.Size = new Size(336, 31);
+            firstNameTextBox.TabIndex = 9;
             // 
             // panel1
             // 
-            panel1.Controls.Add(loggingCheckBox);
+            panel1.Controls.Add(enableLoggingCheckBox);
             panel1.Location = new Point(12, 239);
             panel1.Name = "panel1";
             panel1.Size = new Size(1001, 105);
             panel1.TabIndex = 12;
             // 
-            // bypassCheckBox
+            // enableLoggingCheckBox
             // 
-            bypassCheckBox.AutoSize = true;
-            bypassCheckBox.Location = new Point(439, 387);
-            bypassCheckBox.Name = "bypassCheckBox";
-            bypassCheckBox.Size = new Size(180, 29);
-            bypassCheckBox.TabIndex = 13;
-            bypassCheckBox.Text = "Bypass on startup";
-            bypassCheckBox.UseVisualStyleBackColor = true;
+            enableLoggingCheckBox.AutoSize = true;
+            enableLoggingCheckBox.Checked = true;
+            enableLoggingCheckBox.CheckState = CheckState.Checked;
+            enableLoggingCheckBox.Location = new Point(193, 67);
+            enableLoggingCheckBox.Name = "enableLoggingCheckBox";
+            enableLoggingCheckBox.Size = new Size(130, 29);
+            enableLoggingCheckBox.TabIndex = 0;
+            enableLoggingCheckBox.Text = "Logging on";
+            enableLoggingCheckBox.UseVisualStyleBackColor = true;
             // 
-            // loggingCheckBox
+            // bypassOnStartupCheckBox
             // 
-            loggingCheckBox.AutoSize = true;
-            loggingCheckBox.Location = new Point(193, 67);
-            loggingCheckBox.Name = "loggingCheckBox";
-            loggingCheckBox.Size = new Size(130, 29);
-            loggingCheckBox.TabIndex = 0;
-            loggingCheckBox.Text = "Logging on";
-            loggingCheckBox.UseVisualStyleBackColor = true;
+            bypassOnStartupCheckBox.AutoSize = true;
+            bypassOnStartupCheckBox.Checked = true;
+            bypassOnStartupCheckBox.CheckState = CheckState.Checked;
+            bypassOnStartupCheckBox.Location = new Point(436, 387);
+            bypassOnStartupCheckBox.Name = "bypassOnStartupCheckBox";
+            bypassOnStartupCheckBox.Size = new Size(180, 29);
+            bypassOnStartupCheckBox.TabIndex = 13;
+            bypassOnStartupCheckBox.Text = "Bypass on startup";
+            bypassOnStartupCheckBox.UseVisualStyleBackColor = true;
             // 
             // SetupForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1037, 468);
-            Controls.Add(bypassCheckBox);
-            Controls.Add(textBox2);
+            ClientSize = new Size(1037, 438);
+            Controls.Add(bypassOnStartupCheckBox);
+            Controls.Add(firstNameTextBox);
             Controls.Add(label4);
             Controls.Add(label3);
-            Controls.Add(textBox1);
+            Controls.Add(lastNameTextBox);
             Controls.Add(label2);
-            Controls.Add(configPathTextBox);
+            Controls.Add(bkupPathTextBox);
             Controls.Add(label1);
             Controls.Add(dbPathTextBox);
             Controls.Add(saveButton);
@@ -186,14 +191,14 @@
         private Button saveButton;
         private TextBox dbPathTextBox;
         private Label label1;
-        private TextBox configPathTextBox;
+        private TextBox bkupPathTextBox;
         private Label label2;
-        private TextBox textBox1;
+        private TextBox lastNameTextBox;
         private Label label3;
         private Label label4;
-        private TextBox textBox2;
+        private TextBox firstNameTextBox;
         private Panel panel1;
-        private CheckBox loggingCheckBox;
-        private CheckBox bypassCheckBox;
+        private CheckBox enableLoggingCheckBox;
+        private CheckBox bypassOnStartupCheckBox;
     }
 }

@@ -34,7 +34,7 @@ namespace PDFRepo.utils
                 // 4. Append the text along with a new line break
                 File.AppendAllText(filePath, newLine + Environment.NewLine);
 
-                MessageBox.Show("Line added successfully!");
+              //  MessageBox.Show("Line added successfully!");
             }
             catch (Exception ex)
             {
