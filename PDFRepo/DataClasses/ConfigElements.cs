@@ -4,7 +4,7 @@ using System.Text;
 
 namespace PDFRepo.DataClasses
 {
-    internal class ConfigElements
+    public class ConfigElements
     {
         public string pdfAppPath { get; set; }
         public string localAppData { get; set; }

@@ -1,4 +1,5 @@
-﻿using PDFRepo.utils;
+﻿using PDFRepo.DataClasses;
+using PDFRepo.utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,6 +15,7 @@ namespace PDFRepo.Forms
 {
     public partial class SetupForm : Form
     {
+        public ConfigElements ce;
         private string pdfAppPath = String.Empty;
         private string localAppData = String.Empty;
         private string logEntry = String.Empty;
@@ -28,11 +30,11 @@ namespace PDFRepo.Forms
         private LogClass logger;
 
         //  C#  forms: How do I represent the path to the users AppData\Local directory
-        public SetupForm()
+        public SetupForm(ConfigElements ce)
         {
+            this.ce = ce;
             logger = new LogClass();
 
-            LogPost("Logging from SetupForm ");
             InitializeComponent();
 
             // Returns: C:\Users\<Username>\AppData\Local
@@ -45,8 +47,6 @@ namespace PDFRepo.Forms
 
             LoadSettingsForm();
 
-         //   LogPost("Hello World to the log.");
-         //   LogPost("It works!");
 
         }
 
@@ -71,6 +71,7 @@ namespace PDFRepo.Forms
                 if (loadedSettings != null)
                 {
                     PopulateUiControls(loadedSettings);
+                    PopulateConfigElements();
                 }
             }
             catch (Exception ex)
@@ -116,10 +117,6 @@ namespace PDFRepo.Forms
             }
         }
 
-
-
-
-
         private List<string> GatherSettings()
         {
             firstName = firstNameTextBox.Text;
@@ -160,13 +157,15 @@ namespace PDFRepo.Forms
                 string jsonSettings = JsonSerializer.Serialize(settings);
                 // Write the settings to the file
                 File.WriteAllText(pdfAppPath, jsonSettings);
-                MessageBox.Show("Settings saved successfully!");
+                MessageBox.Show("Settings updated.");
+                
 
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"An error occurred while saving settings: {ex.Message}");
             }
+            PopulateConfigElements();
         }
 
 
@@ -177,15 +176,30 @@ namespace PDFRepo.Forms
             logger.AppendLogLine($"[{timestamp}] {logEntry}");
         }
 
+        private void PopulateConfigElements()
+        {
+            ce.firstName = firstNameTextBox.Text;
+            ce.lastName = lastNameTextBox.Text;
+            ce.dbPath = dbPathTextBox.Text;
+            ce.bkupPath = bkupPathTextBox.Text;
+            ce.enableLogging = enableLoggingCheckBox.Checked.ToString();
+            ce.bypassOnStartup = bypassOnStartupCheckBox.Checked.ToString();
+            ce.submissionDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+        }
+
         private void exitButton_Click(object sender, EventArgs e)
         {
+            PopulateConfigElements();
             this.Close();
+            LogPost("Exited SetupForm, settings not saved.");
         }
 
         private void saveButton_Click(object sender, EventArgs e)
         {
           //  Gatherettings();
             PostSettings(GatherSettings());
+
+            LogPost("Saved settings from SetupForm");
             this.Close();
         }
     }

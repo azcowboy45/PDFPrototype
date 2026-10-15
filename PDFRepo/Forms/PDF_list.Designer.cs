@@ -51,6 +51,8 @@
             modifyPDFRecordsToolStripMenuItem = new ToolStripMenuItem();
             maintainCategoriesToolStripMenuItem = new ToolStripMenuItem();
             subCategoriesToolStripMenuItem = new ToolStripMenuItem();
+            toolStripSeparator3 = new ToolStripSeparator();
+            setupToolStripMenuItem = new ToolStripMenuItem();
             viewToolStripMenuItem = new ToolStripMenuItem();
             viewPDFToolStripMenuItem = new ToolStripMenuItem();
             helpToolStripMenuItem = new ToolStripMenuItem();
@@ -65,8 +67,8 @@
             showAllButton = new Button();
             label2 = new Label();
             subCatComboBox = new ComboBox();
-            toolStripSeparator3 = new ToolStripSeparator();
-            setupToolStripMenuItem = new ToolStripMenuItem();
+            userNameTextBox = new TextBox();
+            label3 = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             contextMenuStrip1.SuspendLayout();
             menuStrip1.SuspendLayout();
@@ -211,23 +213,35 @@
             // modifyPDFRecordsToolStripMenuItem
             // 
             modifyPDFRecordsToolStripMenuItem.Name = "modifyPDFRecordsToolStripMenuItem";
-            modifyPDFRecordsToolStripMenuItem.Size = new Size(270, 34);
+            modifyPDFRecordsToolStripMenuItem.Size = new Size(226, 34);
             modifyPDFRecordsToolStripMenuItem.Text = "Metadata";
             modifyPDFRecordsToolStripMenuItem.Click += modifyPDFRecordsToolStripMenuItem_Click;
             // 
             // maintainCategoriesToolStripMenuItem
             // 
             maintainCategoriesToolStripMenuItem.Name = "maintainCategoriesToolStripMenuItem";
-            maintainCategoriesToolStripMenuItem.Size = new Size(270, 34);
+            maintainCategoriesToolStripMenuItem.Size = new Size(226, 34);
             maintainCategoriesToolStripMenuItem.Text = "Categories";
             maintainCategoriesToolStripMenuItem.Click += maintainCategoriesToolStripMenuItem_Click;
             // 
             // subCategoriesToolStripMenuItem
             // 
             subCategoriesToolStripMenuItem.Name = "subCategoriesToolStripMenuItem";
-            subCategoriesToolStripMenuItem.Size = new Size(270, 34);
+            subCategoriesToolStripMenuItem.Size = new Size(226, 34);
             subCategoriesToolStripMenuItem.Text = "Subcategories";
             subCategoriesToolStripMenuItem.Click += subCategoriesToolStripMenuItem_Click;
+            // 
+            // toolStripSeparator3
+            // 
+            toolStripSeparator3.Name = "toolStripSeparator3";
+            toolStripSeparator3.Size = new Size(223, 6);
+            // 
+            // setupToolStripMenuItem
+            // 
+            setupToolStripMenuItem.Name = "setupToolStripMenuItem";
+            setupToolStripMenuItem.Size = new Size(226, 34);
+            setupToolStripMenuItem.Text = "Setup";
+            setupToolStripMenuItem.Click += setupToolStripMenuItem_Click;
             // 
             // viewToolStripMenuItem
             // 
@@ -239,7 +253,7 @@
             // viewPDFToolStripMenuItem
             // 
             viewPDFToolStripMenuItem.Name = "viewPDFToolStripMenuItem";
-            viewPDFToolStripMenuItem.Size = new Size(270, 34);
+            viewPDFToolStripMenuItem.Size = new Size(188, 34);
             viewPDFToolStripMenuItem.Text = "View PDF";
             viewPDFToolStripMenuItem.Click += viewPDFToolStripMenuItem_Click;
             // 
@@ -337,23 +351,30 @@
             subCatComboBox.TabIndex = 9;
             subCatComboBox.SelectedIndexChanged += subCatComboBox_SelectedIndexChanged;
             // 
-            // toolStripSeparator3
+            // userNameTextBox
             // 
-            toolStripSeparator3.Name = "toolStripSeparator3";
-            toolStripSeparator3.Size = new Size(267, 6);
+            userNameTextBox.Location = new Point(144, 1110);
+            userNameTextBox.Name = "userNameTextBox";
+            userNameTextBox.ReadOnly = true;
+            userNameTextBox.Size = new Size(225, 31);
+            userNameTextBox.TabIndex = 10;
             // 
-            // setupToolStripMenuItem
+            // label3
             // 
-            setupToolStripMenuItem.Name = "setupToolStripMenuItem";
-            setupToolStripMenuItem.Size = new Size(270, 34);
-            setupToolStripMenuItem.Text = "Setup";
-            setupToolStripMenuItem.Click += setupToolStripMenuItem_Click;
+            label3.AutoSize = true;
+            label3.Location = new Point(12, 1112);
+            label3.Name = "label3";
+            label3.Size = new Size(129, 25);
+            label3.TabIndex = 11;
+            label3.Text = "Repository for:";
             // 
             // PDF_list
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1785, 1153);
+            Controls.Add(label3);
+            Controls.Add(userNameTextBox);
             Controls.Add(subCatComboBox);
             Controls.Add(label2);
             Controls.Add(showAllButton);
@@ -414,5 +435,7 @@
         private ToolStripSeparator toolStripSeparator2;
         private ToolStripSeparator toolStripSeparator3;
         private ToolStripMenuItem setupToolStripMenuItem;
+        private TextBox userNameTextBox;
+        private Label label3;
     }
 }

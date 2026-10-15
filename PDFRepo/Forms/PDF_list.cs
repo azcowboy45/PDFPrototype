@@ -12,7 +12,8 @@ namespace PDFRepo
     {
         //    private Config cfg;
         //    private StartForm loginForm;
-        private DataTable configDataTable;
+
+        public ConfigElements ce;
         private MethodsInCommon mic;
 
         private bool firstTime = true;
@@ -21,6 +22,7 @@ namespace PDFRepo
         {
             mic = new MethodsInCommon();
             InitializeComponent();
+            setConfig();
 
             // Wire up the Activated event handler programmatically to the PDF_List form.
             this.Activated += PDFList_Activated;
@@ -28,6 +30,14 @@ namespace PDFRepo
             // Wire up the CellClick event handler programmatically to the DataGridView.
             dataGridView1.CellClick += dataGridView1_CellClick;
 
+        }
+
+        private void setConfig()
+        {
+            ce = new ConfigElements();
+            SetupForm sf = new SetupForm(ce);
+            sf.ShowDialog();
+            userNameTextBox.Text = $"{ce.firstName} {ce.lastName}";
         }
 
         #region handlers
@@ -369,8 +379,9 @@ namespace PDFRepo
 
         private void setupToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SetupForm sf = new SetupForm();
+            SetupForm sf = new SetupForm(ce);
             sf.ShowDialog();
+            userNameTextBox.Text = $"{ce.firstName} {ce.lastName}";
         }
     }
 }
