@@ -14,5 +14,20 @@ namespace PDFRepo.Forms
         {
             InitializeComponent();
         }
+
+        private void SplashScreen_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void continueButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void setupButton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

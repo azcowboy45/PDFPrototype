@@ -16,9 +16,9 @@ namespace PDFRepo.Forms
     {
         public ConfigElements config;
         private LogClass logger;
-        public Configuration configuration;
+        public ConfigMgr configuration;
         private string pdfAppPath = string.Empty;
-        public SetupForm(Configuration configuration, ConfigElements config)
+        public SetupForm(ConfigMgr configuration, ConfigElements config)
         {
             this.configuration = configuration;
             this.config = config;
@@ -27,15 +27,6 @@ namespace PDFRepo.Forms
             InitializeComponent();
             LoadSettingsForm();
         }
-
-        /*
-            string firstName, 
-            string lastName, 
-            string dbPath, 
-            string bkupPath, 
-            string enableLogging, 
-            string bypassOnStartup)
-        */
         public void doUpdate()
         {
             configuration.UpdateJsonConfig(

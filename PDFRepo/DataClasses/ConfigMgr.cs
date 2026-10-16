@@ -15,33 +15,19 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace PDFRepo.DataClasses
 {
-    public class Configuration
+    public class ConfigMgr
     {
-        /*  Strings that were used in SetupForm.cs but are not needed here, 
-        *  as we will use the ConfigElements class instead
-         string firstName = string.Empty;
-         string lastName = string.Empty;
-         string dbPath = string.Empty;
-         string bkupPath = string.Empty;
-         string enableLogging = string.Empty;
-         string bypassOnStartup = string.Empty;
-         string submissionDate = string.Empty;
-         */
-
-
         private string pdfAppPath = string.Empty;
         private string localAppData = string.Empty;
         private string logEntry = string.Empty;
         private LogClass logger;
         public ConfigElements config;
-        /**
-         *  Constructor: Initialize the config and logger, set the pdfAppPath, and load the configuration.
-         */
 
-        public Configuration()
-        { 
+        // Constructor: Initialize the config and logger, set the pdfAppPath, and load the configuration.
+        public ConfigMgr()
+        {
             config = new ConfigElements(); ;
-            logger = new LogClass();;
+            logger = new LogClass(); ;
             this.pdfAppPath = SetLocalAppDataPath();
             Loadconfig();
         }
@@ -99,7 +85,7 @@ namespace PDFRepo.DataClasses
                             config.firstName = value;
                             break;
                         case "LastName":
-                            config.lastName  = value;
+                            config.lastName = value;
                             break;
                         case "DbPath":
                             config.dbPath = this.pdfAppPath;  // Always use the correct path for DbPath
@@ -124,14 +110,14 @@ namespace PDFRepo.DataClasses
             }
         }
         #endregion
-        
+
         #region postSettingsAndLog
 
-        public void UpdateJsonConfig(string firstName, 
-                                 string lastName, 
-                                 string dbPath, 
-                                 string bkupPath, 
-                                 string enableLogging, 
+        public void UpdateJsonConfig(string firstName,
+                                 string lastName,
+                                 string dbPath,
+                                 string bkupPath,
+                                 string enableLogging,
                                  string bypassOnStartup)
         {
             string submissionDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");

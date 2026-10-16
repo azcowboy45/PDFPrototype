@@ -16,31 +16,40 @@ namespace PDFRepo
 
         // 2. Add this attribute to hide it from the UI Designer serialization
         //[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-
-        public Configuration mcc;
+        #region instance variables
+        public ConfigMgr mcc;
         public ConfigElements config;
         private MethodsInCommon mic;
         private bool firstTime = true;
         private Program _program;
 
         public bool ShowAtStartup { get; set; }
+        #endregion
 
         public PDF_list(Program programReference)
         {;
-            mcc = new Configuration();
+            mcc = new ConfigMgr();
             _program = programReference;
             //   MessageBox.Show($"ShowAtStartup is now: {_program.showAtStartup}");  -- for debugging purposes
             mic = new MethodsInCommon();
             InitializeComponent();
+            doSplashScreen();
             setConfig();
 
             // Wire up handlers
             this.Activated += PDFList_Activated;
             dataGridView1.CellClick += dataGridView1_CellClick;
+            doSplashScreen();
+        }
+
+        private void doSplashScreen()
+        {
+            SplashScreen splash = new SplashScreen();
+            splash.ShowDialog();
         }
         private void setConfig()
         {
-            Configuration mcc = new Configuration();
+            ConfigMgr mcc = new ConfigMgr();
             config = mcc.GetCfg();
             SetupForm sf = new SetupForm(mcc, config);
             sf.ShowDialog();
