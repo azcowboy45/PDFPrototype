@@ -27,6 +27,7 @@ namespace PDFRepo
 
         public PDF_list(Program programReference)
         {;
+            mcc = new Configuration();
             _program = programReference;
             //   MessageBox.Show($"ShowAtStartup is now: {_program.showAtStartup}");  -- for debugging purposes
             mic = new MethodsInCommon();
@@ -392,7 +393,7 @@ namespace PDFRepo
 
         private void setupToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SetupForm sf = new SetupForm(mcc, mcc.GetCfg());
+            SetupForm sf = new SetupForm(mcc, config);
             sf.ShowDialog();
             userNameTextBox.Text = $"{mcc.GetCfg().firstName} {mcc.GetCfg().lastName}";
         }
