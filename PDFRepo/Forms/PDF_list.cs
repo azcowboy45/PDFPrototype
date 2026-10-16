@@ -17,7 +17,7 @@ namespace PDFRepo
         // 2. Add this attribute to hide it from the UI Designer serialization
         //[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 
-        private ManageConfigClass mcc;
+        public Configuration mcc;
         public ConfigElements config;
         private MethodsInCommon mic;
         private bool firstTime = true;
@@ -28,7 +28,7 @@ namespace PDFRepo
         public PDF_list(Program programReference)
         {;
             _program = programReference;
-            MessageBox.Show($"ShowAtStartup is now: {_program.showAtStartup}");
+            //   MessageBox.Show($"ShowAtStartup is now: {_program.showAtStartup}");  -- for debugging purposes
             mic = new MethodsInCommon();
             InitializeComponent();
             setConfig();
@@ -39,17 +39,19 @@ namespace PDFRepo
         }
         private void setConfig()
         {
-
-            ManageConfigClass mcc = new ManageConfigClass();          
+            Configuration mcc = new Configuration();
             config = mcc.GetCfg();
-
-            SetupForm sf = new SetupForm(config);
+            SetupForm sf = new SetupForm(mcc, config);
             sf.ShowDialog();
             userNameTextBox.Text = $"{config.firstName} {config.lastName}".Trim();
 
-            // Safely parse bypassOnStartup (handles null/empty and different casing)
             _program.showAtStartup = false;
         }
+
+   //    private void doTestWrite(ManageConfigClass mcc)
+  //      {
+   //         mcc.UpdateConfig("John", "Doe", "C:\\DBPath", "C:\\BKUPPath", "true", "false");
+   //     }
 
         #region handlers
 
@@ -390,9 +392,9 @@ namespace PDFRepo
 
         private void setupToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SetupForm sf = new SetupForm(config);
+            SetupForm sf = new SetupForm(mcc, mcc.GetCfg());
             sf.ShowDialog();
-            userNameTextBox.Text = $"{config.firstName} {config.lastName}";
+            userNameTextBox.Text = $"{mcc.GetCfg().firstName} {mcc.GetCfg().lastName}";
         }
     }
 }

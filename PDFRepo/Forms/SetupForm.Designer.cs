@@ -68,6 +68,7 @@
             // 
             dbPathTextBox.Location = new Point(205, 256);
             dbPathTextBox.Name = "dbPathTextBox";
+            dbPathTextBox.ReadOnly = true;
             dbPathTextBox.Size = new Size(779, 31);
             dbPathTextBox.TabIndex = 2;
             // 

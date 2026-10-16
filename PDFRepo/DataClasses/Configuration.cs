@@ -15,7 +15,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace PDFRepo.DataClasses
 {
-    internal class ManageConfigClass
+    public class Configuration
     {
         /*  Strings that were used in SetupForm.cs but are not needed here, 
         *  as we will use the ConfigElements class instead
@@ -33,52 +33,27 @@ namespace PDFRepo.DataClasses
         private string localAppData = string.Empty;
         private string logEntry = string.Empty;
         private LogClass logger;
-
         public ConfigElements config;
-
-        /** 
-         *  We will use this in the constructor to set the pdfAppPath variable
-         *  and then use it in LoadConfig() and PostSettings() methods.
-         *  
-         *  Then if the settings.json file does not exist, we can create it with default values.
-         *  Else, we read it and deserialize it into the ConfigElements class
-         *  
-         *  Access methods:
-         *  
-         *      x1. We will have a method to get the current settings (GetConfig) and a method to 
-         *        update the settings (UpdateConfig).
-         *  
-         *      x2. We can also have a method to reset the settings to default values (ResetConfig). 
-         *        (maybe not needed)
-         *  
-         *      3, We can receive a list for serialization and deserialization, or we can use the 
-         *        ConfigElements class directly.
-         *  
-         *      4, This list can then be converted to json to then and posted to settings.json file.
-         *  
-         */
-
-
-
         /**
          *  Constructor: Initialize the config and logger, set the pdfAppPath, and load the configuration.
          */
 
-        public ManageConfigClass()
+        public Configuration()
         { 
             config = new ConfigElements(); ;
-            logger = new LogClass();
-           // LoadConfig()
-            localAppData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-            pdfAppPath = Path.Combine(localAppData, "PDFRepo", "settings.json");
+            logger = new LogClass();;
+            this.pdfAppPath = SetLocalAppDataPath();
             Loadconfig();
         }
-
         public ConfigElements GetCfg()
         {
             return config;
         }
-
+        private string SetLocalAppDataPath()
+        {
+            string localAppData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+            return Path.Combine(localAppData, "PDFRepo", "settings.json");
+        }
 
         #region loadAndParseSettingsFile
         private void Loadconfig()
@@ -126,10 +101,10 @@ namespace PDFRepo.DataClasses
                         case "LastName":
                             config.lastName  = value;
                             break;
-                        case "DBPath":
-                            config.dbPath = value;
+                        case "DbPath":
+                            config.dbPath = this.pdfAppPath;  // Always use the correct path for DbPath
                             break;
-                        case "BKUPPath":
+                        case "BkupPath":
                             config.bkupPath = value;
                             break;
                         case "EnableLogging":
@@ -150,7 +125,31 @@ namespace PDFRepo.DataClasses
         }
         #endregion
         
-        #region postSettingsAndLoggs
+        #region postSettingsAndLog
+
+        public void UpdateJsonConfig(string firstName, 
+                                 string lastName, 
+                                 string dbPath, 
+                                 string bkupPath, 
+                                 string enableLogging, 
+                                 string bypassOnStartup)
+        {
+            string submissionDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+
+            List<string> settings = new List<string>
+            {
+                $"FirstName={firstName}",
+                $"LastName={lastName}",
+                $"DbPath={dbPath}",
+                $"BkupPath={bkupPath}",
+                $"EnableLogging={enableLogging}",
+                $"BypassOnStartup={bypassOnStartup}",
+                $"SubmissionDate={submissionDate}"
+            };
+
+            PostSettings(settings);
+            LogPost("Configuration updated.");
+        }
         private void PostSettings(List<string> settings)
         {
             try
@@ -162,6 +161,8 @@ namespace PDFRepo.DataClasses
                     Directory.CreateDirectory(directoryPath);
                 }
                 string jsonSettings = JsonSerializer.Serialize(settings);
+                // Make sure we have a fresh file
+                // File.Delete(pdfAppPath);
                 // Write the settings to the file
                 File.WriteAllText(pdfAppPath, jsonSettings);
                 MessageBox.Show("Settings updated.");
@@ -173,6 +174,10 @@ namespace PDFRepo.DataClasses
                 MessageBox.Show($"An error occurred while saving settings: {ex.Message}");
             }
         }
+
+        #endregion
+
+        #region helpers
         private void LoadDefaults()
         {
             config.firstName = string.Empty;
