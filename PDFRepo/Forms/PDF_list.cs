@@ -16,7 +16,7 @@ namespace PDFRepo
 
         // 2. Add this attribute to hide it from the UI Designer serialization
         //[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public ConfigElements ce;
+        public ConfigElements config;
         private MethodsInCommon mic;
         private bool firstTime = true;
         private Program _program;
@@ -40,11 +40,11 @@ namespace PDFRepo
 
         private void setConfig()
         {
-            ce = new ConfigElements();
+            config = new ConfigElements();
          //   this.theElements = LoadConfigElements();
-            SetupForm sf = new SetupForm(ce);
+            SetupForm sf = new SetupForm(config);
             sf.ShowDialog();
-            userNameTextBox.Text = $"{ce.firstName} {ce.lastName}".Trim();
+            userNameTextBox.Text = $"{config.firstName} {config.lastName}".Trim();
 
             // Safely parse bypassOnStartup (handles null/empty and different casing)
             _program.showAtStartup = false;
@@ -389,9 +389,9 @@ namespace PDFRepo
 
         private void setupToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SetupForm sf = new SetupForm(ce);
+            SetupForm sf = new SetupForm(config);
             sf.ShowDialog();
-            userNameTextBox.Text = $"{ce.firstName} {ce.lastName}";
+            userNameTextBox.Text = $"{config.firstName} {config.lastName}";
         }
     }
 }

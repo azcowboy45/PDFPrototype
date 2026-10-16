@@ -15,7 +15,8 @@ namespace PDFRepo.Forms
 {
     public partial class SetupForm : Form
     {
-        public ConfigElements ce;
+        public ConfigElements config;
+
         private string pdfAppPath = String.Empty;
         private string localAppData = String.Empty;
         private string logEntry = String.Empty;
@@ -30,9 +31,9 @@ namespace PDFRepo.Forms
         private LogClass logger;
 
         //  C#  forms: How do I represent the path to the users AppData\Local directory
-        public SetupForm(ConfigElements ce)
+        public SetupForm(ConfigElements config)
         {
-            this.ce = ce;
+             this.config = config;
             logger = new LogClass();
 
             InitializeComponent();
@@ -71,7 +72,7 @@ namespace PDFRepo.Forms
                 if (loadedSettings != null)
                 {
                     PopulateUiControls(loadedSettings);
-                    PopulateConfigElements();
+                    PopulateConfigElementsFromForm();
                 }
             }
             catch (Exception ex)
@@ -165,10 +166,33 @@ namespace PDFRepo.Forms
             {
                 MessageBox.Show($"An error occurred while saving settings: {ex.Message}");
             }
-            PopulateConfigElements();
+            PopulateConfigElementsFromForm();
         }
 
-
+        /**
+         * Populates configuration elements from theform as follows:
+         *
+         * Fields in settings.json with test data
+         * 
+            "FirstName=Bud",
+            "LastName=Alexander",
+            "DBPath=C:\\Users\\bud\\Documents\\PDFRepoBkup\\pdfrepo.db",
+            "BKUPPath=C:\\Users\\bud\\AppData\\Local\\PDFRepo\\settings.json",
+            "EnableLogging=True",
+            "BypassOnStartup=True",
+            "SubmissionDate=2026-10-15 07:34:46
+         * 
+         * */
+        private void PopulateConfigElementsFromForm()
+        {
+            config.firstName = firstNameTextBox.Text;
+            config.lastName = lastNameTextBox.Text;
+            config.dbPath = dbPathTextBox.Text;
+            config.bkupPath = bkupPathTextBox.Text;
+            config.enableLogging = enableLoggingCheckBox.Checked.ToString();
+            config.bypassOnStartup = bypassOnStartupCheckBox.Checked.ToString();
+            config.submissionDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+        }
 
         private void LogPost(string logEntry)
         {
@@ -176,20 +200,11 @@ namespace PDFRepo.Forms
             logger.AppendLogLine($"[{timestamp}] {logEntry}");
         }
 
-        private void PopulateConfigElements()
-        {
-            ce.firstName = firstNameTextBox.Text;
-            ce.lastName = lastNameTextBox.Text;
-            ce.dbPath = dbPathTextBox.Text;
-            ce.bkupPath = bkupPathTextBox.Text;
-            ce.enableLogging = enableLoggingCheckBox.Checked.ToString();
-            ce.bypassOnStartup = bypassOnStartupCheckBox.Checked.ToString();
-            ce.submissionDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-        }
 
+        #region controls
         private void exitButton_Click(object sender, EventArgs e)
         {
-            PopulateConfigElements();
+            PopulateConfigElementsFromForm();
             this.Close();
             LogPost("Exited SetupForm, settings not saved.");
         }
@@ -202,5 +217,6 @@ namespace PDFRepo.Forms
             LogPost("Saved settings from SetupForm");
             this.Close();
         }
+        #endregion
     }
 }

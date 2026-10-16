@@ -1,47 +1,78 @@
-﻿using PDFRepo.utils;
+﻿using PDFRepo.DataClasses;
+using PDFRepo.utils;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.IO;
 using System.Text;
 using System.Text.Json;
+using System.Windows.Forms;
+using System.Xml.Linq;
+
 
 namespace PDFRepo.DataClasses
 {
     internal class ManageConfigClass
     {
-        public ConfigElements ce;
+        /*  Strings that were used in SetupForm.cs but are not needed here, 
+        *  as we will use the ConfigElements class instead
+         string firstName = string.Empty;
+         string lastName = string.Empty;
+         string dbPath = string.Empty;
+         string bkupPath = string.Empty;
+         string enableLogging = string.Empty;
+         string bypassOnStartup = string.Empty;
+         string submissionDate = string.Empty;
+         */
+
+
         private string pdfAppPath = String.Empty;
         private string localAppData = String.Empty;
         private string logEntry = String.Empty;
-
-        /*
-          private string pdfAppPath = String.Empty;
-          private string localAppData = String.Empty;
-          private string logEntry = String.Empty;
-          string firstName = string.Empty;
-          string lastName = string.Empty;
-          string dbPath = string.Empty;
-          string bkupPath = string.Empty;
-          string enableLogging = string.Empty;
-          string bypassOnStartup = string.Empty;
-          string submissionDate = string.Empty;
-          */
         private LogClass logger;
 
+        public ConfigElements config;
+
+        /** 
+         *  We will use this in the constructor to set the pdfAppPath variable
+         *  and then use it in LoadConfig() and PostSettings() methods.
+         *  
+         *  Then if the settings.json file does not exist, we can create it with default values.
+         *  Else, we read it and deserialize it into the ConfigElements class
+         *  
+         *  Access methods:
+         *  
+         *      x1. We will have a method to get the current settings (GetConfig) and a method to 
+         *        update the settings (UpdateConfig).
+         *  
+         *      x2. We can also have a method to reset the settings to default values (ResetConfig). 
+         *        (maybe not needed)
+         *  
+         *      3, We can receive a list for serialization and deserialization, or we can use the 
+         *        ConfigElements class directly.
+         *  
+         *      4, This list can then be converted to json to then and posted to settings.json file.
+         *  
+         */
         public ManageConfigClass()
-        {   
+        { 
+            config = new ConfigElements(); ;
             logger = new LogClass();
            // LoadConfig()
             localAppData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-
             pdfAppPath = Path.Combine(localAppData, "PDFRepo", "settings.json");
-
+            Loadconfig();
         }
+
         private void Loadconfig()
         {
             // 1. Always verify the file exists first to prevent crashes
             if (!File.Exists(pdfAppPath))
             {
-                MessageBox.Show("No configuration file found. Using defaults.");
+              //  MessageBox.Show("No configuration file found. Using defaults.");
+                LoadDefaults();
                 return;
             }
 
@@ -53,17 +84,33 @@ namespace PDFRepo.DataClasses
                 // 3. Convert JSON back into a C# List<string>
                 List<string> loadedSettings = JsonSerializer.Deserialize<List<string>>(jsonString);
 
-                
-                if (loadedSettings != null)
-                {
+                PopulateConfigElements(loadedSettings);
+
+               // if (loadedSettings != null)
+               // {
                   //  PopulateConfigElements();
-                }
+              //  }
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error reading configuration: {ex.Message}", "Data Load Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void PopulateConfigElements(List<string> loadedSettings)
+        {
+            // Address elements by their position index
+           config.firstName = loadedSettings[0];
+            config.lastName = loadedSettings[1];
+            config.dbPath = loadedSettings[2];
+            config.bkupPath = loadedSettings[3];    
+            
+            // Convert strings back to bools or numbers using Parse
+            config.enableLogging = loadedSettings[4];
+            config.bypassOnStartup = loadedSettings[5];
+            config.submissionDate = loadedSettings[6];
+        }
+
 
         private void PostSettings(List<string> settings)
         {
@@ -87,8 +134,16 @@ namespace PDFRepo.DataClasses
                 MessageBox.Show($"An error occurred while saving settings: {ex.Message}");
             }
         }
-
-
+        private void LoadDefaults()
+        {
+            config.firstName = string.Empty;
+            config.lastName = string.Empty;
+            config.dbPath = string.Empty;
+            config.bkupPath = string.Empty;
+            config.enableLogging = string.Empty;
+            config.bypassOnStartup = string.Empty;
+            config.submissionDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+        }
 
         private void LogPost(string logEntry)
         {
