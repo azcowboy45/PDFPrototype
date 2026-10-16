@@ -16,6 +16,8 @@ namespace PDFRepo
 
         // 2. Add this attribute to hide it from the UI Designer serialization
         //[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+
+        private ManageConfigClass mcc;
         public ConfigElements config;
         private MethodsInCommon mic;
         private bool firstTime = true;
@@ -24,24 +26,23 @@ namespace PDFRepo
         public bool ShowAtStartup { get; set; }
 
         public PDF_list(Program programReference)
-        {
+        {;
             _program = programReference;
             MessageBox.Show($"ShowAtStartup is now: {_program.showAtStartup}");
             mic = new MethodsInCommon();
             InitializeComponent();
             setConfig();
 
-            // Wire up the Activated event handler programmatically to the PDF_List form.
+            // Wire up handlers
             this.Activated += PDFList_Activated;
-
-            // Wire up the CellClick event handler programmatically to the DataGridView.
             dataGridView1.CellClick += dataGridView1_CellClick;
         }
-
         private void setConfig()
         {
-            config = new ConfigElements();
-         //   this.theElements = LoadConfigElements();
+
+            ManageConfigClass mcc = new ManageConfigClass();          
+            config = mcc.GetCfg();
+
             SetupForm sf = new SetupForm(config);
             sf.ShowDialog();
             userNameTextBox.Text = $"{config.firstName} {config.lastName}".Trim();

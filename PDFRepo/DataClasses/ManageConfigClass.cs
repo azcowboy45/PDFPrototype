@@ -10,6 +10,7 @@ using System.Text;
 using System.Text.Json;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 
 namespace PDFRepo.DataClasses
@@ -28,9 +29,9 @@ namespace PDFRepo.DataClasses
          */
 
 
-        private string pdfAppPath = String.Empty;
-        private string localAppData = String.Empty;
-        private string logEntry = String.Empty;
+        private string pdfAppPath = string.Empty;
+        private string localAppData = string.Empty;
+        private string logEntry = string.Empty;
         private LogClass logger;
 
         public ConfigElements config;
@@ -56,6 +57,13 @@ namespace PDFRepo.DataClasses
          *      4, This list can then be converted to json to then and posted to settings.json file.
          *  
          */
+
+
+
+        /**
+         *  Constructor: Initialize the config and logger, set the pdfAppPath, and load the configuration.
+         */
+
         public ManageConfigClass()
         { 
             config = new ConfigElements(); ;
@@ -66,12 +74,18 @@ namespace PDFRepo.DataClasses
             Loadconfig();
         }
 
+        public ConfigElements GetCfg()
+        {
+            return config;
+        }
+
+
+        #region loadAndParseSettingsFile
         private void Loadconfig()
         {
             // 1. Always verify the file exists first to prevent crashes
             if (!File.Exists(pdfAppPath))
             {
-              //  MessageBox.Show("No configuration file found. Using defaults.");
                 LoadDefaults();
                 return;
             }
@@ -82,14 +96,10 @@ namespace PDFRepo.DataClasses
                 string jsonString = File.ReadAllText(pdfAppPath);
 
                 // 3. Convert JSON back into a C# List<string>
-                List<string> loadedSettings = JsonSerializer.Deserialize<List<string>>(jsonString);
+                List<string> settingsList = JsonSerializer.Deserialize<List<string>>(jsonString);
 
-                PopulateConfigElements(loadedSettings);
+                PopulateConfigElements(settingsList);
 
-               // if (loadedSettings != null)
-               // {
-                  //  PopulateConfigElements();
-              //  }
             }
             catch (Exception ex)
             {
@@ -97,21 +107,50 @@ namespace PDFRepo.DataClasses
             }
         }
 
-        private void PopulateConfigElements(List<string> loadedSettings)
+
+        private void PopulateConfigElements(List<string> settingsList)
         {
             // Address elements by their position index
-           config.firstName = loadedSettings[0];
-            config.lastName = loadedSettings[1];
-            config.dbPath = loadedSettings[2];
-            config.bkupPath = loadedSettings[3];    
-            
-            // Convert strings back to bools or numbers using Parse
-            config.enableLogging = loadedSettings[4];
-            config.bypassOnStartup = loadedSettings[5];
-            config.submissionDate = loadedSettings[6];
+            foreach (var setting in settingsList)
+            {
+                var keyValue = setting.Split('=');
+                if (keyValue.Length == 2)
+                {
+                    string key = keyValue[0];
+                    string value = keyValue[1];
+                    switch (key)
+                    {
+                        case "FirstName":
+                            config.firstName = value;
+                            break;
+                        case "LastName":
+                            config.lastName  = value;
+                            break;
+                        case "DBPath":
+                            config.dbPath = value;
+                            break;
+                        case "BKUPPath":
+                            config.bkupPath = value;
+                            break;
+                        case "EnableLogging":
+                            config.enableLogging = value;
+                            break;
+                        case "BypassOnStartup":
+                            config.bypassOnStartup = value;
+                            break;
+                        case "SubmissionDate":
+                            config.submissionDate = value;
+                            break;
+                        default:
+                            // Handle unknown keys if necessary
+                            break;
+                    }
+                }
+            }
         }
-
-
+        #endregion
+        
+        #region postSettingsAndLoggs
         private void PostSettings(List<string> settings)
         {
             try
@@ -150,6 +189,7 @@ namespace PDFRepo.DataClasses
             string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             logger.AppendLogLine($"[{timestamp}] {logEntry}");
         }
+        #endregion
 
 
     }
