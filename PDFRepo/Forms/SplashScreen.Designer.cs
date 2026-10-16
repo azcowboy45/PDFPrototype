@@ -37,21 +37,21 @@
             // continueButton
             // 
             continueButton.BackgroundImageLayout = ImageLayout.None;
-            continueButton.Location = new Point(1207, 971);
+            continueButton.Location = new Point(49, 950);
             continueButton.Name = "continueButton";
             continueButton.Size = new Size(140, 34);
             continueButton.TabIndex = 0;
-            continueButton.Text = "Continue";
+            continueButton.Text = "Skip Setup";
             continueButton.UseVisualStyleBackColor = true;
             continueButton.Click += continueButton_Click;
             // 
             // setupButton
             // 
-            setupButton.Location = new Point(12, 971);
+            setupButton.Location = new Point(1191, 961);
             setupButton.Name = "setupButton";
             setupButton.Size = new Size(140, 34);
             setupButton.TabIndex = 1;
-            setupButton.Text = "Skip Setup";
+            setupButton.Text = "Continue";
             setupButton.UseVisualStyleBackColor = true;
             setupButton.Click += setupButton_Click;
             // 

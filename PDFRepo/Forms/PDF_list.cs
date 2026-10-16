@@ -17,8 +17,8 @@ namespace PDFRepo
         // 2. Add this attribute to hide it from the UI Designer serialization
         //[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         #region instance variables
-        public ConfigMgr mcc;
-        public ConfigElements config;
+        public ConfigMgr configMgr { get; set; }
+        public ConfigElements config { get; set; }
         private MethodsInCommon mic;
         private bool firstTime = true;
         private Program _program;
@@ -28,35 +28,35 @@ namespace PDFRepo
 
         public PDF_list(Program programReference)
         {;
-            mcc = new ConfigMgr();
+            configMgr = new ConfigMgr();
             _program = programReference;
             //   MessageBox.Show($"ShowAtStartup is now: {_program.showAtStartup}");  -- for debugging purposes
             mic = new MethodsInCommon();
             InitializeComponent();
             doSplashScreen();
-            setConfig();
+      //      setConfig();
 
             // Wire up handlers
             this.Activated += PDFList_Activated;
             dataGridView1.CellClick += dataGridView1_CellClick;
-            doSplashScreen();
+
+        //    userNameTextBox.Text = $"{config.firstName} {config.lastName}".Trim();
         }
 
         private void doSplashScreen()
         {
-            SplashScreen splash = new SplashScreen();
+            SplashScreen splash = new SplashScreen(configMgr,config);
             splash.ShowDialog();
         }
-        private void setConfig()
-        {
-            ConfigMgr mcc = new ConfigMgr();
-            config = mcc.GetCfg();
-            SetupForm sf = new SetupForm(mcc, config);
-            sf.ShowDialog();
-            userNameTextBox.Text = $"{config.firstName} {config.lastName}".Trim();
-
-            _program.showAtStartup = false;
-        }
+  //      private void setConfig()
+  //      {
+   //         configMgr = new ConfigMgr();
+  //          config = configMgr.GetCfg();
+  //
+ //          userNameTextBox.Text = $"{config.firstName} {config.lastName}".Trim();
+ //
+ //           _program.showAtStartup = false;
+ //       }
 
    //    private void doTestWrite(ManageConfigClass mcc)
   //      {
@@ -402,9 +402,9 @@ namespace PDFRepo
 
         private void setupToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SetupForm sf = new SetupForm(mcc, config);
+            SetupForm sf = new SetupForm(configMgr, config);
             sf.ShowDialog();
-            userNameTextBox.Text = $"{mcc.GetCfg().firstName} {mcc.GetCfg().lastName}";
+            userNameTextBox.Text = $"{configMgr.GetCfg().firstName} {configMgr.GetCfg().lastName}";
         }
     }
 }

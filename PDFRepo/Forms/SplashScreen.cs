@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PDFRepo.DataClasses;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,14 +11,30 @@ namespace PDFRepo.Forms
 {
     public partial class SplashScreen : Form
     {
-        public SplashScreen()
+        private ConfigMgr configMgr;
+        private ConfigElements config;
+
+        public SplashScreen(ConfigMgr configMgr, ConfigElements config)
         {
+            this.configMgr = configMgr;
+            this.config = config;
+
             InitializeComponent();
         }
 
+        //      private void setConfig()
+        //      {
+        //         configMgr = new ConfigMgr();
+        //          config = configMgr.GetCfg();
+        //
+        //          userNameTextBox.Text = $"{config.firstName} {config.lastName}".Trim();
+        //
+        //           _program.showAtStartup = false;
+        //       }
+
         private void SplashScreen_Load(object sender, EventArgs e)
         {
-
+          
         }
 
         private void continueButton_Click(object sender, EventArgs e)
@@ -27,7 +44,8 @@ namespace PDFRepo.Forms
 
         private void setupButton_Click(object sender, EventArgs e)
         {
-
+            SetupForm sf = new SetupForm( configMgr  , config);
+            sf.ShowDialog();
         }
     }
 }
