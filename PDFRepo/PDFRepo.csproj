@@ -1,27 +1,33 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <OutputType>WinExe</OutputType>
-    <TargetFramework>net10.0-windows</TargetFramework>
-    <Nullable>enable</Nullable>
-    <UseWindowsForms>true</UseWindowsForms>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <ApplicationIcon>mandy.ico</ApplicationIcon>
-  </PropertyGroup>
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net10.0-windows</TargetFramework>
+		<Nullable>enable</Nullable>
+		<UseWindowsForms>true</UseWindowsForms>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<ApplicationIcon>mandy.ico</ApplicationIcon>
+		<!-- Suppress the designer serialization analyzer error -->
+		<NoWarn>$(NoWarn);WFO1000</NoWarn>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <Content Include="mandy.ico" />
-  </ItemGroup>
+	<ItemGroup>
+		<Content Include="mandy.ico" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.Data.Sqlite" Version="10.0.12" />
-    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.4258.31" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Data.Sqlite" Version="10.0.12" />
+		<PackageReference Include="Microsoft.Web.WebView2" Version="1.0.4258.31" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <None Update="PDFRepo.db">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
+	<ItemGroup>
+		<None Update="PDFRepo.db">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="Docs\QueriesForPDFRepo\" />
+	</ItemGroup>
 
 </Project>

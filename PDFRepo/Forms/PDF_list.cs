@@ -2,9 +2,10 @@ using Microsoft.Data.Sqlite;
 using Microsoft.Web.WebView2.Core;
 using Microsoft.Web.WebView2.WinForms;
 using PDFRepo.DataClasses;
-using System.Data;
 using PDFRepo.Forms;
 using PDFRepo.utils;
+using System.ComponentModel;
+using System.Data;
 
 namespace PDFRepo
 {
@@ -13,13 +14,19 @@ namespace PDFRepo
         //    private Config cfg;
         //    private StartForm loginForm;
 
+        // 2. Add this attribute to hide it from the UI Designer serialization
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public ConfigElements ce;
         private MethodsInCommon mic;
-
         private bool firstTime = true;
+        private Program _program;
 
-        public PDF_list()
+        public bool ShowAtStartup { get; set; }
+
+        public PDF_list(Program programReference)
         {
+            _program = programReference;
+            MessageBox.Show($"ShowAtStartup is now: {_program.showAtStartup}");
             mic = new MethodsInCommon();
             InitializeComponent();
             setConfig();
@@ -29,15 +36,18 @@ namespace PDFRepo
 
             // Wire up the CellClick event handler programmatically to the DataGridView.
             dataGridView1.CellClick += dataGridView1_CellClick;
-
         }
 
         private void setConfig()
         {
             ce = new ConfigElements();
+         //   this.theElements = LoadConfigElements();
             SetupForm sf = new SetupForm(ce);
             sf.ShowDialog();
-            userNameTextBox.Text = $"{ce.firstName} {ce.lastName}";
+            userNameTextBox.Text = $"{ce.firstName} {ce.lastName}".Trim();
+
+            // Safely parse bypassOnStartup (handles null/empty and different casing)
+            _program.showAtStartup = false;
         }
 
         #region handlers
