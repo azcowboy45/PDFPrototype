@@ -41,8 +41,12 @@ namespace PDFRepo
 
             configMgr = new ConfigMgr();
             config = configMgr.GetCfg();
+
+            // result = Convert.ToBoolean(config.bypassOnStartup);
+            bool result = Convert.ToBoolean(config.bypassOnStartup);
+            _program.showAtStartup = result;
             userNameTextBox.Text = $"{config.firstName} {config.lastName}".Trim();
-            if (_program.showAtStartup)
+            if (!_program.showAtStartup)
             {
                 doSplashScreen(userNameTextBox.Text);
             }

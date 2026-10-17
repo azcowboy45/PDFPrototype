@@ -40,10 +40,12 @@
             // 
             continueButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             continueButton.BackgroundImageLayout = ImageLayout.None;
-            continueButton.Location = new Point(825, 583);
+            continueButton.FlatAppearance.BorderSize = 2;
+            continueButton.FlatStyle = FlatStyle.Popup;
+            continueButton.Location = new Point(822, 571);
             continueButton.Margin = new Padding(2);
             continueButton.Name = "continueButton";
-            continueButton.Size = new Size(118, 20);
+            continueButton.Size = new Size(118, 28);
             continueButton.TabIndex = 0;
             continueButton.Text = "Skip Setup";
             continueButton.UseVisualStyleBackColor = true;
@@ -52,10 +54,12 @@
             // setupButton
             // 
             setupButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            setupButton.Location = new Point(8, 583);
+            setupButton.FlatAppearance.BorderSize = 2;
+            setupButton.FlatStyle = FlatStyle.Popup;
+            setupButton.Location = new Point(11, 571);
             setupButton.Margin = new Padding(2);
             setupButton.Name = "setupButton";
-            setupButton.Size = new Size(118, 20);
+            setupButton.Size = new Size(118, 28);
             setupButton.TabIndex = 1;
             setupButton.Text = "Continue to Setup";
             setupButton.UseVisualStyleBackColor = true;
@@ -72,7 +76,7 @@
             takeCommandLable.Name = "takeCommandLable";
             takeCommandLable.Size = new Size(841, 46);
             takeCommandLable.TabIndex = 2;
-            takeCommandLable.Text = "Your PDFRepository, Take Command Of Your PDFs Today!";
+            takeCommandLable.Text = "With PDFRepo, You Take Command Of Your PDFs Today!";
             // 
             // copyrightLable
             // 
