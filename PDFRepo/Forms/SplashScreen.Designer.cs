@@ -61,11 +61,11 @@
             // 
             takeCommandLable.AutoSize = true;
             takeCommandLable.BackColor = Color.Transparent;
-            takeCommandLable.Font = new Font("Vladimir Script", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            takeCommandLable.Font = new Font("Vladimir Script", 28F, FontStyle.Regular, GraphicsUnit.Point, 0);
             takeCommandLable.ForeColor = Color.White;
-            takeCommandLable.Location = new Point(135, 292);
+            takeCommandLable.Location = new Point(78, 266);
             takeCommandLable.Name = "takeCommandLable";
-            takeCommandLable.Size = new Size(1114, 58);
+            takeCommandLable.Size = new Size(1239, 67);
             takeCommandLable.TabIndex = 2;
             takeCommandLable.Text = "Your PDFRepository, Take Command Of Your PDFs Today!";
             // 

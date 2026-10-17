@@ -74,6 +74,41 @@ namespace PDFRepo.DataClasses
         #region sqliteMethods
 
         //GetAllSubCategories();
+
+        public DataSet GetSelectorKeyedList(string tableName, String keyCol, String theId)
+        {
+            string queryString = "select " + keyCol + " AS KeyCol, cast( " + theId
+                    + " AS VARCHAR(16)) AS DescrCol from " + tableName + " order by " + keyCol + " COLLATE NOCASE ASC;;";
+            DataSet dataSet = new DataSet();
+            using (var connection = new SqliteConnection(ConnectionString))
+            {
+
+                connection.Open();
+                try
+                {
+                    using (var command = new SqliteCommand(queryString, connection))
+                    {
+                        command.Parameters.AddWithValue("@id", theId);
+                        using (var reader = command.ExecuteReader())
+                        {
+
+                            DataTable KeyedList = new DataTable();
+                            KeyedList.Load(reader); // Manually load from reader
+                            dataSet.Tables.Add(KeyedList);
+
+                            return dataSet;
+                        }
+                    }
+
+                }
+                catch (SqliteException SQLitex)
+                {
+                    // Log the exception or handle it appropriately
+                    MessageBox.Show($"Database Error: {SQLitex.Message}");
+                    return null;
+                }
+            }
+        }
         public DataTable GetAllSubCategories()
         {
             DataTable dataTable = new DataTable();
@@ -141,6 +176,37 @@ namespace PDFRepo.DataClasses
                 }
             }
             return pdfBytes;
+        }
+
+
+        public string GetPdfIdByName(string pdf_name)
+        {
+            string pdfId = string.Empty;
+            string query = "SELECT id FROM pdf_table WHERE pdf_name = @pdf_name;";
+            using (var connection = new SqliteConnection(ConnectionString))
+            {
+                using (var command = new SqliteCommand(query, connection))
+                {
+                    // Add parameters to prevent SQL injection
+                    command.Parameters.AddWithValue("@pdf_name", pdf_name);
+                    try
+                    {
+                        connection.Open();
+                        using (var reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                pdfId = reader["id"].ToString();
+                            }
+                        }
+                    }
+                    catch (SqliteException SQLitex)
+                    {
+                        MessageBox.Show("Error: " + SQLitex.Message);
+                    }
+                }
+            }
+            return pdfId;
         }
 
         public bool UpdatePDFInfo(string id, string pdfCategory, string pdfSubCategory, string pdfDescription)

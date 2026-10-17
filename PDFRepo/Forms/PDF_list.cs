@@ -24,6 +24,9 @@ namespace PDFRepo
         private Program _program;
 
         public bool ShowAtStartup { get; set; }
+
+        private string selectablePDFId = "-1";
+        private string selectedNameStr;
         #endregion
 
         public PDF_list(Program programReference)
@@ -42,34 +45,83 @@ namespace PDFRepo
             if (_program.showAtStartup)
             {
                 doSplashScreen(userNameTextBox.Text);
-            }            
+            }
+            LoadSelectionComboBox();
         }
 
         private void WireUpHandlers()
         {
             this.Activated += PDFList_Activated;
             dataGridView1.CellClick += dataGridView1_CellClick;
+            selectorComboBox.SelectionChangeCommitted += selectorComboBox_SelectionChangeCommitted;
+        }
+
+        private void selectorComboBox_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            selectorComboBox.DataBindings["SelectedValue"]?.WriteValue();
+        }
+
+        private string[] GetSelectionList()
+        {
+            string[] pdfList = new string[] { };
+            DataModel dm = new DataModel();
+            DataSet autoList = dm.GetSelectorKeyedList("pdf_table", "pdf_name", "ID");
+            Int32 recCount = autoList.Tables[0].Rows.Count;
+
+            foreach (DataRow row in autoList.Tables["pdf_table"].Rows)
+            {
+                string str = row[0].ToString();
+                pdfList = pdfList.Append<string>(str).ToArray();
+
+            }
+            return pdfList;
+        }
+
+        private void LoadSelectionComboBox()
+        {
+            string[] items = GetSelectionList();
+
+            // Create an AutoCompleteStringCollection and add the items
+            AutoCompleteStringCollection coll = new AutoCompleteStringCollection();
+
+            coll.AddRange(items);
+            selectorComboBox.Items.Clear();
+
+            foreach (string item in items)
+            {
+                selectorComboBox.Items.Add(item);
+            }
+
+            //    ingredientComboBox.Items.AddRange(items);   // this add the items again???
+
+            // Set the AutoCompleteCustomSource to the collection created above
+            selectorComboBox.AutoCompleteCustomSource = coll;
+
+            // Specify that the source for autocompletion is a custom source
+            selectorComboBox.AutoCompleteSource = AutoCompleteSource.CustomSource;
+
+            // Set the mode to SuggestAppend (shows a dropdown list and appends matching text)
+            selectorComboBox.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+
+            // Set the AutoCompleteCustomSource to the collection created above
+            selectorComboBox.AutoCompleteCustomSource = coll;
+        }
+
+        private void selectorComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedNameStr = selectorComboBox.Text;
+            DataModel dm = new DataModel();
+
+            this.selectablePDFId = dm.GetPdfIdByName(selectedNameStr);
+
+            doViewPDF(selectablePDFId); // As a string, this.selectablePDFId can be used to fetch the PDF data from the database and display it in a new form.
         }
 
         private void doSplashScreen(string userName)
         {
-            SplashScreen splash = new SplashScreen(configMgr,config, userName);
+            SplashScreen splash = new SplashScreen(configMgr, config, userName);
             splash.ShowDialog();
         }
-  //      private void setConfig()
-  //      {
-   //         configMgr = new ConfigMgr();
-  //          config = configMgr.GetCfg();
-  //
- //          userNameTextBox.Text = $"{config.firstName} {config.lastName}".Trim();
- //
- //           _program.showAtStartup = false;
- //       }
-
-   //    private void doTestWrite(ManageConfigClass mcc)
-  //      {
-   //         mcc.UpdateConfig("John", "Doe", "C:\\DBPath", "C:\\BKUPPath", "true", "false");
-   //     }
 
         #region handlers
 
@@ -191,9 +243,6 @@ namespace PDFRepo
             dataGridView1.Columns["pdf_description"].Visible = true;
 
         }
-
-
-
 
         private void doDeletePDF()
         {
@@ -414,5 +463,17 @@ namespace PDFRepo
             sf.ShowDialog();
             userNameTextBox.Text = $"{configMgr.GetCfg().firstName} {configMgr.GetCfg().lastName}";
         }
+/*
+        private void selectorComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        { 
+            DataModel dm = new DataModel();
+
+            this.selectablePDFId = dm.GetPDFIdByName(this.selectedNameStr).ToString();
+
+            doViewPDF(selectablePDFId); // As a string, this.selectablePDFId can be used to fetch the PDF data from the database and display it in a new form
+
+        }
+
+        */
     }
 }

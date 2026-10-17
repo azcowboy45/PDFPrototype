@@ -69,6 +69,8 @@
             subCatComboBox = new ComboBox();
             userNameTextBox = new TextBox();
             label3 = new Label();
+            selectorComboBox = new ComboBox();
+            label4 = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             contextMenuStrip1.SuspendLayout();
             menuStrip1.SuspendLayout();
@@ -306,7 +308,7 @@
             // categoryComboBox
             // 
             categoryComboBox.FormattingEnabled = true;
-            categoryComboBox.Location = new Point(770, 51);
+            categoryComboBox.Location = new Point(966, 59);
             categoryComboBox.Name = "categoryComboBox";
             categoryComboBox.Size = new Size(233, 33);
             categoryComboBox.TabIndex = 5;
@@ -315,7 +317,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(602, 54);
+            label1.Location = new Point(798, 62);
             label1.Name = "label1";
             label1.Size = new Size(162, 25);
             label1.TabIndex = 6;
@@ -336,7 +338,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(1044, 54);
+            label2.Location = new Point(1218, 62);
             label2.Name = "label2";
             label2.Size = new Size(116, 25);
             label2.TabIndex = 8;
@@ -345,7 +347,7 @@
             // subCatComboBox
             // 
             subCatComboBox.FormattingEnabled = true;
-            subCatComboBox.Location = new Point(1166, 51);
+            subCatComboBox.Location = new Point(1372, 59);
             subCatComboBox.Name = "subCatComboBox";
             subCatComboBox.Size = new Size(233, 33);
             subCatComboBox.TabIndex = 9;
@@ -368,11 +370,31 @@
             label3.TabIndex = 11;
             label3.Text = "Repository for:";
             // 
+            // selectorComboBox
+            // 
+            selectorComboBox.FormattingEnabled = true;
+            selectorComboBox.Location = new Point(157, 54);
+            selectorComboBox.Name = "selectorComboBox";
+            selectorComboBox.Size = new Size(360, 33);
+            selectorComboBox.TabIndex = 12;
+            selectorComboBox.SelectedIndexChanged += selectorComboBox_SelectedIndexChanged;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(12, 59);
+            label4.Name = "label4";
+            label4.Size = new Size(139, 25);
+            label4.TabIndex = 13;
+            label4.Text = "Select by Name:";
+            // 
             // PDF_list
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1785, 1153);
+            Controls.Add(label4);
+            Controls.Add(selectorComboBox);
             Controls.Add(label3);
             Controls.Add(userNameTextBox);
             Controls.Add(subCatComboBox);
@@ -437,5 +459,7 @@
         private ToolStripMenuItem setupToolStripMenuItem;
         private TextBox userNameTextBox;
         private Label label3;
+        private ComboBox selectorComboBox;
+        private Label label4;
     }
 }
