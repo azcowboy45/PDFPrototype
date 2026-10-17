@@ -22,16 +22,6 @@ namespace PDFRepo.Forms
             InitializeComponent();
         }
 
-        //      private void setConfig()
-        //      {
-        //         configMgr = new ConfigMgr();
-        //          config = configMgr.GetCfg();
-        //
-        //          userNameTextBox.Text = $"{config.firstName} {config.lastName}".Trim();
-        //
-        //           _program.showAtStartup = false;
-        //       }
-
         private void SplashScreen_Load(object sender, EventArgs e)
         {
           

@@ -26,8 +26,8 @@ namespace PDFRepo.DataClasses
         // Constructor: Initialize the config and logger, set the pdfAppPath, and load the configuration.
         public ConfigMgr()
         {
-            config = new ConfigElements(); ;
-            logger = new LogClass(); ;
+            config = new ConfigElements(); 
+            logger = new LogClass();
             this.pdfAppPath = SetLocalAppDataPath();
             Loadconfig();
         }

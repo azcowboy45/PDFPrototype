@@ -27,20 +27,22 @@ namespace PDFRepo
         #endregion
 
         public PDF_list(Program programReference)
-        {;
+        {
             configMgr = new ConfigMgr();
             _program = programReference;
             //   MessageBox.Show($"ShowAtStartup is now: {_program.showAtStartup}");  -- for debugging purposes
             mic = new MethodsInCommon();
             InitializeComponent();
-            doSplashScreen();
-      //      setConfig();
-
             // Wire up handlers
             this.Activated += PDFList_Activated;
             dataGridView1.CellClick += dataGridView1_CellClick;
-
-        //    userNameTextBox.Text = $"{config.firstName} {config.lastName}".Trim();
+            configMgr = new ConfigMgr();
+            config = configMgr.GetCfg();
+            userNameTextBox.Text = $"{config.firstName} {config.lastName}".Trim();
+            if (_program.showAtStartup)
+            {
+                doSplashScreen();
+            }            
         }
 
         private void doSplashScreen()
