@@ -33,21 +33,27 @@ namespace PDFRepo
             //   MessageBox.Show($"ShowAtStartup is now: {_program.showAtStartup}");  -- for debugging purposes
             mic = new MethodsInCommon();
             InitializeComponent();
-            // Wire up handlers
-            this.Activated += PDFList_Activated;
-            dataGridView1.CellClick += dataGridView1_CellClick;
+
+            WireUpHandlers();
+
             configMgr = new ConfigMgr();
             config = configMgr.GetCfg();
             userNameTextBox.Text = $"{config.firstName} {config.lastName}".Trim();
             if (_program.showAtStartup)
             {
-                doSplashScreen();
+                doSplashScreen(userNameTextBox.Text);
             }            
         }
 
-        private void doSplashScreen()
+        private void WireUpHandlers()
         {
-            SplashScreen splash = new SplashScreen(configMgr,config);
+            this.Activated += PDFList_Activated;
+            dataGridView1.CellClick += dataGridView1_CellClick;
+        }
+
+        private void doSplashScreen(string userName)
+        {
+            SplashScreen splash = new SplashScreen(configMgr,config, userName);
             splash.ShowDialog();
         }
   //      private void setConfig()

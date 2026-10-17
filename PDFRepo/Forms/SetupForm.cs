@@ -14,6 +14,7 @@ namespace PDFRepo.Forms
 {
     public partial class SetupForm : Form
     {
+        private Form myParent = null;
         public ConfigElements config;
         private LogClass logger;
         public ConfigMgr configuration;
@@ -27,6 +28,17 @@ namespace PDFRepo.Forms
             InitializeComponent();
             LoadSettingsForm();
         }
+        public SetupForm(ConfigMgr configuration, ConfigElements config, Form myParent )
+        {
+            this.configuration = configuration;
+            this.config = config;
+            this.configuration = configuration;
+            logger = new LogClass();
+            InitializeComponent();
+            LoadSettingsForm();
+            this.myParent = myParent; 
+        }
+
         public void doUpdate()
         {
             configuration.UpdateJsonConfig(
@@ -46,15 +58,6 @@ namespace PDFRepo.Forms
             enableLoggingCheckBox.Checked = bool.TryParse(config.enableLogging, out bool enableLogging) && enableLogging;
             bypassOnStartupCheckBox.Checked = bool.TryParse(config.bypassOnStartup, out bool bypassOnStartup) && bypassOnStartup;
         }
-        private void GatherSettings()
-        {
-            config.firstName = firstNameTextBox.Text;
-            config.lastName = lastNameTextBox.Text;
-            config.dbPath = dbPathTextBox.Text;
-            config.bkupPath = bkupPathTextBox.Text;
-            config.enableLogging = enableLoggingCheckBox.Checked.ToString();
-            config.bypassOnStartup = bypassOnStartupCheckBox.Checked.ToString();
-        }
 
         private void LogPost(string logEntry)
         {
@@ -62,18 +65,27 @@ namespace PDFRepo.Forms
             logger.AppendLogLine($"[{timestamp}] {logEntry}");
         }
 
+        private void CloseMyParentForm()
+        {
+            if (myParent != null)
+            {
+                myParent.Close();
+            }
+        }
+
 
         #region controls
         private void exitButton_Click(object sender, EventArgs e)
         {
-            this.Close();
+            CloseMyParentForm();
             LogPost("Exited SetupForm, settings not saved.");
+            this.Close();       
         }
 
         private void saveButton_Click(object sender, EventArgs e)
         {
             doUpdate();
-
+            CloseMyParentForm();
             LogPost("Saved settings from SetupForm");
             this.Close();
         }
