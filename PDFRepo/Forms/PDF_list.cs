@@ -54,7 +54,11 @@ namespace PDFRepo
             this.Activated += PDFList_Activated;
             dataGridView1.CellClick += dataGridView1_CellClick;
             selectorComboBox.SelectionChangeCommitted += selectorComboBox_SelectionChangeCommitted;
+            
+            // Wire the event handler to myDataGridView
+            dataGridView1.RowPostPaint += new DataGridViewRowPostPaintEventHandler(dataGridView1_RowPostPaint);
         }
+        
 
         private void selectorComboBox_SelectionChangeCommitted(object sender, EventArgs e)
         {
@@ -180,9 +184,25 @@ namespace PDFRepo
 
         private void FormatDataGrid()
         {
-
+            /*
             dataGridView1.ColumnHeadersDefaultCellStyle.Font =
                 new Font(dataGridView1.Font, FontStyle.Bold);
+
+            dataGridView1.Columns.Insert(0, new DataGridViewTextBoxColumn
+            {
+                Name = "LineNumber",
+                HeaderText = "#",
+                ReadOnly = true,
+                Width = 40
+            });
+            */
+
+            // Set an initial comfortable width for the row numbers
+            dataGridView1.RowHeadersWidth = 50;
+
+            // Prevent the grid from forcing users to manually resize the header column
+            dataGridView1.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+
 
             // Define the default style for all rows (e.g., even rows)
             this.dataGridView1.RowsDefaultCellStyle.BackColor = Color.White;
@@ -243,6 +263,45 @@ namespace PDFRepo
             dataGridView1.Columns["pdf_description"].Visible = true;
 
         }
+
+        private void dataGridView1_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
+        {
+            string lineNumber = (e.RowIndex + 1).ToString();
+
+            StringFormat centerFormat = new StringFormat
+            {
+                Alignment = StringAlignment.Center,
+                LineAlignment = StringAlignment.Center
+            };
+
+            Rectangle headerBounds = new Rectangle(
+                e.RowBounds.Left,
+                e.RowBounds.Top,
+                dataGridView1.RowHeadersWidth,
+                e.RowBounds.Height
+            );
+
+            // FIX: Access ForeColor safely via the RowHeadersDefaultCellStyle object
+            Color headerColor = dataGridView1.RowHeadersDefaultCellStyle.ForeColor;
+
+            // Fallback safeguard: If the default color is empty or transparent, default to ControlText
+            if (headerColor.IsEmpty || headerColor == Color.Transparent)
+            {
+                headerColor = SystemColors.ControlText;
+            }
+
+            using (Brush brush = new SolidBrush(headerColor))
+            {
+                e.Graphics.DrawString(
+                    lineNumber,
+                    dataGridView1.Font,
+                    brush,
+                    headerBounds,
+                    centerFormat
+                );
+            }
+        }
+
 
         private void doDeletePDF()
         {

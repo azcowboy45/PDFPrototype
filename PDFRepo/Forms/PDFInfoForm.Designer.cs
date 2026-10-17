@@ -91,7 +91,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(50, 50);
+            label4.Location = new Point(84, 50);
             label4.Margin = new Padding(2, 0, 2, 0);
             label4.Name = "label4";
             label4.Size = new Size(58, 15);
@@ -226,7 +226,7 @@
             // 
             categoryComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
             categoryComboBox.FormattingEnabled = true;
-            categoryComboBox.Location = new Point(419, 104);
+            categoryComboBox.Location = new Point(363, 104);
             categoryComboBox.Margin = new Padding(2);
             categoryComboBox.Name = "categoryComboBox";
             categoryComboBox.Size = new Size(261, 23);
@@ -246,7 +246,7 @@
             // label9
             // 
             label9.AutoSize = true;
-            label9.Location = new Point(32, 87);
+            label9.Location = new Point(66, 87);
             label9.Margin = new Padding(2, 0, 2, 0);
             label9.Name = "label9";
             label9.Size = new Size(76, 15);
@@ -257,7 +257,7 @@
             // 
             subCatComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
             subCatComboBox.FormattingEnabled = true;
-            subCatComboBox.Location = new Point(419, 141);
+            subCatComboBox.Location = new Point(363, 141);
             subCatComboBox.Margin = new Padding(2);
             subCatComboBox.Name = "subCatComboBox";
             subCatComboBox.Size = new Size(261, 23);
@@ -266,7 +266,8 @@
             // label10
             // 
             label10.AutoSize = true;
-            label10.Location = new Point(175, 74);
+            label10.Font = new Font("Segoe UI", 9F, FontStyle.Underline, GraphicsUnit.Point, 0);
+            label10.Location = new Point(203, 76);
             label10.Name = "label10";
             label10.Size = new Size(83, 15);
             label10.TabIndex = 42;
@@ -275,11 +276,12 @@
             // label11
             // 
             label11.AutoSize = true;
-            label11.Location = new Point(492, 74);
+            label11.Font = new Font("Segoe UI", 9F, FontStyle.Underline, GraphicsUnit.Point, 0);
+            label11.Location = new Point(436, 76);
             label11.Name = "label11";
-            label11.Size = new Size(67, 15);
+            label11.Size = new Size(64, 15);
             label11.TabIndex = 43;
-            label11.Text = "New Values";
+            label11.Text = "Change To";
             label11.Click += label11_Click;
             // 
             // panel1
@@ -295,19 +297,21 @@
             // 
             // subcategoryTextBox
             // 
-            subcategoryTextBox.Location = new Point(113, 82);
+            subcategoryTextBox.Location = new Point(147, 82);
             subcategoryTextBox.Name = "subcategoryTextBox";
             subcategoryTextBox.ReadOnly = true;
-            subcategoryTextBox.Size = new Size(263, 23);
+            subcategoryTextBox.Size = new Size(183, 23);
             subcategoryTextBox.TabIndex = 45;
+            subcategoryTextBox.TextAlign = HorizontalAlignment.Center;
             // 
             // categoryTextBox
             // 
-            categoryTextBox.Location = new Point(113, 47);
+            categoryTextBox.Location = new Point(147, 47);
             categoryTextBox.Name = "categoryTextBox";
             categoryTextBox.ReadOnly = true;
-            categoryTextBox.Size = new Size(263, 23);
+            categoryTextBox.Size = new Size(183, 23);
             categoryTextBox.TabIndex = 46;
+            categoryTextBox.TextAlign = HorizontalAlignment.Center;
             // 
             // PDFInfoForm
             // 
