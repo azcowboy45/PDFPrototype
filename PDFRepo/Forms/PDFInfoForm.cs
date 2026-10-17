@@ -24,7 +24,7 @@ namespace PDFRepo.Forms
             dm = new DataModel();
             mic = new MethodsInCommon();
             InitializeComponent();
-             LoadFormData(pdfId);
+            LoadFormData(pdfId);
             // Wire up the Activated event handler programmatically
             this.Activated += PDFList_Activated;  // Wire up the Activated event handler programmatically to the PDF_List form.
 
@@ -33,8 +33,8 @@ namespace PDFRepo.Forms
         private void PDFList_Activated(object sender, EventArgs e)
         {
             BuildComboBoxes();  // Rebuild the ComboBox when the form is activated
-            // Refresh the DataGridView when the form is activated
-           // LoadDataGrid();
+                                // Refresh the DataGridView when the form is activated
+                                // LoadDataGrid();
         }
 
 
@@ -47,11 +47,24 @@ namespace PDFRepo.Forms
 
             fnameTextBox.Text = dt.Rows[0]["pdf_name"].ToString();
             descriptionTextBox.Text = dt.Rows[0]["pdf_description"].ToString();
+
             categoryComboBox.Text = dt.Rows[0]["pdf_category"].ToString();
+            attributeTextBox.Text = dt.Rows[0]["pdf_attributes"].ToString();
             creationDateTextBox.Text = dt.Rows[0]["pdf_created"].ToString();
             fileSizeTextBox.Text = dt.Rows[0]["pdf_size"].ToString();
-            attributeTextBox.Text = dt.Rows[0]["pdf_attributes"].ToString();
             lastModextBox.Text = dt.Rows[0]["pdf_lastmod"].ToString();
+            categoryTextBox.Text = dt.Rows[0]["pdf_category"].ToString();
+            subcategoryTextBox.Text = dt.Rows[0]["pdf_subcat"].ToString();
+
+
+
+            // And now load the scomboboxes based on the selected data
+          //  string category = dt.Rows[0]["pdf_category"].ToString().Trim();
+          //  categoryComboBox.SelectedValue = category;
+            
+
+           // string subCategory = dt.Rows[0]["pdf_subcat"].ToString().Trim();
+          //  subCatComboBox.SelectedValue = subCategory;
 
         }
 
@@ -92,7 +105,12 @@ namespace PDFRepo.Forms
         {
             CategoryGridForm cf = new CategoryGridForm();
             cf.Show();
-            BuildComboBoxes(); 
+            BuildComboBoxes();
+        }
+
+        private void label11_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

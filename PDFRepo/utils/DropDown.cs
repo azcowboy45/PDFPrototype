@@ -43,7 +43,9 @@ namespace PDFRepo.utils
 
             foreach (string item in items)
             {
-                genericCombobox.Items.Add(item);
+                string trimmedItem = item.Trim();
+                genericCombobox.Items.Add(trimmedItem);
+            //    coll.Add(trimmedItem);
             }
             // Set the AutoCompleteCustomSource to the collection created above
             genericCombobox.AutoCompleteCustomSource = coll;

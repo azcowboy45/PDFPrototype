@@ -32,16 +32,18 @@
             continueButton = new Button();
             setupButton = new Button();
             takeCommandLable = new Label();
-            label2 = new Label();
+            copyrightLable = new Label();
             userNameLabel = new Label();
             SuspendLayout();
             // 
             // continueButton
             // 
+            continueButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             continueButton.BackgroundImageLayout = ImageLayout.None;
-            continueButton.Location = new Point(1178, 971);
+            continueButton.Location = new Point(825, 583);
+            continueButton.Margin = new Padding(2);
             continueButton.Name = "continueButton";
-            continueButton.Size = new Size(169, 34);
+            continueButton.Size = new Size(118, 20);
             continueButton.TabIndex = 0;
             continueButton.Text = "Skip Setup";
             continueButton.UseVisualStyleBackColor = true;
@@ -49,9 +51,11 @@
             // 
             // setupButton
             // 
-            setupButton.Location = new Point(12, 971);
+            setupButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            setupButton.Location = new Point(8, 583);
+            setupButton.Margin = new Padding(2);
             setupButton.Name = "setupButton";
-            setupButton.Size = new Size(169, 34);
+            setupButton.Size = new Size(118, 20);
             setupButton.TabIndex = 1;
             setupButton.Text = "Continue to Setup";
             setupButton.UseVisualStyleBackColor = true;
@@ -63,22 +67,25 @@
             takeCommandLable.BackColor = Color.Transparent;
             takeCommandLable.Font = new Font("Vladimir Script", 28F, FontStyle.Regular, GraphicsUnit.Point, 0);
             takeCommandLable.ForeColor = Color.White;
-            takeCommandLable.Location = new Point(78, 266);
+            takeCommandLable.Location = new Point(55, 160);
+            takeCommandLable.Margin = new Padding(2, 0, 2, 0);
             takeCommandLable.Name = "takeCommandLable";
-            takeCommandLable.Size = new Size(1239, 67);
+            takeCommandLable.Size = new Size(841, 46);
             takeCommandLable.TabIndex = 2;
             takeCommandLable.Text = "Your PDFRepository, Take Command Of Your PDFs Today!";
             // 
-            // label2
+            // copyrightLable
             // 
-            label2.AutoSize = true;
-            label2.BackColor = Color.Transparent;
-            label2.ForeColor = Color.White;
-            label2.Location = new Point(593, 983);
-            label2.Name = "label2";
-            label2.Size = new Size(250, 25);
-            label2.TabIndex = 3;
-            label2.Text = "@2026 Spring Creek Software";
+            copyrightLable.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            copyrightLable.AutoSize = true;
+            copyrightLable.BackColor = Color.Transparent;
+            copyrightLable.ForeColor = Color.White;
+            copyrightLable.Location = new Point(415, 590);
+            copyrightLable.Margin = new Padding(2, 0, 2, 0);
+            copyrightLable.Name = "copyrightLable";
+            copyrightLable.Size = new Size(161, 15);
+            copyrightLable.TabIndex = 3;
+            copyrightLable.Text = "@2026 Spring Creek Software";
             // 
             // userNameLabel
             // 
@@ -86,25 +93,27 @@
             userNameLabel.BackColor = Color.Transparent;
             userNameLabel.Font = new Font("Vladimir Script", 36F, FontStyle.Regular, GraphicsUnit.Point, 0);
             userNameLabel.ForeColor = Color.White;
-            userNameLabel.Location = new Point(435, 142);
+            userNameLabel.Location = new Point(304, 85);
+            userNameLabel.Margin = new Padding(2, 0, 2, 0);
             userNameLabel.Name = "userNameLabel";
-            userNameLabel.Size = new Size(525, 87);
+            userNameLabel.Size = new Size(353, 58);
             userNameLabel.TabIndex = 4;
             userNameLabel.Text = "Welcome, New User";
             // 
             // SplashScreen
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
-            BackgroundImageLayout = ImageLayout.Zoom;
+            BackgroundImageLayout = ImageLayout.Stretch;
             CancelButton = continueButton;
-            ClientSize = new Size(1359, 1017);
+            ClientSize = new Size(951, 610);
             Controls.Add(userNameLabel);
-            Controls.Add(label2);
+            Controls.Add(copyrightLable);
             Controls.Add(takeCommandLable);
             Controls.Add(setupButton);
             Controls.Add(continueButton);
+            Margin = new Padding(2);
             Name = "SplashScreen";
             Text = "PDFRepo";
             Load += SplashScreen_Load;
@@ -117,7 +126,7 @@
         private Button continueButton;
         private Button setupButton;
         private Label takeCommandLable;
-        private Label label2;
+        private Label copyrightLable;
         private Label userNameLabel;
     }
 }

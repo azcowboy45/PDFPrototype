@@ -45,10 +45,13 @@ namespace PDFRepo.Forms
             // 1. Ensure the control measures its text width properly
             userNameLabel.AutoSize = true;
             takeCommandLable.AutoSize = true;
+            copyrightLable.AutoSize = true;
 
             // 3. Math: Subtract label width from internal window width, divide by 2
             userNameLabel.Left = (this.ClientSize.Width - userNameLabel.Width) / 2;
             takeCommandLable.Left = (this.ClientSize.Width - takeCommandLable.Width) / 2;
+            copyrightLable.Left = (this.ClientSize.Width - copyrightLable.Width) / 2;
+
         }
 
         private void continueButton_Click(object sender, EventArgs e)
