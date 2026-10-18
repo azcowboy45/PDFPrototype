@@ -48,6 +48,7 @@
             categoryComboBox = new ComboBox();
             label9 = new Label();
             subCatComboBox = new ComboBox();
+            editSubcategoriesButton = new Button();
             SuspendLayout();
             // 
             // exitButton
@@ -84,9 +85,9 @@
             // 
             // editCatButton
             // 
-            editCatButton.Location = new Point(467, 590);
+            editCatButton.Location = new Point(397, 590);
             editCatButton.Name = "editCatButton";
-            editCatButton.Size = new Size(153, 34);
+            editCatButton.Size = new Size(172, 34);
             editCatButton.TabIndex = 38;
             editCatButton.Text = "Edit Categories";
             editCatButton.UseVisualStyleBackColor = true;
@@ -234,11 +235,22 @@
             subCatComboBox.TabIndex = 40;
             subCatComboBox.SelectedIndexChanged += subCatComboBox_SelectedIndexChanged;
             // 
+            // editSubcategoriesButton
+            // 
+            editSubcategoriesButton.Location = new Point(607, 590);
+            editSubcategoriesButton.Name = "editSubcategoriesButton";
+            editSubcategoriesButton.Size = new Size(172, 34);
+            editSubcategoriesButton.TabIndex = 41;
+            editSubcategoriesButton.Text = "Edit Subcategories";
+            editSubcategoriesButton.UseVisualStyleBackColor = true;
+            editSubcategoriesButton.Click += editSubcategoriesButton_Click;
+            // 
             // ImportForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1143, 649);
+            Controls.Add(editSubcategoriesButton);
             Controls.Add(subCatComboBox);
             Controls.Add(label9);
             Controls.Add(categoryComboBox);
@@ -261,6 +273,7 @@
             Controls.Add(label5);
             Name = "ImportForm";
             Text = "ImportForm";
+            Activated += ImportForm_Activated;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -286,5 +299,6 @@
         private ComboBox categoryComboBox;
         private Label label9;
         private ComboBox subCatComboBox;
+        private Button editSubcategoriesButton;
     }
 }

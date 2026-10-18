@@ -37,6 +37,7 @@
             // 
             // pdfIdTextBox
             // 
+            pdfIdTextBox.Anchor = AnchorStyles.Bottom;
             pdfIdTextBox.Enabled = false;
             pdfIdTextBox.Location = new Point(554, 1206);
             pdfIdTextBox.Name = "pdfIdTextBox";
@@ -46,6 +47,7 @@
             // 
             // label1
             // 
+            label1.Anchor = AnchorStyles.Bottom;
             label1.AutoSize = true;
             label1.Location = new Point(436, 1209);
             label1.Name = "label1";
@@ -67,6 +69,7 @@
             // 
             // exitButton
             // 
+            exitButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             exitButton.Location = new Point(1020, 1204);
             exitButton.Name = "exitButton";
             exitButton.Size = new Size(112, 34);

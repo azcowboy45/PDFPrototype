@@ -58,11 +58,11 @@ namespace PDFRepo
             this.Activated += PDFList_Activated;
             dataGridView1.CellClick += dataGridView1_CellClick;
             selectorComboBox.SelectionChangeCommitted += selectorComboBox_SelectionChangeCommitted;
-            
+
             // Wire the event handler to myDataGridView
             dataGridView1.RowPostPaint += new DataGridViewRowPostPaintEventHandler(dataGridView1_RowPostPaint);
         }
-        
+
 
         private void selectorComboBox_SelectionChangeCommitted(object sender, EventArgs e)
         {
@@ -123,6 +123,7 @@ namespace PDFRepo
             this.selectablePDFId = dm.GetPdfIdByName(selectedNameStr);
 
             doViewPDF(selectablePDFId); // As a string, this.selectablePDFId can be used to fetch the PDF data from the database and display it in a new form.
+
         }
 
         private void doSplashScreen(string userName)
@@ -468,11 +469,6 @@ namespace PDFRepo
             FormatDataGrid();
 
         }
-
-
-
-
-
         private void subCatComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             DataModel dm = new DataModel();
@@ -483,8 +479,7 @@ namespace PDFRepo
 
         private void clearSelections()
         {
-            //  categoryComboBox.SelectedIndex = -1;
-            //  subCatComboBox.SelectedIndex = -1;
+            ;
             categoryComboBox.Text = "";
             subCatComboBox.Text = "";
         }
@@ -526,17 +521,15 @@ namespace PDFRepo
             sf.ShowDialog();
             userNameTextBox.Text = $"{configMgr.GetCfg().firstName} {configMgr.GetCfg().lastName}";
         }
-/*
-        private void selectorComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        { 
-            DataModel dm = new DataModel();
 
-            this.selectablePDFId = dm.GetPDFIdByName(this.selectedNameStr).ToString();
-
-            doViewPDF(selectablePDFId); // As a string, this.selectablePDFId can be used to fetch the PDF data from the database and display it in a new form
+        private void PDF_list_Load(object sender, EventArgs e)
+        {
 
         }
 
-        */
+        private void PDF_list_Activated(object sender, EventArgs e)
+        {
+            // DON'T USE THIS FOR NOW -- IT CAUSES A RECURSIVE LOOP
+        }
     }
 }

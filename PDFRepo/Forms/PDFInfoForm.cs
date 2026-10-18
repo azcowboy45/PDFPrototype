@@ -56,13 +56,10 @@ namespace PDFRepo.Forms
             categoryTextBox.Text = dt.Rows[0]["pdf_category"].ToString();
             subcategoryTextBox.Text = dt.Rows[0]["pdf_subcat"].ToString();
 
-
-
             // And now load the scomboboxes based on the selected data
           //  string category = dt.Rows[0]["pdf_category"].ToString().Trim();
           //  categoryComboBox.SelectedValue = category;
             
-
            // string subCategory = dt.Rows[0]["pdf_subcat"].ToString().Trim();
           //  subCatComboBox.SelectedValue = subCategory;
 

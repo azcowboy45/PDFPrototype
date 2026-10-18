@@ -145,10 +145,7 @@ namespace PDFRepo.Forms
 
         }
 
-        private void exitButton_Click(object sender, EventArgs e)
-        {
 
-        }
 
         private void descriptionTextBox_TextChanged(object sender, EventArgs e)
         {
@@ -165,13 +162,31 @@ namespace PDFRepo.Forms
         {
             CategoryGridForm cf = new CategoryGridForm();
             cf.Show();
-            BuildComboBoxes();
-
+            
         }
 
         private void subCatComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+
+
+        private void editSubcategoriesButton_Click(object sender, EventArgs e)
+        {
+            SubCatGridForm sgf = new SubCatGridForm();
+            sgf.Show();
+            
+        }
+
+        private void exitButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void ImportForm_Activated(object sender, EventArgs e)
+        {
+            BuildComboBoxes();
         }
     }
 }
