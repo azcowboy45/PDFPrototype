@@ -83,11 +83,11 @@
             dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.ContextMenuStrip = contextMenuStrip1;
-            dataGridView1.Location = new Point(32, 114);
+            dataGridView1.Location = new Point(0, 114);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowHeadersWidth = 62;
-            dataGridView1.Size = new Size(1752, 973);
+            dataGridView1.Size = new Size(1784, 1010);
             dataGridView1.TabIndex = 0;
             // 
             // contextMenuStrip1
@@ -141,7 +141,7 @@
             // exitButton
             // 
             exitButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            exitButton.Location = new Point(1661, 1107);
+            exitButton.Location = new Point(1663, 1158);
             exitButton.Name = "exitButton";
             exitButton.Size = new Size(111, 33);
             exitButton.TabIndex = 1;
@@ -282,7 +282,7 @@
             // 
             pdfImportButton.Anchor = AnchorStyles.None;
             pdfImportButton.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            pdfImportButton.Location = new Point(264, 7);
+            pdfImportButton.Location = new Point(723, 1158);
             pdfImportButton.Name = "pdfImportButton";
             pdfImportButton.Size = new Size(194, 33);
             pdfImportButton.TabIndex = 4;
@@ -355,7 +355,7 @@
             // 
             // userNameTextBox
             // 
-            userNameTextBox.Location = new Point(144, 1110);
+            userNameTextBox.Location = new Point(157, 1160);
             userNameTextBox.Name = "userNameTextBox";
             userNameTextBox.ReadOnly = true;
             userNameTextBox.Size = new Size(225, 31);
@@ -364,7 +364,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(11, 1112);
+            label3.Location = new Point(0, 1158);
             label3.Name = "label3";
             label3.Size = new Size(129, 25);
             label3.TabIndex = 11;
@@ -392,7 +392,7 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1786, 1110);
+            ClientSize = new Size(1786, 1203);
             Controls.Add(label4);
             Controls.Add(selectorComboBox);
             Controls.Add(label3);

@@ -8,6 +8,7 @@ using System.Drawing;
 using System.IO;
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Nodes;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using static System.Runtime.InteropServices.JavaScript.JSType;
@@ -26,11 +27,13 @@ namespace PDFRepo.DataClasses
         // Constructor: Initialize the config and logger, set the pdfAppPath, and load the configuration.
         public ConfigMgr()
         {
-            config = new ConfigElements(); 
+            config = new ConfigElements();
             logger = new LogClass();
             this.pdfAppPath = SetLocalAppDataPath();
             Loadconfig();
         }
+
+        #region output
         public ConfigElements GetCfg()
         {
             return config;
@@ -40,8 +43,6 @@ namespace PDFRepo.DataClasses
             string localAppData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
             return Path.Combine(localAppData, "PDFRepo", "settings.json");
         }
-
-        #region loadAndParseSettingsFile
         private void Loadconfig()
         {
             // 1. Always verify the file exists first to prevent crashes
@@ -111,8 +112,63 @@ namespace PDFRepo.DataClasses
         }
         #endregion
 
-        #region postSettingsAndLog
+        #region postSettings
 
+        public void SaveOneJsonParm(string parm)
+        {
+            GetDirectoryPath();
+
+            try
+            {
+                // backup
+                File.Copy(pdfAppPath, pdfAppPath + ".bak", true);
+
+                string jsonString = File.ReadAllText(pdfAppPath);
+                JsonNode configNode = JsonNode.Parse(jsonString);
+
+                var options = new JsonSerializerOptions { WriteIndented = true };
+                if (configNode is JsonObject obj)
+                {
+                    obj["BkupPath"] = parm;
+                    File.WriteAllText(pdfAppPath, obj.ToJsonString(options));
+                }
+                else if (configNode is JsonArray arr)
+                {
+                    bool found = false;
+                    for (int i = 0; i < arr.Count; i++)
+                    {
+                        if (arr[i] is JsonValue val)
+                        {
+                            string s = val.GetValue<string>();
+                            if (s.StartsWith("BkupPath=", StringComparison.OrdinalIgnoreCase))
+                            {
+                                arr[i] = $"BkupPath={parm}";
+                                found = true;
+                                break;
+                            }
+                        }
+                    }
+
+                    if (!found)
+                    {
+                        arr.Add($"BkupPath={parm}");
+                    }
+
+                    File.WriteAllText(pdfAppPath, arr.ToJsonString(options));
+                }
+                else
+                {
+                    throw new InvalidOperationException("Unsupported JSON root type.");
+                }
+
+                MessageBox.Show("Configuration element updated successfully!");
+            }
+
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred: {ex.Message}");
+            }
+        } 
         public void UpdateJsonConfig(string firstName,
                                  string lastName,
                                  string dbPath,
@@ -136,16 +192,15 @@ namespace PDFRepo.DataClasses
             PostSettings(settings);
             LogPost("Configuration updated.");
         }
+
+
+
         private void PostSettings(List<string> settings)
         {
             try
             {
                 // Ensure the directory exists
-                string directoryPath = Path.GetDirectoryName(pdfAppPath);
-                if (!Directory.Exists(directoryPath))
-                {
-                    Directory.CreateDirectory(directoryPath);
-                }
+                GetDirectoryPath();
                 string jsonSettings = JsonSerializer.Serialize(settings);
                 // Make sure we have a fresh file
                 // File.Delete(pdfAppPath);
@@ -164,6 +219,15 @@ namespace PDFRepo.DataClasses
         #endregion
 
         #region helpers
+
+        private void GetDirectoryPath()
+        {
+            string directoryPath = Path.GetDirectoryName(pdfAppPath);
+            if (!Directory.Exists(directoryPath))
+            {
+                Directory.CreateDirectory(directoryPath);
+            }
+        }
         private void LoadDefaults()
         {
             config.firstName = string.Empty;
@@ -181,7 +245,6 @@ namespace PDFRepo.DataClasses
             logger.AppendLogLine($"[{timestamp}] {logEntry}");
         }
         #endregion
-
 
     }
 }

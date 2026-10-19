@@ -27,10 +27,13 @@ namespace PDFRepo
 
         private string selectablePDFId = "-1";
         private string selectedNameStr;
+  //      private CreateDB cdb = null;
         #endregion
 
         public PDF_list(Program programReference)
         {
+            CreateDbIFNotExists();
+
             configMgr = new ConfigMgr();
             _program = programReference;
             //   MessageBox.Show($"ShowAtStartup is now: {_program.showAtStartup}");  -- for debugging purposes
@@ -52,6 +55,13 @@ namespace PDFRepo
             }
             LoadSelectionComboBox();
         }
+
+        private void CreateDbIFNotExists()
+        {
+            CreateDB cdb = new CreateDB();
+            cdb.CreateDatabase();
+        }
+
 
         private void WireUpHandlers()
         {
@@ -382,7 +392,7 @@ namespace PDFRepo
         private void backupToolStripMenuItem_Click(object sender, EventArgs e)
         {
             BackupForm backupForm = new BackupForm();
-            backupForm.ShowDialog();
+            backupForm.Show();
         }
 
 
@@ -530,6 +540,7 @@ namespace PDFRepo
         private void PDF_list_Activated(object sender, EventArgs e)
         {
             // DON'T USE THIS FOR NOW -- IT CAUSES A RECURSIVE LOOP
+            //LoadSelectionComboBox();
         }
     }
 }

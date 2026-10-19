@@ -1,3 +1,12 @@
+
+using System;
+// using System.Windows.Forms;
+using Microsoft.Data.Sqlite;
+using PDFRepo.DataClasses;
+
+
+
+
 namespace PDFRepo
 {
     public class Program
@@ -8,6 +17,8 @@ namespace PDFRepo
         /// 
 
         public bool showAtStartup { get; set; } = true;
+
+
 
         [STAThread]
         static void Main()
