@@ -233,6 +233,7 @@ namespace PDFRepo
                 FormatDataGrid();
                 firstTime = false;
             }
+            pdfCountTextBox.Text = dt.Rows.Count.ToString();
         }
 
         private void FormatDataGrid()
@@ -389,7 +390,7 @@ namespace PDFRepo
             else
             {
                 ViewPdfForm viewPdfForm = new ViewPdfForm(selectedPdfId);
-                viewPdfForm.ShowDialog();
+                viewPdfForm.Show();
                 clearSelections();
             }
         }
@@ -475,7 +476,7 @@ namespace PDFRepo
             else
             {
                 ViewPdfForm viewPdfForm = new ViewPdfForm(selectedPdfId);
-                viewPdfForm.ShowDialog();
+                viewPdfForm.Show();
                 this.LoadDataGrid();
             }
 

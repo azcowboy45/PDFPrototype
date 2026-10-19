@@ -71,6 +71,8 @@
             label3 = new Label();
             selectorComboBox = new ComboBox();
             label4 = new Label();
+            label5 = new Label();
+            pdfCountTextBox = new TextBox();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             contextMenuStrip1.SuspendLayout();
             menuStrip1.SuspendLayout();
@@ -87,7 +89,7 @@
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowHeadersWidth = 62;
-            dataGridView1.Size = new Size(1784, 1010);
+            dataGridView1.Size = new Size(1784, 1023);
             dataGridView1.TabIndex = 0;
             // 
             // contextMenuStrip1
@@ -282,7 +284,7 @@
             // 
             pdfImportButton.Anchor = AnchorStyles.None;
             pdfImportButton.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            pdfImportButton.Location = new Point(723, 1158);
+            pdfImportButton.Location = new Point(716, 4);
             pdfImportButton.Name = "pdfImportButton";
             pdfImportButton.Size = new Size(194, 33);
             pdfImportButton.TabIndex = 4;
@@ -388,11 +390,32 @@
             label4.TabIndex = 13;
             label4.Text = "Select by Name:";
             // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(622, 1158);
+            label5.Name = "label5";
+            label5.Size = new Size(101, 25);
+            label5.TabIndex = 14;
+            label5.Text = "PDF Count:";
+            // 
+            // pdfCountTextBox
+            // 
+            pdfCountTextBox.Location = new Point(729, 1155);
+            pdfCountTextBox.Name = "pdfCountTextBox";
+            pdfCountTextBox.ReadOnly = true;
+            pdfCountTextBox.Size = new Size(62, 31);
+            pdfCountTextBox.TabIndex = 15;
+            pdfCountTextBox.Text = "10000";
+            pdfCountTextBox.TextAlign = HorizontalAlignment.Center;
+            // 
             // PDF_list
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1786, 1203);
+            Controls.Add(pdfCountTextBox);
+            Controls.Add(label5);
             Controls.Add(label4);
             Controls.Add(selectorComboBox);
             Controls.Add(label3);
@@ -463,5 +486,7 @@
         private Label label3;
         private ComboBox selectorComboBox;
         private Label label4;
+        private Label label5;
+        private TextBox pdfCountTextBox;
     }
 }
