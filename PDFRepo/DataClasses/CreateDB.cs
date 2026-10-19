@@ -28,11 +28,18 @@ namespace PDFRepo.DataClasses
         public void CreateDatabase()
         {
 
-            InitializeDatabase();
+            if (InitializeDatabase())
+            {
+                AddSampleCategories();
+            }
+            else
+            {
+                MessageBox.Show("Database creation failed.");
+            }
 
         }
 
-        private void InitializeDatabase()
+        private bool InitializeDatabase()
         {
             try
             {                 // Ensure the directory exists
@@ -99,12 +106,56 @@ namespace PDFRepo.DataClasses
                     {
                         command.ExecuteNonQuery();
                     }
+                    return true;
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(
                     $"Error initializing database: {ex.Message}", "Database Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
+
+        private void AddSampleCategories()
+        {
+            try
+            {
+                using (var connection = new SqliteConnection(ConnectionString))
+                {
+                    connection.Open();
+                    // Check if the pdf_cat table is empty
+                    string checkSql = "SELECT COUNT(*) FROM pdf_cat";
+                    using (var checkCommand = new SqliteCommand(checkSql, connection))
+                    {
+                        long count = (long)checkCommand.ExecuteScalar();
+                        if (count == 0)
+                        {
+                            // Insert sample categories
+                            string insertSql = @"
+                                INSERT INTO pdf_cat (category, notes) VALUES ('HowTo', 'Any ""How To"" documents');
+                                INSERT INTO pdf_cat (category, notes) VALUES ('manuals', 'Pdfs documents about equipment or software.');
+                                INSERT INTO pdf_cat (category, notes) VALUES ('receipt', 'Documents from busines showing payment.');
+                            
+                                INSERT INTO sub_category(sub_cat, notes) VALUES('software', 'Software manuals or other related documents');
+                                INSERT INTO sub_category(sub_cat, notes) VALUES('vehicle', 'Any documents related to vehicles');
+                                INSERT INTO sub_category(sub_cat, notes) VALUES('U.S.', 'Forms and letters form the US Government'); ";
+
+
+
+                            using (var insertCommand = new SqliteCommand(insertSql, connection))
+                            {
+                                insertCommand.ExecuteNonQuery();
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    $"Error adding sample categories: {ex.Message}", "Database Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }

@@ -32,24 +32,21 @@ namespace PDFRepo
 
         public PDF_list(Program programReference)
         {
-            CreateDbIFNotExists();
 
-            configMgr = new ConfigMgr();
-            _program = programReference;
-            //   MessageBox.Show($"ShowAtStartup is now: {_program.showAtStartup}");  -- for debugging purposes
-            mic = new MethodsInCommon();
             InitializeComponent();
-
             WireUpHandlers();
 
-            configMgr = new ConfigMgr();
-            config = configMgr.GetCfg();
+            _program = programReference;
 
+            CreateDbIFNotExists();
+            SetupConfig();
             // result = Convert.ToBoolean(config.bypassOnStartup);
-            bool result = Convert.ToBoolean(config.bypassOnStartup);
+            bool result = Convert.ToBoolean(config.bypassOnStartup);   // This doesn't work with first run setup
+
+            mic = new MethodsInCommon();
             _program.showAtStartup = result;
             userNameTextBox.Text = $"{config.firstName} {config.lastName}".Trim();
-            if (!_program.showAtStartup)
+            if (_program.showAtStartup)
             {
                 doSplashScreen(userNameTextBox.Text);
             }
@@ -60,6 +57,14 @@ namespace PDFRepo
         {
             CreateDB cdb = new CreateDB();
             cdb.CreateDatabase();
+        }
+
+        private void SetupConfig()
+        {
+            ConfigElements Localconfig;
+            configMgr = new ConfigMgr();
+            Localconfig = configMgr.GetCfg();
+            this.config = Localconfig;
         }
 
 
@@ -95,6 +100,11 @@ namespace PDFRepo
             return pdfList;
         }
 
+        /**
+         * This method is to load the selection box at the top of the PDF_List form.
+         * 
+         * 
+         * */
         private void LoadSelectionComboBox()
         {
             string[] items = GetSelectionList();

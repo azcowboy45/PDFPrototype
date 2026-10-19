@@ -11,8 +11,8 @@ namespace PDFRepo.DataClasses
         public string lastName { get; set; } = string.Empty;
         public string dbPath { get; set; } = string.Empty;
         public string bkupPath { get; set; } = string.Empty;
-        public string enableLogging { get; set; } = string.Empty;
-        public string bypassOnStartup { get; set; } = string.Empty;
+        public string enableLogging { get; set; } = "true";  // Default to true, set to false later if needed
+        public string bypassOnStartup { get; set; } = "false";  // Default to false, set to true later if needed via the GUI
         public string submissionDate { get; set; } = string.Empty;
 
     }

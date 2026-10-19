@@ -31,12 +31,14 @@ namespace PDFRepo.DataClasses
             logger = new LogClass();
             this.pdfAppPath = SetLocalAppDataPath();
             Loadconfig();
+            //  pdflist.config = this.config; // This line is commented out because pdflist is not defined in this constructor.
         }
+
 
         #region output
         public ConfigElements GetCfg()
         {
-            return config;
+            return this.config;
         }
         private string SetLocalAppDataPath()
         {
@@ -234,8 +236,8 @@ namespace PDFRepo.DataClasses
             config.lastName = string.Empty;
             config.dbPath = string.Empty;
             config.bkupPath = string.Empty;
-            config.enableLogging = string.Empty;
-            config.bypassOnStartup = string.Empty;
+            config.enableLogging = "false";
+            config.bypassOnStartup = "false";
             config.submissionDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
         }
 
