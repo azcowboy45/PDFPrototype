@@ -16,7 +16,7 @@ namespace PDFRepo
         /// </summary>
         /// 
 
-        public bool showAtStartup { get; set; } = true;
+        public bool bypassOnStartup { get; set; } = true;
 
 
 

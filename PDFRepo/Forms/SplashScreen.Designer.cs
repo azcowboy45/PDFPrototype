@@ -42,12 +42,11 @@
             continueButton.BackgroundImageLayout = ImageLayout.None;
             continueButton.FlatAppearance.BorderSize = 2;
             continueButton.FlatStyle = FlatStyle.Popup;
-            continueButton.Location = new Point(822, 571);
-            continueButton.Margin = new Padding(2);
+            continueButton.Location = new Point(1174, 952);
             continueButton.Name = "continueButton";
-            continueButton.Size = new Size(118, 28);
+            continueButton.Size = new Size(169, 47);
             continueButton.TabIndex = 0;
-            continueButton.Text = "Skip Setup";
+            continueButton.Text = "Contine to App";
             continueButton.UseVisualStyleBackColor = true;
             continueButton.Click += continueButton_Click;
             // 
@@ -56,12 +55,11 @@
             setupButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             setupButton.FlatAppearance.BorderSize = 2;
             setupButton.FlatStyle = FlatStyle.Popup;
-            setupButton.Location = new Point(11, 571);
-            setupButton.Margin = new Padding(2);
+            setupButton.Location = new Point(16, 952);
             setupButton.Name = "setupButton";
-            setupButton.Size = new Size(118, 28);
+            setupButton.Size = new Size(169, 47);
             setupButton.TabIndex = 1;
-            setupButton.Text = "Continue to Setup";
+            setupButton.Text = "Setup";
             setupButton.UseVisualStyleBackColor = true;
             setupButton.Click += setupButton_Click;
             // 
@@ -71,10 +69,9 @@
             takeCommandLable.BackColor = Color.Transparent;
             takeCommandLable.Font = new Font("Vladimir Script", 28F, FontStyle.Regular, GraphicsUnit.Point, 0);
             takeCommandLable.ForeColor = Color.White;
-            takeCommandLable.Location = new Point(55, 160);
-            takeCommandLable.Margin = new Padding(2, 0, 2, 0);
+            takeCommandLable.Location = new Point(79, 267);
             takeCommandLable.Name = "takeCommandLable";
-            takeCommandLable.Size = new Size(841, 46);
+            takeCommandLable.Size = new Size(1237, 67);
             takeCommandLable.TabIndex = 2;
             takeCommandLable.Text = "With PDFRepo, You Take Command Of Your PDFs Today!";
             // 
@@ -84,10 +81,9 @@
             copyrightLable.AutoSize = true;
             copyrightLable.BackColor = Color.Transparent;
             copyrightLable.ForeColor = Color.White;
-            copyrightLable.Location = new Point(415, 590);
-            copyrightLable.Margin = new Padding(2, 0, 2, 0);
+            copyrightLable.Location = new Point(593, 983);
             copyrightLable.Name = "copyrightLable";
-            copyrightLable.Size = new Size(161, 15);
+            copyrightLable.Size = new Size(250, 25);
             copyrightLable.TabIndex = 3;
             copyrightLable.Text = "@2026 Spring Creek Software";
             // 
@@ -97,27 +93,25 @@
             userNameLabel.BackColor = Color.Transparent;
             userNameLabel.Font = new Font("Vladimir Script", 36F, FontStyle.Regular, GraphicsUnit.Point, 0);
             userNameLabel.ForeColor = Color.White;
-            userNameLabel.Location = new Point(304, 85);
-            userNameLabel.Margin = new Padding(2, 0, 2, 0);
+            userNameLabel.Location = new Point(434, 142);
             userNameLabel.Name = "userNameLabel";
-            userNameLabel.Size = new Size(353, 58);
+            userNameLabel.Size = new Size(525, 87);
             userNameLabel.TabIndex = 4;
             userNameLabel.Text = "Welcome, New User";
             // 
             // SplashScreen
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             CancelButton = continueButton;
-            ClientSize = new Size(951, 610);
+            ClientSize = new Size(1359, 1017);
             Controls.Add(userNameLabel);
             Controls.Add(copyrightLable);
             Controls.Add(takeCommandLable);
             Controls.Add(setupButton);
             Controls.Add(continueButton);
-            Margin = new Padding(2);
             Name = "SplashScreen";
             Text = "PDFRepo";
             Load += SplashScreen_Load;

@@ -14,6 +14,7 @@ namespace PDFRepo.DataClasses
     {
         private string ConnectionString;
         private string localAppData = String.Empty;
+        private string dbPath = String.Empty;
 
         public CreateDB()
         {
@@ -21,11 +22,11 @@ namespace PDFRepo.DataClasses
             localAppData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
 
             // To combine it with a custom application file or folder safely: We will do settings.json later
-            string dbPath = Path.Combine(localAppData, "PDFRepo", "PDFRepo.db");
+            this.dbPath = Path.Combine(localAppData, "PDFRepo", "PDFRepo.db");
 
-            ConnectionString = $"Data Source={dbPath};";
+            ConnectionString = $"Data Source={this.dbPath};";
         }
-        public void CreateDatabase()
+        public string CreateDatabase()
         {
 
             if (InitializeDatabase())
@@ -36,6 +37,7 @@ namespace PDFRepo.DataClasses
             {
                 MessageBox.Show("Database creation failed.");
             }
+            return this.dbPath;
 
         }
 
@@ -136,10 +138,12 @@ namespace PDFRepo.DataClasses
                             string insertSql = @"
                                 INSERT INTO pdf_cat (category, notes) VALUES ('HowTo', 'Any ""How To"" documents');
                                 INSERT INTO pdf_cat (category, notes) VALUES ('manuals', 'Pdfs documents about equipment or software.');
+                                INSERT INTO pdf_cat (category, notes) VALUES ('recipe', 'Pdfs documents about equipment or software.');
                                 INSERT INTO pdf_cat (category, notes) VALUES ('receipt', 'Documents from busines showing payment.');
                             
                                 INSERT INTO sub_category(sub_cat, notes) VALUES('software', 'Software manuals or other related documents');
                                 INSERT INTO sub_category(sub_cat, notes) VALUES('vehicle', 'Any documents related to vehicles');
+                                INSERT INTO sub_category(sub_cat, notes) VALUES('anytime', 'Subcategory oriented to recipies.');
                                 INSERT INTO sub_category(sub_cat, notes) VALUES('U.S.', 'Forms and letters form the US Government'); ";
 
 

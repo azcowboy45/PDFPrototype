@@ -19,6 +19,8 @@ namespace PDFRepo
         #region instance variables
         public ConfigMgr configMgr { get; set; }
         public ConfigElements config { get; set; }
+
+        LogClass logger;
         private MethodsInCommon mic;
         private bool firstTime = true;
         private Program _program;
@@ -26,43 +28,69 @@ namespace PDFRepo
         public bool ShowAtStartup { get; set; }
 
         private string selectablePDFId = "-1";
+
+        private string dbPath;
         private string selectedNameStr;
   //      private CreateDB cdb = null;
         #endregion
 
         public PDF_list(Program programReference)
         {
+            // Store the reference to the Program instance, so we can access some properties and methods globally.
+            _program = programReference; 
 
             InitializeComponent();
             WireUpHandlers();
+            ConfigureApplication();
 
-            _program = programReference;
+            // Load the selection combo box with available PDFs
+            LoadSelectionComboBox();
+        }
 
+        private void ConfigureApplication()
+        {
+            // 1. Create the database if it doesn't exist
             CreateDbIFNotExists();
+            // 2. Load the configuration settings
             SetupConfig();
-            // result = Convert.ToBoolean(config.bypassOnStartup);
-            bool result = Convert.ToBoolean(config.bypassOnStartup);   // This doesn't work with first run setup
-
+            // 3. Initialize common methods utility
             mic = new MethodsInCommon();
-            _program.showAtStartup = result;
+            // 4. Set the user name in the UI
             userNameTextBox.Text = $"{config.firstName} {config.lastName}".Trim();
-            if (_program.showAtStartup)
+            // 5. Show splash screen if configured to do so
+            bool result = Convert.ToBoolean(this.config.bypassOnStartup);
+            _program.bypassOnStartup = result;
+            DoSplashScreenIfNeeded();
+            // 6. Create log file if it doesn't exist
+            CreateLogger();
+
+        }
+
+        private void CreateLogger()
+        {
+
+            logger = new LogClass();
+            logger.AppendLogLine("Started PDFRepo.");
+        }
+
+        private void DoSplashScreenIfNeeded()
+        {
+            if (!_program.bypassOnStartup)
             {
                 doSplashScreen(userNameTextBox.Text);
             }
-            LoadSelectionComboBox();
-        }
+        }       
 
         private void CreateDbIFNotExists()
         {
             CreateDB cdb = new CreateDB();
-            cdb.CreateDatabase();
+            this.dbPath =cdb.CreateDatabase();
         }
 
         private void SetupConfig()
         {
             ConfigElements Localconfig;
-            configMgr = new ConfigMgr();
+            configMgr = new ConfigMgr(this.dbPath);
             Localconfig = configMgr.GetCfg();
             this.config = Localconfig;
         }

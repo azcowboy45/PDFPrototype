@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Nodes;
@@ -24,9 +25,21 @@ namespace PDFRepo.DataClasses
         private LogClass logger;
         public ConfigElements config;
 
+        private string dbPath = string.Empty;
+
         // Constructor: Initialize the config and logger, set the pdfAppPath, and load the configuration.
         public ConfigMgr()
         {
+            config = new ConfigElements();
+            logger = new LogClass();
+            this.pdfAppPath = SetLocalAppDataPath();
+            Loadconfig();
+            //  pdflist.config = this.config; // This line is commented out because pdflist is not defined in this constructor.
+        }
+
+        public ConfigMgr(string dbPath)
+        {
+            this.dbPath = dbPath;
             config = new ConfigElements();
             logger = new LogClass();
             this.pdfAppPath = SetLocalAppDataPath();
@@ -91,7 +104,7 @@ namespace PDFRepo.DataClasses
                             config.lastName = value;
                             break;
                         case "DbPath":
-                            config.dbPath = this.pdfAppPath;  // Always use the correct path for DbPath
+                            config.dbPath = this.dbPath;  // Always use the correct path for database (dbPath)
                             break;
                         case "BkupPath":
                             config.bkupPath = value;
@@ -230,13 +243,24 @@ namespace PDFRepo.DataClasses
                 Directory.CreateDirectory(directoryPath);
             }
         }
+
+        private string BuildDefaultBackupPath()
+        {
+            // 1. Get the base Documents folder path
+            string documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+
+            // 2. Safely attach your subfolder name
+            string completePath = Path.Combine(documentsPath, "PDFRepoBackups");
+
+            return completePath;
+        }
         private void LoadDefaults()
         {
-            config.firstName = string.Empty;
-            config.lastName = string.Empty;
-            config.dbPath = string.Empty;
-            config.bkupPath = string.Empty;
-            config.enableLogging = "false";
+            config.firstName = "Your first name";
+            config.lastName = "Your Last name";
+            config.dbPath = this.dbPath;
+            config.bkupPath = BuildDefaultBackupPath(); //suggested default backup path
+            config.enableLogging = "true";  // We may want to set this to false later if needed
             config.bypassOnStartup = "false";
             config.submissionDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
         }
