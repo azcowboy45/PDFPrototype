@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Text;
 using System.Windows.Forms;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace PDFRepo.utils
 {
@@ -22,6 +23,68 @@ namespace PDFRepo.utils
         {
             this.dm = dm;
         }
+
+
+
+        /**
+         * This method is to load the selection box at the top of the PDF_List form.
+         * REF  GetSelectorKeyedList(string tableName, String keyCol, String theId)
+         * 
+         * */
+        public void LoadAutoCompleteComboBox(DataModel dm, ComboBox genericComboBox, string tableName, string keyCol, string theId)
+        {
+            string[] items = GetSelectionList(dm, tableName, keyCol, theId);
+
+            // Create an AutoCompleteStringCollection and add the items
+            AutoCompleteStringCollection coll = new AutoCompleteStringCollection();
+
+            coll.AddRange(items);
+            genericComboBox.Items.Clear();
+
+            foreach (string item in items)
+            {
+                genericComboBox.Items.Add(item);
+            }
+
+            //    ingredientComboBox.Items.AddRange(items);   // this add the items again???
+
+            // Set the AutoCompleteCustomSource to the collection created above
+            genericComboBox.AutoCompleteCustomSource = coll;
+
+            // Specify that the source for autocompletion is a custom source
+            genericComboBox.AutoCompleteSource = AutoCompleteSource.CustomSource;
+
+            // Set the mode to SuggestAppend (shows a dropdown list and appends matching text)
+            genericComboBox.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+
+            // Set the AutoCompleteCustomSource to the collection created above
+            genericComboBox.AutoCompleteCustomSource = coll;
+        }
+
+
+            //   DataModel dm = new DataModel();
+          // REF  GetSelectorKeyedList(string tableName, String keyCol, String theId)
+        private string[] GetSelectionList(DataModel dm, string tableName, string keyCol, string theId)
+        {
+            string[] pdfList = new string[] { };
+
+            DataSet autoList = dm.GetSelectorKeyedList(tableName, keyCol, theId);
+            Int32 recCount = autoList.Tables[0].Rows.Count;
+
+            foreach (DataRow row in autoList.Tables[tableName].Rows)
+            {
+                string str = row[0].ToString();
+                pdfList = pdfList.Append<string>(str).ToArray();
+
+            }
+            return pdfList;
+        }
+
+
+
+
+       
+        
 
         public void LoadComboBox(ComboBox genericCombobox, bool isCategory)
         {
@@ -77,6 +140,12 @@ namespace PDFRepo.utils
             return categoryList;
         }
 
+
+        /**
+         * dm.getCategoryKeyedList("pdf_cat", "category", "id");
+         * dm.getCategoryKeyedList("sub_category", "sub_cat", "id");
+         */
+
         private string[] GetSubCatList()
         {
             string[] categoryList = new string[] { };
@@ -96,6 +165,11 @@ namespace PDFRepo.utils
 
             return categoryList;
         }
+
+
+
+
+
 
 
 

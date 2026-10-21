@@ -11,11 +11,8 @@ namespace PDFRepo
 {
     public partial class PDF_list : Form
     {
-        //    private Config cfg;
-        //    private StartForm loginForm;
+        
 
-        // 2. Add this attribute to hide it from the UI Designer serialization
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         #region instance variables
         public ConfigMgr configMgr { get; set; }
         public ConfigElements config { get; set; }
@@ -43,9 +40,25 @@ namespace PDFRepo
             WireUpHandlers();
             ConfigureApplication();
 
-            // Load the selection combo box with available PDFs
-            LoadSelectionComboBox();
+            BuildComboBoxes();  
         }
+
+        /// <summary>
+        /// Initializes and populates the category, subcategory, and selector combo boxes with auto-complete data.
+        /// </summary>
+        /// <remarks>Creates data access and dropdown helper instances, then binds each combo box to its
+        /// corresponding table using the display column and ID value column.</remarks>
+        private void BuildComboBoxes()
+        {
+            DataModel dm = new DataModel();
+            DropDown dd = new DropDown(dm);
+            //     dd.LoadComboBox(categoryComboBox, true);
+            //     dd.LoadComboBox(subCatComboBox, false);
+
+            dd.LoadAutoCompleteComboBox(dm, categoryComboBox, "pdf_cat", "category", "ID");
+            dd.LoadAutoCompleteComboBox(dm, subCatComboBox, "sub_category", "sub_cat", "ID");
+            dd.LoadAutoCompleteComboBox(dm, selectorComboBox, "pdf_table", "pdf_name", "ID");
+        }   
 
         private void ConfigureApplication()
         {
@@ -109,9 +122,12 @@ namespace PDFRepo
 
         private void selectorComboBox_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            selectorComboBox.DataBindings["SelectedValue"]?.WriteValue();
+
+           selectorComboBox.DataBindings["SelectedValue"]?.WriteValue();
+
         }
 
+        /* GetSelectList - Obsolete
         private string[] GetSelectionList()
         {
             string[] pdfList = new string[] { };
@@ -127,12 +143,10 @@ namespace PDFRepo
             }
             return pdfList;
         }
+        */
 
-        /**
-         * This method is to load the selection box at the top of the PDF_List form.
-         * 
-         * 
-         * */
+
+        /* LoadSelectionComboBox - Obsolete
         private void LoadSelectionComboBox()
         {
             string[] items = GetSelectionList();
@@ -162,7 +176,7 @@ namespace PDFRepo
             // Set the AutoCompleteCustomSource to the collection created above
             selectorComboBox.AutoCompleteCustomSource = coll;
         }
-
+        */
         private void selectorComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             string selectedNameStr = selectorComboBox.Text;
@@ -206,21 +220,14 @@ namespace PDFRepo
 
         private void PDFList_Activated(object sender, EventArgs e)
         {
-            BuildComboBox();  // Rebuild the ComboBox when the form is activated
+        //    BuildComboBoxes();  // Rebuild the ComboBox when the form is activated
             // Refresh the DataGridView when the form is activated
             LoadDataGrid();
         }
 
         #endregion
 
-        // This method builds the ComboBox for categories and subcategories
-        private void BuildComboBox()
-        {
-            DataModel dm = new DataModel();
-            DropDown dd = new DropDown(dm);
-            dd.LoadComboBox(categoryComboBox, true);
-            dd.LoadComboBox(subCatComboBox, false);
-        }
+
 
         #region processingMethods
         private void LoadDataGrid()
