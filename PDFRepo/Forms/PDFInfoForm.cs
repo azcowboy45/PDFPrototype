@@ -26,17 +26,16 @@ namespace PDFRepo.Forms
             InitializeComponent();
             LoadFormData(pdfId);
             // Wire up the Activated event handler programmatically
-            this.Activated += PDFList_Activated;  // Wire up the Activated event handler programmatically to the PDF_List form.
+       //     this.Activated += PDFList_Activated;  // Wire up the Activated event handler programmatically to the PDF_List form.
 
         }
 
         private void PDFList_Activated(object sender, EventArgs e)
         {
-            BuildComboBoxes();  // Rebuild the ComboBox when the form is activated
+      //      BuildComboBoxes();  // Rebuild the ComboBox when the form is activated
                                 // Refresh the DataGridView when the form is activated
                                 // LoadDataGrid();
         }
-
 
         private void LoadFormData(string pdfId)
         {
@@ -49,30 +48,18 @@ namespace PDFRepo.Forms
             descriptionTextBox.Text = dt.Rows[0]["pdf_description"].ToString();
 
             categoryComboBox.Text = dt.Rows[0]["pdf_category"].ToString();
+            subCatComboBox.Text = dt.Rows[0]["pdf_subcat"].ToString();
             attributeTextBox.Text = dt.Rows[0]["pdf_attributes"].ToString();
             creationDateTextBox.Text = dt.Rows[0]["pdf_created"].ToString();
             fileSizeTextBox.Text = dt.Rows[0]["pdf_size"].ToString();
             lastModextBox.Text = dt.Rows[0]["pdf_lastmod"].ToString();
-            categoryTextBox.Text = dt.Rows[0]["pdf_category"].ToString();
-            subcategoryTextBox.Text = dt.Rows[0]["pdf_subcat"].ToString();
-
-            // And now load the scomboboxes based on the selected data
-          //  string category = dt.Rows[0]["pdf_category"].ToString().Trim();
-          //  categoryComboBox.SelectedValue = category;
-            
-           // string subCategory = dt.Rows[0]["pdf_subcat"].ToString().Trim();
-          //  subCatComboBox.SelectedValue = subCategory;
-
         }
-
-
-
         private void BuildComboBoxes()
         {
             DataModel dm = new DataModel();
             DropDown dd = new DropDown(dm);
-            dd.LoadComboBox(categoryComboBox, true);
-            dd.LoadComboBox(subCatComboBox, false);
+            dd.LoadAutoCompleteComboBox(dm, categoryComboBox, "pdf_cat", "category", "ID");
+            dd.LoadAutoCompleteComboBox(dm, subCatComboBox, "sub_category", "sub_cat", "ID");
         }
         private void label1_Click(object sender, EventArgs e)
         {

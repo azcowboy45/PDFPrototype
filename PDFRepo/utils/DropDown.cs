@@ -80,12 +80,7 @@ namespace PDFRepo.utils
             return pdfList;
         }
 
-
-
-
-       
-        
-
+         
         public void LoadComboBox(ComboBox genericCombobox, bool isCategory)
         {
             string[] items;
@@ -141,11 +136,6 @@ namespace PDFRepo.utils
         }
 
 
-        /**
-         * dm.getCategoryKeyedList("pdf_cat", "category", "id");
-         * dm.getCategoryKeyedList("sub_category", "sub_cat", "id");
-         */
-
         private string[] GetSubCatList()
         {
             string[] categoryList = new string[] { };
@@ -165,14 +155,6 @@ namespace PDFRepo.utils
 
             return categoryList;
         }
-
-
-
-
-
-
-
-
 
 
     }

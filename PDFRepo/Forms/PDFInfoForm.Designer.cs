@@ -31,7 +31,6 @@
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
-            label4 = new Label();
             label5 = new Label();
             label6 = new Label();
             label7 = new Label();
@@ -46,24 +45,17 @@
             SaveButton = new Button();
             exitButton = new Button();
             categoryComboBox = new ComboBox();
-            editCatButton = new Button();
             label9 = new Label();
             subCatComboBox = new ComboBox();
-            label10 = new Label();
-            label11 = new Label();
-            panel1 = new Panel();
-            subcategoryTextBox = new TextBox();
-            categoryTextBox = new TextBox();
-            panel1.SuspendLayout();
+            label4 = new Label();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(8, 14);
-            label1.Margin = new Padding(2, 0, 2, 0);
+            label1.Location = new Point(11, 23);
             label1.Name = "label1";
-            label1.Size = new Size(21, 15);
+            label1.Size = new Size(34, 25);
             label1.TabIndex = 0;
             label1.Text = "ID:";
             label1.Click += label1_Click;
@@ -71,141 +63,117 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(230, 14);
-            label2.Margin = new Padding(2, 0, 2, 0);
+            label2.Location = new Point(329, 23);
             label2.Name = "label2";
-            label2.Size = new Size(60, 15);
+            label2.Size = new Size(89, 25);
             label2.TabIndex = 1;
             label2.Text = "FileName:";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(8, 219);
-            label3.Margin = new Padding(2, 0, 2, 0);
+            label3.Location = new Point(11, 272);
             label3.Name = "label3";
-            label3.Size = new Size(70, 15);
+            label3.Size = new Size(106, 25);
             label3.TabIndex = 2;
             label3.Text = "Description:";
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new Point(84, 50);
-            label4.Margin = new Padding(2, 0, 2, 0);
-            label4.Name = "label4";
-            label4.Size = new Size(58, 15);
-            label4.TabIndex = 3;
-            label4.Text = "Category:";
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(2, 310);
-            label5.Margin = new Padding(2, 0, 2, 0);
+            label5.Location = new Point(3, 424);
             label5.Name = "label5";
-            label5.Size = new Size(82, 15);
+            label5.Size = new Size(124, 25);
             label5.TabIndex = 4;
             label5.Text = "Creation Date:";
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(50, 261);
-            label6.Margin = new Padding(2, 0, 2, 0);
+            label6.Location = new Point(71, 342);
             label6.Name = "label6";
-            label6.Size = new Size(30, 15);
+            label6.Size = new Size(47, 25);
             label6.TabIndex = 5;
             label6.Text = "Size:";
             // 
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(482, 268);
-            label7.Margin = new Padding(2, 0, 2, 0);
+            label7.Location = new Point(689, 354);
             label7.Name = "label7";
-            label7.Size = new Size(58, 15);
+            label7.Size = new Size(88, 25);
             label7.TabIndex = 6;
             label7.Text = "Atributes:";
             // 
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(447, 318);
-            label8.Margin = new Padding(2, 0, 2, 0);
+            label8.Location = new Point(639, 437);
             label8.Name = "label8";
-            label8.Size = new Size(102, 15);
+            label8.Size = new Size(152, 25);
             label8.TabIndex = 7;
             label8.Text = "Last Modification:";
             // 
             // idTextBox
             // 
-            idTextBox.Location = new Point(36, 10);
-            idTextBox.Margin = new Padding(2);
+            idTextBox.Location = new Point(51, 17);
             idTextBox.Name = "idTextBox";
             idTextBox.ReadOnly = true;
-            idTextBox.Size = new Size(106, 23);
+            idTextBox.Size = new Size(150, 31);
             idTextBox.TabIndex = 8;
             // 
             // fnameTextBox
             // 
-            fnameTextBox.Location = new Point(296, 12);
-            fnameTextBox.Margin = new Padding(2);
+            fnameTextBox.Location = new Point(423, 20);
             fnameTextBox.Name = "fnameTextBox";
             fnameTextBox.ReadOnly = true;
-            fnameTextBox.Size = new Size(415, 23);
+            fnameTextBox.Size = new Size(591, 31);
             fnameTextBox.TabIndex = 9;
             // 
             // descriptionTextBox
             // 
-            descriptionTextBox.Location = new Point(87, 219);
-            descriptionTextBox.Margin = new Padding(2);
+            descriptionTextBox.Location = new Point(124, 272);
             descriptionTextBox.Name = "descriptionTextBox";
-            descriptionTextBox.Size = new Size(624, 23);
+            descriptionTextBox.Size = new Size(890, 31);
             descriptionTextBox.TabIndex = 11;
             // 
             // fileSizeTextBox
             // 
-            fileSizeTextBox.Location = new Point(87, 260);
-            fileSizeTextBox.Margin = new Padding(2);
+            fileSizeTextBox.Location = new Point(124, 340);
             fileSizeTextBox.Name = "fileSizeTextBox";
             fileSizeTextBox.ReadOnly = true;
-            fileSizeTextBox.Size = new Size(141, 23);
+            fileSizeTextBox.Size = new Size(200, 31);
             fileSizeTextBox.TabIndex = 12;
             // 
             // creationDateTextBox
             // 
-            creationDateTextBox.Location = new Point(87, 308);
-            creationDateTextBox.Margin = new Padding(2);
+            creationDateTextBox.Location = new Point(124, 420);
             creationDateTextBox.Name = "creationDateTextBox";
             creationDateTextBox.ReadOnly = true;
-            creationDateTextBox.Size = new Size(141, 23);
+            creationDateTextBox.Size = new Size(200, 31);
             creationDateTextBox.TabIndex = 13;
             // 
             // lastModextBox
             // 
-            lastModextBox.Location = new Point(557, 317);
-            lastModextBox.Margin = new Padding(2);
+            lastModextBox.Location = new Point(796, 435);
             lastModextBox.Name = "lastModextBox";
             lastModextBox.ReadOnly = true;
-            lastModextBox.Size = new Size(154, 23);
+            lastModextBox.Size = new Size(218, 31);
             lastModextBox.TabIndex = 14;
             // 
             // attributeTextBox
             // 
-            attributeTextBox.Location = new Point(557, 266);
-            attributeTextBox.Margin = new Padding(2);
+            attributeTextBox.Location = new Point(796, 350);
             attributeTextBox.Name = "attributeTextBox";
             attributeTextBox.ReadOnly = true;
-            attributeTextBox.Size = new Size(154, 23);
+            attributeTextBox.Size = new Size(218, 31);
             attributeTextBox.TabIndex = 15;
             // 
             // SaveButton
             // 
-            SaveButton.Location = new Point(10, 380);
-            SaveButton.Margin = new Padding(2);
+            SaveButton.Location = new Point(7, 531);
             SaveButton.Name = "SaveButton";
-            SaveButton.Size = new Size(78, 20);
+            SaveButton.Size = new Size(111, 33);
             SaveButton.TabIndex = 16;
             SaveButton.Text = "Save";
             SaveButton.UseVisualStyleBackColor = true;
@@ -213,10 +181,9 @@
             // 
             // exitButton
             // 
-            exitButton.Location = new Point(631, 380);
-            exitButton.Margin = new Padding(2);
+            exitButton.Location = new Point(903, 531);
             exitButton.Name = "exitButton";
-            exitButton.Size = new Size(78, 20);
+            exitButton.Size = new Size(111, 33);
             exitButton.TabIndex = 17;
             exitButton.Text = "Exit";
             exitButton.UseVisualStyleBackColor = true;
@@ -224,104 +191,46 @@
             // 
             // categoryComboBox
             // 
-            categoryComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
             categoryComboBox.FormattingEnabled = true;
-            categoryComboBox.Location = new Point(363, 104);
-            categoryComboBox.Margin = new Padding(2);
+            categoryComboBox.Location = new Point(338, 118);
             categoryComboBox.Name = "categoryComboBox";
-            categoryComboBox.Size = new Size(261, 23);
+            categoryComboBox.Size = new Size(371, 33);
             categoryComboBox.TabIndex = 18;
-            // 
-            // editCatButton
-            // 
-            editCatButton.Location = new Point(296, 380);
-            editCatButton.Margin = new Padding(2);
-            editCatButton.Name = "editCatButton";
-            editCatButton.Size = new Size(120, 20);
-            editCatButton.TabIndex = 39;
-            editCatButton.Text = "Modify Categories";
-            editCatButton.UseVisualStyleBackColor = true;
-            editCatButton.Click += editCatButton_Click;
             // 
             // label9
             // 
             label9.AutoSize = true;
-            label9.Location = new Point(66, 87);
-            label9.Margin = new Padding(2, 0, 2, 0);
+            label9.Location = new Point(211, 179);
             label9.Name = "label9";
-            label9.Size = new Size(76, 15);
+            label9.Size = new Size(116, 25);
             label9.TabIndex = 40;
             label9.Text = "Subcategory:";
             // 
             // subCatComboBox
             // 
-            subCatComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
             subCatComboBox.FormattingEnabled = true;
-            subCatComboBox.Location = new Point(363, 141);
-            subCatComboBox.Margin = new Padding(2);
+            subCatComboBox.Location = new Point(338, 176);
             subCatComboBox.Name = "subCatComboBox";
-            subCatComboBox.Size = new Size(261, 23);
+            subCatComboBox.Size = new Size(371, 33);
             subCatComboBox.TabIndex = 41;
             // 
-            // label10
+            // label4
             // 
-            label10.AutoSize = true;
-            label10.Font = new Font("Segoe UI", 9F, FontStyle.Underline, GraphicsUnit.Point, 0);
-            label10.Location = new Point(203, 76);
-            label10.Name = "label10";
-            label10.Size = new Size(83, 15);
-            label10.TabIndex = 42;
-            label10.Text = "Current Values";
-            // 
-            // label11
-            // 
-            label11.AutoSize = true;
-            label11.Font = new Font("Segoe UI", 9F, FontStyle.Underline, GraphicsUnit.Point, 0);
-            label11.Location = new Point(436, 76);
-            label11.Name = "label11";
-            label11.Size = new Size(64, 15);
-            label11.TabIndex = 43;
-            label11.Text = "Change To";
-            label11.Click += label11_Click;
-            // 
-            // panel1
-            // 
-            panel1.Controls.Add(subcategoryTextBox);
-            panel1.Controls.Add(categoryTextBox);
-            panel1.Controls.Add(label4);
-            panel1.Controls.Add(label9);
-            panel1.Location = new Point(12, 57);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(699, 134);
-            panel1.TabIndex = 44;
-            // 
-            // subcategoryTextBox
-            // 
-            subcategoryTextBox.Location = new Point(147, 82);
-            subcategoryTextBox.Name = "subcategoryTextBox";
-            subcategoryTextBox.ReadOnly = true;
-            subcategoryTextBox.Size = new Size(183, 23);
-            subcategoryTextBox.TabIndex = 45;
-            subcategoryTextBox.TextAlign = HorizontalAlignment.Center;
-            // 
-            // categoryTextBox
-            // 
-            categoryTextBox.Location = new Point(147, 47);
-            categoryTextBox.Name = "categoryTextBox";
-            categoryTextBox.ReadOnly = true;
-            categoryTextBox.Size = new Size(183, 23);
-            categoryTextBox.TabIndex = 46;
-            categoryTextBox.TextAlign = HorizontalAlignment.Center;
+            label4.AutoSize = true;
+            label4.Location = new Point(239, 118);
+            label4.Name = "label4";
+            label4.Size = new Size(88, 25);
+            label4.TabIndex = 3;
+            label4.Text = "Category:";
             // 
             // PDFInfoForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(718, 409);
-            Controls.Add(label11);
-            Controls.Add(label10);
+            ClientSize = new Size(1026, 576);
             Controls.Add(subCatComboBox);
-            Controls.Add(editCatButton);
+            Controls.Add(label9);
+            Controls.Add(label4);
             Controls.Add(categoryComboBox);
             Controls.Add(exitButton);
             Controls.Add(SaveButton);
@@ -339,12 +248,8 @@
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
-            Controls.Add(panel1);
-            Margin = new Padding(2);
             Name = "PDFInfoForm";
             Text = "ModifyPDFInfo";
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -354,7 +259,6 @@
         private Label label1;
         private Label label2;
         private Label label3;
-        private Label label4;
         private Label label5;
         private Label label6;
         private Label label7;
@@ -369,13 +273,8 @@
         private Button SaveButton;
         private Button exitButton;
         private ComboBox categoryComboBox;
-        private Button editCatButton;
         private Label label9;
         private ComboBox subCatComboBox;
-        private Label label10;
-        private Label label11;
-        private Panel panel1;
-        private TextBox subcategoryTextBox;
-        private TextBox categoryTextBox;
+        private Label label4;
     }
 }
