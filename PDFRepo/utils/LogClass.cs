@@ -13,7 +13,7 @@ namespace PDFRepo.utils
             string localAppData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
             this.logFilePath = Path.Combine(localAppData, "PDFRepo", "log.txt");
         }
-        public void AppendLogLine(string message)
+        private void AppendLogLine(string message)
         {
             // 1. Define the line you want to add
             string newLine = message;
@@ -31,7 +31,7 @@ namespace PDFRepo.utils
                     Directory.CreateDirectory(folderPath);
                 }
 
-                // 4. Append the text along with a new line break
+                // 4. Post (append) the text along with a new line break
                 File.AppendAllText(filePath, newLine + Environment.NewLine);
 
               //  MessageBox.Show("Line added successfully!");
@@ -40,6 +40,12 @@ namespace PDFRepo.utils
             {
                 MessageBox.Show($"An error occurred: {ex.Message}");
             }
+        }
+
+        public void LogPost(string logEntry)
+        {
+            string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            AppendLogLine($"[{timestamp}] {logEntry}");
         }
     }
 }

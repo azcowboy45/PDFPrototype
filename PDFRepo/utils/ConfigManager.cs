@@ -1,9 +1,6 @@
 ﻿
 /**
- * 
- * This is a prototype for a configuration manager that saves and loads application settings to a JSON file in the user's AppData folder.
- * To start, we will want to do just a text file, but we will want to eventually encrypt the file and store it in a secure location.    
- * 
+ *  
  * */
 
 using System;
@@ -70,5 +67,36 @@ namespace PDFRepo.utils
             string jsonString = File.ReadAllText(filePath);
             return JsonSerializer.Deserialize<AppConfig>(jsonString) ?? new AppConfig();
         }
+
+        public static void UpdateConfiguration(string propertyName, string newValue)
+        {
+            AppConfig config = LoadConfiguration();
+            // Use reflection to set the property dynamically
+            var property = typeof(AppConfig).GetProperty(propertyName);
+            if (property != null && property.CanWrite)
+            {
+                property.SetValue(config, newValue);
+                SaveConfiguration(config);
+            }
+            else
+            {
+                throw new ArgumentException($"Property '{propertyName}' does not exist or is not writable.");
+            }
+        }
+
+        public static string GetConfigurationValue(string propertyName)
+        {
+            AppConfig config = LoadConfiguration();
+            var property = typeof(AppConfig).GetProperty(propertyName);
+            if (property != null && property.CanRead)
+            {
+                return property.GetValue(config)?.ToString() ?? string.Empty;
+            }
+            else
+            {
+                throw new ArgumentException($"Property '{propertyName}' does not exist or is not readable.");
+            }
+        }
+
     }
 }

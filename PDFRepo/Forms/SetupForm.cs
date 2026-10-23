@@ -62,7 +62,7 @@ namespace PDFRepo.Forms
         private void LogPost(string logEntry)
         {
             string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-            logger.AppendLogLine($"[{timestamp}] {logEntry}");
+            logger.LogPost(logEntry);
         }
 
         private void CloseMyParentForm()

@@ -205,7 +205,7 @@ namespace PDFRepo.DataClasses
             };
 
             PostSettings(settings);
-            LogPost("Configuration updated.");
+            logger.LogPost("Configuration updated.");
         }
 
 
@@ -265,11 +265,7 @@ namespace PDFRepo.DataClasses
             config.submissionDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
         }
 
-        private void LogPost(string logEntry)
-        {
-            string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-            logger.AppendLogLine($"[{timestamp}] {logEntry}");
-        }
+
         #endregion
 
     }

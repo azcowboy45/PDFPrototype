@@ -92,7 +92,7 @@ namespace PDFRepo.Forms
         private void saveButton_Click(object sender, EventArgs e)
         {
             doConfigUpdate();
-            logger.AppendLogLine("Changed and save backup path.");
+            logger.LogPost("Changed and save backup path.");
             this.Close();
         }
 

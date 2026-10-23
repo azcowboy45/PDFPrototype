@@ -70,11 +70,11 @@ namespace PDFRepo
             mic = new MethodsInCommon();
             // 4. Set the user name in the UI
             userNameTextBox.Text = $"{config.firstName} {config.lastName}".Trim();
-            // 5. Show splash screen if configured to do so
-            bool result = Convert.ToBoolean(this.config.bypassOnStartup);
-            _program.bypassOnStartup = result;
+            // 5. Set global bypass on startup variable in _program
+            _program.bypassOnStartup = Convert.ToBoolean(this.config.bypassOnStartup); 
+            // 6. Based on result, show splash screen
             DoSplashScreenIfNeeded();
-            // 6. Create log file if it doesn't exist
+            // 7. Create log file if it doesn't exist
             CreateLogger();
 
         }
@@ -83,7 +83,7 @@ namespace PDFRepo
         {
 
             logger = new LogClass();
-            logger.AppendLogLine("Started PDFRepo.");
+            logger.LogPost("Started PDFRepo.");
         }
 
         private void DoSplashScreenIfNeeded()

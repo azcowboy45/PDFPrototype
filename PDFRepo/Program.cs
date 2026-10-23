@@ -17,6 +17,8 @@ namespace PDFRepo
         /// 
 
         public bool bypassOnStartup { get; set; } = true;
+        public string backupPath { get; set; } = string.Empty;
+        public string configPath { get; set; } = string.Empty;
 
 
 
