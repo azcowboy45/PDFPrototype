@@ -21,13 +21,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<None Update="PDFRepo.db">
-			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
-		</None>
-	</ItemGroup>
-
-	<ItemGroup>
-		<Folder Include="Docs\QueriesForPDFRepo\" />
+		<!-- Explicitly forces the compiler to completely ignore the file -->
+		<Compile Remove="Document\your_script.sql" />
+		<None Include="Document\your_script.sql" />
 	</ItemGroup>
 
 	<ItemGroup>

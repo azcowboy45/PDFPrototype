@@ -20,7 +20,7 @@ namespace PDFRepo
         LogClass logger;
         private MethodsInCommon mic;
         private bool firstTime = true;
-        private Program _program;
+        public Program _program;
 
         public bool ShowAtStartup { get; set; }
 
@@ -96,7 +96,7 @@ namespace PDFRepo
 
         private void CreateDbIFNotExists()
         {
-            CreateDB cdb = new CreateDB();
+            CreateDB cdb = new CreateDB(_program);
             this.dbPath =cdb.CreateDatabase();
         }
 

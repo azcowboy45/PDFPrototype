@@ -16,15 +16,17 @@ namespace PDFRepo.DataClasses
         private string localAppData = String.Empty;
         private string dbPath = String.Empty;
 
-        public CreateDB()
+        public CreateDB(Program programReference)
         {
             // Use Path.Combine to ensure the path is constructed correctly across different operating systems
-            localAppData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+            this.localAppData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
 
             // To combine it with a custom application file or folder safely: We will do settings.json later
             this.dbPath = Path.Combine(localAppData, "PDFRepo", "PDFRepo.db");
 
             ConnectionString = $"Data Source={this.dbPath};";
+
+            programReference.dbPath = this.dbPath; // Assuming _program is a static reference to your main program class
         }
         public string CreateDatabase()
         {
