@@ -19,11 +19,11 @@ namespace PDFRepo.Forms
         public ConfigElements config;
         private string backupPath = string.Empty;
 
-        public BackupForm()
+        public BackupForm(Program program)
         {
             InitializeComponent();
             logger = new LogClass();
-            configuration = new ConfigMgr();
+            configuration = new ConfigMgr(program);
             config = configuration.GetCfg();
 
         }

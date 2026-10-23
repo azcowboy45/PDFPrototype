@@ -19,32 +19,35 @@ namespace PDFRepo.DataClasses
 {
     public class ConfigMgr
     {
-        private string pdfAppPath = string.Empty;
+    //    private string pdfAppPath = string.Empty;
         private string localAppData = string.Empty;
         private string logEntry = string.Empty;
         private LogClass logger;
         public ConfigElements config;
 
+        private Program program;
+
         private string dbPath = string.Empty;
-
-        // Constructor: Initialize the config and logger, set the pdfAppPath, and load the configuration.
-        public ConfigMgr()
+        /// <summary>
+        /// 
+        /// Initializes a new instance of the ConfigMgr class.
+        /// </summary>
+        /// <remarks>Initializes configuration and logging components, sets the settings 
+        ///         path, and loads configuration
+        ///         data during construction.
+        ///         </remarks>
+        /// 
+        /// <param name="program">Program instance that provides application paths 
+        /// and receives the resolved settings path.</param>
+        ///
+        public ConfigMgr(Program program)
         {
+            this.program = program;
+            this.dbPath = this.program.dbPath;
             config = new ConfigElements();
             logger = new LogClass();
-            this.pdfAppPath = SetLocalAppDataPath();
+            program.settingsPath = DefineSettingsPath();
             Loadconfig();
-            //  pdflist.config = this.config; // This line is commented out because pdflist is not defined in this constructor.
-        }
-
-        public ConfigMgr(string dbPath)
-        {
-            this.dbPath = dbPath;
-            config = new ConfigElements();
-            logger = new LogClass();
-            this.pdfAppPath = SetLocalAppDataPath();
-            Loadconfig();
-            //  pdflist.config = this.config; // This line is commented out because pdflist is not defined in this constructor.
         }
 
 
@@ -53,7 +56,7 @@ namespace PDFRepo.DataClasses
         {
             return this.config;
         }
-        private string SetLocalAppDataPath()
+       private string DefineSettingsPath()
         {
             string localAppData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
             return Path.Combine(localAppData, "PDFRepo", "settings.json");
@@ -61,7 +64,7 @@ namespace PDFRepo.DataClasses
         private void Loadconfig()
         {
             // 1. Always verify the file exists first to prevent crashes
-            if (!File.Exists(pdfAppPath))
+            if (!File.Exists(program.settingsPath))
             {
                 LoadDefaults();
                 return;
@@ -70,7 +73,7 @@ namespace PDFRepo.DataClasses
             try
             {
                 // 2. Read the raw JSON string out of the file
-                string jsonString = File.ReadAllText(pdfAppPath);
+                string jsonString = File.ReadAllText(program.settingsPath);
 
                 // 3. Convert JSON back into a C# List<string>
                 List<string> settingsList = JsonSerializer.Deserialize<List<string>>(jsonString);
@@ -136,16 +139,16 @@ namespace PDFRepo.DataClasses
             try
             {
                 // backup
-                File.Copy(pdfAppPath, pdfAppPath + ".bak", true);
+                File.Copy(program.settingsPath, program.settingsPath + ".bak", true);
 
-                string jsonString = File.ReadAllText(pdfAppPath);
+                string jsonString = File.ReadAllText(program.settingsPath);
                 JsonNode configNode = JsonNode.Parse(jsonString);
 
                 var options = new JsonSerializerOptions { WriteIndented = true };
                 if (configNode is JsonObject obj)
                 {
                     obj["BkupPath"] = parm;
-                    File.WriteAllText(pdfAppPath, obj.ToJsonString(options));
+                    File.WriteAllText(program.settingsPath , obj.ToJsonString(options));
                 }
                 else if (configNode is JsonArray arr)
                 {
@@ -169,7 +172,7 @@ namespace PDFRepo.DataClasses
                         arr.Add($"BkupPath={parm}");
                     }
 
-                    File.WriteAllText(pdfAppPath, arr.ToJsonString(options));
+                    File.WriteAllText(program.settingsPath, arr.ToJsonString(options));
                 }
                 else
                 {
@@ -220,7 +223,7 @@ namespace PDFRepo.DataClasses
                 // Make sure we have a fresh file
                 // File.Delete(pdfAppPath);
                 // Write the settings to the file
-                File.WriteAllText(pdfAppPath, jsonSettings);
+                File.WriteAllText(program.settingsPath, jsonSettings);
                 MessageBox.Show("Settings updated.");
 
 
@@ -237,7 +240,7 @@ namespace PDFRepo.DataClasses
 
         private void GetDirectoryPath()
         {
-            string directoryPath = Path.GetDirectoryName(pdfAppPath);
+            string directoryPath = Path.GetDirectoryName(program.settingsPath);
             if (!Directory.Exists(directoryPath))
             {
                 Directory.CreateDirectory(directoryPath);

@@ -16,7 +16,7 @@ namespace PDFRepo.DataClasses
         private string localAppData = String.Empty;
         private string dbPath = String.Empty;
 
-        public CreateDB(Program programReference)
+        public CreateDB(Program program)
         {
             // Use Path.Combine to ensure the path is constructed correctly across different operating systems
             this.localAppData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
@@ -26,7 +26,7 @@ namespace PDFRepo.DataClasses
 
             ConnectionString = $"Data Source={this.dbPath};";
 
-            programReference.dbPath = this.dbPath; // Assuming _program is a static reference to your main program class
+            program.dbPath = this.dbPath; // Assuming _program is a static reference to your main program class
         }
         public string CreateDatabase()
         {

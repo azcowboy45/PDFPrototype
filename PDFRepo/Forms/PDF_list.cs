@@ -17,10 +17,10 @@ namespace PDFRepo
         public ConfigMgr configMgr { get; set; }
         public ConfigElements config { get; set; }
 
-        LogClass logger;
+        private LogClass logger;
         private MethodsInCommon mic;
         private bool firstTime = true;
-        public Program _program;
+        public Program program;
 
         public bool ShowAtStartup { get; set; }
 
@@ -31,10 +31,10 @@ namespace PDFRepo
   //      private CreateDB cdb = null;
         #endregion
 
-        public PDF_list(Program programReference)
+        public PDF_list(Program program)
         {
             // Store the reference to the Program instance, so we can access some properties and methods globally.
-            _program = programReference; 
+            this.program = program; 
 
             InitializeComponent();
             WireUpHandlers();
@@ -71,7 +71,7 @@ namespace PDFRepo
             // 4. Set the user name in the UI
             userNameTextBox.Text = $"{config.firstName} {config.lastName}".Trim();
             // 5. Set global bypass on startup variable in _program
-            _program.bypassOnStartup = Convert.ToBoolean(this.config.bypassOnStartup); 
+            program.bypassOnStartup = Convert.ToBoolean(this.config.bypassOnStartup); 
             // 6. Based on result, show splash screen
             DoSplashScreenIfNeeded();
             // 7. Create log file if it doesn't exist
@@ -88,7 +88,7 @@ namespace PDFRepo
 
         private void DoSplashScreenIfNeeded()
         {
-            if (!_program.bypassOnStartup)
+            if (!program.bypassOnStartup)
             {
                 doSplashScreen(userNameTextBox.Text);
             }
@@ -96,14 +96,14 @@ namespace PDFRepo
 
         private void CreateDbIFNotExists()
         {
-            CreateDB cdb = new CreateDB(_program);
+            CreateDB cdb = new CreateDB(program);
             this.dbPath =cdb.CreateDatabase();
         }
 
         private void SetupConfig()
         {
             ConfigElements Localconfig;
-            configMgr = new ConfigMgr(this.dbPath);
+            configMgr = new ConfigMgr(program);
             Localconfig = configMgr.GetCfg();
             this.config = Localconfig;
         }
@@ -190,7 +190,7 @@ namespace PDFRepo
 
         private void doSplashScreen(string userName)
         {
-            SplashScreen splash = new SplashScreen(configMgr, config, userName);
+            SplashScreen splash = new SplashScreen(this.program, configMgr, config, userName);
             splash.ShowDialog();
         }
 
@@ -437,7 +437,7 @@ namespace PDFRepo
 
         private void backupToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            BackupForm backupForm = new BackupForm();
+            BackupForm backupForm = new BackupForm(program);
             backupForm.Show();
         }
 
@@ -573,7 +573,7 @@ namespace PDFRepo
 
         private void setupToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SetupForm sf = new SetupForm(configMgr, config);
+            SetupForm sf = new SetupForm(program, configMgr, config);
             sf.ShowDialog();
             userNameTextBox.Text = $"{configMgr.GetCfg().firstName} {configMgr.GetCfg().lastName}";
         }

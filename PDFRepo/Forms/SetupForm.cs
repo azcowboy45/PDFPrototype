@@ -19,20 +19,23 @@ namespace PDFRepo.Forms
         private LogClass logger;
         public ConfigMgr configuration;
         private string pdfAppPath = string.Empty;
-        public SetupForm(ConfigMgr configuration, ConfigElements config)
+        public Program program;
+
+        public SetupForm(Program program, ConfigMgr configuration, ConfigElements config)
         {
+            this.program = program;
             this.configuration = configuration;
             this.config = config;
-            this.configuration = configuration;
             logger = new LogClass();
+
             InitializeComponent();
             LoadSettingsForm();
         }
-        public SetupForm(ConfigMgr configuration, ConfigElements config, Form myParent )
+        public SetupForm(Program program, ConfigMgr configuration, ConfigElements config, Form myParent )
         {
+            this.program = program;
             this.configuration = configuration;
             this.config = config;
-            this.configuration = configuration;
             logger = new LogClass();
             InitializeComponent();
             LoadSettingsForm();

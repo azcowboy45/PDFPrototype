@@ -14,9 +14,11 @@ namespace PDFRepo.Forms
         private ConfigMgr configMgr;
         private ConfigElements config;
         private string userName;
+        private Program program;
 
-        public SplashScreen(ConfigMgr configMgr, ConfigElements config, String userName)
+        public SplashScreen(Program program, ConfigMgr configMgr, ConfigElements config, String userName)
         {
+            this.program = program;
             this.configMgr = configMgr;
             this.config = config;
             this.userName = userName;
@@ -61,7 +63,7 @@ namespace PDFRepo.Forms
 
         private void setupButton_Click(object sender, EventArgs e)
         {
-            SetupForm sf = new SetupForm( configMgr  , config, this );
+            SetupForm sf = new SetupForm( program, configMgr, config, this );
             sf.ShowDialog();
         }
     }
