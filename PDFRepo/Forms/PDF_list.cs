@@ -11,9 +11,11 @@ namespace PDFRepo
 {
     public partial class PDF_list : Form
     {
-        
+
 
         #region instance variables
+
+        private bool _isResettingComboBox = false;
         public ConfigMgr configMgr { get; set; }
         public ConfigElements config { get; set; }
 
@@ -52,8 +54,6 @@ namespace PDFRepo
         {
             DataModel dm = new DataModel();
             DropDown dd = new DropDown(dm);
-            //     dd.LoadComboBox(categoryComboBox, true);
-            //     dd.LoadComboBox(subCatComboBox, false);
 
             dd.LoadAutoCompleteComboBox(dm, categoryComboBox, "pdf_cat", "category", "ID");
             dd.LoadAutoCompleteComboBox(dm, subCatComboBox, "sub_category", "sub_cat", "ID");
@@ -127,66 +127,34 @@ namespace PDFRepo
 
         }
 
-        /* GetSelectList - Obsolete
-        private string[] GetSelectionList()
-        {
-            string[] pdfList = new string[] { };
-            DataModel dm = new DataModel();
-            DataSet autoList = dm.GetSelectorKeyedList("pdf_table", "pdf_name", "ID");
-            Int32 recCount = autoList.Tables[0].Rows.Count;
-
-            foreach (DataRow row in autoList.Tables["pdf_table"].Rows)
-            {
-                string str = row[0].ToString();
-                pdfList = pdfList.Append<string>(str).ToArray();
-
-            }
-            return pdfList;
-        }
-        */
-
-
-        /* LoadSelectionComboBox - Obsolete
-        private void LoadSelectionComboBox()
-        {
-            string[] items = GetSelectionList();
-
-            // Create an AutoCompleteStringCollection and add the items
-            AutoCompleteStringCollection coll = new AutoCompleteStringCollection();
-
-            coll.AddRange(items);
-            selectorComboBox.Items.Clear();
-
-            foreach (string item in items)
-            {
-                selectorComboBox.Items.Add(item);
-            }
-
-            //    ingredientComboBox.Items.AddRange(items);   // this add the items again???
-
-            // Set the AutoCompleteCustomSource to the collection created above
-            selectorComboBox.AutoCompleteCustomSource = coll;
-
-            // Specify that the source for autocompletion is a custom source
-            selectorComboBox.AutoCompleteSource = AutoCompleteSource.CustomSource;
-
-            // Set the mode to SuggestAppend (shows a dropdown list and appends matching text)
-            selectorComboBox.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-
-            // Set the AutoCompleteCustomSource to the collection created above
-            selectorComboBox.AutoCompleteCustomSource = coll;
-        }
-        */
+       
         private void selectorComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (_isResettingComboBox) return;
+            if (selectorComboBox.SelectedIndex == -1) return;
+
             string selectedNameStr = selectorComboBox.Text;
             DataModel dm = new DataModel();
 
             this.selectablePDFId = dm.GetPdfIdByName(selectedNameStr);
 
             doViewPDF(selectablePDFId); // As a string, this.selectablePDFId can be used to fetch the PDF data from the database and display it in a new form.
+            ResetFormSelection();
 
         }
+
+        private void ResetFormSelection()
+        {
+            // 4. Raise the shield, clear the index, drop the shield
+            _isResettingComboBox = true;
+
+            selectorComboBox.SelectedIndex = -1;
+            selectorComboBox.Text = string.Empty;
+
+            _isResettingComboBox = false;
+        }
+
+
 
         private void doSplashScreen(string userName)
         {
@@ -245,18 +213,6 @@ namespace PDFRepo
 
         private void FormatDataGrid()
         {
-            /*
-            dataGridView1.ColumnHeadersDefaultCellStyle.Font =
-                new Font(dataGridView1.Font, FontStyle.Bold);
-
-            dataGridView1.Columns.Insert(0, new DataGridViewTextBoxColumn
-            {
-                Name = "LineNumber",
-                HeaderText = "#",
-                ReadOnly = true,
-                Width = 40
-            });
-            */
 
             // Set an initial comfortable width for the row numbers
             dataGridView1.RowHeadersWidth = 50;
@@ -323,9 +279,19 @@ namespace PDFRepo
             dataGridView1.Columns["pdf_description"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dataGridView1.Columns["pdf_description"].Visible = true;
 
+            PreventSorting();  // Call the method to prevent sorting on all columns
+
         }
 
-        private void dataGridView1_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
+        private void PreventSorting()
+        {
+            foreach (DataGridViewColumn column in dataGridView1.Columns)
+            {
+                column.SortMode = DataGridViewColumnSortMode.NotSortable;
+            }
+}   
+
+private void dataGridView1_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
             string lineNumber = (e.RowIndex + 1).ToString();
 
@@ -398,7 +364,7 @@ namespace PDFRepo
             {
                 ViewPdfForm viewPdfForm = new ViewPdfForm(selectedPdfId);
                 viewPdfForm.Show();
-                clearSelections();
+                clearCategorySelections();
             }
         }
 
@@ -533,11 +499,13 @@ namespace PDFRepo
             FormatDataGrid();
         }
 
-        private void clearSelections()
+        private void clearCategorySelections()
         {
-            ;
-            categoryComboBox.Text = "";
-            subCatComboBox.Text = "";
+
+            categoryComboBox.SelectedIndex = -1;       
+            categoryComboBox.Text = string.Empty;
+            subCatComboBox.SelectedIndex = -1;
+            subCatComboBox.Text = string.Empty;
         }
 
 
@@ -545,7 +513,7 @@ namespace PDFRepo
         {
             LoadDataGrid();
             FormatDataGrid();
-            clearSelections();
+            clearCategorySelections();
         }
 
         private void categoriesToolStripMenuItem_Click(object sender, EventArgs e)
