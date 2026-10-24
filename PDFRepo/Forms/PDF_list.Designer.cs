@@ -82,15 +82,14 @@
             // 
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;
-            dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.ContextMenuStrip = contextMenuStrip1;
-            dataGridView1.Location = new Point(0, 83);
-            dataGridView1.Margin = new Padding(2);
+            dataGridView1.Location = new Point(0, 138);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowHeadersWidth = 62;
-            dataGridView1.Size = new Size(1249, 592);
+            dataGridView1.Size = new Size(1784, 987);
             dataGridView1.TabIndex = 0;
             // 
             // contextMenuStrip1
@@ -98,56 +97,55 @@
             contextMenuStrip1.ImageScalingSize = new Size(24, 24);
             contextMenuStrip1.Items.AddRange(new ToolStripItem[] { viewPDFToolStripMenuItem1, modifyPDFInfoToolStripMenuItem, toolStripSeparator2, categoriesToolStripMenuItem, editSubCatsToolStripMenuItem, deleteToolStripMenuItem });
             contextMenuStrip1.Name = "contextMenuStrip1";
-            contextMenuStrip1.Size = new Size(172, 120);
+            contextMenuStrip1.Size = new Size(232, 170);
             contextMenuStrip1.Opening += contextMenuStrip1_Opening;
             // 
             // viewPDFToolStripMenuItem1
             // 
             viewPDFToolStripMenuItem1.Name = "viewPDFToolStripMenuItem1";
-            viewPDFToolStripMenuItem1.Size = new Size(171, 22);
+            viewPDFToolStripMenuItem1.Size = new Size(231, 32);
             viewPDFToolStripMenuItem1.Text = "View PDF";
             viewPDFToolStripMenuItem1.Click += viewPDFToolStripMenuItem1_Click;
             // 
             // modifyPDFInfoToolStripMenuItem
             // 
             modifyPDFInfoToolStripMenuItem.Name = "modifyPDFInfoToolStripMenuItem";
-            modifyPDFInfoToolStripMenuItem.Size = new Size(171, 22);
+            modifyPDFInfoToolStripMenuItem.Size = new Size(231, 32);
             modifyPDFInfoToolStripMenuItem.Text = "Edit PDF Info";
             modifyPDFInfoToolStripMenuItem.Click += modifyPDFInfoToolStripMenuItem_Click;
             // 
             // toolStripSeparator2
             // 
             toolStripSeparator2.Name = "toolStripSeparator2";
-            toolStripSeparator2.Size = new Size(168, 6);
+            toolStripSeparator2.Size = new Size(228, 6);
             // 
             // categoriesToolStripMenuItem
             // 
             categoriesToolStripMenuItem.Name = "categoriesToolStripMenuItem";
-            categoriesToolStripMenuItem.Size = new Size(171, 22);
+            categoriesToolStripMenuItem.Size = new Size(231, 32);
             categoriesToolStripMenuItem.Text = "Edit Categories";
             categoriesToolStripMenuItem.Click += categoriesToolStripMenuItem_Click;
             // 
             // editSubCatsToolStripMenuItem
             // 
             editSubCatsToolStripMenuItem.Name = "editSubCatsToolStripMenuItem";
-            editSubCatsToolStripMenuItem.Size = new Size(171, 22);
+            editSubCatsToolStripMenuItem.Size = new Size(231, 32);
             editSubCatsToolStripMenuItem.Text = "Edit Subcategories";
             editSubCatsToolStripMenuItem.Click += editSubCatsToolStripMenuItem_Click;
             // 
             // deleteToolStripMenuItem
             // 
             deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            deleteToolStripMenuItem.Size = new Size(171, 22);
+            deleteToolStripMenuItem.Size = new Size(231, 32);
             deleteToolStripMenuItem.Text = "Delete";
             deleteToolStripMenuItem.Click += deleteToolStripMenuItem_Click;
             // 
             // exitButton
             // 
             exitButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            exitButton.Location = new Point(1161, 699);
-            exitButton.Margin = new Padding(2);
+            exitButton.Location = new Point(1659, 1165);
             exitButton.Name = "exitButton";
-            exitButton.Size = new Size(78, 20);
+            exitButton.Size = new Size(111, 33);
             exitButton.TabIndex = 1;
             exitButton.Text = "Exit";
             exitButton.UseVisualStyleBackColor = true;
@@ -159,8 +157,7 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, editToolStripMenuItem, viewToolStripMenuItem, helpToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Padding = new Padding(4, 1, 0, 1);
-            menuStrip1.Size = new Size(1250, 24);
+            menuStrip1.Size = new Size(1786, 33);
             menuStrip1.TabIndex = 3;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -168,85 +165,85 @@
             // 
             fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { importToolStripMenuItem, exportToolStripMenuItem, deleteToolStripMenuItem1, backupToolStripMenuItem, toolStripSeparator1, exitToolStripMenuItem });
             fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            fileToolStripMenuItem.Size = new Size(37, 22);
+            fileToolStripMenuItem.Size = new Size(54, 29);
             fileToolStripMenuItem.Text = "File";
             // 
             // importToolStripMenuItem
             // 
             importToolStripMenuItem.Name = "importToolStripMenuItem";
-            importToolStripMenuItem.Size = new Size(158, 22);
+            importToolStripMenuItem.Size = new Size(244, 34);
             importToolStripMenuItem.Text = "Import";
             importToolStripMenuItem.Click += importToolStripMenuItem_Click;
             // 
             // exportToolStripMenuItem
             // 
             exportToolStripMenuItem.Name = "exportToolStripMenuItem";
-            exportToolStripMenuItem.Size = new Size(158, 22);
+            exportToolStripMenuItem.Size = new Size(244, 34);
             exportToolStripMenuItem.Text = "Export Database";
             exportToolStripMenuItem.Click += exportToolStripMenuItem_Click;
             // 
             // deleteToolStripMenuItem1
             // 
             deleteToolStripMenuItem1.Name = "deleteToolStripMenuItem1";
-            deleteToolStripMenuItem1.Size = new Size(158, 22);
+            deleteToolStripMenuItem1.Size = new Size(244, 34);
             deleteToolStripMenuItem1.Text = "Delete";
             deleteToolStripMenuItem1.Click += deleteToolStripMenuItem1_Click;
             // 
             // backupToolStripMenuItem
             // 
             backupToolStripMenuItem.Name = "backupToolStripMenuItem";
-            backupToolStripMenuItem.Size = new Size(158, 22);
+            backupToolStripMenuItem.Size = new Size(244, 34);
             backupToolStripMenuItem.Text = "Backup";
             backupToolStripMenuItem.Click += backupToolStripMenuItem_Click;
             // 
             // toolStripSeparator1
             // 
             toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(155, 6);
+            toolStripSeparator1.Size = new Size(241, 6);
             // 
             // exitToolStripMenuItem
             // 
             exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            exitToolStripMenuItem.Size = new Size(158, 22);
+            exitToolStripMenuItem.Size = new Size(244, 34);
             exitToolStripMenuItem.Text = "Exit";
             // 
             // editToolStripMenuItem
             // 
             editToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { modifyPDFRecordsToolStripMenuItem, maintainCategoriesToolStripMenuItem, subCategoriesToolStripMenuItem, toolStripSeparator3, setupToolStripMenuItem });
             editToolStripMenuItem.Name = "editToolStripMenuItem";
-            editToolStripMenuItem.Size = new Size(39, 22);
+            editToolStripMenuItem.Size = new Size(58, 29);
             editToolStripMenuItem.Text = "Edit";
             // 
             // modifyPDFRecordsToolStripMenuItem
             // 
             modifyPDFRecordsToolStripMenuItem.Name = "modifyPDFRecordsToolStripMenuItem";
-            modifyPDFRecordsToolStripMenuItem.Size = new Size(148, 22);
+            modifyPDFRecordsToolStripMenuItem.Size = new Size(226, 34);
             modifyPDFRecordsToolStripMenuItem.Text = "Metadata";
             modifyPDFRecordsToolStripMenuItem.Click += modifyPDFRecordsToolStripMenuItem_Click;
             // 
             // maintainCategoriesToolStripMenuItem
             // 
             maintainCategoriesToolStripMenuItem.Name = "maintainCategoriesToolStripMenuItem";
-            maintainCategoriesToolStripMenuItem.Size = new Size(148, 22);
+            maintainCategoriesToolStripMenuItem.Size = new Size(226, 34);
             maintainCategoriesToolStripMenuItem.Text = "Categories";
             maintainCategoriesToolStripMenuItem.Click += maintainCategoriesToolStripMenuItem_Click;
             // 
             // subCategoriesToolStripMenuItem
             // 
             subCategoriesToolStripMenuItem.Name = "subCategoriesToolStripMenuItem";
-            subCategoriesToolStripMenuItem.Size = new Size(148, 22);
+            subCategoriesToolStripMenuItem.Size = new Size(226, 34);
             subCategoriesToolStripMenuItem.Text = "Subcategories";
             subCategoriesToolStripMenuItem.Click += subCategoriesToolStripMenuItem_Click;
             // 
             // toolStripSeparator3
             // 
             toolStripSeparator3.Name = "toolStripSeparator3";
-            toolStripSeparator3.Size = new Size(145, 6);
+            toolStripSeparator3.Size = new Size(223, 6);
             // 
             // setupToolStripMenuItem
             // 
             setupToolStripMenuItem.Name = "setupToolStripMenuItem";
-            setupToolStripMenuItem.Size = new Size(148, 22);
+            setupToolStripMenuItem.Size = new Size(226, 34);
             setupToolStripMenuItem.Text = "Setup";
             setupToolStripMenuItem.Click += setupToolStripMenuItem_Click;
             // 
@@ -254,13 +251,13 @@
             // 
             viewToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { viewPDFToolStripMenuItem });
             viewToolStripMenuItem.Name = "viewToolStripMenuItem";
-            viewToolStripMenuItem.Size = new Size(44, 22);
+            viewToolStripMenuItem.Size = new Size(65, 29);
             viewToolStripMenuItem.Text = "View";
             // 
             // viewPDFToolStripMenuItem
             // 
             viewPDFToolStripMenuItem.Name = "viewPDFToolStripMenuItem";
-            viewPDFToolStripMenuItem.Size = new Size(123, 22);
+            viewPDFToolStripMenuItem.Size = new Size(188, 34);
             viewPDFToolStripMenuItem.Text = "View PDF";
             viewPDFToolStripMenuItem.Click += viewPDFToolStripMenuItem_Click;
             // 
@@ -268,29 +265,27 @@
             // 
             helpToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { helpToolStripMenuItem1, aboutPDFRepoToolStripMenuItem });
             helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            helpToolStripMenuItem.Size = new Size(44, 22);
+            helpToolStripMenuItem.Size = new Size(65, 29);
             helpToolStripMenuItem.Text = "Help";
             // 
             // helpToolStripMenuItem1
             // 
             helpToolStripMenuItem1.Name = "helpToolStripMenuItem1";
-            helpToolStripMenuItem1.Size = new Size(158, 22);
+            helpToolStripMenuItem1.Size = new Size(242, 34);
             helpToolStripMenuItem1.Text = "Help";
             // 
             // aboutPDFRepoToolStripMenuItem
             // 
             aboutPDFRepoToolStripMenuItem.Name = "aboutPDFRepoToolStripMenuItem";
-            aboutPDFRepoToolStripMenuItem.Size = new Size(158, 22);
+            aboutPDFRepoToolStripMenuItem.Size = new Size(242, 34);
             aboutPDFRepoToolStripMenuItem.Text = "About PDFRepo";
             // 
             // pdfImportButton
             // 
-            pdfImportButton.Anchor = AnchorStyles.None;
             pdfImportButton.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            pdfImportButton.Location = new Point(501, 18);
-            pdfImportButton.Margin = new Padding(2);
+            pdfImportButton.Location = new Point(716, 30);
             pdfImportButton.Name = "pdfImportButton";
-            pdfImportButton.Size = new Size(136, 20);
+            pdfImportButton.Size = new Size(194, 33);
             pdfImportButton.TabIndex = 4;
             pdfImportButton.Text = "Import PDF";
             pdfImportButton.UseVisualStyleBackColor = true;
@@ -314,20 +309,18 @@
             // categoryComboBox
             // 
             categoryComboBox.FormattingEnabled = true;
-            categoryComboBox.Location = new Point(676, 44);
-            categoryComboBox.Margin = new Padding(2);
+            categoryComboBox.Location = new Point(966, 73);
             categoryComboBox.Name = "categoryComboBox";
-            categoryComboBox.Size = new Size(164, 23);
+            categoryComboBox.Size = new Size(233, 33);
             categoryComboBox.TabIndex = 5;
             categoryComboBox.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(559, 46);
-            label1.Margin = new Padding(2, 0, 2, 0);
+            label1.Location = new Point(799, 77);
             label1.Name = "label1";
-            label1.Size = new Size(106, 15);
+            label1.Size = new Size(162, 25);
             label1.TabIndex = 6;
             label1.Text = "Show by Category:";
             // 
@@ -335,10 +328,9 @@
             // 
             showAllButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             showAllButton.FlatStyle = FlatStyle.Popup;
-            showAllButton.Location = new Point(1152, 3);
-            showAllButton.Margin = new Padding(2);
+            showAllButton.Location = new Point(1646, 5);
             showAllButton.Name = "showAllButton";
-            showAllButton.Size = new Size(78, 20);
+            showAllButton.Size = new Size(111, 33);
             showAllButton.TabIndex = 7;
             showAllButton.Text = "Show All";
             showAllButton.UseVisualStyleBackColor = true;
@@ -347,88 +339,84 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(853, 46);
-            label2.Margin = new Padding(2, 0, 2, 0);
+            label2.Location = new Point(1219, 77);
             label2.Name = "label2";
-            label2.Size = new Size(76, 15);
+            label2.Size = new Size(116, 25);
             label2.TabIndex = 8;
             label2.Text = "Subcategory:";
             // 
             // subCatComboBox
             // 
             subCatComboBox.FormattingEnabled = true;
-            subCatComboBox.Location = new Point(960, 44);
-            subCatComboBox.Margin = new Padding(2);
+            subCatComboBox.Location = new Point(1371, 73);
             subCatComboBox.Name = "subCatComboBox";
-            subCatComboBox.Size = new Size(164, 23);
+            subCatComboBox.Size = new Size(233, 33);
             subCatComboBox.TabIndex = 9;
             subCatComboBox.SelectedIndexChanged += subCatComboBox_SelectedIndexChanged;
             // 
             // userNameTextBox
             // 
-            userNameTextBox.Location = new Point(110, 696);
-            userNameTextBox.Margin = new Padding(2);
+            userNameTextBox.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            userNameTextBox.Location = new Point(157, 1160);
             userNameTextBox.Name = "userNameTextBox";
             userNameTextBox.ReadOnly = true;
-            userNameTextBox.Size = new Size(159, 23);
+            userNameTextBox.Size = new Size(225, 31);
             userNameTextBox.TabIndex = 10;
             // 
             // label3
             // 
+            label3.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             label3.AutoSize = true;
-            label3.Location = new Point(0, 695);
-            label3.Margin = new Padding(2, 0, 2, 0);
+            label3.Location = new Point(0, 1158);
             label3.Name = "label3";
-            label3.Size = new Size(84, 15);
+            label3.Size = new Size(129, 25);
             label3.TabIndex = 11;
             label3.Text = "Repository for:";
             // 
             // selectorComboBox
             // 
             selectorComboBox.FormattingEnabled = true;
-            selectorComboBox.Location = new Point(110, 44);
-            selectorComboBox.Margin = new Padding(2);
+            selectorComboBox.Location = new Point(157, 73);
             selectorComboBox.Name = "selectorComboBox";
-            selectorComboBox.Size = new Size(292, 23);
+            selectorComboBox.Size = new Size(415, 33);
             selectorComboBox.TabIndex = 12;
             selectorComboBox.SelectedIndexChanged += selectorComboBox_SelectedIndexChanged;
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(8, 46);
-            label4.Margin = new Padding(2, 0, 2, 0);
+            label4.Location = new Point(11, 77);
             label4.Name = "label4";
-            label4.Size = new Size(92, 15);
+            label4.Size = new Size(139, 25);
             label4.TabIndex = 13;
             label4.Text = "Select by Name:";
             // 
             // label5
             // 
+            label5.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             label5.AutoSize = true;
-            label5.Location = new Point(435, 695);
-            label5.Margin = new Padding(2, 0, 2, 0);
+            label5.Location = new Point(621, 1158);
             label5.Name = "label5";
-            label5.Size = new Size(67, 15);
+            label5.Size = new Size(101, 25);
             label5.TabIndex = 14;
             label5.Text = "PDF Count:";
             // 
             // pdfCountTextBox
             // 
-            pdfCountTextBox.Location = new Point(510, 693);
-            pdfCountTextBox.Margin = new Padding(2);
+            pdfCountTextBox.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            pdfCountTextBox.Location = new Point(729, 1155);
             pdfCountTextBox.Name = "pdfCountTextBox";
             pdfCountTextBox.ReadOnly = true;
-            pdfCountTextBox.Size = new Size(45, 23);
+            pdfCountTextBox.Size = new Size(63, 31);
             pdfCountTextBox.TabIndex = 15;
             pdfCountTextBox.Text = "10000";
             pdfCountTextBox.TextAlign = HorizontalAlignment.Center;
             // 
             // PDF_list
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1250, 741);
+            ClientSize = new Size(1786, 1235);
             Controls.Add(pdfCountTextBox);
             Controls.Add(label5);
             Controls.Add(label4);
@@ -446,7 +434,6 @@
             Controls.Add(menuStrip1);
             Icon = (Icon)resources.GetObject("$this.Icon");
             MainMenuStrip = menuStrip1;
-            Margin = new Padding(2);
             Name = "PDF_list";
             Text = "My PDF LIst";
             Activated += PDF_list_Activated;
