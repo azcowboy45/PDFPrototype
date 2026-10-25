@@ -97,46 +97,46 @@
             contextMenuStrip1.ImageScalingSize = new Size(24, 24);
             contextMenuStrip1.Items.AddRange(new ToolStripItem[] { viewPDFToolStripMenuItem1, modifyPDFInfoToolStripMenuItem, toolStripSeparator2, categoriesToolStripMenuItem, editSubCatsToolStripMenuItem, deleteToolStripMenuItem });
             contextMenuStrip1.Name = "contextMenuStrip1";
-            contextMenuStrip1.Size = new Size(232, 170);
+            contextMenuStrip1.Size = new Size(241, 203);
             contextMenuStrip1.Opening += contextMenuStrip1_Opening;
             // 
             // viewPDFToolStripMenuItem1
             // 
             viewPDFToolStripMenuItem1.Name = "viewPDFToolStripMenuItem1";
-            viewPDFToolStripMenuItem1.Size = new Size(231, 32);
+            viewPDFToolStripMenuItem1.Size = new Size(240, 32);
             viewPDFToolStripMenuItem1.Text = "View PDF";
             viewPDFToolStripMenuItem1.Click += viewPDFToolStripMenuItem1_Click;
             // 
             // modifyPDFInfoToolStripMenuItem
             // 
             modifyPDFInfoToolStripMenuItem.Name = "modifyPDFInfoToolStripMenuItem";
-            modifyPDFInfoToolStripMenuItem.Size = new Size(231, 32);
+            modifyPDFInfoToolStripMenuItem.Size = new Size(240, 32);
             modifyPDFInfoToolStripMenuItem.Text = "Edit PDF Info";
             modifyPDFInfoToolStripMenuItem.Click += modifyPDFInfoToolStripMenuItem_Click;
             // 
             // toolStripSeparator2
             // 
             toolStripSeparator2.Name = "toolStripSeparator2";
-            toolStripSeparator2.Size = new Size(228, 6);
+            toolStripSeparator2.Size = new Size(237, 6);
             // 
             // categoriesToolStripMenuItem
             // 
             categoriesToolStripMenuItem.Name = "categoriesToolStripMenuItem";
-            categoriesToolStripMenuItem.Size = new Size(231, 32);
+            categoriesToolStripMenuItem.Size = new Size(240, 32);
             categoriesToolStripMenuItem.Text = "Edit Categories";
             categoriesToolStripMenuItem.Click += categoriesToolStripMenuItem_Click;
             // 
             // editSubCatsToolStripMenuItem
             // 
             editSubCatsToolStripMenuItem.Name = "editSubCatsToolStripMenuItem";
-            editSubCatsToolStripMenuItem.Size = new Size(231, 32);
+            editSubCatsToolStripMenuItem.Size = new Size(240, 32);
             editSubCatsToolStripMenuItem.Text = "Edit Subcategories";
             editSubCatsToolStripMenuItem.Click += editSubCatsToolStripMenuItem_Click;
             // 
             // deleteToolStripMenuItem
             // 
             deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            deleteToolStripMenuItem.Size = new Size(231, 32);
+            deleteToolStripMenuItem.Size = new Size(240, 32);
             deleteToolStripMenuItem.Text = "Delete";
             deleteToolStripMenuItem.Click += deleteToolStripMenuItem_Click;
             // 

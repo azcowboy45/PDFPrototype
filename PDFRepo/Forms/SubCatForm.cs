@@ -37,7 +37,7 @@ namespace PDFRepo.Forms
         private void AddCategory()
         {
             DataModel dm = new DataModel();
-            if (dm.AddSubCat(subCatTextBox.Text, notesTextBox.Text))
+            if (dm.AddSubCat(subCatTextBox.Text.ToLower(), notesTextBox.Text))
             {
                 MessageBox.Show("Category added successfully.");
                 this.Close();
@@ -54,7 +54,8 @@ namespace PDFRepo.Forms
         {
             DataModel dm = new DataModel();
             string categoryId = selectedRow.Cells["ID"].Value.ToString();
-            if (dm.UpdateSubCat(categoryId, subCatTextBox.Text, notesTextBox.Text))
+
+            if (dm.UpdateSubCat(categoryId, subCatTextBox.Text.ToLower(), notesTextBox.Text))
             {
                 MessageBox.Show("Category updated successfully.");
                 this.Close();

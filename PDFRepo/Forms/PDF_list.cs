@@ -246,6 +246,21 @@ namespace PDFRepo
 
         #endregion   // ***************** end In-house handlers ****************
 
+
+
+
+        #region handler helpers
+
+
+        private void WireUpHandlers()
+        {
+            dataGridView1.CellClick += dataGridView1_CellClick;
+            selectorComboBox.SelectionChangeCommitted += selectorComboBox_SelectionChangeCommitted;
+
+            // Wire the event handler to myDataGridView
+            dataGridView1.RowPostPaint += new DataGridViewRowPostPaintEventHandler(dataGridView1_RowPostPaint);
+        }
+
         private void ResetFormSelection()
         {
             // 4. Raise the shield, clear the index, drop the shield
@@ -262,22 +277,9 @@ namespace PDFRepo
             _isResettingComboBox = false;
         }
 
-
-        #region handler helpers
-
-
-        private void WireUpHandlers()
-        {
-            dataGridView1.CellClick += dataGridView1_CellClick;
-            selectorComboBox.SelectionChangeCommitted += selectorComboBox_SelectionChangeCommitted;
-
-            // Wire the event handler to myDataGridView
-            dataGridView1.RowPostPaint += new DataGridViewRowPostPaintEventHandler(dataGridView1_RowPostPaint);
-        }
-
         #endregion
 
-        #region processingMethods
+        #region control helpers
         private void LoadDataGrid()
         {
             DataModel dm = new DataModel();

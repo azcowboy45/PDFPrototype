@@ -35,10 +35,17 @@ namespace PDFRepo.Forms
         }
 
         #region categoryWrites
+
+        /// <summary>
+        /// Adds a new category using the entered category name and notes, then reports the result to the user.
+        /// </summary>
+        /// <remarks>Normalizes the category name to lowercase before saving. Closes the current form when
+        /// the category is added successfully.</remarks>
         private void AddCategory()
         {
             DataModel dm = new DataModel();
-            if (dm.addCategory(categoryTextBox.Text, notesTextbox.Text))
+            string category = categoryTextBox.Text.ToLower();
+            if (dm.addCategory(category, notesTextbox.Text))
             {
                 MessageBox.Show("Category added successfully.");
                 this.Close();
@@ -48,14 +55,20 @@ namespace PDFRepo.Forms
                 MessageBox.Show("Failed to add category.");
             }
         }
-
-
-        //UpdatePDFCat(string id, string pdfCategory, string catDescription)
+     
+        /// <summary>
+        /// Updates the selected category using the current form values and closes the form when the update succeeds.
+        /// </summary>
+        /// <remarks>Converts the category text to lowercase before updating and displays a status message
+        /// indicating success or failure.</remarks>
         private void UpdateCategory()
-        {
-            DataModel dm = new DataModel();
+        {  
             string categoryId = selectedRow.Cells["ID"].Value.ToString();
-            if (dm.UpdatePDFCat(categoryId, categoryTextBox.Text, notesTextbox.Text))
+            string category = categoryTextBox.Text.ToLower();
+
+            DataModel dm = new DataModel();
+       
+            if (dm.UpdatePDFCat(categoryId, category, notesTextbox.Text))
             {
                 MessageBox.Show("Category updated successfully.");
                 this.Close();
