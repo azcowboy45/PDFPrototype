@@ -317,13 +317,15 @@ namespace PDFRepo
             this.dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.PaleTurquoise;
             this.dataGridView1.AlternatingRowsDefaultCellStyle.ForeColor = Color.Black;
 
-            dataGridView1.Columns["ID"].HeaderText = "ID";
+
+            dataGridView1.Columns["ID"].HeaderText = "Primary Key-ID";
 #if DEBUG_MODE
-            dataGridView1.Columns["ID"].Visible = false;
-#else
             dataGridView1.Columns["ID"].Visible = true;
+#else
+            dataGridView1.Columns["ID"].Visible = false;
 #endif
-            dataGridView1.Columns["ID"].Width = 64;
+            dataGridView1.Columns["ID"].Width = 72;
+
 
             dataGridView1.Columns["pdf_name"].HeaderText = "Click on PDF Name to View";
             dataGridView1.Columns["pdf_name"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
