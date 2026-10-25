@@ -1,3 +1,6 @@
+
+#define DEBUG_MODE
+
 using Microsoft.Data.Sqlite;
 using Microsoft.Web.WebView2.Core;
 using Microsoft.Web.WebView2.WinForms;
@@ -15,7 +18,7 @@ namespace PDFRepo
 
         #region instanceVariables
 
-        private bool _isResettingComboBox = false;
+        private bool _isResettingComboBoxes = false;
         public ConfigMgr configMgr { get; set; }
         public ConfigElements config { get; set; }
         private LogClass logger;
@@ -139,7 +142,7 @@ namespace PDFRepo
 
         private void selectorComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (_isResettingComboBox) return;
+            if (_isResettingComboBoxes) return;
             if (selectorComboBox.SelectedIndex == -1) return;
 
             string selectedNameStr = selectorComboBox.Text;
@@ -201,10 +204,18 @@ namespace PDFRepo
         /// </summary>
         /// <param name="sender">Object that raised the activation event.</param>
         /// <param name="e">Event data for the activation event.</param>
+        /// 
+
+        // we are born agin right here
         private void PDF_list_Activated(object sender, EventArgs e)
         {
-            //LoadSelectionComboBox();
+
+       //     if (selectorComboBox.SelectedIndex == -1) return;
+
             LoadDataGrid();
+
+            BuildComboBoxes();
+
 
         }
         /// <summary>
@@ -259,7 +270,7 @@ namespace PDFRepo
         private void ResetFormSelection()
         {
             // 4. Raise the shield, clear the index, drop the shield
-            _isResettingComboBox = true;
+            _isResettingComboBoxes = true;
 
             selectorComboBox.SelectedIndex = -1;
             selectorComboBox.Text = string.Empty;
@@ -269,7 +280,7 @@ namespace PDFRepo
             subCatComboBox.Text = string.Empty;
 
 
-            _isResettingComboBox = false;
+            _isResettingComboBoxes = false;
         }
 
         #endregion
@@ -307,7 +318,11 @@ namespace PDFRepo
             this.dataGridView1.AlternatingRowsDefaultCellStyle.ForeColor = Color.Black;
 
             dataGridView1.Columns["ID"].HeaderText = "ID";
+#if DEBUG_MODE
             dataGridView1.Columns["ID"].Visible = false;
+#else
+            dataGridView1.Columns["ID"].Visible = true;
+#endif
             dataGridView1.Columns["ID"].Width = 64;
 
             dataGridView1.Columns["pdf_name"].HeaderText = "Click on PDF Name to View";
@@ -412,7 +427,7 @@ namespace PDFRepo
         }
 
 
-        #endregion
+#endregion
 
         #region controls        
         private void ViewButton_Click(object sender, EventArgs e)
@@ -512,7 +527,7 @@ namespace PDFRepo
         }
 
         private void maintainCategoriesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
+        {         
             CategoryGridForm cf = new CategoryGridForm();
             cf.Show();
             //   BuildComboBox(); -- This line is commented out because the ComboBox will be rebuilt when
@@ -521,8 +536,7 @@ namespace PDFRepo
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (_isResettingComboBox) return;
-            if (categoryComboBox.SelectedIndex == -1) return;
+
             DataModel dm = new DataModel();
             DataTable selectedRecords = dm.getRecordsCategory(categoryComboBox.Text);
             dataGridView1.DataSource = selectedRecords;
@@ -532,8 +546,6 @@ namespace PDFRepo
         }
         private void subCatComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (_isResettingComboBox) return;
-            if (subCatComboBox.SelectedIndex == -1) return;
             DataModel dm = new DataModel();
             DataTable selectedRecords = dm.getRecordsSubCategory(categoryComboBox.Text, subCatComboBox.Text);
             dataGridView1.DataSource = selectedRecords;
@@ -551,6 +563,7 @@ namespace PDFRepo
 
         private void categoriesToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            _isResettingComboBoxes = true; // Raise the shield to prevent unwanted event triggers during form operations
             CategoryGridForm cf = new CategoryGridForm();
             cf.Show();
             //   BuildComboBox(); -- This line is commented out because the ComboBox will be rebuilt when
@@ -562,12 +575,14 @@ namespace PDFRepo
 
         private void editSubCatsToolStripMenuItem_Click(object sender, EventArgs e)
         {
+        //    _isResettingComboBoxes = true; // Raise the shield to prevent unwanted event triggers during form operations
             SubCatGridForm scf = new SubCatGridForm();
             scf.Show();
         }
 
         private void subCategoriesToolStripMenuItem_Click(object sender, EventArgs e)
         {
+      //      _isResettingComboBoxes = true; // Raise the shield to prevent unwanted event triggers during form operations
             SubCatGridForm scf = new SubCatGridForm();
             scf.Show();
         }
