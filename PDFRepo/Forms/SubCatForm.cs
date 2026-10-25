@@ -54,8 +54,10 @@ namespace PDFRepo.Forms
         {
             DataModel dm = new DataModel();
             string categoryId = selectedRow.Cells["ID"].Value.ToString();
+            string oldSubCat = selectedRow.Cells["sub_cat"].Value.ToString();
+            string newSubCat = subCatTextBox.Text.ToLower();
 
-            if (dm.UpdateSubCat(categoryId, subCatTextBox.Text.ToLower(), notesTextBox.Text))
+            if (dm.UpdateSubCat(categoryId, oldSubCat, newSubCat, notesTextBox.Text))
             {
                 MessageBox.Show("Category updated successfully.");
                 this.Close();

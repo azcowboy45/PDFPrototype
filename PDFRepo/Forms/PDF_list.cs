@@ -13,7 +13,7 @@ namespace PDFRepo
     {
 
 
-        #region instance variables
+        #region instanceVariables
 
         private bool _isResettingComboBox = false;
         public ConfigMgr configMgr { get; set; }
@@ -29,9 +29,10 @@ namespace PDFRepo
 
         private string dbPath;
         private string selectedNameStr;
-  //      private CreateDB cdb = null;
+        //      private CreateDB cdb = null;
         #endregion
 
+        #region constructor
         public PDF_list(Program program)
         {
             // Store the reference to the Program instance, so we can access some properties and methods globally.
@@ -43,7 +44,9 @@ namespace PDFRepo
 
             BuildComboBoxes();  
         }
+        #endregion
 
+        #region initialization
         /// <summary>
         /// Initializes and populates the category, subcategory, and selector combo boxes with auto-complete data.
         /// </summary>
@@ -89,7 +92,8 @@ namespace PDFRepo
         {
             if (!program.bypassOnStartup)
             {
-                doSplashScreen(userNameTextBox.Text);
+                SplashScreen splash = new SplashScreen(this.program, configMgr, config, userNameTextBox.Text);
+                splash.ShowDialog();
             }
         }       
 
@@ -107,13 +111,7 @@ namespace PDFRepo
             this.config = Localconfig;
         }
 
-
-        private void doSplashScreen(string userName)
-        {
-            SplashScreen splash = new SplashScreen(this.program, configMgr, config, userName);
-            splash.ShowDialog();
-        }
-
+        #endregion
 
         #region handlers  // *********************** All in-house handlers live here!  ***********************
 
@@ -246,9 +244,6 @@ namespace PDFRepo
 
         #endregion   // ***************** end In-house handlers ****************
 
-
-
-
         #region handler helpers
 
 
@@ -279,7 +274,7 @@ namespace PDFRepo
 
         #endregion
 
-        #region control helpers
+        #region controlHelpers
         private void LoadDataGrid()
         {
             DataModel dm = new DataModel();
@@ -455,10 +450,6 @@ namespace PDFRepo
             backupForm.Show();
         }
 
-
-
-
-
         private void contextMenuStrip1_Opening(object sender, System.ComponentModel.CancelEventArgs e)
         {
 
@@ -510,7 +501,6 @@ namespace PDFRepo
             this.LoadDataGrid();
         }
 
-
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             doDeletePDF();
@@ -521,7 +511,6 @@ namespace PDFRepo
             doDeletePDF();
         }
 
-
         private void maintainCategoriesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             CategoryGridForm cf = new CategoryGridForm();
@@ -529,9 +518,6 @@ namespace PDFRepo
             //   BuildComboBox(); -- This line is commented out because the ComboBox will be rebuilt when
             //   the form is activated, so it is not necessary to call BuildComboBox() here.
         }
-
-
-
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -572,7 +558,7 @@ namespace PDFRepo
 
         }
 
-        #endregion
+
 
         private void editSubCatsToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -597,5 +583,6 @@ namespace PDFRepo
         {
 
         }
+        #endregion
     }
 }

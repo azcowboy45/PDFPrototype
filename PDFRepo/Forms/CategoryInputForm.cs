@@ -64,11 +64,12 @@ namespace PDFRepo.Forms
         private void UpdateCategory()
         {  
             string categoryId = selectedRow.Cells["ID"].Value.ToString();
+            string oldCategory = selectedRow.Cells["category"].Value.ToString();
             string category = categoryTextBox.Text.ToLower();
 
             DataModel dm = new DataModel();
        
-            if (dm.UpdatePDFCat(categoryId, category, notesTextbox.Text))
+            if (dm.UpdatePDFCat(categoryId, oldCategory, category, notesTextbox.Text))
             {
                 MessageBox.Show("Category updated successfully.");
                 this.Close();

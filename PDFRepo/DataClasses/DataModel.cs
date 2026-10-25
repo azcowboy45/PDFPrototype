@@ -240,7 +240,7 @@ namespace PDFRepo.DataClasses
         }
 
 
-        public bool UpdatePDFCat(string id, string category, string notes)
+        public bool UpdatePDFCat(string id, string oldCategory,string newCategory, string notes)
         {
             bool success = false;
 
@@ -252,14 +252,15 @@ namespace PDFRepo.DataClasses
                 {
                     // Add parameters to prevent SQL injection
                     command.Parameters.AddWithValue("@id", id);
-                    command.Parameters.AddWithValue("@category", category);
+                    command.Parameters.AddWithValue("@category", newCategory);
                     command.Parameters.AddWithValue("@notes", notes);
 
                     try
                     {
                         connection.Open();
                         command.ExecuteNonQuery();
-                        success = true;
+
+                        success = FixOrphans("pdf_category", oldCategory, newCategory);
                     }
                     catch (SqliteException SQLitex)
                     {
@@ -271,7 +272,7 @@ namespace PDFRepo.DataClasses
         }
 
 
-        public bool UpdateSubCat(string id, string sub_cat, string notes)
+        public bool UpdateSubCat(string id, string old_subcat, string new_subcat, string notes)
         {
             bool success = false;
 
@@ -283,13 +284,54 @@ namespace PDFRepo.DataClasses
                 {
                     // Add parameters to prevent SQL injection
                     command.Parameters.AddWithValue("@id", id);
-                    command.Parameters.AddWithValue("@sub_cat", sub_cat);
+                    command.Parameters.AddWithValue("@sub_cat", new_subcat);
                     command.Parameters.AddWithValue("@notes", notes);
 
                     try
                     {
                         connection.Open();
                         command.ExecuteNonQuery();
+
+                        success = FixOrphans("sub_category", old_subcat, new_subcat);
+                    }
+                    catch (SqliteException SQLitex)
+                    {
+                        MessageBox.Show("Error: " + SQLitex.Message);
+                    }
+                }
+            }
+            return success;
+        }
+
+
+        public bool FixOrphans(string field, string oldValue, string NewValue)
+
+        {
+            bool success = false;
+            string query = string.Empty;
+
+            if (field == "pdf_category")
+            {
+                query = @"UPDATE PDF_table SET pdf_category = @value where pdf_category = @oldValue ";
+            }
+            else 
+            { 
+                query = @"UPDATE PDF_table SET pdf_subcat = @value where pdf_subcat = @oldValue ";
+            }
+
+            using (var connection = new SqliteConnection(ConnectionString))
+            {
+                using (var command = new SqliteCommand(query, connection))
+                {
+                    // Add parameters to prevent SQL injection
+                    command.Parameters.AddWithValue("@value", NewValue);
+                    command.Parameters.AddWithValue("@oldValue", oldValue);
+    
+                    try
+                    {
+                        connection.Open();
+                        command.ExecuteNonQuery();
+
                         success = true;
                     }
                     catch (SqliteException SQLitex)
@@ -300,6 +342,9 @@ namespace PDFRepo.DataClasses
             }
             return success;
         }
+
+
+
 
         public DataTable GetAllPDFs()
         {
