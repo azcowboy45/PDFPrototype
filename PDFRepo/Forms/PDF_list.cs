@@ -16,10 +16,8 @@ namespace PDFRepo
         #region instance variables
 
         private bool _isResettingComboBox = false;
-     //   private bool _isResettingGeneric = false;
         public ConfigMgr configMgr { get; set; }
         public ConfigElements config { get; set; }
-
         private LogClass logger;
         private MethodsInCommon mic;
         private bool firstTime = true;
@@ -110,25 +108,37 @@ namespace PDFRepo
         }
 
 
-        private void WireUpHandlers()
+        private void doSplashScreen(string userName)
         {
-            this.Activated += PDFList_Activated;
-            dataGridView1.CellClick += dataGridView1_CellClick;
-            selectorComboBox.SelectionChangeCommitted += selectorComboBox_SelectionChangeCommitted;
-
-            // Wire the event handler to myDataGridView
-            dataGridView1.RowPostPaint += new DataGridViewRowPostPaintEventHandler(dataGridView1_RowPostPaint);
+            SplashScreen splash = new SplashScreen(this.program, configMgr, config, userName);
+            splash.ShowDialog();
         }
 
 
+        #region handlers  // *********************** All in-house handlers live here!  ***********************
+
+        /// <summary>
+        /// Commits the combo box's current selected value to its <c>SelectedValue</c> data binding.
+        /// </summary>
+        /// <remarks>Triggered when a selection change is committed by the user.</remarks>
+        /// <param name="sender">The control that raised the event.</param>
+        /// <param name="e">An <see cref="EventArgs" /> instance containing the event data.</param>
         private void selectorComboBox_SelectionChangeCommitted(object sender, EventArgs e)
         {
 
-           selectorComboBox.DataBindings["SelectedValue"]?.WriteValue();
+            selectorComboBox.DataBindings["SelectedValue"]?.WriteValue();
 
         }
 
-       
+        /// <summary>
+        /// Handles the selector combo box selection change by resolving the selected PDF identifier, displaying the
+        /// PDF, and resetting form selection state.
+        /// </summary>
+        /// <remarks>Returns without action when the combo box is being reset or when no item is
+        /// selected.</remarks>
+        /// <param name="sender">The ComboBox that raised the event.</param>
+        /// <param name="e">Event data for the selection change.</param>
+
         private void selectorComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (_isResettingComboBox) return;
@@ -136,38 +146,78 @@ namespace PDFRepo
 
             string selectedNameStr = selectorComboBox.Text;
             DataModel dm = new DataModel();
-
             this.selectablePDFId = dm.GetPdfIdByName(selectedNameStr);
-
             doViewPDF(selectablePDFId); // As a string, this.selectablePDFId can be used to fetch the PDF data from the database and display it in a new form.
             ResetFormSelection();
 
         }
 
-        private void ResetFormSelection()
+        /// <summary>
+        /// Paints a 1-based row number in the row header after a DataGridView row is rendered.
+        /// </summary>
+        /// <remarks>Uses the row header foreground color from RowHeadersDefaultCellStyle, with a fallback
+        /// to SystemColors.ControlText when the configured color is empty or transparent.</remarks>
+        /// <param name="sender">The DataGridView that raised the RowPostPaint event.</param>
+        /// <param name="e">Provides the graphics surface, row bounds, and row index used to draw the row header content.</param>
+        private void dataGridView1_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
-            // 4. Raise the shield, clear the index, drop the shield
-            _isResettingComboBox = true;
+            string lineNumber = (e.RowIndex + 1).ToString();
 
-            selectorComboBox.SelectedIndex = -1;
-            selectorComboBox.Text = string.Empty;
-            categoryComboBox.SelectedIndex = -1;
-            categoryComboBox.Text = string.Empty;
-            subCatComboBox.SelectedIndex = -1;
-            subCatComboBox.Text = string.Empty;
+            StringFormat centerFormat = new StringFormat
+            {
+                Alignment = StringAlignment.Center,
+                LineAlignment = StringAlignment.Center
+            };
 
+            Rectangle headerBounds = new Rectangle(
+                e.RowBounds.Left,
+                e.RowBounds.Top,
+                dataGridView1.RowHeadersWidth,
+                e.RowBounds.Height
+            );
 
-            _isResettingComboBox = false;
+            // FIX: Access ForeColor safely via the RowHeadersDefaultCellStyle object
+            Color headerColor = dataGridView1.RowHeadersDefaultCellStyle.ForeColor;
+
+            // Fallback safeguard: If the default color is empty or transparent, default to ControlText
+            if (headerColor.IsEmpty || headerColor == Color.Transparent)
+            {
+                headerColor = SystemColors.ControlText;
+            }
+
+            using (Brush brush = new SolidBrush(headerColor))
+            {
+                e.Graphics.DrawString(
+                    lineNumber,
+                    dataGridView1.Font,
+                    brush,
+                    headerBounds,
+                    centerFormat
+                );
+            }
         }
 
-        private void doSplashScreen(string userName)
+
+        /// <summary>
+        /// Refreshes the PDF list data when the list is activated.
+        /// </summary>
+        /// <param name="sender">Object that raised the activation event.</param>
+        /// <param name="e">Event data for the activation event.</param>
+        private void PDF_list_Activated(object sender, EventArgs e)
         {
-            SplashScreen splash = new SplashScreen(this.program, configMgr, config, userName);
-            splash.ShowDialog();
+            //LoadSelectionComboBox();
+            LoadDataGrid();
+
         }
-
-        #region handlers
-
+        /// <summary>
+        /// Display a selected PDF for the user.
+        /// Handles cell click events in the grid and opens the selected PDF when the clicked cell is in the "pdf_name"
+        /// column of a valid data row. 
+        /// </summary>
+        /// <remarks>Clicks outside valid row or column bounds, including header cells, are
+        /// ignored.</remarks>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">Provides data for the clicked cell, including row and column indexes.</param>
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
           //  if (_isResettingGeneric) return;
@@ -192,16 +242,40 @@ namespace PDFRepo
             }
         }
 
-        private void PDFList_Activated(object sender, EventArgs e)
+
+
+        #endregion   // ***************** end In-house handlers ****************
+
+        private void ResetFormSelection()
         {
-        //    BuildComboBoxes();  // Rebuild the ComboBox when the form is activated
-            // Refresh the DataGridView when the form is activated
-            LoadDataGrid();
+            // 4. Raise the shield, clear the index, drop the shield
+            _isResettingComboBox = true;
+
+            selectorComboBox.SelectedIndex = -1;
+            selectorComboBox.Text = string.Empty;
+            categoryComboBox.SelectedIndex = -1;
+            categoryComboBox.Text = string.Empty;
+            subCatComboBox.SelectedIndex = -1;
+            subCatComboBox.Text = string.Empty;
+
+
+            _isResettingComboBox = false;
+        }
+
+
+        #region handler helpers
+
+
+        private void WireUpHandlers()
+        {
+            dataGridView1.CellClick += dataGridView1_CellClick;
+            selectorComboBox.SelectionChangeCommitted += selectorComboBox_SelectionChangeCommitted;
+
+            // Wire the event handler to myDataGridView
+            dataGridView1.RowPostPaint += new DataGridViewRowPostPaintEventHandler(dataGridView1_RowPostPaint);
         }
 
         #endregion
-
-
 
         #region processingMethods
         private void LoadDataGrid()
@@ -295,47 +369,13 @@ namespace PDFRepo
             {
                 column.SortMode = DataGridViewColumnSortMode.NotSortable;
             }
-}   
+        }   
 
-private void dataGridView1_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
-        {
-            string lineNumber = (e.RowIndex + 1).ToString();
-
-            StringFormat centerFormat = new StringFormat
-            {
-                Alignment = StringAlignment.Center,
-                LineAlignment = StringAlignment.Center
-            };
-
-            Rectangle headerBounds = new Rectangle(
-                e.RowBounds.Left,
-                e.RowBounds.Top,
-                dataGridView1.RowHeadersWidth,
-                e.RowBounds.Height
-            );
-
-            // FIX: Access ForeColor safely via the RowHeadersDefaultCellStyle object
-            Color headerColor = dataGridView1.RowHeadersDefaultCellStyle.ForeColor;
-
-            // Fallback safeguard: If the default color is empty or transparent, default to ControlText
-            if (headerColor.IsEmpty || headerColor == Color.Transparent)
-            {
-                headerColor = SystemColors.ControlText;
-            }
-
-            using (Brush brush = new SolidBrush(headerColor))
-            {
-                e.Graphics.DrawString(
-                    lineNumber,
-                    dataGridView1.Font,
-                    brush,
-                    headerBounds,
-                    centerFormat
-                );
-            }
-        }
-
-
+        /// <summary>
+        /// Deletes the selected PDF record and refreshes the grid when the deletion succeeds.
+        /// </summary>
+        /// <remarks>Returns without changes when no valid row is selected. Shows a success or failure
+        /// message based on the delete operation result.</remarks>
         private void doDeletePDF()
         {
             string selectedPdfId = mic.GetSelectedGridRowId(dataGridView1, "delete");
@@ -554,12 +594,6 @@ private void dataGridView1_RowPostPaint(object sender, DataGridViewRowPostPaintE
         private void PDF_list_Load(object sender, EventArgs e)
         {
 
-        }
-
-        private void PDF_list_Activated(object sender, EventArgs e)
-        {
-            // DON'T USE THIS FOR NOW -- IT CAUSES A RECURSIVE LOOP
-            //LoadSelectionComboBox();
         }
     }
 }
