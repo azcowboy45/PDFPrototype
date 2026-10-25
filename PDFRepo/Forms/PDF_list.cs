@@ -16,6 +16,7 @@ namespace PDFRepo
         #region instance variables
 
         private bool _isResettingComboBox = false;
+     //   private bool _isResettingGeneric = false;
         public ConfigMgr configMgr { get; set; }
         public ConfigElements config { get; set; }
 
@@ -150,11 +151,14 @@ namespace PDFRepo
 
             selectorComboBox.SelectedIndex = -1;
             selectorComboBox.Text = string.Empty;
+            categoryComboBox.SelectedIndex = -1;
+            categoryComboBox.Text = string.Empty;
+            subCatComboBox.SelectedIndex = -1;
+            subCatComboBox.Text = string.Empty;
+
 
             _isResettingComboBox = false;
         }
-
-
 
         private void doSplashScreen(string userName)
         {
@@ -166,6 +170,7 @@ namespace PDFRepo
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+          //  if (_isResettingGeneric) return;
             // 1. Boundary Check: Prevent index out of range errors
             if (e.RowIndex >= 0 && e.RowIndex < dataGridView1.Rows.Count &&
                 e.ColumnIndex >= 0 && e.ColumnIndex < dataGridView1.Columns.Count)
@@ -183,6 +188,7 @@ namespace PDFRepo
                         doViewPDF(selectedItemId);
                     }
                 }
+                
             }
         }
 
@@ -364,7 +370,7 @@ private void dataGridView1_RowPostPaint(object sender, DataGridViewRowPostPaintE
             {
                 ViewPdfForm viewPdfForm = new ViewPdfForm(selectedPdfId);
                 viewPdfForm.Show();
-                clearCategorySelections();
+                ResetFormSelection();
             }
         }
 
@@ -483,29 +489,28 @@ private void dataGridView1_RowPostPaint(object sender, DataGridViewRowPostPaintE
         }
 
 
+
+
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (_isResettingComboBox) return;
+            if (categoryComboBox.SelectedIndex == -1) return;
             DataModel dm = new DataModel();
             DataTable selectedRecords = dm.getRecordsCategory(categoryComboBox.Text);
             dataGridView1.DataSource = selectedRecords;
-            FormatDataGrid();
+        //    FormatDataGrid();
+        //    ResetFormSelection();
 
         }
         private void subCatComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (_isResettingComboBox) return;
+            if (subCatComboBox.SelectedIndex == -1) return;
             DataModel dm = new DataModel();
             DataTable selectedRecords = dm.getRecordsSubCategory(categoryComboBox.Text, subCatComboBox.Text);
             dataGridView1.DataSource = selectedRecords;
-            FormatDataGrid();
-        }
-
-        private void clearCategorySelections()
-        {
-
-            categoryComboBox.SelectedIndex = -1;       
-            categoryComboBox.Text = string.Empty;
-            subCatComboBox.SelectedIndex = -1;
-            subCatComboBox.Text = string.Empty;
+        //    FormatDataGrid();
+        //    ResetFormSelection();
         }
 
 
@@ -513,7 +518,7 @@ private void dataGridView1_RowPostPaint(object sender, DataGridViewRowPostPaintE
         {
             LoadDataGrid();
             FormatDataGrid();
-            clearCategorySelections();
+            ResetFormSelection();
         }
 
         private void categoriesToolStripMenuItem_Click(object sender, EventArgs e)
