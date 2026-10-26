@@ -1,4 +1,3 @@
-
 #define DEBUG_MODE
 
 using Microsoft.Data.Sqlite;
@@ -39,13 +38,13 @@ namespace PDFRepo
         public PDF_list(Program program)
         {
             // Store the reference to the Program instance, so we can access some properties and methods globally.
-            this.program = program; 
+            this.program = program;
 
             InitializeComponent();
             WireUpHandlers();
             ConfigureApplication();
 
-            BuildComboBoxes();  
+            BuildComboBoxes();
         }
         #endregion
 
@@ -63,7 +62,7 @@ namespace PDFRepo
             dd.LoadAutoCompleteComboBox(dm, categoryComboBox, "pdf_cat", "category", "ID");
             dd.LoadAutoCompleteComboBox(dm, subCatComboBox, "sub_category", "sub_cat", "ID");
             dd.LoadAutoCompleteComboBox(dm, selectorComboBox, "pdf_table", "pdf_name", "ID");
-        }   
+        }
 
         private void ConfigureApplication()
         {
@@ -76,7 +75,7 @@ namespace PDFRepo
             // 4. Set the user name in the UI
             userNameTextBox.Text = $"{config.firstName} {config.lastName}".Trim();
             // 5. Set global bypass on startup variable in _program
-            program.bypassOnStartup = Convert.ToBoolean(this.config.bypassOnStartup); 
+            program.bypassOnStartup = Convert.ToBoolean(this.config.bypassOnStartup);
             // 6. Based on result, show splash screen
             DoSplashScreenIfNeeded();
             // 7. Create log file if it doesn't exist
@@ -98,12 +97,12 @@ namespace PDFRepo
                 SplashScreen splash = new SplashScreen(this.program, configMgr, config, userNameTextBox.Text);
                 splash.ShowDialog();
             }
-        }       
+        }
 
         private void CreateDbIFNotExists()
         {
             CreateDB cdb = new CreateDB(program);
-            this.dbPath =cdb.CreateDatabase();
+            this.dbPath = cdb.CreateDatabase();
         }
 
         private void SetupConfig()
@@ -210,7 +209,7 @@ namespace PDFRepo
         private void PDF_list_Activated(object sender, EventArgs e)
         {
 
-       //     if (selectorComboBox.SelectedIndex == -1) return;
+            //     if (selectorComboBox.SelectedIndex == -1) return;
 
             LoadDataGrid();
 
@@ -229,7 +228,7 @@ namespace PDFRepo
         /// <param name="e">Provides data for the clicked cell, including row and column indexes.</param>
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-          //  if (_isResettingGeneric) return;
+            //  if (_isResettingGeneric) return;
             // 1. Boundary Check: Prevent index out of range errors
             if (e.RowIndex >= 0 && e.RowIndex < dataGridView1.Rows.Count &&
                 e.ColumnIndex >= 0 && e.ColumnIndex < dataGridView1.Columns.Count)
@@ -247,7 +246,7 @@ namespace PDFRepo
                         doViewPDF(selectedItemId);
                     }
                 }
-                
+
             }
         }
 
@@ -263,8 +262,9 @@ namespace PDFRepo
             dataGridView1.CellClick += dataGridView1_CellClick;
             selectorComboBox.SelectionChangeCommitted += selectorComboBox_SelectionChangeCommitted;
 
-            // Wire the event handler to myDataGridView
+            // Wire the event handler to add row numbers to the DataGridView row headers after each row is painted
             dataGridView1.RowPostPaint += new DataGridViewRowPostPaintEventHandler(dataGridView1_RowPostPaint);
+
         }
 
         private void ResetFormSelection()
@@ -383,7 +383,7 @@ namespace PDFRepo
             {
                 column.SortMode = DataGridViewColumnSortMode.NotSortable;
             }
-        }   
+        }
 
         /// <summary>
         /// Deletes the selected PDF record and refreshes the grid when the deletion succeeds.
@@ -429,7 +429,7 @@ namespace PDFRepo
         }
 
 
-#endregion
+        #endregion
 
         #region controls        
         private void ViewButton_Click(object sender, EventArgs e)
@@ -472,7 +472,7 @@ namespace PDFRepo
 
         }
 
-        private void doEdits()
+        private void UpdateRowOnly()
         {
             string selectedPdfId = mic.GetSelectedGridRowId(dataGridView1, "modify");
             if (selectedPdfId == "-1")
@@ -481,9 +481,54 @@ namespace PDFRepo
             }
             else
             {
-                PDFInfoForm pdfInfoForm = new PDFInfoForm(selectedPdfId);
-                pdfInfoForm.ShowDialog();
-                this.LoadDataGrid();
+                DataModel dm = new DataModel();
+                DataTable updatedRecord = dm.GetPDFInfo(selectedPdfId);
+                if (updatedRecord.Rows.Count > 0)
+                {
+                    // Find the row in the DataGridView that matches the selected PDF ID
+                    foreach (DataGridViewRow row in dataGridView1.Rows)
+                    {
+                        if (row.Cells["ID"].Value.ToString() == selectedPdfId)
+                        {
+                            // Update the row's cells with the new data
+                           // row.Cells["pdf_name"].Value = updatedRecord.Rows[0]["pdf_name"];
+                            row.Cells["pdf_description"].Value = updatedRecord.Rows[0]["pdf_description"];
+                            row.Cells["pdf_category"].Value = updatedRecord.Rows[0]["pdf_category"];
+                            row.Cells["pdf_subcat"].Value = updatedRecord.Rows[0]["pdf_subcat"];
+                          //  row.Cells["pdf_attributes"].Value = updatedRecord.Rows[0]["pdf_attributes"];
+                          //  row.Cells["pdf_created"].Value = updatedRecord.Rows[0]["pdf_created"];
+                          //  row.Cells["pdf_size"].Value = updatedRecord.Rows[0]["pdf_size"];
+                          //  row.Cells["pdf_lastmod"].Value = updatedRecord.Rows[0]["pdf_lastmod"];
+                            break; // Exit the loop once the matching row is found and updated
+                        }
+                    }
+                }
+            }
+        }
+
+        private void doEdits()
+        {   
+            // Set this to true if you want to update the existing row when form returns. Temporary dev purposes.
+            bool updateRowInPlace = false; 
+            string selectedPdfId = mic.GetSelectedGridRowId(dataGridView1, "modify");
+            if (selectedPdfId == "-1")
+            {
+                return; // Exit the method if no valid ID was selected
+            }
+            else
+            {
+                if (updateRowInPlace)
+                {
+                    PDFInfoForm pdfInfoForm = new PDFInfoForm(selectedPdfId);
+                    pdfInfoForm.ShowDialog();
+                    UpdateRowOnly();
+                }
+                else
+                {
+                    PDFInfoForm pdfInfoForm = new PDFInfoForm(selectedPdfId);
+                    pdfInfoForm.ShowDialog();
+                    LoadDataGrid();
+                }
             }
         }
 
@@ -529,7 +574,7 @@ namespace PDFRepo
         }
 
         private void maintainCategoriesToolStripMenuItem_Click(object sender, EventArgs e)
-        {         
+        {
             CategoryGridForm cf = new CategoryGridForm();
             cf.Show();
             //   BuildComboBox(); -- This line is commented out because the ComboBox will be rebuilt when
@@ -542,8 +587,8 @@ namespace PDFRepo
             DataModel dm = new DataModel();
             DataTable selectedRecords = dm.getRecordsCategory(categoryComboBox.Text);
             dataGridView1.DataSource = selectedRecords;
-        //    FormatDataGrid();
-        //    ResetFormSelection();
+            //    FormatDataGrid();
+            //    ResetFormSelection();
 
         }
         private void subCatComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -551,8 +596,8 @@ namespace PDFRepo
             DataModel dm = new DataModel();
             DataTable selectedRecords = dm.getRecordsSubCategory(categoryComboBox.Text, subCatComboBox.Text);
             dataGridView1.DataSource = selectedRecords;
-        //    FormatDataGrid();
-        //    ResetFormSelection();
+            //    FormatDataGrid();
+            //    ResetFormSelection();
         }
 
 
@@ -560,7 +605,7 @@ namespace PDFRepo
         {
             LoadDataGrid();
             FormatDataGrid();
-            ResetFormSelection();
+        //    ResetFormSelection();  This forces show all button to be pressed twice. Bug???
         }
 
         private void categoriesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -577,14 +622,14 @@ namespace PDFRepo
 
         private void editSubCatsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-        //    _isResettingComboBoxes = true; // Raise the shield to prevent unwanted event triggers during form operations
+            //    _isResettingComboBoxes = true; // Raise the shield to prevent unwanted event triggers during form operations
             SubCatGridForm scf = new SubCatGridForm();
             scf.Show();
         }
 
         private void subCategoriesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-      //      _isResettingComboBoxes = true; // Raise the shield to prevent unwanted event triggers during form operations
+            //      _isResettingComboBoxes = true; // Raise the shield to prevent unwanted event triggers during form operations
             SubCatGridForm scf = new SubCatGridForm();
             scf.Show();
         }
