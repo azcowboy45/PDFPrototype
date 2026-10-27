@@ -623,9 +623,14 @@ namespace PDFRepo
 
         private void showAllButton_Click(object sender, EventArgs e)
         {
+            selectorComboBox.SelectedIndex = -1;
+            selectorComboBox.Text = string.Empty;
+            categoryComboBox.SelectedIndex = -1;
+            categoryComboBox.Text = string.Empty;
+            subCatComboBox.SelectedIndex = -1;
+            subCatComboBox.Text = string.Empty;
             LoadDataGrid();
-            FormatDataGrid();
-        //    ResetFormSelection();  This forces show all button to be pressed twice. Bug???
+
         }
 
         #region editControls
