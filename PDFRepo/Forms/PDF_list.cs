@@ -50,6 +50,7 @@ namespace PDFRepo
             ConfigureApplication();
             WireUpHandlers();
             BuildComboBoxes(false);
+            AddToolTips();
         }
         #endregion
 
@@ -123,6 +124,17 @@ namespace PDFRepo
             configMgr = new ConfigMgr(program);
             Localconfig = configMgr.GetCfg();
             this.config = Localconfig;
+        }
+
+        private void AddToolTips()
+        {
+            ToolTip toolTip = new ToolTip();
+            toolTip.SetToolTip(selectorComboBox, "Select a PDF to view.");
+            toolTip.SetToolTip(categoryComboBox, "Filter PDFs by category.");
+            toolTip.SetToolTip(subCatComboBox, "Filter PDFs by subcategory.");
+            toolTip.SetToolTip(showAllButton, "Show all PDFs in the list.");
+            toolTip.SetToolTip(pdfImportButton, "Import a new PDF into the repository.");
+            
         }
 
         #endregion

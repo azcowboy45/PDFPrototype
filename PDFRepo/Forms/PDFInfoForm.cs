@@ -25,9 +25,17 @@ namespace PDFRepo.Forms
             mic = new MethodsInCommon();
             InitializeComponent();
             LoadFormData(pdfId);
-            // Wire up the Activated event handler programmatically
-       //     this.Activated += PDFList_Activated;  // Wire up the Activated event handler programmatically to the PDF_List form.
+            AddToolTips();
 
+        }
+
+        private void AddToolTips()
+        {
+            System.Windows.Forms.ToolTip toolTip = new System.Windows.Forms.ToolTip();
+            toolTip.SetToolTip(categoryComboBox, "Select a category for the PDF file.");
+            toolTip.SetToolTip(subCatComboBox, "Select a subcategory for the PDF file.");
+            toolTip.SetToolTip(descriptionTextBox, "Enter a description for the PDF file.");
+            toolTip.SetToolTip(exitButton, "Click to exit the form.");
         }
 
         private void PDFList_Activated(object sender, EventArgs e)

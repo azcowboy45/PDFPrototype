@@ -25,8 +25,20 @@ namespace PDFRepo.Forms
             this.selectedRow = selectedRow;
             this.isEditMode= isEditMode; // Set the flag to indicate edit mode
             LoadForm();
+            AddToolTips();
 
         }
+
+        private void AddToolTips()
+        {
+            System.Windows.Forms.ToolTip toolTip = new System.Windows.Forms.ToolTip();
+            toolTip.SetToolTip(categoryTextBox, "Enter the name of the category.");
+            toolTip.SetToolTip(notesTextbox, "Enter any notes or description for the category.");
+            toolTip.SetToolTip(saveButton, "Click to save the category.");
+            toolTip.SetToolTip(exitButton, "Click to exit the form without saving.");
+        }
+
+
         private void LoadForm()
         {
            

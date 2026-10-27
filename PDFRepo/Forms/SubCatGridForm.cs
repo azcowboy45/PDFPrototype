@@ -26,6 +26,15 @@ namespace PDFRepo.Forms
             // Wire up the Activated event handler programmatically
             this.Activated += CategoryGridForm_Activated;  // Wire up the Activated event handler programmatically to the CategoryGridForm.
 
+            AddToolTips();
+
+        }
+        
+        private void AddToolTips()
+        {
+            System.Windows.Forms.ToolTip toolTip = new System.Windows.Forms.ToolTip();
+            toolTip.SetToolTip(subcatButton, "Click to manage subcategories.");
+            toolTip.SetToolTip(exitButton, "Click to exit the form.");
         }
 
         private void CategoryGridForm_Activated(object sender, EventArgs e)

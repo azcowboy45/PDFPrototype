@@ -29,13 +29,23 @@ namespace PDFRepo.Forms
 
             this.Load += new EventHandler(SplashScreen_Load);
             this.Resize += new EventHandler(SplashScreen_Resize);
+
+            AddToolTips();
         }
 
         private void SplashScreen_Load(object sender, EventArgs e)
         {
             CenterLabelHorizontally();
+
         }
 
+        private void AddToolTips()
+        {
+            System.Windows.Forms.ToolTip toolTip = new System.Windows.Forms.ToolTip();
+            toolTip.SetToolTip(continueButton, "Click to continue to the main application.");
+            toolTip.SetToolTip(setupButton, "Click to open the setup form.");
+        }
+    
         private void SplashScreen_Resize(object sender, EventArgs e)
         {
             // Keeps it perfectly centered even if the user maximizes or drags the window size

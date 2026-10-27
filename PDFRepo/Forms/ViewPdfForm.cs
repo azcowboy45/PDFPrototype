@@ -20,11 +20,16 @@ namespace PDFRepo.Forms
         private string tempPdfPath = string.Empty;
         public ViewPdfForm(string pdfId)
         {
-            //    this.pdfId = pdfId;
-
             InitializeComponent();
             LoadPDF(pdfId);
             btnLoadPdfFromDb_Click();
+            AddToolTips();
+        }
+
+        private void AddToolTips()
+        {
+            System.Windows.Forms.ToolTip toolTip = new System.Windows.Forms.ToolTip();
+            toolTip.SetToolTip(exitButton, "Click to exit the form.");
         }
 
 

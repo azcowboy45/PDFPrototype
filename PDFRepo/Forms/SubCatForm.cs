@@ -17,6 +17,8 @@ namespace PDFRepo.Forms
         public SubCatForm(bool isEditMode)
         {
             InitializeComponent();
+            this.isEditMode = isEditMode;
+            AddToolTips();
         }
 
         public SubCatForm(DataGridViewRow selectedRow, bool isEditMode)
@@ -26,6 +28,17 @@ namespace PDFRepo.Forms
             this.isEditMode = isEditMode; // Set the flag to indicate edit mode
             LoadForm();
 
+            AddToolTips();
+
+        }
+        
+        private void AddToolTips()
+        {
+            System.Windows.Forms.ToolTip toolTip = new System.Windows.Forms.ToolTip();
+            toolTip.SetToolTip(subCatTextBox, "Enter the name of the subcategory.");
+            toolTip.SetToolTip(notesTextBox, "Enter any notes or description for the subcategory.");
+            toolTip.SetToolTip(saveButton, "Click to save the subcategory.");
+            toolTip.SetToolTip(exitButton, "Click to exit the form without saving.");
         }
 
         private void LoadForm()

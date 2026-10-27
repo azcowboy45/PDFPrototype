@@ -25,7 +25,22 @@ namespace PDFRepo.Forms
             InitializeComponent();
             //     categoryComboBox.SelectionChangeCommitted += categoryComboBox_SelectionChangeCommitted;
             BuildComboBoxes();
+            AddToolTips();
         }
+        private void AddToolTips()
+        {
+            ToolTip toolTip = new ToolTip();
+            toolTip.SetToolTip(selectPDFButton, "Click to select a PDF file for import.");
+            toolTip.SetToolTip(pdfPathTextBox, "Displays the path of the selected PDF file.");
+            toolTip.SetToolTip(descriptionTextBox, "Enter a description for the PDF file.");
+            toolTip.SetToolTip(categoryComboBox, "Select a category for the PDF file.");
+            toolTip.SetToolTip(subCatComboBox, "Select a subcategory for the PDF file.");
+            toolTip.SetToolTip(importButton, "Click to import the selected PDF file into the database.");
+            toolTip.SetToolTip(editCatButton, "Click to edit categories.");
+            toolTip.SetToolTip(editSubcategoriesButton, "Click to edit subcategories.");
+            toolTip.SetToolTip(exitButton, "Click to exit the import form.");
+        }       
+    
 
         private void BuildComboBoxes()
         {
