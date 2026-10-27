@@ -27,7 +27,6 @@ namespace PDFRepo
         private MethodsInCommon mic;
         private bool firstTime = true;
         public Program program;
-
         public bool ShowAtStartup { get; set; }
 
         private string selectablePDFId = "-1";
@@ -156,6 +155,7 @@ namespace PDFRepo
             this.selectablePDFId = dm.GetPdfIdByName(selectedNameStr);
             doViewPDF(selectablePDFId); // As a string, this.selectablePDFId can be used to fetch the PDF data from the database and display it in a new form.
             ResetFormSelection();
+            _suppressReloadOnce = true;  // So DataViewGrid1 stays where it is.
 
         }
 
@@ -438,6 +438,19 @@ namespace PDFRepo
             }
         }
 
+        /// <summary>
+        /// Opens a PDF viewer form for the selected PDF identifier when a valid selection is provided.
+        /// 
+        /// This method sets a one-time reload suppression flag to prevent unnecessary data grid refreshes 
+        /// when the viewer form is opened. After the viewer form is displayed, it resets the form's 
+        /// combo box selections to their default state.
+        /// 
+        /// This method is typically called in response to user actions such as selecting a PDF from a combo box or clicking on a grid row.
+        /// For reference, see handler, selectorComboBox_SelectedIndexChanged(object sender, EventArgs e).
+        /// 
+        /// <remarks>Sets a one-time reload suppression flag before opening the viewer, then resets form
+        /// selections after showing the form.</remarks>
+        /// <param name="selectedPdfId">Selected PDF identifier. Use "-1" to indicate no selection and skip opening the viewer.</param>
         private void doViewPDF(string selectedPdfId)
         {
             ;
@@ -455,26 +468,97 @@ namespace PDFRepo
         }
 
 
-        #endregion
-
-        #region controls        
-        private void ViewButton_Click(object sender, EventArgs e)
+        private void UpdateRowOnly()
         {
-            string selectedPdfId = mic.GetSelectedGridRowId(dataGridView1, "view");
-            doViewPDF(selectedPdfId);
+            string selectedPdfId = mic.GetSelectedGridRowId(dataGridView1, "modify");
+            if (selectedPdfId == "-1")
+            {
+                return; // Exit the method if no valid ID was selected
+            }
+            else
+            {
+                DataModel dm = new DataModel();
+                DataTable updatedRecord = dm.GetPDFInfo(selectedPdfId);
+                if (updatedRecord.Rows.Count > 0)
+                {
+                    // Find the row in the DataGridView that matches the selected PDF ID
+                    foreach (DataGridViewRow row in dataGridView1.Rows)
+                    {
+                        if (row.Cells["ID"].Value.ToString() == selectedPdfId)
+                        {
+                            // Update the row's cells with the new data
+                            // row.Cells["pdf_name"].Value = updatedRecord.Rows[0]["pdf_name"];
+                            row.Cells["pdf_description"].Value = updatedRecord.Rows[0]["pdf_description"];
+                            row.Cells["pdf_category"].Value = updatedRecord.Rows[0]["pdf_category"];
+                            row.Cells["pdf_subcat"].Value = updatedRecord.Rows[0]["pdf_subcat"];
+                            //  row.Cells["pdf_attributes"].Value = updatedRecord.Rows[0]["pdf_attributes"];
+                            //  row.Cells["pdf_created"].Value = updatedRecord.Rows[0]["pdf_created"];
+                            //  row.Cells["pdf_size"].Value = updatedRecord.Rows[0]["pdf_size"];
+                            //  row.Cells["pdf_lastmod"].Value = updatedRecord.Rows[0]["pdf_lastmod"];
+                            break; // Exit the loop once the matching row is found and updated
+                        }
+                    }
+                }
+            }
         }
 
+        private void doEdits()
+        {
+            // Set this to true if you want to update the existing row when form returns. Temporary dev purposes.
+            bool updateRowInPlace = false;
+            string selectedPdfId = mic.GetSelectedGridRowId(dataGridView1, "modify");
+            if (selectedPdfId == "-1")
+            {
+                return; // Exit the method if no valid ID was selected
+            }
+            else
+            {
+                if (updateRowInPlace)  // ?????
+                {
+                    PDFInfoForm pdfInfoForm = new PDFInfoForm(selectedPdfId);
+                    pdfInfoForm.ShowDialog();
+                    UpdateRowOnly();
+                }
+                else
+                {
+                    PDFInfoForm pdfInfoForm = new PDFInfoForm(selectedPdfId);
+                    pdfInfoForm.ShowDialog();
+                    LoadDataGrid();
+                }
+            }
+        }
+
+
+
+
+        #endregion
+
+        #region controls  
+
+        #region viewMethods
+
+        // Important note: Viewin a PDF is also handled in the selectorComboBox_SelectedIndexChanged
+        // event handler, which is triggered when a user selects a PDF from the selector combo box.
+        // This method is specifically for handling the context menu actions to view a PDF.
         private void viewPDFToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string selectedPdfId = mic.GetSelectedGridRowId(dataGridView1, "view");
             doViewPDF(selectedPdfId);
         }
 
+        private void viewPDFToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+
+            string selectedPdfId = mic.GetSelectedGridRowId(dataGridView1, "view");
+            doViewPDF(selectedPdfId);
+
+        }
+
+        #endregion
         private void importToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ImportForm importForm = new ImportForm();
             importForm.ShowDialog();
-            this.LoadDataGrid();
         }
         private void exitButton_Click(object sender, EventArgs e)
         {
@@ -498,66 +582,6 @@ namespace PDFRepo
 
         }
 
-        private void UpdateRowOnly()
-        {
-            string selectedPdfId = mic.GetSelectedGridRowId(dataGridView1, "modify");
-            if (selectedPdfId == "-1")
-            {
-                return; // Exit the method if no valid ID was selected
-            }
-            else
-            {
-                DataModel dm = new DataModel();
-                DataTable updatedRecord = dm.GetPDFInfo(selectedPdfId);
-                if (updatedRecord.Rows.Count > 0)
-                {
-                    // Find the row in the DataGridView that matches the selected PDF ID
-                    foreach (DataGridViewRow row in dataGridView1.Rows)
-                    {
-                        if (row.Cells["ID"].Value.ToString() == selectedPdfId)
-                        {
-                            // Update the row's cells with the new data
-                           // row.Cells["pdf_name"].Value = updatedRecord.Rows[0]["pdf_name"];
-                            row.Cells["pdf_description"].Value = updatedRecord.Rows[0]["pdf_description"];
-                            row.Cells["pdf_category"].Value = updatedRecord.Rows[0]["pdf_category"];
-                            row.Cells["pdf_subcat"].Value = updatedRecord.Rows[0]["pdf_subcat"];
-                          //  row.Cells["pdf_attributes"].Value = updatedRecord.Rows[0]["pdf_attributes"];
-                          //  row.Cells["pdf_created"].Value = updatedRecord.Rows[0]["pdf_created"];
-                          //  row.Cells["pdf_size"].Value = updatedRecord.Rows[0]["pdf_size"];
-                          //  row.Cells["pdf_lastmod"].Value = updatedRecord.Rows[0]["pdf_lastmod"];
-                            break; // Exit the loop once the matching row is found and updated
-                        }
-                    }
-                }
-            }
-        }
-
-        private void doEdits()
-        {   
-            // Set this to true if you want to update the existing row when form returns. Temporary dev purposes.
-            bool updateRowInPlace = false; 
-            string selectedPdfId = mic.GetSelectedGridRowId(dataGridView1, "modify");
-            if (selectedPdfId == "-1")
-            {
-                return; // Exit the method if no valid ID was selected
-            }
-            else
-            {
-                if (updateRowInPlace)
-                {
-                    PDFInfoForm pdfInfoForm = new PDFInfoForm(selectedPdfId);
-                    pdfInfoForm.ShowDialog();
-                    UpdateRowOnly();
-                }
-                else
-                {
-                    PDFInfoForm pdfInfoForm = new PDFInfoForm(selectedPdfId);
-                    pdfInfoForm.ShowDialog();
-                    LoadDataGrid();
-                }
-            }
-        }
-
         private void modifyPDFInfoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             doEdits();
@@ -565,22 +589,6 @@ namespace PDFRepo
         private void modifyPDFRecordsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             doEdits();
-        }
-        private void viewPDFToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            string selectedPdfId = mic.GetSelectedGridRowId(dataGridView1, "view");
-            if (selectedPdfId == "-1")
-            {
-                return; // Exit the method if no valid ID was selected
-            }
-            else
-            {
-                ViewPdfForm viewPdfForm = new ViewPdfForm(selectedPdfId);
-                viewPdfForm.Show();
-                //   this.LoadDataGrid();
-                _suppressReloadOnce = true;
-            }
-
         }
 
         private void pdfImportButton_Click(object sender, EventArgs e)
