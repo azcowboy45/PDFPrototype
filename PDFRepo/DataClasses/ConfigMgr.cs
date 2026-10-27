@@ -118,6 +118,10 @@ namespace PDFRepo.DataClasses
                         case "BypassOnStartup":
                             config.bypassOnStartup = value;
                             break;
+                        case "ShowLineNumbers":
+                            config.showLineNumbers = value;
+                            break;          
+
                         case "SubmissionDate":
                             config.submissionDate = value;
                             break;
@@ -192,7 +196,9 @@ namespace PDFRepo.DataClasses
                                  string dbPath,
                                  string bkupPath,
                                  string enableLogging,
-                                 string bypassOnStartup)
+                                 string bypassOnStartup,
+                                 string showLineNumbers
+                                 )
         {
             string submissionDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
 
@@ -204,6 +210,7 @@ namespace PDFRepo.DataClasses
                 $"BkupPath={bkupPath}",
                 $"EnableLogging={enableLogging}",
                 $"BypassOnStartup={bypassOnStartup}",
+                $"ShowLineNumbers={showLineNumbers}",
                 $"SubmissionDate={submissionDate}"
             };
 
@@ -265,6 +272,7 @@ namespace PDFRepo.DataClasses
             config.bkupPath = BuildDefaultBackupPath(); //suggested default backup path
             config.enableLogging = "true";  // We may want to set this to false later if needed
             config.bypassOnStartup = "false";
+            config.showLineNumbers = "false";
             config.submissionDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
         }
 

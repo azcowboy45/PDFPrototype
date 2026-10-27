@@ -41,12 +41,13 @@
             panel1 = new Panel();
             enableLoggingCheckBox = new CheckBox();
             bypassOnStartupCheckBox = new CheckBox();
-            panel1.SuspendLayout();
+            showLineNumbersCheckBox = new CheckBox();
+            label5 = new Label();
             SuspendLayout();
             // 
             // exitButton
             // 
-            exitButton.Location = new Point(872, 387);
+            exitButton.Location = new Point(901, 422);
             exitButton.Name = "exitButton";
             exitButton.Size = new Size(112, 34);
             exitButton.TabIndex = 0;
@@ -56,7 +57,7 @@
             // 
             // saveButton
             // 
-            saveButton.Location = new Point(21, 382);
+            saveButton.Location = new Point(21, 416);
             saveButton.Name = "saveButton";
             saveButton.Size = new Size(112, 34);
             saveButton.TabIndex = 1;
@@ -66,7 +67,7 @@
             // 
             // dbPathTextBox
             // 
-            dbPathTextBox.Location = new Point(205, 256);
+            dbPathTextBox.Location = new Point(205, 287);
             dbPathTextBox.Name = "dbPathTextBox";
             dbPathTextBox.ReadOnly = true;
             dbPathTextBox.Size = new Size(779, 31);
@@ -75,7 +76,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(33, 262);
+            label1.Location = new Point(33, 293);
             label1.Name = "label1";
             label1.Size = new Size(151, 25);
             label1.TabIndex = 3;
@@ -83,7 +84,7 @@
             // 
             // bkupPathTextBox
             // 
-            bkupPathTextBox.Location = new Point(205, 162);
+            bkupPathTextBox.Location = new Point(205, 193);
             bkupPathTextBox.Name = "bkupPathTextBox";
             bkupPathTextBox.Size = new Size(779, 31);
             bkupPathTextBox.TabIndex = 4;
@@ -91,7 +92,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(62, 165);
+            label2.Location = new Point(62, 196);
             label2.Name = "label2";
             label2.Size = new Size(112, 25);
             label2.TabIndex = 5;
@@ -99,7 +100,7 @@
             // 
             // lastNameTextBox
             // 
-            lastNameTextBox.Location = new Point(648, 80);
+            lastNameTextBox.Location = new Point(648, 111);
             lastNameTextBox.Name = "lastNameTextBox";
             lastNameTextBox.Size = new Size(336, 31);
             lastNameTextBox.TabIndex = 6;
@@ -107,7 +108,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(62, 83);
+            label3.Location = new Point(62, 114);
             label3.Name = "label3";
             label3.Size = new Size(101, 25);
             label3.TabIndex = 7;
@@ -116,7 +117,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(543, 83);
+            label4.Location = new Point(543, 114);
             label4.Name = "label4";
             label4.Size = new Size(99, 25);
             label4.TabIndex = 8;
@@ -124,15 +125,14 @@
             // 
             // firstNameTextBox
             // 
-            firstNameTextBox.Location = new Point(169, 80);
+            firstNameTextBox.Location = new Point(169, 111);
             firstNameTextBox.Name = "firstNameTextBox";
             firstNameTextBox.Size = new Size(336, 31);
             firstNameTextBox.TabIndex = 9;
             // 
             // panel1
             // 
-            panel1.Controls.Add(enableLoggingCheckBox);
-            panel1.Location = new Point(12, 239);
+            panel1.Location = new Point(12, 262);
             panel1.Name = "panel1";
             panel1.Size = new Size(1001, 105);
             panel1.TabIndex = 12;
@@ -142,30 +142,58 @@
             enableLoggingCheckBox.AutoSize = true;
             enableLoggingCheckBox.Checked = true;
             enableLoggingCheckBox.CheckState = CheckState.Checked;
-            enableLoggingCheckBox.Location = new Point(193, 67);
+            enableLoggingCheckBox.Location = new Point(239, 416);
             enableLoggingCheckBox.Name = "enableLoggingCheckBox";
-            enableLoggingCheckBox.Size = new Size(130, 29);
+            enableLoggingCheckBox.Size = new Size(172, 29);
             enableLoggingCheckBox.TabIndex = 0;
-            enableLoggingCheckBox.Text = "Logging on";
+            enableLoggingCheckBox.Text = "Logging enabled";
             enableLoggingCheckBox.UseVisualStyleBackColor = true;
+            enableLoggingCheckBox.CheckedChanged += enableLoggingCheckBox_CheckedChanged;
             // 
             // bypassOnStartupCheckBox
             // 
             bypassOnStartupCheckBox.AutoSize = true;
             bypassOnStartupCheckBox.Checked = true;
             bypassOnStartupCheckBox.CheckState = CheckState.Checked;
-            bypassOnStartupCheckBox.Location = new Point(436, 387);
+            bypassOnStartupCheckBox.Location = new Point(420, 416);
             bypassOnStartupCheckBox.Name = "bypassOnStartupCheckBox";
             bypassOnStartupCheckBox.Size = new Size(180, 29);
             bypassOnStartupCheckBox.TabIndex = 13;
             bypassOnStartupCheckBox.Text = "Bypass on startup";
             bypassOnStartupCheckBox.UseVisualStyleBackColor = true;
+            bypassOnStartupCheckBox.CheckedChanged += bypassOnStartupCheckBox_CheckedChanged;
+            // 
+            // showLineNumbersCheckBox
+            // 
+            showLineNumbersCheckBox.AutoSize = true;
+            showLineNumbersCheckBox.Checked = true;
+            showLineNumbersCheckBox.CheckState = CheckState.Checked;
+            showLineNumbersCheckBox.Location = new Point(631, 416);
+            showLineNumbersCheckBox.Name = "showLineNumbersCheckBox";
+            showLineNumbersCheckBox.Size = new Size(189, 29);
+            showLineNumbersCheckBox.TabIndex = 14;
+            showLineNumbersCheckBox.Text = "Show line numbers";
+            showLineNumbersCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold | FontStyle.Italic | FontStyle.Underline, GraphicsUnit.Point, 0);
+            label5.Location = new Point(102, 40);
+            label5.Name = "label5";
+            label5.Size = new Size(815, 64);
+            label5.TabIndex = 15;
+            label5.Text = "APPLICATION RESTART REQUIRED FOR THESE CHANGES TO TAKE EFFECT\r\n\r\n";
+            label5.Click += label5_Click;
             // 
             // SetupForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1037, 438);
+            ClientSize = new Size(1024, 470);
+            Controls.Add(label5);
+            Controls.Add(showLineNumbersCheckBox);
+            Controls.Add(enableLoggingCheckBox);
             Controls.Add(bypassOnStartupCheckBox);
             Controls.Add(firstNameTextBox);
             Controls.Add(label4);
@@ -180,8 +208,7 @@
             Controls.Add(panel1);
             Name = "SetupForm";
             Text = "SetupForm";
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
+            Load += SetupForm_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -201,5 +228,7 @@
         private Panel panel1;
         private CheckBox enableLoggingCheckBox;
         private CheckBox bypassOnStartupCheckBox;
+        private CheckBox showLineNumbersCheckBox;
+        private Label label5;
     }
 }

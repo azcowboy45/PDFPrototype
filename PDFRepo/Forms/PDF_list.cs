@@ -46,10 +46,9 @@ namespace PDFRepo
             // Store the reference to the Program instance, so we can access some properties and methods globally.
             this.program = program;
 
-            InitializeComponent();
-            WireUpHandlers();
+            InitializeComponent(); 
             ConfigureApplication();
-
+            WireUpHandlers();
             BuildComboBoxes(false);
         }
         #endregion
@@ -295,7 +294,10 @@ namespace PDFRepo
             selectorComboBox.SelectionChangeCommitted += selectorComboBox_SelectionChangeCommitted;
 
             // Wire the event handler to add row numbers to the DataGridView row headers after each row is painted
-           // dataGridView1.RowPostPaint += new DataGridViewRowPostPaintEventHandler(dataGridView1_RowPostPaint); // hid for now in dev mode
+            bool showLineNumbers = Convert.ToBoolean(this.config.showLineNumbers);
+            if (Convert.ToBoolean(showLineNumbers)) { 
+                dataGridView1.RowPostPaint += new DataGridViewRowPostPaintEventHandler(dataGridView1_RowPostPaint);
+            }
 
         }
 

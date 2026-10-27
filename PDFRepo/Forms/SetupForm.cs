@@ -31,7 +31,7 @@ namespace PDFRepo.Forms
             InitializeComponent();
             LoadSettingsForm();
         }
-        public SetupForm(Program program, ConfigMgr configuration, ConfigElements config, Form myParent )
+        public SetupForm(Program program, ConfigMgr configuration, ConfigElements config, Form myParent)
         {
             this.program = program;
             this.configuration = configuration;
@@ -39,7 +39,7 @@ namespace PDFRepo.Forms
             logger = new LogClass();
             InitializeComponent();
             LoadSettingsForm();
-            this.myParent = myParent; 
+            this.myParent = myParent;
         }
 
         public void doUpdate()
@@ -50,7 +50,9 @@ namespace PDFRepo.Forms
                 dbPathTextBox.Text,
                 bkupPathTextBox.Text,
                 enableLoggingCheckBox.Checked.ToString(),
-                bypassOnStartupCheckBox.Checked.ToString());
+                bypassOnStartupCheckBox.Checked.ToString(),
+                showLineNumbersCheckBox.Checked.ToString());
+
         }
         private void LoadSettingsForm()
         {
@@ -59,7 +61,24 @@ namespace PDFRepo.Forms
             dbPathTextBox.Text = config.dbPath;
             bkupPathTextBox.Text = config.bkupPath;
             enableLoggingCheckBox.Checked = bool.TryParse(config.enableLogging, out bool enableLogging) && enableLogging;
+            showLineNumbersCheckBox.Checked = bool.TryParse(config.showLineNumbers, out bool showLineNumbers) && showLineNumbers;
             bypassOnStartupCheckBox.Checked = bool.TryParse(config.bypassOnStartup, out bool bypassOnStartup) && bypassOnStartup;
+
+            AddToolTips();
+
+
+        }
+
+        private void AddToolTips()
+        {
+            ToolTip toolTip = new ToolTip();
+            toolTip.SetToolTip(firstNameTextBox, "Enter your first name.");
+            toolTip.SetToolTip(lastNameTextBox, "Enter your last name.");
+            toolTip.SetToolTip(dbPathTextBox, "Enter the path to the database file.");
+            toolTip.SetToolTip(bkupPathTextBox, "Enter the path to the backup directory.");
+            toolTip.SetToolTip(enableLoggingCheckBox, "Check to enable logging.");
+            toolTip.SetToolTip(bypassOnStartupCheckBox, "Check to bypass this setup form on startup.");
+            toolTip.SetToolTip(showLineNumbersCheckBox, "Check to show line numbers in the PDF list view.");
         }
 
         private void LogPost(string logEntry)
@@ -82,7 +101,7 @@ namespace PDFRepo.Forms
         {
             CloseMyParentForm();
             LogPost("Exited SetupForm, settings not saved.");
-            this.Close();       
+            this.Close();
         }
 
         private void saveButton_Click(object sender, EventArgs e)
@@ -92,6 +111,28 @@ namespace PDFRepo.Forms
             LogPost("Saved settings from SetupForm");
             this.Close();
         }
+
+
+        private void enableLoggingCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
         #endregion
+
+        private void bypassOnStartupCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SetupForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
