@@ -50,7 +50,7 @@ namespace PDFRepo
             WireUpHandlers();
             ConfigureApplication();
 
-            BuildComboBoxes();
+            BuildComboBoxes(false);
         }
         #endregion
 
@@ -60,14 +60,21 @@ namespace PDFRepo
         /// </summary>
         /// <remarks>Creates data access and dropdown helper instances, then binds each combo box to its
         /// corresponding table using the display column and ID value column.</remarks>
-        private void BuildComboBoxes()
+        private void BuildComboBoxes(bool justCatsAndSubs)
         {
             DataModel dm = new DataModel();
             DropDown dd = new DropDown(dm);
 
-            dd.LoadAutoCompleteComboBox(dm, categoryComboBox, "pdf_cat", "category", "ID");
-            dd.LoadAutoCompleteComboBox(dm, subCatComboBox, "sub_category", "sub_cat", "ID");
-            dd.LoadAutoCompleteComboBox(dm, selectorComboBox, "pdf_table", "pdf_name", "ID");
+            if (justCatsAndSubs)
+            {
+                dd.LoadAutoCompleteComboBox(dm, categoryComboBox, "pdf_cat", "category", "ID");
+                dd.LoadAutoCompleteComboBox(dm, subCatComboBox, "sub_category", "sub_cat", "ID");
+            } else
+            { 
+                dd.LoadAutoCompleteComboBox(dm, categoryComboBox, "pdf_cat", "category", "ID");
+                dd.LoadAutoCompleteComboBox(dm, subCatComboBox, "sub_category", "sub_cat", "ID");
+                dd.LoadAutoCompleteComboBox(dm, selectorComboBox, "pdf_table", "pdf_name", "ID");
+            }
         }
 
         private void ConfigureApplication()
@@ -225,7 +232,7 @@ namespace PDFRepo
             //     if (selectorComboBox.SelectedIndex == -1) return;
 
             LoadDataGrid();
-            BuildComboBoxes();
+            BuildComboBoxes(false);
 
          //   ReturnToCurrentRow();
         }
@@ -631,22 +638,15 @@ namespace PDFRepo
             doEdits();
         }
 
-        private void editSubCatsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //    _isResettingComboBoxes = true; // Raise the shield to prevent unwanted event triggers during form operations
-            _suppressReloadOnce = true;
-            SubCatGridForm scf = new SubCatGridForm();
-            scf.Show();
-        }
 
 
         // This is really an edit categories form, but the menu item is named maintainCategoriesToolStripMenuItem_Click
         private void maintainCategoriesToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            _isResettingComboBoxes = true;
             CategoryGridForm cf = new CategoryGridForm();
             cf.Show();
-            //   BuildComboBox(); -- This line is commented out because the ComboBox will be rebuilt when
-            //   the form is activated, so it is not necessary to call BuildComboBox() here.
+            BuildComboBoxes(true);
         }
 
         // This is really an edit categories form, but the menu item is named categoriesToolStripMenuItem_Click.
@@ -655,20 +655,27 @@ namespace PDFRepo
             _isResettingComboBoxes = true; // Raise the shield to prevent unwanted event triggers during form operations
             CategoryGridForm cf = new CategoryGridForm();
             cf.Show();
-            //   BuildComboBox(); -- This line is commented out because the ComboBox will be rebuilt when
-            //   the form is activated, so it is not necessary to call BuildComboBox() here.
-
+            BuildComboBoxes(true); 
         }
-
-        #endregion
 
         private void subCategoriesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //      _isResettingComboBoxes = true; // Raise the shield to prevent unwanted event triggers during form operations
+            _isResettingComboBoxes = true; // Raise the shield to prevent unwanted event triggers during form operations
             SubCatGridForm scf = new SubCatGridForm();
             scf.Show();
+            BuildComboBoxes(true);
+        }
+        private void editSubCatsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //    _isResettingComboBoxes = true; // Raise the shield to prevent unwanted event triggers during form operations
+            _isResettingComboBoxes = true;
+            SubCatGridForm scf = new SubCatGridForm();
+            scf.Show();
+            BuildComboBoxes(true);
         }
 
+
+        #endregion
         private void setupToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SetupForm sf = new SetupForm(program, configMgr, config);
@@ -680,6 +687,6 @@ namespace PDFRepo
         {
 
         }
-        #endregion
+        #endregion // Controls
     }
 }

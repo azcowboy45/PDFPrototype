@@ -34,12 +34,12 @@ namespace PDFRepo.Forms
             this.notesTextBox.Text = selectedRow.Cells["notes"].Value?.ToString();
         }
 
-        private void AddCategory()
+        private void AddSubCategory()
         {
             DataModel dm = new DataModel();
             if (dm.AddSubCat(subCatTextBox.Text.ToLower(), notesTextBox.Text))
             {
-                MessageBox.Show("Category added successfully.");
+                MessageBox.Show("Subcategory added successfully.");
                 this.Close();
             }
             else
@@ -79,7 +79,7 @@ namespace PDFRepo.Forms
             }
             else
             {
-                AddCategory();
+                AddSubCategory();
             }
         }
         
