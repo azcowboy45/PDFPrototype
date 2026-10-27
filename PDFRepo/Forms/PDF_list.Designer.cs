@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PDF_list));
             dataGridView1 = new DataGridView();
             contextMenuStrip1 = new ContextMenuStrip(components);
@@ -73,6 +76,7 @@
             label4 = new Label();
             label5 = new Label();
             pdfCountTextBox = new TextBox();
+            label6 = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             contextMenuStrip1.SuspendLayout();
             menuStrip1.SuspendLayout();
@@ -82,68 +86,89 @@
             // 
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle1.BackColor = Color.NavajoWhite;
+            dataGridViewCellStyle1.ForeColor = Color.Black;
+            dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.Moccasin;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.ContextMenuStrip = contextMenuStrip1;
-            dataGridView1.Location = new Point(0, 138);
+            dataGridView1.EnableHeadersVisualStyles = false;
+            dataGridView1.Location = new Point(1, 95);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.Moccasin;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle3.ForeColor = Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dataGridView1.RowHeadersWidth = 62;
-            dataGridView1.Size = new Size(1784, 987);
+            dataGridView1.Size = new Size(1784, 1013);
             dataGridView1.TabIndex = 0;
             // 
             // contextMenuStrip1
             // 
+            contextMenuStrip1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             contextMenuStrip1.ImageScalingSize = new Size(24, 24);
             contextMenuStrip1.Items.AddRange(new ToolStripItem[] { viewPDFToolStripMenuItem1, modifyPDFInfoToolStripMenuItem, toolStripSeparator2, categoriesToolStripMenuItem, editSubCatsToolStripMenuItem, deleteToolStripMenuItem });
             contextMenuStrip1.Name = "contextMenuStrip1";
-            contextMenuStrip1.Size = new Size(241, 203);
+            contextMenuStrip1.Size = new Size(243, 170);
             contextMenuStrip1.Opening += contextMenuStrip1_Opening;
             // 
             // viewPDFToolStripMenuItem1
             // 
             viewPDFToolStripMenuItem1.Name = "viewPDFToolStripMenuItem1";
-            viewPDFToolStripMenuItem1.Size = new Size(240, 32);
+            viewPDFToolStripMenuItem1.Size = new Size(242, 32);
             viewPDFToolStripMenuItem1.Text = "View PDF";
             viewPDFToolStripMenuItem1.Click += viewPDFToolStripMenuItem1_Click;
             // 
             // modifyPDFInfoToolStripMenuItem
             // 
             modifyPDFInfoToolStripMenuItem.Name = "modifyPDFInfoToolStripMenuItem";
-            modifyPDFInfoToolStripMenuItem.Size = new Size(240, 32);
+            modifyPDFInfoToolStripMenuItem.Size = new Size(242, 32);
             modifyPDFInfoToolStripMenuItem.Text = "Edit PDF Info";
             modifyPDFInfoToolStripMenuItem.Click += modifyPDFInfoToolStripMenuItem_Click;
             // 
             // toolStripSeparator2
             // 
             toolStripSeparator2.Name = "toolStripSeparator2";
-            toolStripSeparator2.Size = new Size(237, 6);
+            toolStripSeparator2.Size = new Size(239, 6);
             // 
             // categoriesToolStripMenuItem
             // 
             categoriesToolStripMenuItem.Name = "categoriesToolStripMenuItem";
-            categoriesToolStripMenuItem.Size = new Size(240, 32);
+            categoriesToolStripMenuItem.Size = new Size(242, 32);
             categoriesToolStripMenuItem.Text = "Edit Categories";
             categoriesToolStripMenuItem.Click += categoriesToolStripMenuItem_Click;
             // 
             // editSubCatsToolStripMenuItem
             // 
             editSubCatsToolStripMenuItem.Name = "editSubCatsToolStripMenuItem";
-            editSubCatsToolStripMenuItem.Size = new Size(240, 32);
+            editSubCatsToolStripMenuItem.Size = new Size(242, 32);
             editSubCatsToolStripMenuItem.Text = "Edit Subcategories";
             editSubCatsToolStripMenuItem.Click += editSubCatsToolStripMenuItem_Click;
             // 
             // deleteToolStripMenuItem
             // 
             deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            deleteToolStripMenuItem.Size = new Size(240, 32);
+            deleteToolStripMenuItem.Size = new Size(242, 32);
             deleteToolStripMenuItem.Text = "Delete";
             deleteToolStripMenuItem.Click += deleteToolStripMenuItem_Click;
             // 
             // exitButton
             // 
             exitButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            exitButton.Location = new Point(1659, 1165);
+            exitButton.Location = new Point(1663, 1162);
             exitButton.Name = "exitButton";
             exitButton.Size = new Size(111, 33);
             exitButton.TabIndex = 1;
@@ -160,6 +185,7 @@
             menuStrip1.Size = new Size(1786, 33);
             menuStrip1.TabIndex = 3;
             menuStrip1.Text = "menuStrip1";
+            menuStrip1.ItemClicked += menuStrip1_ItemClicked;
             // 
             // fileToolStripMenuItem
             // 
@@ -282,13 +308,22 @@
             // 
             // pdfImportButton
             // 
-            pdfImportButton.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            pdfImportButton.Location = new Point(716, 30);
+            pdfImportButton.BackColor = Color.White;
+            pdfImportButton.BackgroundImage = (Image)resources.GetObject("pdfImportButton.BackgroundImage");
+            pdfImportButton.BackgroundImageLayout = ImageLayout.Center;
+            pdfImportButton.FlatAppearance.BorderColor = Color.Gold;
+            pdfImportButton.FlatAppearance.BorderSize = 6;
+            pdfImportButton.FlatAppearance.MouseDownBackColor = Color.FromArgb(255, 128, 0);
+            pdfImportButton.FlatAppearance.MouseOverBackColor = Color.FromArgb(255, 255, 192);
+            pdfImportButton.FlatStyle = FlatStyle.Popup;
+            pdfImportButton.Font = new Font("Bernard MT Condensed", 18F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            pdfImportButton.ForeColor = Color.Firebrick;
+            pdfImportButton.Location = new Point(749, 1135);
             pdfImportButton.Name = "pdfImportButton";
-            pdfImportButton.Size = new Size(194, 33);
+            pdfImportButton.Size = new Size(281, 101);
             pdfImportButton.TabIndex = 4;
             pdfImportButton.Text = "Import PDF";
-            pdfImportButton.UseVisualStyleBackColor = true;
+            pdfImportButton.UseVisualStyleBackColor = false;
             pdfImportButton.Click += pdfImportButton_Click;
             // 
             // sqliteConnection1
@@ -309,16 +344,16 @@
             // categoryComboBox
             // 
             categoryComboBox.FormattingEnabled = true;
-            categoryComboBox.Location = new Point(966, 73);
+            categoryComboBox.Location = new Point(960, 47);
             categoryComboBox.Name = "categoryComboBox";
-            categoryComboBox.Size = new Size(233, 33);
+            categoryComboBox.Size = new Size(267, 33);
             categoryComboBox.TabIndex = 5;
             categoryComboBox.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(799, 77);
+            label1.Location = new Point(792, 55);
             label1.Name = "label1";
             label1.Size = new Size(162, 25);
             label1.TabIndex = 6;
@@ -327,19 +362,20 @@
             // showAllButton
             // 
             showAllButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            showAllButton.BackColor = SystemColors.ButtonHighlight;
             showAllButton.FlatStyle = FlatStyle.Popup;
-            showAllButton.Location = new Point(1646, 5);
+            showAllButton.Location = new Point(1663, 46);
             showAllButton.Name = "showAllButton";
             showAllButton.Size = new Size(111, 33);
             showAllButton.TabIndex = 7;
             showAllButton.Text = "Show All";
-            showAllButton.UseVisualStyleBackColor = true;
+            showAllButton.UseVisualStyleBackColor = false;
             showAllButton.Click += showAllButton_Click;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(1219, 77);
+            label2.Location = new Point(1252, 53);
             label2.Name = "label2";
             label2.Size = new Size(116, 25);
             label2.TabIndex = 8;
@@ -348,16 +384,16 @@
             // subCatComboBox
             // 
             subCatComboBox.FormattingEnabled = true;
-            subCatComboBox.Location = new Point(1371, 73);
+            subCatComboBox.Location = new Point(1374, 49);
             subCatComboBox.Name = "subCatComboBox";
-            subCatComboBox.Size = new Size(233, 33);
+            subCatComboBox.Size = new Size(267, 33);
             subCatComboBox.TabIndex = 9;
             subCatComboBox.SelectedIndexChanged += subCatComboBox_SelectedIndexChanged;
             // 
             // userNameTextBox
             // 
             userNameTextBox.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            userNameTextBox.Location = new Point(157, 1160);
+            userNameTextBox.Location = new Point(147, 1159);
             userNameTextBox.Name = "userNameTextBox";
             userNameTextBox.ReadOnly = true;
             userNameTextBox.Size = new Size(225, 31);
@@ -367,7 +403,7 @@
             // 
             label3.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             label3.AutoSize = true;
-            label3.Location = new Point(0, 1158);
+            label3.Location = new Point(12, 1159);
             label3.Name = "label3";
             label3.Size = new Size(129, 25);
             label3.TabIndex = 11;
@@ -376,16 +412,16 @@
             // selectorComboBox
             // 
             selectorComboBox.FormattingEnabled = true;
-            selectorComboBox.Location = new Point(157, 73);
+            selectorComboBox.Location = new Point(147, 46);
             selectorComboBox.Name = "selectorComboBox";
-            selectorComboBox.Size = new Size(415, 33);
+            selectorComboBox.Size = new Size(449, 33);
             selectorComboBox.TabIndex = 12;
             selectorComboBox.SelectedIndexChanged += selectorComboBox_SelectedIndexChanged;
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(11, 77);
+            label4.Location = new Point(6, 50);
             label4.Name = "label4";
             label4.Size = new Size(139, 25);
             label4.TabIndex = 13;
@@ -395,16 +431,16 @@
             // 
             label5.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             label5.AutoSize = true;
-            label5.Location = new Point(621, 1158);
+            label5.Location = new Point(393, 1166);
             label5.Name = "label5";
-            label5.Size = new Size(101, 25);
+            label5.Size = new Size(45, 25);
             label5.TabIndex = 14;
-            label5.Text = "PDF Count:";
+            label5.Text = "with";
             // 
             // pdfCountTextBox
             // 
             pdfCountTextBox.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            pdfCountTextBox.Location = new Point(729, 1155);
+            pdfCountTextBox.Location = new Point(444, 1166);
             pdfCountTextBox.Name = "pdfCountTextBox";
             pdfCountTextBox.ReadOnly = true;
             pdfCountTextBox.Size = new Size(63, 31);
@@ -412,11 +448,23 @@
             pdfCountTextBox.Text = "10000";
             pdfCountTextBox.TextAlign = HorizontalAlignment.Center;
             // 
+            // label6
+            // 
+            label6.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            label6.AutoSize = true;
+            label6.Location = new Point(513, 1165);
+            label6.Name = "label6";
+            label6.Size = new Size(48, 25);
+            label6.TabIndex = 16;
+            label6.Text = "pdfs";
+            // 
             // PDF_list
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1786, 1235);
+            BackColor = SystemColors.GradientActiveCaption;
+            ClientSize = new Size(1786, 1244);
+            Controls.Add(label6);
             Controls.Add(pdfCountTextBox);
             Controls.Add(label5);
             Controls.Add(label4);
@@ -432,6 +480,7 @@
             Controls.Add(exitButton);
             Controls.Add(dataGridView1);
             Controls.Add(menuStrip1);
+            ForeColor = Color.Black;
             Icon = (Icon)resources.GetObject("$this.Icon");
             MainMenuStrip = menuStrip1;
             Name = "PDF_list";
@@ -491,5 +540,6 @@
         private Label label4;
         private Label label5;
         private TextBox pdfCountTextBox;
+        private Label label6;
     }
 }

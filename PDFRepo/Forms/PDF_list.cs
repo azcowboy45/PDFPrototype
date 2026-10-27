@@ -46,7 +46,7 @@ namespace PDFRepo
             // Store the reference to the Program instance, so we can access some properties and methods globally.
             this.program = program;
 
-            InitializeComponent(); 
+            InitializeComponent();
             ConfigureApplication();
             WireUpHandlers();
             BuildComboBoxes(false);
@@ -69,8 +69,9 @@ namespace PDFRepo
             {
                 dd.LoadAutoCompleteComboBox(dm, categoryComboBox, "pdf_cat", "category", "ID");
                 dd.LoadAutoCompleteComboBox(dm, subCatComboBox, "sub_category", "sub_cat", "ID");
-            } else
-            { 
+            }
+            else
+            {
                 dd.LoadAutoCompleteComboBox(dm, categoryComboBox, "pdf_cat", "category", "ID");
                 dd.LoadAutoCompleteComboBox(dm, subCatComboBox, "sub_category", "sub_cat", "ID");
                 dd.LoadAutoCompleteComboBox(dm, selectorComboBox, "pdf_table", "pdf_name", "ID");
@@ -133,8 +134,8 @@ namespace PDFRepo
             toolTip.SetToolTip(categoryComboBox, "Filter PDFs by category.");
             toolTip.SetToolTip(subCatComboBox, "Filter PDFs by subcategory.");
             toolTip.SetToolTip(showAllButton, "Show all PDFs in the list.");
-            toolTip.SetToolTip(pdfImportButton, "Import a new PDF into the repository.");
-            
+            toolTip.SetToolTip(pdfImportButton, "CLICK HERE to import a new PDF!");
+
         }
 
         #endregion
@@ -238,14 +239,14 @@ namespace PDFRepo
                 // Reset the flag so future unexpected activations still process normally
                 _suppressReloadOnce = false;
                 return;
-            }   
+            }
 
             //     if (selectorComboBox.SelectedIndex == -1) return;
 
             LoadDataGrid();
             BuildComboBoxes(false);
 
-         //   ReturnToCurrentRow();
+            //   ReturnToCurrentRow();
         }
         /// <summary>
         /// Display a selected PDF for the user.
@@ -275,7 +276,7 @@ namespace PDFRepo
                         this.rowIndex = int.Parse(selectedItemId);
                         string selectedItemName = dataGridView1.Rows[e.RowIndex].Cells["pdf_name"].Value.ToString();
                         doViewPDF(selectedItemId);
-                    //    ReturnToCurrentRow(int.Parse(selectedItemId));
+                        //    ReturnToCurrentRow(int.Parse(selectedItemId));
                     }
                 }
 
@@ -307,7 +308,8 @@ namespace PDFRepo
 
             // Wire the event handler to add row numbers to the DataGridView row headers after each row is painted
             bool showLineNumbers = Convert.ToBoolean(this.config.showLineNumbers);
-            if (Convert.ToBoolean(showLineNumbers)) { 
+            if (Convert.ToBoolean(showLineNumbers))
+            {
                 dataGridView1.RowPostPaint += new DataGridViewRowPostPaintEventHandler(dataGridView1_RowPostPaint);
             }
 
@@ -359,9 +361,9 @@ namespace PDFRepo
             this.dataGridView1.RowsDefaultCellStyle.BackColor = Color.White;
             this.dataGridView1.RowsDefaultCellStyle.ForeColor = Color.Black;
 
-            // Define the style for alternating rows (e.g., odd rows)
-            this.dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.PaleTurquoise;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle.ForeColor = Color.Black;
+            // Define the style for alternating rows (e.g., odd rows)  Trying this in designer
+     //       this.dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.PaleTurquoise;
+     //       this.dataGridView1.AlternatingRowsDefaultCellStyle.ForeColor = Color.Black;
 
 
             dataGridView1.Columns["ID"].HeaderText = "Primary Key-ID";
@@ -674,7 +676,7 @@ namespace PDFRepo
             _isResettingComboBoxes = true; // Raise the shield to prevent unwanted event triggers during form operations
             CategoryGridForm cf = new CategoryGridForm();
             cf.Show();
-            BuildComboBoxes(true); 
+            BuildComboBoxes(true);
         }
 
         private void subCategoriesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -707,5 +709,10 @@ namespace PDFRepo
 
         }
         #endregion // Controls
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
     }
 }
