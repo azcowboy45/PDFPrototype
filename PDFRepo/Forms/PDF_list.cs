@@ -17,6 +17,9 @@ namespace PDFRepo
 
         #region instanceVariables
 
+        // 1. Define the guard flag
+        private bool _suppressReloadOnce = false;
+
         private bool _isResettingComboBoxes = false;
         public ConfigMgr configMgr { get; set; }
         public ConfigElements config { get; set; }
@@ -28,6 +31,10 @@ namespace PDFRepo
         public bool ShowAtStartup { get; set; }
 
         private string selectablePDFId = "-1";
+
+        private string selectedItemId = string.Empty;
+
+        private int rowIndex = -1;
 
         private string dbPath;
         private string selectedNameStr;
@@ -208,14 +215,19 @@ namespace PDFRepo
         // we are born agin right here
         private void PDF_list_Activated(object sender, EventArgs e)
         {
+            if (_suppressReloadOnce)
+            {
+                // Reset the flag so future unexpected activations still process normally
+                _suppressReloadOnce = false;
+                return;
+            }   
 
             //     if (selectorComboBox.SelectedIndex == -1) return;
 
             LoadDataGrid();
-
             BuildComboBoxes();
 
-
+         //   ReturnToCurrentRow();
         }
         /// <summary>
         /// Display a selected PDF for the user.
@@ -241,9 +253,11 @@ namespace PDFRepo
                     if (clickedColumnName == "pdf_name")
                     {
                         // 2. Fetch data from the clicked row to pass to your new form
-                        string selectedItemId = dataGridView1.Rows[e.RowIndex].Cells["ID"].Value.ToString();
+                        this.selectedItemId = dataGridView1.Rows[e.RowIndex].Cells["ID"].Value.ToString();
+                        this.rowIndex = int.Parse(selectedItemId);
                         string selectedItemName = dataGridView1.Rows[e.RowIndex].Cells["pdf_name"].Value.ToString();
                         doViewPDF(selectedItemId);
+                    //    ReturnToCurrentRow(int.Parse(selectedItemId));
                     }
                 }
 
@@ -255,6 +269,17 @@ namespace PDFRepo
         #endregion   // ***************** end In-house handlers ****************
 
         #region handler helpers
+        /*
+        private void ReturnToCurrentRow()
+        {
+            if (rowIndex >= 0 && rowIndex < dataGridView1.Rows.Count)
+            {
+                dataGridView1.ClearSelection();
+                dataGridView1.Rows[rowIndex].Selected = true;
+                dataGridView1.CurrentCell = dataGridView1.Rows[rowIndex].Cells[0]; // Set focus to the first cell of the selected row
+            }
+        }
+        */
 
 
         private void WireUpHandlers()
@@ -263,7 +288,7 @@ namespace PDFRepo
             selectorComboBox.SelectionChangeCommitted += selectorComboBox_SelectionChangeCommitted;
 
             // Wire the event handler to add row numbers to the DataGridView row headers after each row is painted
-            dataGridView1.RowPostPaint += new DataGridViewRowPostPaintEventHandler(dataGridView1_RowPostPaint);
+           // dataGridView1.RowPostPaint += new DataGridViewRowPostPaintEventHandler(dataGridView1_RowPostPaint); // hid for now in dev mode
 
         }
 
@@ -422,9 +447,10 @@ namespace PDFRepo
             }
             else
             {
+                _suppressReloadOnce = true;
                 ViewPdfForm viewPdfForm = new ViewPdfForm(selectedPdfId);
                 viewPdfForm.Show();
-                ResetFormSelection();
+                ResetFormSelection();  // Reset the combo boxes to their default state after opening the PDF view form
             }
         }
 
@@ -551,7 +577,8 @@ namespace PDFRepo
             {
                 ViewPdfForm viewPdfForm = new ViewPdfForm(selectedPdfId);
                 viewPdfForm.Show();
-                this.LoadDataGrid();
+                //   this.LoadDataGrid();
+                _suppressReloadOnce = true;
             }
 
         }
