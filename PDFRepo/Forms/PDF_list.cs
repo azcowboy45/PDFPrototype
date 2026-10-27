@@ -504,8 +504,8 @@ namespace PDFRepo
 
         private void doEdits()
         {
+            _suppressReloadOnce = true;
             // Set this to true if you want to update the existing row when form returns. Temporary dev purposes.
-            bool updateRowInPlace = false;
             string selectedPdfId = mic.GetSelectedGridRowId(dataGridView1, "modify");
             if (selectedPdfId == "-1")
             {
@@ -513,18 +513,11 @@ namespace PDFRepo
             }
             else
             {
-                if (updateRowInPlace)  // ?????
-                {
-                    PDFInfoForm pdfInfoForm = new PDFInfoForm(selectedPdfId);
-                    pdfInfoForm.ShowDialog();
-                    UpdateRowOnly();
-                }
-                else
-                {
-                    PDFInfoForm pdfInfoForm = new PDFInfoForm(selectedPdfId);
-                    pdfInfoForm.ShowDialog();
-                    LoadDataGrid();
-                }
+                PDFInfoForm pdfInfoForm = new PDFInfoForm(selectedPdfId);
+                pdfInfoForm.ShowDialog();
+                UpdateRowOnly();
+                _suppressReloadOnce = true;  // This was set true before opening the form, so we reset it here
+                                             //   to ensure future activations are handled correctly.
             }
         }
 
@@ -582,15 +575,6 @@ namespace PDFRepo
 
         }
 
-        private void modifyPDFInfoToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            doEdits();
-        }
-        private void modifyPDFRecordsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            doEdits();
-        }
-
         private void pdfImportButton_Click(object sender, EventArgs e)
         {
             ImportForm importForm = new ImportForm();
@@ -608,13 +592,7 @@ namespace PDFRepo
             doDeletePDF();
         }
 
-        private void maintainCategoriesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            CategoryGridForm cf = new CategoryGridForm();
-            cf.Show();
-            //   BuildComboBox(); -- This line is commented out because the ComboBox will be rebuilt when
-            //   the form is activated, so it is not necessary to call BuildComboBox() here.
-        }
+
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -643,6 +621,35 @@ namespace PDFRepo
         //    ResetFormSelection();  This forces show all button to be pressed twice. Bug???
         }
 
+        #region editControls
+        private void modifyPDFInfoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            doEdits();
+        }
+        private void modifyPDFRecordsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            doEdits();
+        }
+
+        private void editSubCatsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //    _isResettingComboBoxes = true; // Raise the shield to prevent unwanted event triggers during form operations
+            _suppressReloadOnce = true;
+            SubCatGridForm scf = new SubCatGridForm();
+            scf.Show();
+        }
+
+
+        // This is really an edit categories form, but the menu item is named maintainCategoriesToolStripMenuItem_Click
+        private void maintainCategoriesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CategoryGridForm cf = new CategoryGridForm();
+            cf.Show();
+            //   BuildComboBox(); -- This line is commented out because the ComboBox will be rebuilt when
+            //   the form is activated, so it is not necessary to call BuildComboBox() here.
+        }
+
+        // This is really an edit categories form, but the menu item is named categoriesToolStripMenuItem_Click.
         private void categoriesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             _isResettingComboBoxes = true; // Raise the shield to prevent unwanted event triggers during form operations
@@ -653,14 +660,7 @@ namespace PDFRepo
 
         }
 
-
-
-        private void editSubCatsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //    _isResettingComboBoxes = true; // Raise the shield to prevent unwanted event triggers during form operations
-            SubCatGridForm scf = new SubCatGridForm();
-            scf.Show();
-        }
+        #endregion
 
         private void subCategoriesToolStripMenuItem_Click(object sender, EventArgs e)
         {
