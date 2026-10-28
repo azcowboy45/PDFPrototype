@@ -38,18 +38,20 @@
             label3 = new Label();
             label4 = new Label();
             firstNameTextBox = new TextBox();
-            panel1 = new Panel();
             enableLoggingCheckBox = new CheckBox();
             bypassOnStartupCheckBox = new CheckBox();
             showLineNumbersCheckBox = new CheckBox();
             label5 = new Label();
             alterBackupPathButton = new Button();
             label6 = new Label();
+            label7 = new Label();
+            pdfPathTextBox = new TextBox();
+            pdfPathButton = new Button();
             SuspendLayout();
             // 
             // exitButton
             // 
-            exitButton.Location = new Point(914, 467);
+            exitButton.Location = new Point(914, 721);
             exitButton.Name = "exitButton";
             exitButton.Size = new Size(112, 34);
             exitButton.TabIndex = 0;
@@ -59,7 +61,7 @@
             // 
             // saveButton
             // 
-            saveButton.Location = new Point(21, 467);
+            saveButton.Location = new Point(21, 721);
             saveButton.Name = "saveButton";
             saveButton.Size = new Size(112, 34);
             saveButton.TabIndex = 1;
@@ -69,7 +71,7 @@
             // 
             // dbPathTextBox
             // 
-            dbPathTextBox.Location = new Point(205, 338);
+            dbPathTextBox.Location = new Point(205, 610);
             dbPathTextBox.Name = "dbPathTextBox";
             dbPathTextBox.ReadOnly = true;
             dbPathTextBox.Size = new Size(779, 31);
@@ -78,7 +80,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(33, 344);
+            label1.Location = new Point(33, 616);
             label1.Name = "label1";
             label1.Size = new Size(151, 25);
             label1.TabIndex = 3;
@@ -86,7 +88,7 @@
             // 
             // bkupPathTextBox
             // 
-            bkupPathTextBox.Location = new Point(205, 244);
+            bkupPathTextBox.Location = new Point(176, 464);
             bkupPathTextBox.Name = "bkupPathTextBox";
             bkupPathTextBox.Size = new Size(808, 31);
             bkupPathTextBox.TabIndex = 4;
@@ -94,7 +96,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(62, 247);
+            label2.Location = new Point(33, 467);
             label2.Name = "label2";
             label2.Size = new Size(112, 25);
             label2.TabIndex = 5;
@@ -132,19 +134,12 @@
             firstNameTextBox.Size = new Size(336, 31);
             firstNameTextBox.TabIndex = 9;
             // 
-            // panel1
-            // 
-            panel1.Location = new Point(12, 313);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(1001, 105);
-            panel1.TabIndex = 12;
-            // 
             // enableLoggingCheckBox
             // 
             enableLoggingCheckBox.AutoSize = true;
             enableLoggingCheckBox.Checked = true;
             enableLoggingCheckBox.CheckState = CheckState.Checked;
-            enableLoggingCheckBox.Location = new Point(239, 467);
+            enableLoggingCheckBox.Location = new Point(442, 195);
             enableLoggingCheckBox.Name = "enableLoggingCheckBox";
             enableLoggingCheckBox.Size = new Size(172, 29);
             enableLoggingCheckBox.TabIndex = 0;
@@ -157,11 +152,11 @@
             bypassOnStartupCheckBox.AutoSize = true;
             bypassOnStartupCheckBox.Checked = true;
             bypassOnStartupCheckBox.CheckState = CheckState.Checked;
-            bypassOnStartupCheckBox.Location = new Point(420, 467);
+            bypassOnStartupCheckBox.Location = new Point(169, 195);
             bypassOnStartupCheckBox.Name = "bypassOnStartupCheckBox";
-            bypassOnStartupCheckBox.Size = new Size(180, 29);
+            bypassOnStartupCheckBox.Size = new Size(229, 29);
             bypassOnStartupCheckBox.TabIndex = 13;
-            bypassOnStartupCheckBox.Text = "Bypass on startup";
+            bypassOnStartupCheckBox.Text = "Bypass setup on startup";
             bypassOnStartupCheckBox.UseVisualStyleBackColor = true;
             bypassOnStartupCheckBox.CheckedChanged += bypassOnStartupCheckBox_CheckedChanged;
             // 
@@ -170,7 +165,7 @@
             showLineNumbersCheckBox.AutoSize = true;
             showLineNumbersCheckBox.Checked = true;
             showLineNumbersCheckBox.CheckState = CheckState.Checked;
-            showLineNumbersCheckBox.Location = new Point(631, 467);
+            showLineNumbersCheckBox.Location = new Point(659, 195);
             showLineNumbersCheckBox.Name = "showLineNumbersCheckBox";
             showLineNumbersCheckBox.Size = new Size(189, 29);
             showLineNumbersCheckBox.TabIndex = 14;
@@ -190,28 +185,57 @@
             // 
             // alterBackupPathButton
             // 
-            alterBackupPathButton.Location = new Point(786, 178);
+            alterBackupPathButton.Location = new Point(757, 398);
             alterBackupPathButton.Name = "alterBackupPathButton";
             alterBackupPathButton.Size = new Size(227, 34);
             alterBackupPathButton.TabIndex = 16;
-            alterBackupPathButton.Text = "Alter Backup Path";
+            alterBackupPathButton.Text = "Change Backup Path";
             alterBackupPathButton.UseVisualStyleBackColor = true;
             alterBackupPathButton.Click += alterBackupPathButton_Click;
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(62, 183);
+            label6.Location = new Point(33, 403);
             label6.Name = "label6";
             label6.Size = new Size(718, 25);
             label6.TabIndex = 17;
             label6.Text = "It is strongly recommend that if you select a new backup folder that it reside in the cloud!\r\n";
             // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(43, 269);
+            label7.Name = "label7";
+            label7.Size = new Size(179, 25);
+            label7.TabIndex = 18;
+            label7.Text = "Default Path to PDFs:";
+            // 
+            // pdfPathTextBox
+            // 
+            pdfPathTextBox.Location = new Point(43, 315);
+            pdfPathTextBox.Name = "pdfPathTextBox";
+            pdfPathTextBox.Size = new Size(941, 31);
+            pdfPathTextBox.TabIndex = 19;
+            // 
+            // pdfPathButton
+            // 
+            pdfPathButton.Location = new Point(757, 260);
+            pdfPathButton.Name = "pdfPathButton";
+            pdfPathButton.Size = new Size(227, 34);
+            pdfPathButton.TabIndex = 20;
+            pdfPathButton.Text = "Change PDF Search Path";
+            pdfPathButton.UseVisualStyleBackColor = true;
+            pdfPathButton.Click += pdfPathButton_Click;
+            // 
             // SetupForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1038, 523);
+            ClientSize = new Size(1038, 762);
+            Controls.Add(pdfPathButton);
+            Controls.Add(pdfPathTextBox);
+            Controls.Add(label7);
             Controls.Add(label6);
             Controls.Add(alterBackupPathButton);
             Controls.Add(label5);
@@ -228,7 +252,6 @@
             Controls.Add(dbPathTextBox);
             Controls.Add(saveButton);
             Controls.Add(exitButton);
-            Controls.Add(panel1);
             Name = "SetupForm";
             Text = "SetupForm";
             Load += SetupForm_Load;
@@ -248,12 +271,14 @@
         private Label label3;
         private Label label4;
         private TextBox firstNameTextBox;
-        private Panel panel1;
         private CheckBox enableLoggingCheckBox;
         private CheckBox bypassOnStartupCheckBox;
         private CheckBox showLineNumbersCheckBox;
         private Label label5;
         private Button alterBackupPathButton;
         private Label label6;
+        private Label label7;
+        private TextBox pdfPathTextBox;
+        private Button pdfPathButton;
     }
 }

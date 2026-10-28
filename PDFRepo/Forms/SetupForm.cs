@@ -143,9 +143,24 @@ namespace PDFRepo.Forms
             if (!string.IsNullOrEmpty(selectedPath))
             {
                 bkupPathTextBox.Text = selectedPath;
-            } else
+            }
+            else
             {
                 MessageBox.Show("No folder selected. Please select a valid backup directory.");
+            }
+        }
+
+        private void pdfPathButton_Click(object sender, EventArgs e)
+        {
+            MethodsInCommon mic = new MethodsInCommon();
+            string selectedPath = mic.getFolderPath("Select PDF Directory");
+            if (!string.IsNullOrEmpty(selectedPath))
+            {
+                pdfPathTextBox.Text = selectedPath;
+            }
+            else
+            {
+                MessageBox.Show("No folder selected. Please select a valid PDF directory.");
             }
         }
     }
