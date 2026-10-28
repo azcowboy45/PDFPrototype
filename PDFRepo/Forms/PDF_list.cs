@@ -80,19 +80,14 @@ namespace PDFRepo
 
         private void ConfigureApplication()
         {
-            // 1. Create the database if it doesn't exist
+
             CreateDbIFNotExists();
-            // 2. Load the configuration settings
             SetupConfig();
-            // 3. Initialize common methods utility
             mic = new MethodsInCommon();
-            // 4. Set the user name in the UI
             userNameTextBox.Text = $"{config.firstName} {config.lastName}".Trim();
-            // 5. Set global bypass on startup variable in _program
             program.bypassOnStartup = Convert.ToBoolean(this.config.bypassOnStartup);
-            // 6. Based on result, show splash screen
+            program.backupPath = this.config.bkupPath;
             DoSplashScreenIfNeeded();
-            // 7. Create log file if it doesn't exist
             CreateLogger();
 
         }
@@ -544,6 +539,26 @@ namespace PDFRepo
             }
         }
 
+        private void GoToLastRow()
+        {
+            if (dataGridView1.Rows.Count > 0)
+            {
+                // Find the exact index of the last row
+                int lastRowIndex = dataGridView1.Rows.Count - 1;
+
+                // Clear previous selections and highlight the row
+                dataGridView1.ClearSelection();
+                dataGridView1.Rows[lastRowIndex].Selected = true;
+
+                // Move the active cell focus to the last row (first column)
+                dataGridView1.CurrentCell = dataGridView1.Rows[lastRowIndex].Cells[0];
+
+                // Force the scrollbar to jump to the bottom
+                dataGridView1.FirstDisplayedScrollingRowIndex = lastRowIndex;
+            }
+        }
+
+
 
 
 
@@ -708,7 +723,7 @@ namespace PDFRepo
         {
 
         }
-        #endregion // Controls
+
 
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
@@ -719,5 +734,19 @@ namespace PDFRepo
         {
 
         }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+        private void gotToEndButton_Click(object sender, EventArgs e)
+        {
+            GoToLastRow();
+        }
+
+        #endregion // Controls
+
     }
 }

@@ -15,60 +15,28 @@ namespace PDFRepo.Forms
 
 
         private LogClass logger;
-        public ConfigMgr configuration;
-        public ConfigElements config;
-        private string backupPath = string.Empty;
+        public ConfigMgr configMgr { get; set; }
+        public ConfigElements config { get; set; }
+
+
+        /*
+         * Available in the Program class:
+                public bool bypassOnStartup { get; set; } = true;
+                public string backupPath { get; set; } = string.Empty;
+                public string settingsPath { get; set; } = string.Empty;
+                public string dbPath { get; set; } = string.Empty;
+         * */
 
         public BackupForm(Program program)
         {
             InitializeComponent();
-            logger = new LogClass();
-            configuration = new ConfigMgr(program);
-            config = configuration.GetCfg();
-
+            bkupPathTextBox.Text = program.backupPath;
         }
 
         #region processing
-
-        private void setBackupPath()
+        private void doBackup()
         {
-            using (FolderBrowserDialog folderDialog = new FolderBrowserDialog())
-            {
-                // Optional configuration
-                folderDialog.Description = "Select PDFRepo Backup Folder";
-                folderDialog.UseDescriptionForTitle = true; // Shows the description as the dialog title on Windows 11
-                folderDialog.ShowNewFolderButton = true;    // Allows the user to create a new folder
-
-                // Set a starting directory (e.g., the user's Documents folder)
-                folderDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-
-                // Show the dialog and check if the user clicked "OK"
-                if (folderDialog.ShowDialog() == DialogResult.OK)
-                {
-                    // Get the selected path
-                    string selectedFolderPath = folderDialog.SelectedPath;
-
-                    // Display or use the folder path
-                    bkupPathTextBox.Text = selectedFolderPath;
-                    //   MessageBox.Show($"Selected Folder: {selectedFolderPath}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                }
-                //  return bkupPathTextBox.Text;
-            }
-        }
-
-        // SaveOnJsonParm(string parm)
-        private void doConfigUpdate()
-        {
-            if (string.IsNullOrWhiteSpace(bkupPathTextBox.Text))
-            {
-                MessageBox.Show("Please select a valid backup path.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            // Save the backup path to application settings
-            configuration.SaveOneJsonParm(bkupPathTextBox.Text);
-            
-            MessageBox.Show("Backup path saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            // Implement the backup logic here
         }
 
         #endregion
@@ -86,13 +54,12 @@ namespace PDFRepo.Forms
 
         private void modifyBkupPathButton_Click(object sender, EventArgs e)
         {
-            setBackupPath();
         }
 
         private void saveButton_Click(object sender, EventArgs e)
         {
-            doConfigUpdate();
-            logger.LogPost("Changed and save backup path.");
+            doBackup();
+            logger.LogPost("Backup complete.");
             this.Close();
         }
 
@@ -101,5 +68,10 @@ namespace PDFRepo.Forms
             this.Close();
         }
         #endregion
+
+        private void BackupForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

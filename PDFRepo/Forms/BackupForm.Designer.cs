@@ -30,60 +30,32 @@
         {
             label2 = new Label();
             bkupPathTextBox = new TextBox();
-            saveButton = new Button();
-            modifyBkupPathButton = new Button();
             backupNowButton = new Button();
             exitButton = new Button();
             restoreButton = new Button();
-            label1 = new Label();
             SuspendLayout();
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(29, 86);
-            label2.Margin = new Padding(2, 0, 2, 0);
+            label2.Location = new Point(12, 109);
             label2.Name = "label2";
-            label2.Size = new Size(76, 15);
+            label2.Size = new Size(112, 25);
             label2.TabIndex = 6;
             label2.Text = "Backup Path:";
             // 
             // bkupPathTextBox
             // 
-            bkupPathTextBox.Location = new Point(8, 112);
-            bkupPathTextBox.Margin = new Padding(2, 2, 2, 2);
+            bkupPathTextBox.Location = new Point(130, 106);
             bkupPathTextBox.Name = "bkupPathTextBox";
-            bkupPathTextBox.Size = new Size(673, 23);
+            bkupPathTextBox.Size = new Size(842, 31);
             bkupPathTextBox.TabIndex = 7;
-            // 
-            // saveButton
-            // 
-            saveButton.Location = new Point(8, 176);
-            saveButton.Margin = new Padding(2, 2, 2, 2);
-            saveButton.Name = "saveButton";
-            saveButton.Size = new Size(120, 20);
-            saveButton.TabIndex = 8;
-            saveButton.Text = "Save";
-            saveButton.UseVisualStyleBackColor = true;
-            saveButton.Click += saveButton_Click;
-            // 
-            // modifyBkupPathButton
-            // 
-            modifyBkupPathButton.Location = new Point(561, 80);
-            modifyBkupPathButton.Margin = new Padding(2, 2, 2, 2);
-            modifyBkupPathButton.Name = "modifyBkupPathButton";
-            modifyBkupPathButton.Size = new Size(120, 20);
-            modifyBkupPathButton.TabIndex = 9;
-            modifyBkupPathButton.Text = "New Backup Path";
-            modifyBkupPathButton.UseVisualStyleBackColor = true;
-            modifyBkupPathButton.Click += modifyBkupPathButton_Click;
             // 
             // backupNowButton
             // 
-            backupNowButton.Location = new Point(8, 7);
-            backupNowButton.Margin = new Padding(2, 2, 2, 2);
+            backupNowButton.Location = new Point(11, 12);
             backupNowButton.Name = "backupNowButton";
-            backupNowButton.Size = new Size(120, 20);
+            backupNowButton.Size = new Size(171, 33);
             backupNowButton.TabIndex = 10;
             backupNowButton.Text = "Backup";
             backupNowButton.UseVisualStyleBackColor = true;
@@ -91,10 +63,9 @@
             // 
             // exitButton
             // 
-            exitButton.Location = new Point(561, 176);
-            exitButton.Margin = new Padding(2, 2, 2, 2);
+            exitButton.Location = new Point(801, 198);
             exitButton.Name = "exitButton";
-            exitButton.Size = new Size(120, 20);
+            exitButton.Size = new Size(171, 33);
             exitButton.TabIndex = 11;
             exitButton.Text = "Exit";
             exitButton.UseVisualStyleBackColor = true;
@@ -102,42 +73,27 @@
             // 
             // restoreButton
             // 
-            restoreButton.Location = new Point(561, 7);
-            restoreButton.Margin = new Padding(2, 2, 2, 2);
+            restoreButton.Location = new Point(801, 12);
             restoreButton.Name = "restoreButton";
-            restoreButton.Size = new Size(120, 20);
+            restoreButton.Size = new Size(171, 33);
             restoreButton.TabIndex = 12;
             restoreButton.Text = "Restore";
             restoreButton.UseVisualStyleBackColor = true;
             restoreButton.Click += restoreButton_Click;
             // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(255, 40);
-            label1.Name = "label1";
-            label1.Size = new Size(194, 25);
-            label1.TabIndex = 13;
-            label1.Text = "Form inactive. Draft!";
-            // 
             // BackupForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(694, 205);
-            Controls.Add(label1);
+            ClientSize = new Size(991, 266);
             Controls.Add(restoreButton);
             Controls.Add(exitButton);
             Controls.Add(backupNowButton);
-            Controls.Add(modifyBkupPathButton);
-            Controls.Add(saveButton);
             Controls.Add(bkupPathTextBox);
             Controls.Add(label2);
-            Enabled = false;
-            Margin = new Padding(2, 2, 2, 2);
             Name = "BackupForm";
             Text = "BackupForm";
+            Load += BackupForm_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -146,11 +102,8 @@
 
         private Label label2;
         private TextBox bkupPathTextBox;
-        private Button saveButton;
-        private Button modifyBkupPathButton;
         private Button backupNowButton;
         private Button exitButton;
         private Button restoreButton;
-        private Label label1;
     }
 }

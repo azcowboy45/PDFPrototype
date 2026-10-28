@@ -76,6 +76,7 @@
             label4 = new Label();
             pdfCountTextBox = new TextBox();
             label6 = new Label();
+            gotToEndButton = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             contextMenuStrip1.SuspendLayout();
             menuStrip1.SuspendLayout();
@@ -412,7 +413,7 @@
             // selectorComboBox
             // 
             selectorComboBox.FormattingEnabled = true;
-            selectorComboBox.Location = new Point(151, 103);
+            selectorComboBox.Location = new Point(151, 43);
             selectorComboBox.Name = "selectorComboBox";
             selectorComboBox.Size = new Size(449, 33);
             selectorComboBox.TabIndex = 12;
@@ -421,11 +422,12 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(6, 107);
+            label4.Location = new Point(6, 47);
             label4.Name = "label4";
             label4.Size = new Size(139, 25);
             label4.TabIndex = 13;
             label4.Text = "Select by Name:";
+            label4.Click += label4_Click;
             // 
             // pdfCountTextBox
             // 
@@ -448,12 +450,23 @@
             label6.TabIndex = 16;
             label6.Text = "Pdfs Imported:";
             // 
+            // gotToEndButton
+            // 
+            gotToEndButton.Location = new Point(151, 101);
+            gotToEndButton.Name = "gotToEndButton";
+            gotToEndButton.Size = new Size(149, 34);
+            gotToEndButton.TabIndex = 17;
+            gotToEndButton.Text = "Go To Last Row";
+            gotToEndButton.UseVisualStyleBackColor = true;
+            gotToEndButton.Click += gotToEndButton_Click;
+            // 
             // PDF_list
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
             ClientSize = new Size(1786, 1285);
+            Controls.Add(gotToEndButton);
             Controls.Add(pdfCountTextBox);
             Controls.Add(label4);
             Controls.Add(label6);
@@ -529,5 +542,6 @@
         private Label label4;
         private TextBox pdfCountTextBox;
         private Label label6;
+        private Button gotToEndButton;
     }
 }
