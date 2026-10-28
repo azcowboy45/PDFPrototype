@@ -43,11 +43,13 @@
             bypassOnStartupCheckBox = new CheckBox();
             showLineNumbersCheckBox = new CheckBox();
             label5 = new Label();
+            alterBackupPathButton = new Button();
+            label6 = new Label();
             SuspendLayout();
             // 
             // exitButton
             // 
-            exitButton.Location = new Point(901, 422);
+            exitButton.Location = new Point(914, 467);
             exitButton.Name = "exitButton";
             exitButton.Size = new Size(112, 34);
             exitButton.TabIndex = 0;
@@ -57,7 +59,7 @@
             // 
             // saveButton
             // 
-            saveButton.Location = new Point(21, 416);
+            saveButton.Location = new Point(21, 467);
             saveButton.Name = "saveButton";
             saveButton.Size = new Size(112, 34);
             saveButton.TabIndex = 1;
@@ -67,7 +69,7 @@
             // 
             // dbPathTextBox
             // 
-            dbPathTextBox.Location = new Point(205, 287);
+            dbPathTextBox.Location = new Point(205, 338);
             dbPathTextBox.Name = "dbPathTextBox";
             dbPathTextBox.ReadOnly = true;
             dbPathTextBox.Size = new Size(779, 31);
@@ -76,7 +78,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(33, 293);
+            label1.Location = new Point(33, 344);
             label1.Name = "label1";
             label1.Size = new Size(151, 25);
             label1.TabIndex = 3;
@@ -84,15 +86,15 @@
             // 
             // bkupPathTextBox
             // 
-            bkupPathTextBox.Location = new Point(205, 193);
+            bkupPathTextBox.Location = new Point(205, 244);
             bkupPathTextBox.Name = "bkupPathTextBox";
-            bkupPathTextBox.Size = new Size(779, 31);
+            bkupPathTextBox.Size = new Size(808, 31);
             bkupPathTextBox.TabIndex = 4;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(62, 196);
+            label2.Location = new Point(62, 247);
             label2.Name = "label2";
             label2.Size = new Size(112, 25);
             label2.TabIndex = 5;
@@ -100,9 +102,9 @@
             // 
             // lastNameTextBox
             // 
-            lastNameTextBox.Location = new Point(648, 111);
+            lastNameTextBox.Location = new Point(659, 111);
             lastNameTextBox.Name = "lastNameTextBox";
-            lastNameTextBox.Size = new Size(336, 31);
+            lastNameTextBox.Size = new Size(354, 31);
             lastNameTextBox.TabIndex = 6;
             // 
             // label3
@@ -117,7 +119,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(543, 114);
+            label4.Location = new Point(554, 114);
             label4.Name = "label4";
             label4.Size = new Size(99, 25);
             label4.TabIndex = 8;
@@ -132,7 +134,7 @@
             // 
             // panel1
             // 
-            panel1.Location = new Point(12, 262);
+            panel1.Location = new Point(12, 313);
             panel1.Name = "panel1";
             panel1.Size = new Size(1001, 105);
             panel1.TabIndex = 12;
@@ -142,7 +144,7 @@
             enableLoggingCheckBox.AutoSize = true;
             enableLoggingCheckBox.Checked = true;
             enableLoggingCheckBox.CheckState = CheckState.Checked;
-            enableLoggingCheckBox.Location = new Point(239, 416);
+            enableLoggingCheckBox.Location = new Point(239, 467);
             enableLoggingCheckBox.Name = "enableLoggingCheckBox";
             enableLoggingCheckBox.Size = new Size(172, 29);
             enableLoggingCheckBox.TabIndex = 0;
@@ -155,7 +157,7 @@
             bypassOnStartupCheckBox.AutoSize = true;
             bypassOnStartupCheckBox.Checked = true;
             bypassOnStartupCheckBox.CheckState = CheckState.Checked;
-            bypassOnStartupCheckBox.Location = new Point(420, 416);
+            bypassOnStartupCheckBox.Location = new Point(420, 467);
             bypassOnStartupCheckBox.Name = "bypassOnStartupCheckBox";
             bypassOnStartupCheckBox.Size = new Size(180, 29);
             bypassOnStartupCheckBox.TabIndex = 13;
@@ -168,7 +170,7 @@
             showLineNumbersCheckBox.AutoSize = true;
             showLineNumbersCheckBox.Checked = true;
             showLineNumbersCheckBox.CheckState = CheckState.Checked;
-            showLineNumbersCheckBox.Location = new Point(631, 416);
+            showLineNumbersCheckBox.Location = new Point(631, 467);
             showLineNumbersCheckBox.Name = "showLineNumbersCheckBox";
             showLineNumbersCheckBox.Size = new Size(189, 29);
             showLineNumbersCheckBox.TabIndex = 14;
@@ -186,11 +188,32 @@
             label5.Text = "APPLICATION RESTART REQUIRED FOR THESE CHANGES TO TAKE EFFECT\r\n\r\n";
             label5.Click += label5_Click;
             // 
+            // alterBackupPathButton
+            // 
+            alterBackupPathButton.Location = new Point(786, 178);
+            alterBackupPathButton.Name = "alterBackupPathButton";
+            alterBackupPathButton.Size = new Size(227, 34);
+            alterBackupPathButton.TabIndex = 16;
+            alterBackupPathButton.Text = "Alter Backup Path";
+            alterBackupPathButton.UseVisualStyleBackColor = true;
+            alterBackupPathButton.Click += alterBackupPathButton_Click;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(62, 183);
+            label6.Name = "label6";
+            label6.Size = new Size(718, 25);
+            label6.TabIndex = 17;
+            label6.Text = "It is strongly recommend that if you select a new backup folder that it reside in the cloud!\r\n";
+            // 
             // SetupForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1024, 470);
+            ClientSize = new Size(1038, 523);
+            Controls.Add(label6);
+            Controls.Add(alterBackupPathButton);
             Controls.Add(label5);
             Controls.Add(showLineNumbersCheckBox);
             Controls.Add(enableLoggingCheckBox);
@@ -230,5 +253,7 @@
         private CheckBox bypassOnStartupCheckBox;
         private CheckBox showLineNumbersCheckBox;
         private Label label5;
+        private Button alterBackupPathButton;
+        private Label label6;
     }
 }

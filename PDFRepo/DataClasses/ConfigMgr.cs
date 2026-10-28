@@ -121,7 +121,6 @@ namespace PDFRepo.DataClasses
                         case "ShowLineNumbers":
                             config.showLineNumbers = value;
                             break;          
-
                         case "SubmissionDate":
                             config.submissionDate = value;
                             break;
@@ -197,7 +196,8 @@ namespace PDFRepo.DataClasses
                                  string bkupPath,
                                  string enableLogging,
                                  string bypassOnStartup,
-                                 string showLineNumbers
+                                 string showLineNumbers,
+                                 string backupPath
                                  )
         {
             string submissionDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
@@ -211,6 +211,7 @@ namespace PDFRepo.DataClasses
                 $"EnableLogging={enableLogging}",
                 $"BypassOnStartup={bypassOnStartup}",
                 $"ShowLineNumbers={showLineNumbers}",
+                $"BackupPath={backupPath}",
                 $"SubmissionDate={submissionDate}"
             };
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Windows.Forms;
 using PDFRepo.DataClasses;
@@ -55,31 +56,11 @@ namespace PDFRepo.Forms
             categoryComboBox.DataBindings["SelectedValue"]?.WriteValue();
         }
 
-        private string getPdfFile()
+        private string getPdfFilePath()
         {
-            string selectedFilePath = null;
-            using (OpenFileDialog openFileDialog = new OpenFileDialog())
-            {
-
-                // 1. Target the absolute root of the user's home directory
-                string homeDirectory = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
-
-                // 2. Configure the dialog properties
-                openFileDialog.InitialDirectory = homeDirectory;
-                openFileDialog.Title = "Find a PDF File for Import";
-
-                // Forces the dialog to isolate and list only .pdf files 
-                openFileDialog.Filter = "PDF Files (*.pdf)|*.pdf";
-                openFileDialog.FilterIndex = 1;
-                openFileDialog.RestoreDirectory = true;
-
-                // 3. Display the dialog
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    // This string holds the full path to the chosen system file
-                    selectedFilePath = openFileDialog.FileName;
-                }
-            }
+            MethodsInCommon mic = new MethodsInCommon();
+            string selectedFilePath = mic.getFilePath("Find a PDF File for Import", "PDF Files (*.pdf)|*.pdf");
+  
             return selectedFilePath;
         }
 
@@ -129,7 +110,7 @@ namespace PDFRepo.Forms
 
         private void selectPDFButton_Click(object sender, EventArgs e)
         {
-            pdfPathTextBox.Text = getPdfFile();
+            pdfPathTextBox.Text = getPdfFilePath();
 
             if (!string.IsNullOrEmpty(pdfPathTextBox.Text))
             {

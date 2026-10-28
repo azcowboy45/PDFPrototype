@@ -51,8 +51,9 @@ namespace PDFRepo.Forms
                 bkupPathTextBox.Text,
                 enableLoggingCheckBox.Checked.ToString(),
                 bypassOnStartupCheckBox.Checked.ToString(),
-                showLineNumbersCheckBox.Checked.ToString());
-
+                showLineNumbersCheckBox.Checked.ToString(),
+                bkupPathTextBox.Text
+        );
         }
         private void LoadSettingsForm()
         {
@@ -133,6 +134,19 @@ namespace PDFRepo.Forms
         private void label5_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void alterBackupPathButton_Click(object sender, EventArgs e)
+        {
+            MethodsInCommon mic = new MethodsInCommon();
+            string selectedPath = mic.getFolderPath("Select Backup Directory");
+            if (!string.IsNullOrEmpty(selectedPath))
+            {
+                bkupPathTextBox.Text = selectedPath;
+            } else
+            {
+                MessageBox.Show("No folder selected. Please select a valid backup directory.");
+            }
         }
     }
 }
