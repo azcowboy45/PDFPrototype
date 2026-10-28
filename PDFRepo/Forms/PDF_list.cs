@@ -362,8 +362,8 @@ namespace PDFRepo
             this.dataGridView1.RowsDefaultCellStyle.ForeColor = Color.Black;
 
             // Define the style for alternating rows (e.g., odd rows)  Trying this in designer
-     //       this.dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.PaleTurquoise;
-     //       this.dataGridView1.AlternatingRowsDefaultCellStyle.ForeColor = Color.Black;
+            //       this.dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.PaleTurquoise;
+            //       this.dataGridView1.AlternatingRowsDefaultCellStyle.ForeColor = Color.Black;
 
 
             dataGridView1.Columns["ID"].HeaderText = "Primary Key-ID";
@@ -711,6 +711,11 @@ namespace PDFRepo
         #endregion // Controls
 
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
         }

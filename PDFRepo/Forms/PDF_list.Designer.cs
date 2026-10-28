@@ -74,7 +74,6 @@
             label3 = new Label();
             selectorComboBox = new ComboBox();
             label4 = new Label();
-            label5 = new Label();
             pdfCountTextBox = new TextBox();
             label6 = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
@@ -101,7 +100,7 @@
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.ContextMenuStrip = contextMenuStrip1;
             dataGridView1.EnableHeadersVisualStyles = false;
-            dataGridView1.Location = new Point(1, 95);
+            dataGridView1.Location = new Point(0, 158);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
@@ -113,7 +112,7 @@
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
             dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dataGridView1.RowHeadersWidth = 62;
-            dataGridView1.Size = new Size(1784, 1013);
+            dataGridView1.Size = new Size(1784, 1063);
             dataGridView1.TabIndex = 0;
             // 
             // contextMenuStrip1
@@ -168,7 +167,7 @@
             // exitButton
             // 
             exitButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            exitButton.Location = new Point(1663, 1162);
+            exitButton.Location = new Point(1648, 1243);
             exitButton.Name = "exitButton";
             exitButton.Size = new Size(111, 33);
             exitButton.TabIndex = 1;
@@ -308,6 +307,7 @@
             // 
             // pdfImportButton
             // 
+            pdfImportButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             pdfImportButton.BackColor = Color.White;
             pdfImportButton.BackgroundImage = (Image)resources.GetObject("pdfImportButton.BackgroundImage");
             pdfImportButton.BackgroundImageLayout = ImageLayout.Center;
@@ -318,11 +318,11 @@
             pdfImportButton.FlatStyle = FlatStyle.Popup;
             pdfImportButton.Font = new Font("Bernard MT Condensed", 18F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             pdfImportButton.ForeColor = Color.Firebrick;
-            pdfImportButton.Location = new Point(749, 1135);
+            pdfImportButton.Location = new Point(751, 43);
             pdfImportButton.Name = "pdfImportButton";
-            pdfImportButton.Size = new Size(281, 101);
+            pdfImportButton.Size = new Size(281, 104);
             pdfImportButton.TabIndex = 4;
-            pdfImportButton.Text = "Import PDF";
+            pdfImportButton.Text = "Import NOW!";
             pdfImportButton.UseVisualStyleBackColor = false;
             pdfImportButton.Click += pdfImportButton_Click;
             // 
@@ -344,7 +344,7 @@
             // categoryComboBox
             // 
             categoryComboBox.FormattingEnabled = true;
-            categoryComboBox.Location = new Point(960, 47);
+            categoryComboBox.Location = new Point(1492, 50);
             categoryComboBox.Name = "categoryComboBox";
             categoryComboBox.Size = new Size(267, 33);
             categoryComboBox.TabIndex = 5;
@@ -353,7 +353,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(792, 55);
+            label1.Location = new Point(1324, 58);
             label1.Name = "label1";
             label1.Size = new Size(162, 25);
             label1.TabIndex = 6;
@@ -364,9 +364,9 @@
             showAllButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             showAllButton.BackColor = SystemColors.ButtonHighlight;
             showAllButton.FlatStyle = FlatStyle.Popup;
-            showAllButton.Location = new Point(1663, 46);
+            showAllButton.Location = new Point(1648, -3);
             showAllButton.Name = "showAllButton";
-            showAllButton.Size = new Size(111, 33);
+            showAllButton.Size = new Size(111, 31);
             showAllButton.TabIndex = 7;
             showAllButton.Text = "Show All";
             showAllButton.UseVisualStyleBackColor = false;
@@ -375,7 +375,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(1252, 53);
+            label2.Location = new Point(1370, 101);
             label2.Name = "label2";
             label2.Size = new Size(116, 25);
             label2.TabIndex = 8;
@@ -384,7 +384,7 @@
             // subCatComboBox
             // 
             subCatComboBox.FormattingEnabled = true;
-            subCatComboBox.Location = new Point(1374, 49);
+            subCatComboBox.Location = new Point(1492, 97);
             subCatComboBox.Name = "subCatComboBox";
             subCatComboBox.Size = new Size(267, 33);
             subCatComboBox.TabIndex = 9;
@@ -393,7 +393,7 @@
             // userNameTextBox
             // 
             userNameTextBox.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            userNameTextBox.Location = new Point(147, 1159);
+            userNameTextBox.Location = new Point(151, 1241);
             userNameTextBox.Name = "userNameTextBox";
             userNameTextBox.ReadOnly = true;
             userNameTextBox.Size = new Size(225, 31);
@@ -403,7 +403,7 @@
             // 
             label3.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             label3.AutoSize = true;
-            label3.Location = new Point(12, 1159);
+            label3.Location = new Point(12, 1244);
             label3.Name = "label3";
             label3.Size = new Size(129, 25);
             label3.TabIndex = 11;
@@ -412,7 +412,7 @@
             // selectorComboBox
             // 
             selectorComboBox.FormattingEnabled = true;
-            selectorComboBox.Location = new Point(147, 46);
+            selectorComboBox.Location = new Point(151, 103);
             selectorComboBox.Name = "selectorComboBox";
             selectorComboBox.Size = new Size(449, 33);
             selectorComboBox.TabIndex = 12;
@@ -421,26 +421,16 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(6, 50);
+            label4.Location = new Point(6, 107);
             label4.Name = "label4";
             label4.Size = new Size(139, 25);
             label4.TabIndex = 13;
             label4.Text = "Select by Name:";
             // 
-            // label5
-            // 
-            label5.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            label5.AutoSize = true;
-            label5.Location = new Point(393, 1166);
-            label5.Name = "label5";
-            label5.Size = new Size(45, 25);
-            label5.TabIndex = 14;
-            label5.Text = "with";
-            // 
             // pdfCountTextBox
             // 
             pdfCountTextBox.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            pdfCountTextBox.Location = new Point(444, 1166);
+            pdfCountTextBox.Location = new Point(918, 1241);
             pdfCountTextBox.Name = "pdfCountTextBox";
             pdfCountTextBox.ReadOnly = true;
             pdfCountTextBox.Size = new Size(63, 31);
@@ -452,22 +442,21 @@
             // 
             label6.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             label6.AutoSize = true;
-            label6.Location = new Point(513, 1165);
+            label6.Location = new Point(782, 1243);
             label6.Name = "label6";
-            label6.Size = new Size(48, 25);
+            label6.Size = new Size(130, 25);
             label6.TabIndex = 16;
-            label6.Text = "pdfs";
+            label6.Text = "Pdfs Imported:";
             // 
             // PDF_list
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
-            ClientSize = new Size(1786, 1244);
-            Controls.Add(label6);
+            ClientSize = new Size(1786, 1285);
             Controls.Add(pdfCountTextBox);
-            Controls.Add(label5);
             Controls.Add(label4);
+            Controls.Add(label6);
             Controls.Add(selectorComboBox);
             Controls.Add(label3);
             Controls.Add(userNameTextBox);
@@ -538,7 +527,6 @@
         private Label label3;
         private ComboBox selectorComboBox;
         private Label label4;
-        private Label label5;
         private TextBox pdfCountTextBox;
         private Label label6;
     }
