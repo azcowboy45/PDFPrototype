@@ -86,12 +86,12 @@
             // 
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = Color.NavajoWhite;
+            dataGridViewCellStyle1.BackColor = Color.PaleTurquoise;
             dataGridViewCellStyle1.ForeColor = Color.Black;
             dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.Moccasin;
+            dataGridViewCellStyle2.BackColor = SystemColors.ButtonFace;
             dataGridViewCellStyle2.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             dataGridViewCellStyle2.ForeColor = Color.Black;
             dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
@@ -105,7 +105,7 @@
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = Color.Moccasin;
+            dataGridViewCellStyle3.BackColor = SystemColors.ButtonFace;
             dataGridViewCellStyle3.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             dataGridViewCellStyle3.ForeColor = Color.Black;
             dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
@@ -462,7 +462,7 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.GradientActiveCaption;
+            BackColor = SystemColors.Control;
             ClientSize = new Size(1786, 1244);
             Controls.Add(label6);
             Controls.Add(pdfCountTextBox);
