@@ -77,6 +77,7 @@
             pdfCountTextBox = new TextBox();
             label6 = new Label();
             gotToEndButton = new Button();
+            firstRowButton = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             contextMenuStrip1.SuspendLayout();
             menuStrip1.SuspendLayout();
@@ -452,13 +453,23 @@
             // 
             // gotToEndButton
             // 
-            gotToEndButton.Location = new Point(151, 101);
+            gotToEndButton.Location = new Point(451, 101);
             gotToEndButton.Name = "gotToEndButton";
             gotToEndButton.Size = new Size(149, 34);
             gotToEndButton.TabIndex = 17;
-            gotToEndButton.Text = "Go To Last Row";
+            gotToEndButton.Text = "Last Row";
             gotToEndButton.UseVisualStyleBackColor = true;
             gotToEndButton.Click += gotToEndButton_Click;
+            // 
+            // firstRowButton
+            // 
+            firstRowButton.Location = new Point(151, 101);
+            firstRowButton.Name = "firstRowButton";
+            firstRowButton.Size = new Size(149, 34);
+            firstRowButton.TabIndex = 18;
+            firstRowButton.Text = "First Row";
+            firstRowButton.UseVisualStyleBackColor = true;
+            firstRowButton.Click += firstRowButton_Click;
             // 
             // PDF_list
             // 
@@ -466,6 +477,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
             ClientSize = new Size(1786, 1285);
+            Controls.Add(firstRowButton);
             Controls.Add(gotToEndButton);
             Controls.Add(pdfCountTextBox);
             Controls.Add(label4);
@@ -543,5 +555,6 @@
         private TextBox pdfCountTextBox;
         private Label label6;
         private Button gotToEndButton;
+        private Button firstRowButton;
     }
 }

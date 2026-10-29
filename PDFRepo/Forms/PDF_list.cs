@@ -539,22 +539,31 @@ namespace PDFRepo
             }
         }
 
-        private void GoToLastRow()
+        private void GoToLastRow(bool lastRow)
         {
             if (dataGridView1.Rows.Count > 0)
             {
+                int rowIndex = 0; // Default to the first row if lastRow is false
+                if (lastRow)
+                {
                 // Find the exact index of the last row
-                int lastRowIndex = dataGridView1.Rows.Count - 1;
+                    rowIndex = dataGridView1.Rows.Count - 1;
+                }
+                else 
+                {
+                    var firstRow = dataGridView1.Rows[0];
+                    rowIndex = firstRow.Index; // This will always be 0
+                }
 
                 // Clear previous selections and highlight the row
                 dataGridView1.ClearSelection();
-                dataGridView1.Rows[lastRowIndex].Selected = true;
+                dataGridView1.Rows[rowIndex].Selected = true;
 
-                // Move the active cell focus to the last row (first column)
-                dataGridView1.CurrentCell = dataGridView1.Rows[lastRowIndex].Cells[0];
+                // Move the active cell focus to the desired row (first column)
+                dataGridView1.CurrentCell = dataGridView1.Rows[rowIndex].Cells[0];
 
                 // Force the scrollbar to jump to the bottom
-                dataGridView1.FirstDisplayedScrollingRowIndex = lastRowIndex;
+                dataGridView1.FirstDisplayedScrollingRowIndex = rowIndex;
             }
         }
 
@@ -743,10 +752,14 @@ namespace PDFRepo
 
         private void gotToEndButton_Click(object sender, EventArgs e)
         {
-            GoToLastRow();
+            GoToLastRow(true);
         }
 
         #endregion // Controls
 
+        private void firstRowButton_Click(object sender, EventArgs e)
+        {
+            GoToLastRow(false);
+        }
     }
 }
