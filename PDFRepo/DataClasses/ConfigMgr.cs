@@ -19,7 +19,7 @@ namespace PDFRepo.DataClasses
 {
     public class ConfigMgr
     {
-    //    private string pdfAppPath = string.Empty;
+        private string PdfSearchPath = string.Empty;
         private string localAppData = string.Empty;
         private string logEntry = string.Empty;
         private LogClass logger;
@@ -44,6 +44,8 @@ namespace PDFRepo.DataClasses
         {
             this.program = program;
             this.dbPath = this.program.dbPath;
+            this.PdfSearchPath = this.program.PdfSearchPath;
+
             config = new ConfigElements();
             logger = new LogClass();
             program.settingsPath = DefineSettingsPath();
@@ -106,6 +108,10 @@ namespace PDFRepo.DataClasses
                         case "LastName":
                             config.lastName = value;
                             break;
+                        case "PdfSearchPath":
+                            config.PdfSearchPath = value;
+                            break;
+
                         case "DbPath":
                             config.dbPath = this.dbPath;  // Always use the correct path for database (dbPath)
                             break;
@@ -190,8 +196,10 @@ namespace PDFRepo.DataClasses
                 Console.WriteLine($"An error occurred: {ex.Message}");
             }
         } 
-        public void UpdateJsonConfig(string firstName,
+        public void UpdateJsonConfig(
+            string firstName,
                                  string lastName,
+                                 string pdfSearchPath,
                                  string dbPath,
                                  string bkupPath,
                                  string enableLogging,
@@ -206,6 +214,7 @@ namespace PDFRepo.DataClasses
             {
                 $"FirstName={firstName}",
                 $"LastName={lastName}",
+                $"PdfSearchPath={pdfSearchPath}",
                 $"DbPath={dbPath}",
                 $"BkupPath={bkupPath}",
                 $"EnableLogging={enableLogging}",

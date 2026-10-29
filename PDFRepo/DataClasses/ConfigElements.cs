@@ -9,6 +9,7 @@ namespace PDFRepo.DataClasses
     {
         public string firstName { get; set; } = "New User";
         public string lastName { get; set; } = "Unknown";
+        public string PdfSearchPath { get; set; } = string.Empty;
         public string dbPath { get; set; } = string.Empty;
         public string bkupPath { get; set; } = string.Empty;
         public string enableLogging { get; set; } = "true";  // Default to true, set to false later if needed

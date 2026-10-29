@@ -87,6 +87,7 @@ namespace PDFRepo
             userNameTextBox.Text = $"{config.firstName} {config.lastName}".Trim();
             program.bypassOnStartup = Convert.ToBoolean(this.config.bypassOnStartup);
             program.backupPath = this.config.bkupPath;
+            program.PdfSearchPath = this.config.PdfSearchPath;
             DoSplashScreenIfNeeded();
             CreateLogger();
 
@@ -597,7 +598,7 @@ namespace PDFRepo
         #endregion
         private void importToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ImportForm importForm = new ImportForm();
+            ImportForm importForm = new ImportForm(program);
             importForm.ShowDialog();
         }
         private void exitButton_Click(object sender, EventArgs e)
@@ -624,7 +625,7 @@ namespace PDFRepo
 
         private void pdfImportButton_Click(object sender, EventArgs e)
         {
-            ImportForm importForm = new ImportForm();
+            ImportForm importForm = new ImportForm(program);
             importForm.ShowDialog();
             this.LoadDataGrid();
         }

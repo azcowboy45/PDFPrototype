@@ -21,6 +21,9 @@ namespace PDFRepo
         public string settingsPath { get; set; } = string.Empty;
         public string dbPath { get; set; } = string.Empty;
 
+        public string PdfSearchPath { get; set; } = string.Empty;
+
+
 
 
         [STAThread]

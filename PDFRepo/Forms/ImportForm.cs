@@ -20,9 +20,10 @@ namespace PDFRepo.Forms
         string fLastmod = null;
         string fAttributes = null;
         byte[] pdfBytes = null;
-
-        public ImportForm()
+        string pdfFilePath = null;    
+        public ImportForm(Program program)
         {
+            pdfFilePath = program.PdfSearchPath;
             InitializeComponent();
             //     categoryComboBox.SelectionChangeCommitted += categoryComboBox_SelectionChangeCommitted;
             BuildComboBoxes();
@@ -59,7 +60,8 @@ namespace PDFRepo.Forms
         private string getPdfFilePath()
         {
             MethodsInCommon mic = new MethodsInCommon();
-            string selectedFilePath = mic.getFilePath("Find a PDF File for Import", "PDF Files (*.pdf)|*.pdf");
+
+            string selectedFilePath = mic.getFilePath(this.pdfFilePath, "Find a PDF File for Import", "PDF Files (*.pdf)|*.pdf");
   
             return selectedFilePath;
         }

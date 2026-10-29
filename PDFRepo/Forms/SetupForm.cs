@@ -14,7 +14,7 @@ namespace PDFRepo.Forms
 {
     public partial class SetupForm : Form
     {
-        private Form myParent = null;
+        private SplashScreen myParent = null;
         public ConfigElements config;
         private LogClass logger;
         public ConfigMgr configuration;
@@ -31,7 +31,7 @@ namespace PDFRepo.Forms
             InitializeComponent();
             LoadSettingsForm();
         }
-        public SetupForm(Program program, ConfigMgr configuration, ConfigElements config, Form myParent)
+        public SetupForm(Program program, ConfigMgr configuration, ConfigElements config, SplashScreen myParent)
         {
             this.program = program;
             this.configuration = configuration;
@@ -41,24 +41,32 @@ namespace PDFRepo.Forms
             LoadSettingsForm();
             this.myParent = myParent;
         }
-
+        /**
+         * Updates the configuration settings based on the values entered in the form.
+         */
         public void doUpdate()
         {
             configuration.UpdateJsonConfig(
-                firstNameTextBox.Text,
-                lastNameTextBox.Text,
-                dbPathTextBox.Text,
-                bkupPathTextBox.Text,
-                enableLoggingCheckBox.Checked.ToString(),
-                bypassOnStartupCheckBox.Checked.ToString(),
-                showLineNumbersCheckBox.Checked.ToString(),
-                bkupPathTextBox.Text
-        );
+                    firstNameTextBox.Text,
+                    lastNameTextBox.Text,
+                    pdfPathTextBox.Text,
+                    dbPathTextBox.Text,
+                    bkupPathTextBox.Text,
+                    enableLoggingCheckBox.Checked.ToString(),
+                    bypassOnStartupCheckBox.Checked.ToString(),
+                    showLineNumbersCheckBox.Checked.ToString(),
+                    bkupPathTextBox.Text
+                );
         }
+        /**
+          * 
+         * Loads the current configuration settings into the form controls.
+         */
         private void LoadSettingsForm()
         {
             firstNameTextBox.Text = config.firstName;
             lastNameTextBox.Text = config.lastName;
+            pdfPathTextBox.Text = config.PdfSearchPath;
             dbPathTextBox.Text = config.dbPath;
             bkupPathTextBox.Text = config.bkupPath;
             enableLoggingCheckBox.Checked = bool.TryParse(config.enableLogging, out bool enableLogging) && enableLogging;
@@ -75,6 +83,7 @@ namespace PDFRepo.Forms
             ToolTip toolTip = new ToolTip();
             toolTip.SetToolTip(firstNameTextBox, "Enter your first name.");
             toolTip.SetToolTip(lastNameTextBox, "Enter your last name.");
+            toolTip.SetToolTip(pdfPathTextBox, "Override search path for PDF files.");
             toolTip.SetToolTip(dbPathTextBox, "Enter the path to the database file.");
             toolTip.SetToolTip(bkupPathTextBox, "Enter the path to the backup directory.");
             toolTip.SetToolTip(enableLoggingCheckBox, "Check to enable logging.");

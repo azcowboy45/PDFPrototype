@@ -35,17 +35,28 @@ namespace PDFRepo.utils
             }
         }
 
-        public string getFilePath(string dlogTitle, string fileFfilter)
+        public string getFilePath(string proposedFilePath, string dlogTitle, string fileFfilter)
         {
             string selectedFilePath = null;
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
-            {
-
+            {   
                 // 1. Target the absolute root of the user's home directory
                 string homeDirectory = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
 
+                if (!string.IsNullOrEmpty(proposedFilePath))
+                {
+                    openFileDialog.InitialDirectory = proposedFilePath;
+                }
+                else
+                {
+                    // If no proposed path is provided, default to the user's home directory
+                    openFileDialog.InitialDirectory = homeDirectory;
+                }
+
+
+
                 // 2. Configure the dialog properties
-                openFileDialog.InitialDirectory = homeDirectory;
+            //    openFileDialog.InitialDirectory = homeDirectory;
                 openFileDialog.Title = dlogTitle;
 
                 // Forces the dialog to isolate and list only .pdf files 
