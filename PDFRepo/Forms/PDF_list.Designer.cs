@@ -78,6 +78,7 @@
             label6 = new Label();
             gotToEndButton = new Button();
             firstRowButton = new Button();
+            label5 = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             contextMenuStrip1.SuspendLayout();
             menuStrip1.SuspendLayout();
@@ -102,7 +103,7 @@
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.ContextMenuStrip = contextMenuStrip1;
             dataGridView1.EnableHeadersVisualStyles = false;
-            dataGridView1.Location = new Point(0, 158);
+            dataGridView1.Location = new Point(0, 195);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
@@ -114,7 +115,7 @@
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
             dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dataGridView1.RowHeadersWidth = 62;
-            dataGridView1.Size = new Size(1784, 1063);
+            dataGridView1.Size = new Size(1784, 1026);
             dataGridView1.TabIndex = 0;
             // 
             // contextMenuStrip1
@@ -319,7 +320,7 @@
             pdfImportButton.FlatStyle = FlatStyle.Popup;
             pdfImportButton.Font = new Font("Bernard MT Condensed", 18F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             pdfImportButton.ForeColor = Color.Firebrick;
-            pdfImportButton.Location = new Point(762, 12);
+            pdfImportButton.Location = new Point(762, 45);
             pdfImportButton.Name = "pdfImportButton";
             pdfImportButton.Size = new Size(281, 126);
             pdfImportButton.TabIndex = 4;
@@ -346,7 +347,7 @@
             // 
             categoryComboBox.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             categoryComboBox.FormattingEnabled = true;
-            categoryComboBox.Location = new Point(1492, 50);
+            categoryComboBox.Location = new Point(1492, 83);
             categoryComboBox.Name = "categoryComboBox";
             categoryComboBox.Size = new Size(267, 33);
             categoryComboBox.TabIndex = 5;
@@ -356,7 +357,7 @@
             // 
             label1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label1.AutoSize = true;
-            label1.Location = new Point(1324, 58);
+            label1.Location = new Point(1324, 91);
             label1.Name = "label1";
             label1.Size = new Size(162, 25);
             label1.TabIndex = 6;
@@ -367,7 +368,7 @@
             showAllButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             showAllButton.BackColor = SystemColors.ButtonHighlight;
             showAllButton.FlatStyle = FlatStyle.Popup;
-            showAllButton.Location = new Point(1162, 100);
+            showAllButton.Location = new Point(1162, 133);
             showAllButton.Name = "showAllButton";
             showAllButton.Size = new Size(111, 35);
             showAllButton.TabIndex = 7;
@@ -379,7 +380,7 @@
             // 
             label2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label2.AutoSize = true;
-            label2.Location = new Point(1370, 105);
+            label2.Location = new Point(1370, 138);
             label2.Name = "label2";
             label2.Size = new Size(116, 25);
             label2.TabIndex = 8;
@@ -389,7 +390,7 @@
             // 
             subCatComboBox.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             subCatComboBox.FormattingEnabled = true;
-            subCatComboBox.Location = new Point(1492, 102);
+            subCatComboBox.Location = new Point(1492, 135);
             subCatComboBox.Name = "subCatComboBox";
             subCatComboBox.Size = new Size(267, 33);
             subCatComboBox.TabIndex = 9;
@@ -417,7 +418,7 @@
             // selectorComboBox
             // 
             selectorComboBox.FormattingEnabled = true;
-            selectorComboBox.Location = new Point(151, 43);
+            selectorComboBox.Location = new Point(151, 76);
             selectorComboBox.Name = "selectorComboBox";
             selectorComboBox.Size = new Size(449, 33);
             selectorComboBox.TabIndex = 12;
@@ -426,7 +427,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(6, 47);
+            label4.Location = new Point(6, 80);
             label4.Name = "label4";
             label4.Size = new Size(139, 25);
             label4.TabIndex = 13;
@@ -456,7 +457,7 @@
             // 
             // gotToEndButton
             // 
-            gotToEndButton.Location = new Point(451, 101);
+            gotToEndButton.Location = new Point(451, 134);
             gotToEndButton.Name = "gotToEndButton";
             gotToEndButton.Size = new Size(149, 34);
             gotToEndButton.TabIndex = 17;
@@ -466,7 +467,7 @@
             // 
             // firstRowButton
             // 
-            firstRowButton.Location = new Point(151, 101);
+            firstRowButton.Location = new Point(151, 134);
             firstRowButton.Name = "firstRowButton";
             firstRowButton.Size = new Size(149, 34);
             firstRowButton.TabIndex = 18;
@@ -474,12 +475,24 @@
             firstRowButton.UseVisualStyleBackColor = true;
             firstRowButton.Click += firstRowButton_Click;
             // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Impact", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label5.ForeColor = Color.IndianRed;
+            label5.Location = new Point(732, -3);
+            label5.Name = "label5";
+            label5.Size = new Size(342, 35);
+            label5.TabIndex = 19;
+            label5.Text = "Prototype - Local Use only!";
+            // 
             // PDF_list
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
             ClientSize = new Size(1786, 1285);
+            Controls.Add(label5);
             Controls.Add(firstRowButton);
             Controls.Add(gotToEndButton);
             Controls.Add(pdfCountTextBox);
@@ -559,5 +572,6 @@
         private Label label6;
         private Button gotToEndButton;
         private Button firstRowButton;
+        private Label label5;
     }
 }
