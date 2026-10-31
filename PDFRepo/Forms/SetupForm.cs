@@ -70,7 +70,10 @@ namespace PDFRepo.Forms
             dbPathTextBox.Text = config.dbPath;
             bkupPathTextBox.Text = config.bkupPath;
             enableLoggingCheckBox.Checked = bool.TryParse(config.enableLogging, out bool enableLogging) && enableLogging;
-            showLineNumbersCheckBox.Checked = bool.TryParse(config.showLineNumbers, out bool showLineNumbers) && showLineNumbers;
+
+            bool debugChecked = bool.TryParse(config.showLineNumbers, out bool showLineNumbers) && showLineNumbers;
+            showLineNumbersCheckBox.Checked = debugChecked;
+
             bypassOnStartupCheckBox.Checked = bool.TryParse(config.bypassOnStartup, out bool bypassOnStartup) && bypassOnStartup;
 
             AddToolTips();
@@ -171,6 +174,11 @@ namespace PDFRepo.Forms
             {
                 MessageBox.Show("No folder selected. Please select a valid PDF directory.");
             }
+        }
+
+        private void showLineNumbersCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

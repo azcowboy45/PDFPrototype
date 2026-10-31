@@ -1,4 +1,4 @@
-#define DEBUG_MODE
+#define DEBUG_MODE   // Special note, show priary keys for debug purposes inside of FormatDataGrid.  This is a temporary dev feature, not for production.
 
 using Microsoft.Data.Sqlite;
 using Microsoft.Web.WebView2.Core;

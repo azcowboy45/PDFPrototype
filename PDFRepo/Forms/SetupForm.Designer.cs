@@ -171,6 +171,7 @@
             showLineNumbersCheckBox.TabIndex = 14;
             showLineNumbersCheckBox.Text = "Show line numbers";
             showLineNumbersCheckBox.UseVisualStyleBackColor = true;
+            showLineNumbersCheckBox.CheckedChanged += showLineNumbersCheckBox_CheckedChanged;
             // 
             // label5
             // 
