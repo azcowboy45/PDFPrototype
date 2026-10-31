@@ -1,4 +1,4 @@
-﻿#region usings
+﻿//oldDataModel.cs#region usings
 /*
  *   
   
@@ -28,7 +28,6 @@ using static System.ComponentModel.Design.ObjectSelectorEditor;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 
-#endregion
 namespace PDFRepo.DataClasses
 {
     class DataModel
@@ -54,7 +53,7 @@ namespace PDFRepo.DataClasses
         #region constructors
         public DataModel()
         {
-            BuildDataConnectionString();
+            ConnectionString = "Data Source=C:\\Users\\bud\\OneDrive\\PDFData\\PDFRepo.db";
         }
         #endregion
 
@@ -240,7 +239,7 @@ namespace PDFRepo.DataClasses
         }
 
 
-        public bool UpdatePDFCat(string id, string oldCategory,string newCategory, string notes)
+        public bool UpdatePDFCat(string id, string oldCategory, string newCategory, string notes)
         {
             bool success = false;
 
@@ -314,8 +313,8 @@ namespace PDFRepo.DataClasses
             {
                 query = @"UPDATE PDF_table SET pdf_category = @value where pdf_category = @oldValue ";
             }
-            else 
-            { 
+            else
+            {
                 query = @"UPDATE PDF_table SET pdf_subcat = @value where pdf_subcat = @oldValue ";
             }
 
@@ -326,7 +325,7 @@ namespace PDFRepo.DataClasses
                     // Add parameters to prevent SQL injection
                     command.Parameters.AddWithValue("@value", NewValue);
                     command.Parameters.AddWithValue("@oldValue", oldValue);
-    
+
                     try
                     {
                         connection.Open();
@@ -355,9 +354,8 @@ namespace PDFRepo.DataClasses
             {
                 var command = connection.CreateCommand();
 
-                command.CommandText = "select id, pdf_name, pdf_category, pdf_subcat, " +
-                                          "pdf_created, pdf_lastmod, pdf_size, pdf_description " +
-                                          "from pdf_table;";
+                command.CommandText = "select id, pdf_name, pdf_category, pdf_file, pdf_subcat, " +
+                                          "pdf_created, pdf_lastmod, pdf_size, pdf_description from pdf_table;";
 
                 connection.Open();
 

@@ -1,4 +1,5 @@
-﻿using PDFRepo.DataClasses;
+﻿using Microsoft.VisualBasic.ApplicationServices;
+using PDFRepo.DataClasses;
 using PDFRepo.utils;
 using System;
 using System.Collections.Generic;
@@ -20,7 +21,7 @@ namespace PDFRepo.DataClasses
     public class ConfigMgr
     {
         private string PdfSearchPath = string.Empty;
-        private string localAppData = string.Empty;
+   //     private string oneDriveAppData = string.Empty;
         private string logEntry = string.Empty;
         private LogClass logger;
         public ConfigElements config;
@@ -60,8 +61,14 @@ namespace PDFRepo.DataClasses
         }
        private string DefineSettingsPath()
         {
-            string localAppData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-            return Path.Combine(localAppData, "PDFRepo", "settings.json");
+
+            // 1. Grab your local Personal OneDrive path instantly
+        //    string oneDrive = Environment.GetEnvironmentVariable("OneDriveConsumer");
+
+            // 2. Combine it with your folder name
+        //    string oneDriveAppData = Path.Combine(oneDrive, "PDFData");
+
+            return "C:\\Users\\bud\\OneDrive\\PDFData\\settings.json";
         }
         private void Loadconfig()
         {

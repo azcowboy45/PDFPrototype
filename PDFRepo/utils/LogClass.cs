@@ -10,7 +10,8 @@ namespace PDFRepo.utils
 
         public LogClass()
         {
-            string localAppData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+            //string localAppData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+            string localAppData = "C:\\Users\\bud\\OneDrive\\PDFData";   // Hard coded for this loal protoype
             this.logFilePath = Path.Combine(localAppData, "PDFRepo", "log.txt");
         }
         private void AppendLogLine(string message)

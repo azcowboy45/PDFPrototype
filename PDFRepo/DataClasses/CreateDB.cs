@@ -19,10 +19,10 @@ namespace PDFRepo.DataClasses
         public CreateDB(Program program)
         {
             // Use Path.Combine to ensure the path is constructed correctly across different operating systems
-            this.localAppData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+            this.localAppData = "C:\\Users\\bud\\OneDrive\\PDFData\\PDFRepo.db";
 
             // To combine it with a custom application file or folder safely: We will do settings.json later
-            this.dbPath = Path.Combine(localAppData, "PDFRepo", "PDFRepo.db");
+            this.dbPath = this.localAppData;
 
             ConnectionString = $"Data Source={this.dbPath};";
 
@@ -30,7 +30,7 @@ namespace PDFRepo.DataClasses
         }
         public string CreateDatabase()
         {
-
+/*
             if (InitializeDatabase())
             {
                 AddSampleCategories();
@@ -40,6 +40,8 @@ namespace PDFRepo.DataClasses
                 MessageBox.Show("Database creation failed.");
             }
             return this.dbPath;
+*/
+            return "C:\\Users\\bud\\OneDrive\\PDFData";
 
         }
 
