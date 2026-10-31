@@ -355,8 +355,9 @@ namespace PDFRepo.DataClasses
             {
                 var command = connection.CreateCommand();
 
-                command.CommandText = "select id, pdf_name, pdf_category, pdf_file, pdf_subcat, " +
-                                          "pdf_created, pdf_lastmod, pdf_size, pdf_description from pdf_table;";
+                command.CommandText = "select id, pdf_name, pdf_category, pdf_subcat, " +
+                                          "pdf_created, pdf_lastmod, pdf_size, pdf_description " +
+                                          "from pdf_table;";
 
                 connection.Open();
 

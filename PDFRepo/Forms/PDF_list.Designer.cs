@@ -309,7 +309,6 @@
             // 
             // pdfImportButton
             // 
-            pdfImportButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             pdfImportButton.BackColor = Color.White;
             pdfImportButton.BackgroundImage = (Image)resources.GetObject("pdfImportButton.BackgroundImage");
             pdfImportButton.BackgroundImageLayout = ImageLayout.Center;
@@ -320,9 +319,9 @@
             pdfImportButton.FlatStyle = FlatStyle.Popup;
             pdfImportButton.Font = new Font("Bernard MT Condensed", 18F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             pdfImportButton.ForeColor = Color.Firebrick;
-            pdfImportButton.Location = new Point(751, 43);
+            pdfImportButton.Location = new Point(762, 12);
             pdfImportButton.Name = "pdfImportButton";
-            pdfImportButton.Size = new Size(281, 104);
+            pdfImportButton.Size = new Size(281, 126);
             pdfImportButton.TabIndex = 4;
             pdfImportButton.Text = "Import NOW!";
             pdfImportButton.UseVisualStyleBackColor = false;
@@ -345,6 +344,7 @@
             // 
             // categoryComboBox
             // 
+            categoryComboBox.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             categoryComboBox.FormattingEnabled = true;
             categoryComboBox.Location = new Point(1492, 50);
             categoryComboBox.Name = "categoryComboBox";
@@ -354,6 +354,7 @@
             // 
             // label1
             // 
+            label1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label1.AutoSize = true;
             label1.Location = new Point(1324, 58);
             label1.Name = "label1";
@@ -366,9 +367,9 @@
             showAllButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             showAllButton.BackColor = SystemColors.ButtonHighlight;
             showAllButton.FlatStyle = FlatStyle.Popup;
-            showAllButton.Location = new Point(1648, -3);
+            showAllButton.Location = new Point(1162, 100);
             showAllButton.Name = "showAllButton";
-            showAllButton.Size = new Size(111, 31);
+            showAllButton.Size = new Size(111, 35);
             showAllButton.TabIndex = 7;
             showAllButton.Text = "Show All";
             showAllButton.UseVisualStyleBackColor = false;
@@ -376,8 +377,9 @@
             // 
             // label2
             // 
+            label2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label2.AutoSize = true;
-            label2.Location = new Point(1370, 101);
+            label2.Location = new Point(1370, 105);
             label2.Name = "label2";
             label2.Size = new Size(116, 25);
             label2.TabIndex = 8;
@@ -385,8 +387,9 @@
             // 
             // subCatComboBox
             // 
+            subCatComboBox.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             subCatComboBox.FormattingEnabled = true;
-            subCatComboBox.Location = new Point(1492, 97);
+            subCatComboBox.Location = new Point(1492, 102);
             subCatComboBox.Name = "subCatComboBox";
             subCatComboBox.Size = new Size(267, 33);
             subCatComboBox.TabIndex = 9;

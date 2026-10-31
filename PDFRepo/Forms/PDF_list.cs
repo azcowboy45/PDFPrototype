@@ -377,7 +377,7 @@ namespace PDFRepo
             dataGridView1.Columns["pdf_name"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dataGridView1.Columns["pdf_name"].Width = 256;
 
-            dataGridView1.Columns["pdf_file"].Visible = false;  // This large binary crashes datagrid
+      //      dataGridView1.Columns["pdf_file"].Visible = false;  // This large binary crashes datagrid
 
             dataGridView1.Columns["pdf_created"].HeaderText = "Created";
             dataGridView1.Columns["pdf_created"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -628,6 +628,7 @@ namespace PDFRepo
             ImportForm importForm = new ImportForm(program);
             importForm.ShowDialog();
             this.LoadDataGrid();
+            GoToLastRow(true);
         }
 
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
